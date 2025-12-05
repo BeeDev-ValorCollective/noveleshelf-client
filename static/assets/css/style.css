@@ -70,11 +70,7 @@ body {
   width: 520px;
   max-width: 90vw;
   height: auto;
-
-  /* rounded edges per request */
   border-radius: 20px;
-
-  /* static glow */
   filter: drop-shadow(0 0 25px rgba(255, 180, 200, 0.7));
 }
 
@@ -97,15 +93,39 @@ body {
    FOOTER
 -------------------------------------- */
 
-footer {
-  text-align: center;
-  padding: 1rem;
-  color: #b7b7c6;
-  font-size: 0.9rem;
+/* Base footer logo size */
+.footer-logo {
+  width: 140px;
+  opacity: 0.9;
+  display: block;
+  margin: 1.5rem auto 0.5rem auto;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.15));
 }
 
 .footer-text {
   opacity: 0.7;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Larger devices – scale BeeDev logo up smoothly */
+@media (min-width: 600px) {
+  .footer-logo {
+    width: 175px;
+  }
+}
+
+@media (min-width: 900px) {
+  .footer-logo {
+    width: 210px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .footer-logo {
+    width: 250px;
+  }
 }
 
 /* -------------------------------------
@@ -196,7 +216,7 @@ footer {
   }
 }
 
-/* Very small devices (iPhone SE, older Androids) */
+/* Very small devices */
 @media (max-width: 400px) {
   .border-box {
     padding: 1.6rem;
