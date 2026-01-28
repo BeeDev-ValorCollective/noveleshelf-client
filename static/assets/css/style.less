@@ -1,32 +1,223 @@
 body {
-  background: white;
+  margin: 0;
+  padding: 0;
+  background: #0d0f1a;
+  font-family: "Cambria", "Georgia", serif;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
 
-  header {
+  .container {
+    flex: 1;
     display: flex;
-  }
-  main {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
 
-    img {
-      width: 50%;
+    .border-box {
+      position: relative;
+      padding: 6rem 7rem;
+      border-radius: 28px;
+      background: #ffffff0a;
+      max-width: 900px;
+      text-align: center;
+      border: 4px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 0 35px #00ffff59, 0 0 55px #7d55ff59;
+
+      .logo-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 560px;
+        height: 560px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, #ffb4c852, #00000000);
+        filter: blur(55px);
+        border-radius: 50%;
+        z-index: 1;
+        opacity: 0.85;
+      }
+      .logo {
+        position: relative;
+        z-index: 2;
+        width: 520px;
+        max-width: 90vw;
+        height: auto;
+        border-radius: 20px;
+        filter: drop-shadow(0 0 25px #ffb4c8b3);
+      }
+    }
+  }
+  .coming-soon {
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    background-color: #0d0f1a;
+
+    .cta-button {
+      font-size: 1.8rem;
+      letter-spacing: 0.5px;
+      font-weight: 300;
+      padding: .5em;
+      border-radius: 28px;
+      background: #ffffff0a;
+      border: 4px groove #00ffff59;
+      box-shadow: 0 0 35px #ffb4c8b3, 0 0 55px #7d55ff59;
+
+      .cta-link {
+        color: #ffffff;
+        text-decoration: none;
+      }
     }
   }
   footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    img {
-      width: 50%;
+    .footer-logo {
+      width: 140px;
+      opacity: 0.9;
+      display: block;
+      margin: 1.5rem auto 0.5rem auto;
+      filter: drop-shadow(0 0 8px #ffffff26);
+    }
+    .footer-text {
+      opacity: 0.7;
+      text-align: center;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+
+      a {
+        color: #ffffff;
+        text-decoration: none;
+      }
     }
   }
 }
 
+/* Larger devices – scale BeeDev logo up smoothly */
+@media (min-width: 600px) {
+  .footer-logo {
+    width: 175px;
+  }
+}
+
+@media (min-width: 900px) {
+  .footer-logo {
+    width: 210px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .footer-logo {
+    width: 250px;
+  }
+}
+
+/* -------------------------------------
+   RESPONSIVE
+-------------------------------------- */
+
+/* Large tablets and below */
+@media (max-width: 1000px) {
+  .border-box {
+    padding: 4rem 5rem;
+    max-width: 700px;
+  }
+
+  .logo {
+    width: 420px;
+  }
+
+  .logo-glow {
+    width: 480px;
+    height: 480px;
+    filter: blur(45px);
+  }
+}
+
+/* Tablets and small laptops */
+@media (max-width: 800px) {
+  .border-box {
+    padding: 3.5rem 4rem;
+    max-width: 600px;
+  }
+
+  .logo {
+    width: 360px;
+  }
+
+  .logo-glow {
+    width: 420px;
+    height: 420px;
+    filter: blur(40px);
+  }
+
+  .coming-soon {
+    font-size: 1.5rem;
+    margin-top: 1.2rem;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+  body {
+    display: block;
+    min-height: auto;
+  }
+
+  .container {
+    padding: 1.2rem;
+    display: block;
+    text-align: center;
+  }
+
+  .border-box {
+    padding: 1.8rem 2.2rem;
+    max-width: 92%;
+    margin: 0 auto;
+    margin-top: 1.2rem;
+  }
+
+  .logo {
+    width: 240px;
+    border-radius: 14px;
+  }
+
+  .logo-glow {
+    width: 260px;
+    height: 260px;
+    filter: blur(30px);
+  }
+
+  .coming-soon {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  footer {
+    margin-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 400px) {
+  .border-box {
+    padding: 1.6rem;
+  }
+
+  .logo {
+    width: 210px;
+  }
+
+  .logo-glow {
+    width: 235px;
+    height: 235px;
+    filter: blur(26px);
+  }
+
+  .coming-soon {
+    font-size: 1.1rem;
+  }
+}
