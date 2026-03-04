@@ -7,6 +7,8 @@ import Footer from './components/BaseComponents/Footer'
 
 const Static = React.lazy(() => import('./views/Static'))
 
+const Home = React.lazy(() => import('./views/Home'))
+
 function App() {
   return (
     <BrowserRouter>
@@ -24,9 +26,12 @@ function AppContent() {
   return (
     <div>
     <Header />
-    <Routes>
-      <Route path="/" element={<Static />}/>
-    </Routes>
+    <main>
+      <Routes>
+        <Route path="/" element={<Static />}/>
+        <Route path="/home" element={<Home />}/>
+      </Routes>
+    </main>
     <Footer />
     </div>
   )

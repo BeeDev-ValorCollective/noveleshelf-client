@@ -13,7 +13,7 @@ body {
 #root {
   background: #0d0f1a;
 }
-body .container {
+body main .container {
   flex: 1;
   display: flex;
   justify-content: space-evenly;
@@ -22,7 +22,7 @@ body .container {
   width: 85%;
   margin-top: 1em;
 }
-body .container .text {
+body main .container .text {
   width: 50%;
 
   h1 {
@@ -37,7 +37,7 @@ body .container .text {
     font-style: italic;
   }
 }
-body .container .border-box {
+body main .container .border-box {
   position: relative;
   padding: 6rem 7rem;
   border-radius: 28px;
@@ -48,7 +48,7 @@ body .container .border-box {
   background-clip: padding-box;
   box-shadow: 0 0 35px #00ffff59, 0 0 55px #7d55ff59;
 }
-body .container .border-box .logo-glow {
+body main .container .border-box .logo-glow {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -61,7 +61,7 @@ body .container .border-box .logo-glow {
   z-index: 1;
   opacity: 0.85;
 }
-body .container .border-box .logo {
+body main .container .border-box .logo {
   position: relative;
   z-index: 2;
   width: 520px;
@@ -70,13 +70,13 @@ body .container .border-box .logo {
   border-radius: 20px;
   filter: drop-shadow(0 0 25px #ffb4c8b3);
 }
-body .coming-soon {
+body main .coming-soon {
   margin-top: 1.5rem;
   margin-bottom: 2.5rem;
   text-align: center;
   background-color: #0d0f1a;
 }
-body .coming-soon .cta-button {
+body main .coming-soon .cta-button {
   font-size: 1.8rem;
   letter-spacing: 0.5px;
   font-weight: 300;
@@ -86,7 +86,7 @@ body .coming-soon .cta-button {
   border: 4px groove #00ffff59;
   box-shadow: 0 0 35px #ffb4c8b3, 0 0 55px #7d55ff59;
 }
-body .coming-soon .cta-button .cta-link {
+body main .coming-soon .cta-button .cta-link {
   color: #ffffff;
   text-decoration: none;
 }
