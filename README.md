@@ -26,3 +26,17 @@ The page is built from the BeeDev base template and updated with Novel eShelf br
 
 All updates were completed in the `dev` branch before opening a PR to `main`.  
 Deployment will use the finalized static files in the `/static` folder.
+
+
+# Notes
+## Home Page 
+- Add function to show active page showing to either hide that link in the nav or change it's color to indicate that it is the current page.
+- Combine the for readers / for authors section that is at the bottom with the top buttons/section instead
+
+## About Page
+- Possibly remove the journey part
+
+## Pricing Page
+- Rename to shop
+- No subscription
+- Quills TBD on how that will look and be worded
