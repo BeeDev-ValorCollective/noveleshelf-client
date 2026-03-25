@@ -24,16 +24,15 @@ function App() {
 function AppContent() {
 
   return (
-    <div>
+    <>
     <Header />
     <main>
       <Routes>
-        <Route path="/" element={<Static />}/>
-        <Route path="/home" element={<Home />}/>
+        <Route path="/" element={<Home />}/>
       </Routes>
     </main>
     <Footer />
-    </div>
+    </>
   )
 }
 

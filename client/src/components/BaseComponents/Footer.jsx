@@ -7,12 +7,12 @@ export default function Footer() {
 
     return(
         <footer>
-      <img
-        src={BeeDevLogo}
-        alt="BeeDev Services Logo"
-        className="footer-logo"
-      />
-      <p className="footer-text">Powered by <a href="https://beedev-services.com" target='_blank'>BeeDev Services LLC</a></p>
-    </footer>
+          <img
+            src={BeeDevLogo}
+            alt="BeeDev Services Logo"
+            className="footer-logo"
+          />
+          <p className="footer-text">Powered by <a href="https://beedev-services.com" target='_blank'>BeeDev Services LLC</a></p>
+      </footer>
     )
 }

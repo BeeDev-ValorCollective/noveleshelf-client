@@ -2,9 +2,47 @@ header {
     min-height: 100px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 95%;
+}
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    h1 {
+        font-family: "Fredericka the Great", serif;
+        color: #ffffffe0;
+        font-size: 3em;
+    }
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+
+    a {
+        font-size: 1.4em;
+        color: #ffffffe0;
+        font-family: "Fredericka the Great", serif;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}
+.shelfImg {
+    max-width: 15%;
 }
 footer {
     margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
 }

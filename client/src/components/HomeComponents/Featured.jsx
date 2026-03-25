@@ -40,7 +40,9 @@ export default function Featured() {
                 {featured.map((feature) => {
                     return (
                         <div className="feature" key={feature.id}>
-                            {feature.book_title}
+                            <img src={feature.img_url} alt={feature.img_ref} />
+                            <h3>{feature.book_title}</h3>
+                            <h3>{feature.book_author}</h3>
                         </div>
                     )
                 })}
