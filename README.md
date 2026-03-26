@@ -40,3 +40,5 @@ Deployment will use the finalized static files in the `/static` folder.
 - Rename to shop
 - No subscription
 - Quills TBD on how that will look and be worded
+
+## Library Page
