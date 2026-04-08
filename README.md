@@ -42,3 +42,44 @@ Deployment will use the finalized static files in the `/static` folder.
 - Quills TBD on how that will look and be worded
 
 ## Library Page
+
+
+
+Token Storage
+```
+// Access token - keep in memory only (most secure)
+// Store in a variable or state management like Zustand/Redux
+sessionStorage.setItem('access_token', accessToken);
+
+// Refresh token - httpOnly cookie is safest
+// This is ideally set by the backend not the frontend
+```
+API call examples
+```
+const accessToken = await SecureStore.getItemAsync('access_token');
+
+const response = await fetch('http://localhost:8000/api/auth/me/', {
+    headers: {
+        'Authorization': `Bearer ${accessToken}`
+    }
+});
+```
+Token refresh (60 min)
+```
+const refreshToken = await SecureStore.getItemAsync('refresh_token');
+
+const response = await fetch('http://localhost:8000/api/auth/refresh/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ refresh: refreshToken })
+});
+
+const data = await response.json();
+// Store the new access token
+await SecureStore.setItemAsync('access_token', data.access);
+```
+Token logout
+```
+await SecureStore.deleteItemAsync('access_token');
+await SecureStore.deleteItemAsync('refresh_token');
+```
