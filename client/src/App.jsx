@@ -8,6 +8,10 @@ import Footer from './components/BaseComponents/Footer'
 const Static = React.lazy(() => import('./views/Static'))
 
 const Home = React.lazy(() => import('./views/Home'))
+const Login = React.lazy(() => import('./views/Login'))
+const Signup = React.lazy(() => import('./views/Signup'))
+const ResetPassword = React.lazy(() => import('./views/ResetPassword'))
+const NewPassword = React.lazy(() => import('./views/NewPassword'))
 
 function App() {
   return (
@@ -29,6 +33,10 @@ function AppContent() {
     <main>
       <Routes>
         <Route path="/" element={<Home />}/>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/signup" element={<Signup />}/>
+        <Route path="/reset-password" element={<ResetPassword />}/>
+        <Route path="/new-password/:token" element={<NewPassword />} />
       </Routes>
     </main>
     <Footer />
