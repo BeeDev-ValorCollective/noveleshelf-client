@@ -4,16 +4,22 @@ import { useNavigate } from "react-router-dom";
 import AuthCard from "../components/AuthComponents/AuthCard";
 import InputField from "../components/AuthComponents/InputField";
 import PrimaryButton from "../components/AuthComponents/PrimaryButton";
+import useAuthStore from "../store/authStore";
 
 import "../components/AuthComponents/auth.css";
 
+const DB_API = `${import.meta.env.VITE_DB_API}`
+
 export default function Signup() {
+
+  const setAuth = useAuthStore((state) => state.setAuth);
   const navigate = useNavigate();
 
     const [form, setForm] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
+    confirm_password: "",
+    date_of_birth: "",
   });
 
   const handleChange = (e) => {
@@ -23,12 +29,39 @@ export default function Signup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (form.password !== form.confirmPassword) {
+    if (form.password !== form.confirm_password) {
       alert("Passwords do not match");
       return;
+    }
+    try {
+        const response = await fetch('https://api.noveleshelf.com/api/auth/register/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: form.email,
+                password: form.password,
+                confirm_password: form.confirm_password,
+                date_of_birth: form.date_of_birth,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            setAuth(data.user, data.tokens.access, data.tokens.refresh);
+            navigate('/dashboard');
+        } else {
+            console.error('Registration failed:', data);
+            alert(data.email?.[0] || data.confirm_password?.[0] || 'Registration failed');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Something went wrong. Please try again.');
     }
 
     console.log(form);
@@ -64,9 +97,18 @@ export default function Signup() {
         <InputField
           label="Confirm Password"
           type="password"
-          name="confirmPassword"
+          name="confirm_password"
           placeholder="••••••••"
-          value={form.confirmPassword}
+          value={form.confirm_password}
+          onChange={handleChange}
+        />
+
+        <InputField
+          label="Birthdate"
+          type="date"
+          name="date_of_birth"
+          placeholder="••••••••"
+          value={form.date_of_birth}
           onChange={handleChange}
         />
 
