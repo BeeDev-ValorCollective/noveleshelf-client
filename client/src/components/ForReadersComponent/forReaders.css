@@ -23,3 +23,51 @@
     color: #ffffffa0;
     font-weight: 400;
 }
+
+/* Premium Features Component */
+.premium-features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4em 2em;
+    text-align: center;
+}
+.premium-features h2 {
+    font-size: 2em;
+    color: #ffffffe0;
+    margin-bottom: 1.5em;
+}
+.features-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2em;
+    width: 100%;
+}
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    padding: 2em;
+    background-color: #ffffff10;
+    border-radius: 8px;
+}
+.feature-card h3 {
+    color: #ffffffe0;
+    margin: 0.5em 0;
+}
+.feature-card p {
+    color: #ffffffa0;
+    font-size: 0.9em;
+    text-align: center;
+}
+.feature-icon {
+    color: #e05555;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.5em;
+}
