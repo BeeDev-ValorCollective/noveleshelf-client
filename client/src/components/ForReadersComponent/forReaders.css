@@ -15,7 +15,7 @@
     border: none;
     height: 4px;
     width: 1000px;
-    background: linear-gradient(to right, transparent, #e05555, transparent);
+    background: linear-gradient(to right, transparent, #DD7a7a, transparent);
     margin: 0.5em auto;
 }
 .reader-hero h4 {
@@ -66,7 +66,7 @@
     text-align: center;
 }
 .feature-icon {
-    color: #e05555;
+    color: #DD7a7a;
     width: 32px;
     height: 32px;
     margin-bottom: 0.5em;
@@ -154,7 +154,7 @@
     text-align: center;
 }
 .mode-icon {
-    color: #e05555;
+    color: #DD7a7a;
     width: 32px;
     height: 32px;
     margin-bottom: 0.5em;

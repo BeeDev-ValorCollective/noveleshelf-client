@@ -15,7 +15,7 @@
     border: none;
     height: 4px;
     width: 1000px;
-    background: linear-gradient(to right, transparent, #e05555, transparent);
+    background: linear-gradient(to right, transparent, #DD7a7a, transparent);
     margin: 0.5em auto;
 }
 .authors-hero h4 {
@@ -64,7 +64,7 @@
     margin-bottom: 0.5em;
 }
 .stat-value {
-    color: #e05555;
+    color: #DD7a7a;
     font-size: 1.8em;
     margin: 0;
 }
@@ -113,7 +113,7 @@
     width: 30%;
 }
 .earnings-icon {
-    color: #e05555;
+    color: #DD7a7a;
     width: 32px;
     height: 32px;
     margin-bottom: 0.5em;
@@ -124,7 +124,7 @@
     margin-bottom: 0.3em;
 }
 .earnings-value {
-    color: #e05555;
+    color: #DD7a7a;
     font-size: 1.8em;
     margin: 0.2em 0;
 }
@@ -161,7 +161,7 @@
     margin-bottom: 1.5em;
 }
 .upload-icon {
-    color: #e05555;
+    color: #DD7a7a;
     width: 48px;
     height: 48px;
     margin-bottom: 0.5em;
@@ -211,7 +211,7 @@
     color: #4caf50;
 }
 .upload-status.processing {
-    color: #e05555;
+    color: #DD7a7a;
 }
 
 /* DRM Protection Component */
@@ -257,7 +257,7 @@
     text-align: center;
 }
 .drm-icon {
-    color: #e05555;
+    color: #DD7a7a;
     width: 32px;
     height: 32px;
     margin-bottom: 0.5em;
