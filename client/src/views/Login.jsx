@@ -10,7 +10,7 @@ import "../components/AuthComponents/auth.css";
 
 const DB_API = `${import.meta.env.VITE_DB_API}`
 
-export default function Login() {
+export default function Login({ onClose, isModal }) {
   const navigate = useNavigate();
   const setAuth = useAuthStore((state) => state.setAuth);
 
@@ -53,11 +53,13 @@ export default function Login() {
       setError('Something went wrong. Please try again.');
     }
   };
-
+  if (isModal) {
   return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
     <AuthCard>
 
-      <button className="close-btn">×</button>
+      <button onClick={onClose} className="close-btn">×</button>
 
       <h1>Welcome Back</h1>
       <p className="subtitle">Continue your reading journey</p>
@@ -103,5 +105,8 @@ export default function Login() {
       </div>
 
     </AuthCard>
+    </div>
+    </div>
   );
+}
 }

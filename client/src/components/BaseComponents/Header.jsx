@@ -4,7 +4,8 @@ import useAuthStore from '../../store/authStore'
 import useLogout from '../../hooks/useLogout'
 
 
-export default function Header() {
+
+export default function Header({ onLoginClick, onSignupClick }) {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
     const { logout } = useLogout()
 
@@ -28,8 +29,8 @@ export default function Header() {
                     </>
                 ) : (
                     <>
-                        <a href='/login'>LogIn</a>
-                        <a href='/signup'>Sign Up</a>
+                        <button onClick={onLoginClick}>LogIn</button>
+                        <button onClick={onSignupClick}>Sign Up</button>
                     </>
                 )}
             </nav>
