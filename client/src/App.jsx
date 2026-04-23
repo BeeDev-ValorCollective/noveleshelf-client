@@ -16,6 +16,8 @@ const NewPassword = React.lazy(() => import('./views/NewPassword'))
 const Dashboard = React.lazy(() => import('./views/Dashboard'))
 // const UpdateProfile = React.lazy(() => import('./views/UpdateProfile'))
 
+const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
+const ForReaders = React.lazy(() => import('./views/ForReaders'))
 
 function App() {
 
@@ -54,6 +56,8 @@ function AppContent() {
           <ProtectedRoute>
             <Dashboard />
           </ProtectedRoute>} />
+        <Route path="/for-authors" element={<ForAuthors />} />
+        <Route path="/for-readers" element={<ForReaders />} />
       </Routes>
     </main>
     <Footer />

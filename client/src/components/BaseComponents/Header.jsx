@@ -19,8 +19,8 @@ export default function Header({ onLoginClick, onSignupClick }) {
             <nav>
                 <a href="/">Home</a>
                 <a href="#">Library</a>
-                <a href="#">For Readers</a>
-                <a href="#">For Authors</a>
+                <a href="/for-readers">For Readers</a>
+                <a href="/for-authors">For Authors</a>
                 <a href="#">Shop</a>
                 {isAuthenticated ? (
                     <>
