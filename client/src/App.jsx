@@ -14,7 +14,7 @@ const Signup = React.lazy(() => import('./views/Signup'))
 const ResetPassword = React.lazy(() => import('./views/ResetPassword'))
 const NewPassword = React.lazy(() => import('./views/NewPassword'))
 const Dashboard = React.lazy(() => import('./views/Dashboard'))
-const UpdateProfile = React.lazy(() => import('./views/UpdateProfile'))
+// const UpdateProfile = React.lazy(() => import('./views/UpdateProfile'))
 
 
 function App() {
@@ -49,7 +49,7 @@ function AppContent() {
         <Route path="/signup" element={<Signup />}/>
         <Route path="/reset-password" element={<ResetPassword />}/>
         <Route path="/new-password/:token" element={<NewPassword />} />
-        <Route path="/update-profile" element={<UpdateProfile />} />
+        {/* <Route path="/update-profile" element={<UpdateProfile />} /> */}
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Dashboard />
