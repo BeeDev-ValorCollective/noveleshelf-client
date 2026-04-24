@@ -37,7 +37,7 @@ export default function Signup() {
       return;
     }
     try {
-        const response = await fetch('https://api.noveleshelf.com/api/auth/register/', {
+        const response = await fetch(DB_API + 'auth/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
