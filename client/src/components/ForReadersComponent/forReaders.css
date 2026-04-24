@@ -1,0 +1,230 @@
+/* Hero Component */
+.readers-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    text-align: center;
+}
+.readers-hero h1 {
+    font-size: 3em;
+    color: #ffffffe0;
+}
+.hero-divider {
+    border: none;
+    height: 4px;
+    width: 1000px;
+    background: linear-gradient(to right, transparent, #DD7a7a, transparent);
+    margin: 0.5em auto;
+}
+.reader-hero h4 {
+    font-size: 1.2em;
+    color: #ffffffa0;
+    font-weight: 400;
+}
+
+/* Premium Features Component */
+.premium-features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4em 2em;
+    text-align: center;
+}
+.premium-features h2 {
+    font-size: 2em;
+    color: #ffffffe0;
+    margin-bottom: 1.5em;
+}
+.features-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2em;
+    width: 100%;
+}
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    padding: 2em;
+    background-color: #ffffff10;
+    border-radius: 8px;
+}
+.feature-card h3 {
+    color: #ffffffe0;
+    margin: 0.5em 0;
+}
+.feature-card p {
+    color: #ffffffa0;
+    font-size: 0.9em;
+    text-align: center;
+}
+.feature-icon {
+    color: #DD7a7a;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.5em;
+}
+
+/* Discover Component */
+.discover {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4em 2em;
+    gap: 4em;
+    width: 90%;
+}
+.discover-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+}
+.discover-text h2 {
+    font-size: 2em;
+    color: #ffffffe0;
+    margin-bottom: 0.5em;
+}
+.discover-text p {
+    color: #ffffffa0;
+    font-size: 1em;
+    line-height: 1.6;
+}
+.discover-image {
+    width: 50%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.discover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Reading Modes Component */
+.reading-modes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4em 2em;
+    text-align: center;
+    width: 90%;
+}
+.reading-modes h2 {
+    font-size: 2em;
+    color: #ffffffe0;
+    margin-bottom: 1.5em;
+}
+.modes-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2em;
+    width: 100%;
+}
+.mode-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    padding: 2em;
+    background-color: #ffffff10;
+    border-radius: 8px;
+}
+.mode-card h3 {
+    color: #ffffffe0;
+    margin: 0.5em 0;
+}
+.mode-card p {
+    color: #ffffffa0;
+    font-size: 0.9em;
+    text-align: center;
+}
+.mode-icon {
+    color: #DD7a7a;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.5em;
+}
+
+/* Read Anywhere Component */
+.read-anywhere {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4em 2em;
+    text-align: center;
+    width: 90%;
+}
+.read-anywhere h2 {
+    font-size: 2em;
+    color: #ffffffe0;
+    margin-bottom: 1em;
+}
+.read-anywhere-image {
+    width: 75%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+.read-anywhere-img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.read-anywhere-text {
+    color: #ffffffa0;
+    font-size: 1em;
+    line-height: 1.6;
+    max-width: 700px;
+}
+
+/* CTA Component */
+.readers-cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4em 2em;
+    text-align: center;
+    width: 100%;
+    background-color: #ffffff10;
+    margin-top: 2em;
+}
+.readers-cta h2 {
+    font-size: 2em;
+    color: #ffffffe0;
+    margin-bottom: 0.5em;
+}
+.readers-cta p {
+    color: #ffffffa0;
+    margin-bottom: 1.5em;
+}
+.cta-button {
+    background-color: transparent;
+    color: #ffffffe0;
+    border: 2px solid #ffffffe0;
+    padding: 0.8em 2em;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.cta-button:hover {
+    background-color: #ffffffe0;
+    color: #000000;
+}
