@@ -1,76 +1,87 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import useAuthStore from "../store/authStore";
 
+import AuthModal from "../components/AuthComponents/AuthModal";
 import AuthCard from "../components/AuthComponents/AuthCard";
+import AuthPage from "../components/AuthComponents/AuthPage";
 import InputField from "../components/AuthComponents/InputField";
 import PrimaryButton from "../components/AuthComponents/PrimaryButton";
-import useAuthStore from "../store/authStore";
+import useModalAuth from "../hooks/useModalAuth";
 
 import "../components/AuthComponents/auth.css";
 
-const DB_API = `${import.meta.env.VITE_DB_API}`
+const DB_API = `${import.meta.env.VITE_DB_API}`;
 
-export default function Signup() {
-
+export default function Signup({ onClose, isModal, onSwitchToLogin }) {
   const setAuth = useAuthStore((state) => state.setAuth);
-  const navigate = useNavigate();
+  const { closeAndNavigate, safeClose } = useModalAuth(onClose);
+  const [isLoading, setIsLoading] = useState(false);
 
-    const [form, setForm] = useState({
+  const [form, setForm] = useState({
     email: "",
     password: "",
     confirm_password: "",
     date_of_birth: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setIsLoading(true);
 
     if (form.password !== form.confirm_password) {
-      alert("Passwords do not match");
+      setError("Passwords do not match");
       return;
     }
+
     try {
-        const response = await fetch(DB_API + 'auth/register/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: form.email,
-                password: form.password,
-                confirm_password: form.confirm_password,
-                date_of_birth: form.date_of_birth,
-            }),
-        });
+      const response = await fetch(DB_API + "auth/register/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: form.email,
+          password: form.password,
+          confirm_password: form.confirm_password,
+          date_of_birth: form.date_of_birth,
+        }),
+      });
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (response.ok) {
-            setAuth(data.user, data.tokens.access, data.tokens.refresh);
-            navigate('/dashboard');
-        } else {
-            console.error('Registration failed:', data);
-            alert(data.email?.[0] || data.confirm_password?.[0] || 'Registration failed');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Something went wrong. Please try again.');
+      if (response.ok) {
+        setAuth(data.user, data.tokens.access, data.tokens.refresh);
+        closeAndNavigate("/dashboard");
+      } else {
+        setError(
+          data.email?.[0] ||
+          data.confirm_password?.[0] ||
+          "Registration failed"
+        );
+      }
+    } catch (err) {
+      console.error("Signup error:", err);
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
-
-    console.log(form);
   };
 
-  return (
-    <AuthCard>
+  const handleLoginClick = () => {
+    if (onSwitchToLogin) {
+      onSwitchToLogin();
+    } else {
+      closeAndNavigate("/login");
+    }
+  };
 
-      <button className="close-btn">×</button>
+  const inner = (
+    <AuthCard>
+      <button onClick={safeClose} className="close-btn">×</button>
 
       <h1>Create Your Account</h1>
       <p className="subtitle">Join a premium digital reading experience</p>
@@ -84,7 +95,6 @@ export default function Signup() {
           value={form.email}
           onChange={handleChange}
         />
-
         <InputField
           label="Password"
           type="password"
@@ -93,7 +103,6 @@ export default function Signup() {
           value={form.password}
           onChange={handleChange}
         />
-
         <InputField
           label="Confirm Password"
           type="password"
@@ -102,33 +111,33 @@ export default function Signup() {
           value={form.confirm_password}
           onChange={handleChange}
         />
-
         <InputField
           label="Birthdate"
           type="date"
           name="date_of_birth"
-          placeholder="••••••••"
           value={form.date_of_birth}
           onChange={handleChange}
         />
-
-        <PrimaryButton type="submit">
-          Create Account
-        </PrimaryButton>
+        {error && <p className="error">{error}</p>}
+        <PrimaryButton type="submit" isLoading={isLoading}>Create Account</PrimaryButton>
       </form>
 
       <p className="login">
         Already have an account?
-        <span onClick={() => navigate("/login")}> Sign in</span>
+        <span onClick={handleLoginClick}> Sign in</span>
       </p>
 
       <p className="divider">or continue with</p>
-
       <div className="social-buttons">
         <button className="social">Google</button>
         <button className="social">Apple</button>
       </div>
-
     </AuthCard>
   );
+
+  if (isModal) {
+    return <AuthModal onClose={safeClose}>{inner}</AuthModal>;
+  }
+
+  return <AuthPage>{inner}</AuthPage>;
 }
