@@ -151,10 +151,14 @@ input {
 }
 
 .modal-content {
-  background: white;
   padding: 2rem;
   border-radius: 10px;
   min-width: 350px;
   max-width: 500px;
   width: 100%;
+}
+
+.login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }

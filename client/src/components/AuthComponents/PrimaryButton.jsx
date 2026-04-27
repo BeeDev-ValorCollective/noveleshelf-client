@@ -1,7 +1,7 @@
-export default function PrimaryButton({ children, ...props }) {
+export default function PrimaryButton({ children, isLoading, ...props }) {
   return (
-    <button className="login-btn" {...props}>
-      {children}
+    <button className="login-btn" disabled={isLoading} {...props}>
+      {isLoading ? "Please wait..." : children}
     </button>
   );
 }
