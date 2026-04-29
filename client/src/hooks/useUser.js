@@ -22,6 +22,7 @@ export default function useUser() {
                     if (response.ok) {
                         const data = await response.json();
                         updateUser(data);
+                        console.log(data)
                     } else if (response.status === 401) {
                         // token expired or invalid - clear auth and redirect to login
                         clearAuth();
