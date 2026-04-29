@@ -55,6 +55,13 @@ export default function Signup({ onClose, isModal, onSwitchToLogin }) {
 
       if (response.ok) {
         setAuth(data.user, data.tokens.access, data.tokens.refresh);
+        // DEV ONLY - remove before production
+        if (import.meta.env.DEV) {
+            console.log('🔑 DEV TOKENS:', {
+                access: data.tokens.access,
+                refresh: data.tokens.refresh
+            })
+        }
         closeAndNavigate("/dashboard");
       } else {
         setError(
