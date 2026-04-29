@@ -22,7 +22,9 @@ export default function useLogout() {
         } catch (error) {
             console.error('Logout error:', error);
         } finally {
-            // always clear auth and redirect even if API call fails
+            if (import.meta.env.DEV) {
+                console.log('🚪 LOGGED OUT')
+            }
             clearAuth();
             navigate('/login');
         }
