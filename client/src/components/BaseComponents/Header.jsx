@@ -6,6 +6,9 @@ import useLogout from '../../hooks/useLogout'
 import { Link } from 'react-router-dom'
 import { getMediaUrl } from '../../utils/mediaUrl'
 
+const APP_URL = import.meta.env.VITE_APP_URL
+const DJANGO_ADMIN_URL = import.meta.env.VITE_DJANGO_ADMIN_URL
+
 export default function Header({ onLoginClick, onSignupClick }) {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
     const user = useAuthStore((state) => state.user)
@@ -25,7 +28,67 @@ export default function Header({ onLoginClick, onSignupClick }) {
     if (user?.moderator_profile) availableRoles.push({ role: 'moderator', label: 'Moderator' })
     if (user?.admin_profile) availableRoles.push({ role: 'admin', label: 'Admin' })
 
-    // Close menu when clicking outside
+    const getMenuItems = () => {
+        switch(currentRole) {
+            case 'free_author':
+                return (
+                    <>
+                        <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+                        <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
+                        <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
+                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                    </>
+                )
+            case 'author':
+                return (
+                    <>
+                        <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+                        <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
+                        <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
+                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                    </>
+                )
+            case 'moderator':
+                return (
+                    <>
+                        <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+                        <Link to="/flagged-content" onClick={() => setMenuOpen(false)}>Flagged Content</Link>
+                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                    </>
+                )
+            case 'admin':
+                return (
+                    <>
+                        <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+                        <Link to="/admin/users" onClick={() => setMenuOpen(false)}>User Management</Link>
+                        <Link to="/admin/author-requests" onClick={() => setMenuOpen(false)}>Author Requests</Link>
+                        <Link to="/admin/book-approvals" onClick={() => setMenuOpen(false)}>Book Approvals</Link>
+                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        {user?.admin_profile?.is_super_admin && (
+                            <a 
+                                href={DJANGO_ADMIN_URL}
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                onClick={() => setMenuOpen(false)}
+                            >
+                                Django Admin
+                            </a>
+                        )}
+                    </>
+                )
+            default:
+                // reader
+                return (
+                    <>
+                        <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+                        <a href={`${APP_URL}/library`} onClick={() => setMenuOpen(false)}>My Library</a>
+                        <a href={`${APP_URL}/shop`} onClick={() => setMenuOpen(false)}>Shop</a>
+                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                    </>
+                )
+        }
+    }
+
     useEffect(() => {
         function handleClickOutside(event) {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -48,7 +111,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                 <a href="#">Library</a>
                 <a href="/for-readers">For Readers</a>
                 <a href="/for-authors">For Authors</a>
-                <a href="#">Shop</a>
                 {isAuthenticated ? (
                     <div className='avatar-container' ref={menuRef}>
                         <img
@@ -59,11 +121,8 @@ export default function Header({ onLoginClick, onSignupClick }) {
                         />
                         <div className={`side-menu ${menuOpen ? 'side-menu-open' : ''}`}>
                             <p className="current_role">Viewing as: {currentRole}</p>
-                            <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                            <Link to="/library" onClick={() => setMenuOpen(false)}>Library</Link>
-                            <Link to="/shop" onClick={() => setMenuOpen(false)}>Shop</Link>
-                            <Link to="/edit-profile" onClick={() => setMenuOpen(false)}>Edit Profile</Link>
-                            {availableRoles.length > 1 && (
+                            {getMenuItems()}
+                            {availableRoles.length > 1 && user?.is_verified && (
                                 <div className="role-switcher">
                                     <p>Change role</p>
                                     {availableRoles.map(item => (
@@ -80,7 +139,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                                     ))}
                                 </div>
                             )}
-                            
                             <button onClick={() => { setMenuOpen(false); logout(); }}>Logout</button>
                         </div>
                     </div>

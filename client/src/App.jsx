@@ -4,7 +4,9 @@ import './App.css'
 
 import Header from './components/BaseComponents/Header'
 import Footer from './components/BaseComponents/Footer'
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './components/AuthComponents/ProtectedRoute';
+import VerificationBanner from './components/BaseComponents/VerificationBanner';
+import useUser from './hooks/useUser'
 
 const Static = React.lazy(() => import('./views/Static'))
 const Home = React.lazy(() => import('./views/Home'))
@@ -13,7 +15,8 @@ const Signup = React.lazy(() => import('./views/Signup'))
 const ResetPassword = React.lazy(() => import('./views/ResetPassword'))
 const NewPassword = React.lazy(() => import('./views/NewPassword'))
 const Dashboard = React.lazy(() => import('./views/Dashboard'))
-
+// const Shop = React.lazy(() => import('./views/Shop'))
+// const Library = React.lazy(() => import('./views/Library'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
 const ForReaders = React.lazy(() => import('./views/ForReaders'))
 
@@ -30,7 +33,17 @@ function App() {
 }
 
 function AppContent() {
-  const [modal, setModal] = useState(null); // null | 'login' | 'signup'
+  const [modal, setModal] = useState(null);
+  const { user, accessToken } = useUser();
+
+  // DEV ONLY
+    if (import.meta.env.DEV) {
+        const refreshToken = localStorage.getItem('refresh_token')
+        console.log('🔑 CURRENT TOKENS:', {
+            access: accessToken,
+            refresh: refreshToken
+        })
+    }
 
   return (
     <>
@@ -38,6 +51,7 @@ function AppContent() {
         onLoginClick={() => setModal('login')}
         onSignupClick={() => setModal('signup')}
       />
+      <VerificationBanner />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -45,21 +59,32 @@ function AppContent() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/new-password/:token" element={<NewPassword />} />
+          <Route path="/for-authors" element={<ForAuthors />} />
+          <Route path="/for-readers" element={<ForReaders />} />
+
+          {/* protected - login only */}
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>}
           />
-          <Route path="/for-authors" element={<ForAuthors />} />
-          <Route path="/for-readers" element={<ForReaders />} />
+
+          {/* protected - login + verified */}
+          {/* <Route path="/shop" element={
+            <ProtectedRoute requiresVerification>
+              <Shop />
+            </ProtectedRoute>}
+          /> */}
+          {/* <Route path="/library" element={
+            <ProtectedRoute requiresVerification>
+              <Library />
+            </ProtectedRoute>}
+          /> */}
         </Routes>
       </main>
       <Footer />
 
-      {/* Auth modals — Suspense needed here since Login/Signup are lazy */}
-      <Suspense
-        // fallback={ <BadLink /> }
-      >
+      <Suspense>
         {modal === 'login' && (
           <Login
             isModal
