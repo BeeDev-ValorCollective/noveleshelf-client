@@ -32,9 +32,25 @@ nav {
         text-decoration: none;
     }
     a:hover {
-        text-decoration: underline;
+        color: #DD7a7a;
     }
 }
+
+nav button {
+    font-size: 1.4em;
+    color: #ffffffe0;
+    font-family: "Fredericka the Great", serif;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+nav button:hover {
+    color: #DD7a7a;
+}
+
 .shelfImg {
     max-width: 15%;
 }
@@ -45,4 +61,70 @@ footer {
     justify-content: center;
     align-items: center;
     width: 95%;
+}
+
+/* Avatar */
+.avatar-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.avatar-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffffe0;
+    transition: border-color 0.3s ease;
+    object-fit: cover;
+}
+.avatar-icon:hover {
+    border-color: #DD7a7a;
+}
+
+/* Side Menu */
+.side-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background-color: #1a1a1a;
+    border: 1px solid #ffffff20;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 180px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+}
+.side-menu.side-menu-open {
+    max-height: 400px;
+}
+.side-menu a, .side-menu button {
+    width: 100%;
+    padding: 0.9em 1.5em;
+    color: #ffffffe0;
+    font-family: "Fredericka the Great", serif;
+    font-size: 1em;
+    text-decoration: none;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-bottom: 1px solid #ffffff10;
+}
+.side-menu a:hover, .side-menu button:hover {
+    background-color: #ffffff10;
+    color: #DD7a7a;
+}
+.side-menu button:last-child {
+    border-bottom: none;
+    color: #e05555;
+}
+.side-menu button:last-child:hover {
+    background-color: #e0555520;
+    color: #e05555;
 }
