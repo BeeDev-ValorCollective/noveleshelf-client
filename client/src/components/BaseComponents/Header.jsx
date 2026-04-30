@@ -4,16 +4,26 @@ import { useState, useRef, useEffect } from 'react'
 import useAuthStore from '../../store/authStore'
 import useLogout from '../../hooks/useLogout'
 import { Link } from 'react-router-dom'
+import { getMediaUrl } from '../../utils/mediaUrl'
 
 export default function Header({ onLoginClick, onSignupClick }) {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
     const user = useAuthStore((state) => state.user)
+    const currentProfile = useAuthStore((state) => state.currentProfile)
+    const currentRole = useAuthStore((state) => state.currentRole)
+    const setCurrentRole = useAuthStore((state) => state.setCurrentRole)
     const { logout } = useLogout()
     const [menuOpen, setMenuOpen] = useState(false)
     const menuRef = useRef(null)
 
-    const BASE_URL = import.meta.env.VITE_DB_API
-    const avatarUrl = user?.profile?.avatar_url ? `${BASE_URL.replace(/\/api\/$/, '')}${user.profile.avatar_url}` : null
+    const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
+
+    const availableRoles = []
+    if (user?.profile) availableRoles.push({ role: 'reader', label: 'Reader' })
+    if (user?.free_author_profile) availableRoles.push({ role: 'free_author', label: 'Free Author' })
+    if (user?.author_profile) availableRoles.push({ role: 'author', label: 'Author' })
+    if (user?.moderator_profile) availableRoles.push({ role: 'moderator', label: 'Moderator' })
+    if (user?.admin_profile) availableRoles.push({ role: 'admin', label: 'Admin' })
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -48,10 +58,29 @@ export default function Header({ onLoginClick, onSignupClick }) {
                             onClick={() => setMenuOpen(!menuOpen)}
                         />
                         <div className={`side-menu ${menuOpen ? 'side-menu-open' : ''}`}>
+                            <p className="current_role">Viewing as: {currentRole}</p>
                             <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                             <Link to="/library" onClick={() => setMenuOpen(false)}>Library</Link>
                             <Link to="/shop" onClick={() => setMenuOpen(false)}>Shop</Link>
                             <Link to="/edit-profile" onClick={() => setMenuOpen(false)}>Edit Profile</Link>
+                            {availableRoles.length > 1 && (
+                                <div className="role-switcher">
+                                    <p>Change role</p>
+                                    {availableRoles.map(item => (
+                                        
+                                            <a key={item.role}
+                                            onClick={() => {
+                                                setCurrentRole(item.role)
+                                                setMenuOpen(false)
+                                            }}
+                                            className={currentRole === item.role ? 'active-role' : ''}
+                                        >
+                                            {item.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
+                            
                             <button onClick={() => { setMenuOpen(false); logout(); }}>Logout</button>
                         </div>
                     </div>
