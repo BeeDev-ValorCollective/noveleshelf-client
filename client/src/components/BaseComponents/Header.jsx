@@ -1,6 +1,5 @@
 import './baseComponents.css'
 import Shelf from '../../assets/images/shelf.png'
-import Avatar from '../../assets/images/avatar.png'
 import { useState, useRef, useEffect } from 'react'
 import useAuthStore from '../../store/authStore'
 import useLogout from '../../hooks/useLogout'
@@ -8,9 +7,13 @@ import { Link } from 'react-router-dom'
 
 export default function Header({ onLoginClick, onSignupClick }) {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+    const user = useAuthStore((state) => state.user)
     const { logout } = useLogout()
     const [menuOpen, setMenuOpen] = useState(false)
     const menuRef = useRef(null)
+
+    const BASE_URL = import.meta.env.VITE_DB_API
+    const avatarUrl = user?.profile?.avatar_url ? `${BASE_URL.replace(/\/api\/$/, '')}${user.profile.avatar_url}` : null
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -39,7 +42,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                 {isAuthenticated ? (
                     <div className='avatar-container' ref={menuRef}>
                         <img
-                            src={Avatar}
+                            src={avatarUrl}
                             alt='User Avatar'
                             className='avatar-icon'
                             onClick={() => setMenuOpen(!menuOpen)}
