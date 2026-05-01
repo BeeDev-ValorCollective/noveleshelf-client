@@ -19,6 +19,8 @@ const Dashboard = React.lazy(() => import('./views/Dashboard'))
 // const Library = React.lazy(() => import('./views/Library'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
 const ForReaders = React.lazy(() => import('./views/ForReaders'))
+const Profile = React.lazy(() => import('./views/Profile'))
+const UpdateProfile = React.lazy(() => import('./views/UpdateProfile'))
 
 function App() {
   return (
@@ -66,6 +68,16 @@ function AppContent() {
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>}
+          />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>}
+          />
+          <Route path="/profile-update" element={
+            <ProtectedRoute>
+              <UpdateProfile />
             </ProtectedRoute>}
           />
 

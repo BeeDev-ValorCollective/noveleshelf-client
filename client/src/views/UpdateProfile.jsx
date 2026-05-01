@@ -1,75 +1,29 @@
-import { useState, useEffect } from "react";
-import { useUser } from "../hooks/useUser";
+import useUser from "../hooks/useUser";
+import useAuthStore from '../store/authStore'
 
-function UpdateProfile() {
-  const { user, token } = useUser();
+import UpdateReaderProfile from '../components/ProfileComponents/UpdateReaderProfile'
+import UpdateAuthorProfile from "../components/ProfileComponents/UpdateAuthorProfile"
+import UpdateFreeAuthorProfile from "../components/ProfileComponents/UpdateFreeAuthorProfile"
+import UpdateModeratorProfile from '../components/ProfileComponents/UpdateModeratorProfile'
+import UpdateAdminProfile from '../components/ProfileComponents/UpdateAdminProfile'
 
-  const [username, setUsername] = useState("");
-  const [bio, setBio] = useState("");
-  const [loading, setLoading] = useState(false);
+export default function UpdateProfile() {
 
-  // Pre-populate form when user loads
-  useEffect(() => {
-    if (user) {
-      setUsername(user.username || "");
-      setBio(user.bio || "");
+    const { user } = useUser()
+    const currentRole = useAuthStore((state) => state.currentRole)
+
+    if (!user) return <p>Loading...</p>
+
+    switch(currentRole) {
+        case 'admin':
+            return <UpdateAdminProfile />
+        case 'moderator':
+            return <UpdateModeratorProfile />
+        case 'author':
+            return <UpdateAuthorProfile />
+        case 'free_author':
+            return <UpdateFreeAuthorProfile />
+        default:
+            return <UpdateReaderProfile />
     }
-  }, [user]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/user/profile", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          username,
-          bio,
-        }),
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to update profile");
-      }
-
-      const data = await res.json();
-      console.log("Updated user:", data);
-
-      // Optional: update user state if your hook allows it
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label>Bio</label>
-        <textarea
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
-        />
-      </div>
-
-      <button type="submit" disabled={loading}>
-        {loading ? "Saving..." : "Update Profile"}
-      </button>
-    </form>
-  );
 }
