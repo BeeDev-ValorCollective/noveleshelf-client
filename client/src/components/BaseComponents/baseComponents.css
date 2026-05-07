@@ -89,7 +89,7 @@ footer {
     top: 55px;
     right: 0;
     background-color: #1a1a1a;
-    border: 1px solid #ffffff20;
+    border: 1px solid transparent;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
