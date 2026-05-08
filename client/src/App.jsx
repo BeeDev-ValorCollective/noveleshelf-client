@@ -12,6 +12,7 @@ const Static = React.lazy(() => import('./views/Static'))
 const Home = React.lazy(() => import('./views/Home'))
 const Login = React.lazy(() => import('./views/Login'))
 const Signup = React.lazy(() => import('./views/Signup'))
+const VerifyEmail = React.lazy(() => import('./views/VerifyEmail'))
 const ResetPassword = React.lazy(() => import('./views/ResetPassword'))
 const NewPassword = React.lazy(() => import('./views/NewPassword'))
 const Dashboard = React.lazy(() => import('./views/Dashboard'))
@@ -59,6 +60,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/new-password/:token" element={<NewPassword />} />
           <Route path="/for-authors" element={<ForAuthors />} />
