@@ -100,7 +100,7 @@ footer {
     transition: max-height 0.4s ease;
 }
 .side-menu.side-menu-open {
-    max-height: 400px;
+    max-height: 500px;
 }
 .side-menu a, .side-menu button {
     width: 100%;

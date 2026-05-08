@@ -242,3 +242,11 @@ const response = await fetch(DB_API + 'user/profile/update/', {
 
 ## Backend API Reference
 See server README for full API documentation.
+
+## Planned Enhancements
+
+### Cross-subdomain auth sharing (noveleshelf.com ↔ app.noveleshelf.com)
+- Readers auto redirect to app.noveleshelf.com on login
+- Role switching between subdomains
+- Shared cookie on .noveleshelf.com domain
+- Implement when Expo web app is ready

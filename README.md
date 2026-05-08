@@ -83,3 +83,7 @@ Token logout
 await SecureStore.deleteItemAsync('access_token');
 await SecureStore.deleteItemAsync('refresh_token');
 ```
+
+
+console.log('access:', sessionStorage.getItem('access_token'))
+console.log('refresh:', localStorage.getItem('refresh_token'))

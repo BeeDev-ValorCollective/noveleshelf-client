@@ -1,23 +1,27 @@
-import useUser from "../hooks/useUser";
+import useUser from '../hooks/useUser'
+import useAuthStore from '../store/authStore'
+import ReaderDashboard from '../components/DashboardComponents/ReaderDashboard'
+import FreeAuthorDashboard from '../components/DashboardComponents/FreeAuthorDashboard'
+import AuthorDashboard from '../components/DashboardComponents/AuthorDashboard'
+import ModeratorDashboard from '../components/DashboardComponents/ModeratorDashboard'
+import AdminDashboard from '../components/DashboardComponents/AdminDashboard'
 
 export default function Dashboard() {
-    const { user } = useUser();
+    const { user } = useUser()
+    const currentRole = useAuthStore((state) => state.currentRole)
 
-    return (
-        <div>
-            <h1>Welcome to your dashboard</h1>
-            {user ? (
-                <>
-                    <p>Email: {user.email}</p>
-                    <p>Role: {user.default_login_role}</p>
-                    <p>Username: {user.profile?.username || 'Not set'}</p>
-                    <p>Quills: {user.wallet?.quill_balance}</p>
-                    <p>Gold Ink: {user.wallet?.gold_ink_balance}</p>
-                    <p>Black Ink: {user.wallet?.black_ink_balance}</p>
-                </>
-            ) : (
-                <p>Logged in and loading user data...</p>
-            )}
-        </div>
-    );
+    if (!user) return <p>Loading...</p>
+
+    switch(currentRole) {
+        case 'admin':
+            return <AdminDashboard />
+        case 'moderator':
+            return <ModeratorDashboard />
+        case 'author':
+            return <AuthorDashboard />
+        case 'free_author':
+            return <FreeAuthorDashboard />
+        default:
+            return <ReaderDashboard />
+    }
 }
