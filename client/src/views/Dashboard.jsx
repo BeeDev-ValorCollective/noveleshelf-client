@@ -2,7 +2,7 @@ import useUser from '../hooks/useUser'
 import useAuthStore from '../store/authStore'
 import ReaderDashboard from '../components/DashboardComponents/ReaderDashboard'
 import FreeAuthorDashboard from '../components/DashboardComponents/FreeAuthorDashboard'
-import AuthorDashboard from '../components/DashboardComponents/AuthorDashboard'
+import AuthorDashboard from './AuthorDashboard'
 import ModeratorDashboard from '../components/DashboardComponents/ModeratorDashboard'
 import AdminDashboard from '../components/DashboardComponents/AdminDashboard'
 
