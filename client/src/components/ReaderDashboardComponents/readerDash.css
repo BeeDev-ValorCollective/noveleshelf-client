@@ -1,0 +1,10 @@
+.profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .avatar {
+        max-width: 100px;
+    }
+}
