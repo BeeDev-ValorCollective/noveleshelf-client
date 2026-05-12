@@ -36,7 +36,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                         <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
                         <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        {/* <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link> */}
                     </>
                 )
             case 'author':
@@ -45,25 +45,25 @@ export default function Header({ onLoginClick, onSignupClick }) {
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                         <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
                         <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        {/* <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link> */}
                     </>
                 )
             case 'moderator':
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        <Link to="/flagged-content" onClick={() => setMenuOpen(false)}>Flagged Content</Link>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        {/* <Link to="/flagged-content" onClick={() => setMenuOpen(false)}>Flagged Content</Link> */}
+                        {/* <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link> */}
                     </>
                 )
             case 'admin':
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        <Link to="/admin/users" onClick={() => setMenuOpen(false)}>User Management</Link>
+                        {/* <Link to="/admin/users" onClick={() => setMenuOpen(false)}>User Management</Link> */}
                         <Link to="/admin/author-requests" onClick={() => setMenuOpen(false)}>Author Requests</Link>
                         <Link to="/admin/book-approvals" onClick={() => setMenuOpen(false)}>Book Approvals</Link>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        {/* <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link> */}
                         {user?.admin_profile?.is_super_admin && (
                             <a 
                                 href={DJANGO_ADMIN_URL}
@@ -81,9 +81,8 @@ export default function Header({ onLoginClick, onSignupClick }) {
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        <a href={`${APP_URL}/library`} onClick={() => setMenuOpen(false)}>My Library</a>
-                        <a href={`${APP_URL}/shop`} onClick={() => setMenuOpen(false)}>Shop</a>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        {/* <a href={`${APP_URL}/library`} onClick={() => setMenuOpen(false)}>My Library</a> */}
+                        {/* <a href={`${APP_URL}/shop`} onClick={() => setMenuOpen(false)}>Shop</a> */}
                     </>
                 )
         }
