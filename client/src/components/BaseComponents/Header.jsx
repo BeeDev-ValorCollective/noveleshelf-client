@@ -124,7 +124,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                             {getMenuItems()}
                             {availableRoles.length > 1 && user?.is_verified && (
                                 <div className="role-switcher">
-                                    <p>Change role</p>
+                                    <p>Change current role</p>
                                     {availableRoles.map(item => (
                                         
                                             <a key={item.role}
