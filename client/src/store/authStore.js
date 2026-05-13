@@ -16,12 +16,15 @@ const getProfileForRole = (user, role) => {
     }
 }
 
+const toTitleCase = str => str?.replace(/\b\w/g, c => c.toUpperCase()) ?? null;
+
 const useAuthStore = create((set, get) => ({
     user: null,
     accessToken: sessionStorage.getItem('access_token') || null,
     refreshToken: localStorage.getItem('refresh_token') || null,
     isAuthenticated: !!sessionStorage.getItem('access_token') || !!localStorage.getItem('refresh_token'),
     currentRole: localStorage.getItem('current_role') || null,
+    currentRoleDisplay: toTitleCase(localStorage.getItem('current_role')),
     currentProfile: null,
 
     setAuth: (user, accessToken, refreshToken) => {
@@ -36,6 +39,7 @@ const useAuthStore = create((set, get) => ({
             refreshToken, 
             isAuthenticated: true,
             currentRole: role,
+            currentRoleDisplay: toTitleCase(role),
             currentProfile: profile
         });
 
@@ -43,6 +47,7 @@ const useAuthStore = create((set, get) => ({
             console.log('🔐 AUTH SET:', {
                 user,
                 currentRole: role,
+                currentRoleDisplay: toTitleCase(role),
                 currentProfile: profile,
                 accessToken,
                 refreshToken
@@ -77,11 +82,12 @@ const useAuthStore = create((set, get) => ({
         const user = get().user
         const profile = getProfileForRole(user, role)
         localStorage.setItem('current_role', role);
-        set({ currentRole: role, currentProfile: profile });
+        set({ currentRole: role, currentRoleDisplay: toTitleCase(role), currentProfile: profile });
 
         if (import.meta.env.DEV) {
             console.log('🎭 ROLE SWITCHED:', {
                 currentRole: role,
+                currentRoleDisplay: toTitleCase(role),
                 currentProfile: profile
             })
         }
@@ -97,6 +103,7 @@ const useAuthStore = create((set, get) => ({
             refreshToken: null, 
             isAuthenticated: false,
             currentRole: null,
+            currentRoleDisplay: null,
             currentProfile: null
         });
 

@@ -22,7 +22,7 @@ export default function AuthorDashboard() {
 
     return (
         <div className='author-dashboard-container'>
-            <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} />
+            <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
             <StatsBar />
             <CurrentProjects />
             <PublishedWorks />
