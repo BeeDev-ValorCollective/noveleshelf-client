@@ -5,6 +5,7 @@ import useAuthStore from '../../store/authStore'
 import useLogout from '../../hooks/useLogout'
 import { Link } from 'react-router-dom'
 import { getMediaUrl } from '../../utils/mediaUrl'
+import { toTitleCase } from '../../utils/upperCase'
 
 const APP_URL = import.meta.env.VITE_APP_URL
 const DJANGO_ADMIN_URL = import.meta.env.VITE_DJANGO_ADMIN_URL
@@ -36,7 +37,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                         <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
                         <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
-                        {/* <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link> */}
                     </>
                 )
             case 'author':
@@ -45,7 +45,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                         <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
                         <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
-                        {/* <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link> */}
                     </>
                 )
             case 'moderator':
@@ -53,7 +52,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                         {/* <Link to="/flagged-content" onClick={() => setMenuOpen(false)}>Flagged Content</Link> */}
-                        {/* <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link> */}
                     </>
                 )
             case 'admin':
@@ -63,7 +61,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                         {/* <Link to="/admin/users" onClick={() => setMenuOpen(false)}>User Management</Link> */}
                         <Link to="/admin/author-requests" onClick={() => setMenuOpen(false)}>Author Requests</Link>
                         <Link to="/admin/book-approvals" onClick={() => setMenuOpen(false)}>Book Approvals</Link>
-                        {/* <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link> */}
                         {user?.admin_profile?.is_super_admin && (
                             <a 
                                 href={DJANGO_ADMIN_URL}
@@ -119,7 +116,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                             onClick={() => setMenuOpen(!menuOpen)}
                         />
                         <div className={`side-menu ${menuOpen ? 'side-menu-open' : ''}`}>
-                            <p className="current_role">Viewing as: {currentRole}</p>
+                            <p className="current_role">Viewing as: {toTitleCase(currentRole)}</p>
                             {getMenuItems()}
                             {availableRoles.length > 1 && user?.is_verified && (
                                 <div className="role-switcher">
