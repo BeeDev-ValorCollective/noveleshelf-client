@@ -1,13 +1,13 @@
-import { getMediaUrl } from '../../utils/mediaUrl'
-import { toTitleCase } from '../../utils/upperCase'
+import { getMediaUrl } from '../../../utils/mediaUrl'
+import { toTitleCase } from '../../../utils/upperCase'
 import { Link } from 'react-router-dom'
 
 import './authorDashboard.css'
 
 
 export default function ProfileHeader({user, currentProfile, fullName, currentRole}) {
-    const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
 
+    const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
 
     return (
         <section className='dashboard-section profile-header'>

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../../utils/mediaUrl'
 import './readerDash.css'
 
 const MEDIA_URL = import.meta.env.VITE_DB_MEDIA
 
 export default function ProfileSection({user, currentProfile, fullName}) {
+    
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
 
     return(

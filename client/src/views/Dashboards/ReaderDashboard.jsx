@@ -1,8 +1,8 @@
 import useUser from '../../hooks/useUser'
 import useFullName from '../../hooks/useFullName'
 import useAuthStore from '../../store/authStore'
-
-import ProfileSection from '../../components/ReaderDashboardComponents/ProfileSection'
+import ProfileHeader from '../../components/DashboardComponents/AuthorDashboardComponents/ProfileHeader'
+import ProfileSection from '../../components/DashboardComponents/ReaderDashboardComponents/ProfileSection'
 
 
 export default function ReaderDashboard() {
@@ -14,10 +14,11 @@ export default function ReaderDashboard() {
 
     const fullName = useFullName()
     
-    console.log('THE USER', user, 'CURRENT PROFILE', currentProfile)
+    console.log('THE USER', user, 'CURRENT PROFILE', currentProfile, 'CURRENT ROLE', currentRole)
 
     return(
         <>
+            <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
             <ProfileSection user={user} currentProfile={currentProfile} fullName={fullName} />
         </>
     )
