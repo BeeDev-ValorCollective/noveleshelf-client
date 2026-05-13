@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 import './home.css'
 
-const JSON_API = `${import.meta.env.VITE_JSON_API}/featured.json`
+const FEATURED_API = `${import.meta.env.VITE_DB_API}books/public/featured`
 
 export default function Featured() {
 
@@ -11,7 +11,7 @@ export default function Featured() {
     const [jsonError, setJsonError] = useState(null)
 
     useEffect(() => {
-        fetch(JSON_API)
+        fetch(FEATURED_API)
             .then((res) => {
                 if (!res.ok) throw new Error(`HTTP ${res.status}`)
                 return res.json()
