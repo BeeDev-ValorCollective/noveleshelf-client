@@ -3,7 +3,7 @@ import useFullName from '../../hooks/useFullName'
 import useAuthStore from '../../store/authStore'
 import useAuthorBooks from '../../hooks/useAuthorBooks'
 
-import ProfileHeader from '../../components/DashboardComponents/AuthorDashboardComponents/ProfileHeader'
+import ProfileHeader from '../../components/DashboardComponents/ProfileHeader'
 import StatsBar from '../../components/DashboardComponents/AuthorDashboardComponents/StatsBar'
 import CurrentProjects from '../../components/DashboardComponents/AuthorDashboardComponents/CurrentProjects'
 import PublishedWorks from '../../components/DashboardComponents/AuthorDashboardComponents/PublishedWorks'

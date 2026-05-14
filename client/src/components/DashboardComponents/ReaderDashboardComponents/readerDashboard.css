@@ -1,0 +1,403 @@
+/* Reader Dashboard Container */
+.reader-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    gap: 3em;
+    padding-bottom: 4em;
+}
+
+/* Shared Section Styles */
+.reader-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.reader-section-heading {
+    font-size: 1em;
+    color: #ffffffe0;
+    text-align: center;
+    margin-bottom: 0.3em;
+    font-family: "Fredericka the Great", serif;
+}
+.reader-section-subheading {
+    font-size: 1em;
+    color: #ffffffa0;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+.reader-card {
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 1.5em;
+}
+
+/* Profile Header */
+.reader-profile-header {
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 2em;
+    width: 100%;
+}
+.reader-profile-header-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+.reader-profile-left {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    align-items: flex-start;
+}
+.reader-profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffffff30;
+}
+.reader-profile-name {
+    font-size: 1.8em;
+    color: #ffffffe0;
+    margin: 0;
+    font-family: "Fredericka the Great", serif;
+}
+.reader-profile-username {
+    color: #ffffffa0;
+    margin: 0.2em 0;
+}
+.reader-profile-badges {
+    display: flex;
+    gap: 0.5em;
+    margin: 0.5em 0;
+}
+.reader-badge {
+    padding: 0.2em 0.8em;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+.reader-badge.reader {
+    background-color: #ffffff20;
+    color: #ffffffe0;
+}
+.reader-badge-premium {
+    background-color: #e0555530;
+    color: #e05555;
+}
+.reader-profile-bio {
+    color: #ffffffa0;
+    font-size: 0.9em;
+    max-width: 600px;
+    line-height: 1.6;
+    margin: 0.5em 0 0 0;
+}
+.reader-profile-right {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8em;
+    align-items: center;
+}
+.reader-edit-profile-btn {
+    background-color: transparent;
+    color: #ffffffe0;
+    border: 1px solid #ffffff40;
+    padding: 0.5em 1.2em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+.reader-edit-profile-btn:hover {
+    background-color: #ffffff10;
+}
+.reader-settings-btn {
+    background: none;
+    border: none;
+    color: #ffffffa0;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+/* Stats Bar */
+.reader-stats-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    width: 100%;
+}
+.reader-stat-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 1.5em;
+}
+.reader-stat-label {
+    color: #ffffffa0;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}
+.reader-stat-value {
+    color: #e05555;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+/* Currently Reading */
+.currently-reading-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5em;
+    width: 100%;
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 1.5em;
+}
+.currently-reading-cover-placeholder {
+    width: 100px;
+    height: 140px;
+    background-color: #ffffff20;
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffffa0;
+    font-size: 0.7em;
+    text-align: center;
+    padding: 0.5em;
+}
+.currently-reading-info {
+    flex: 1;
+}
+.currently-reading-title {
+    color: #ffffffe0;
+    font-size: 1.3em;
+    margin: 0 0 0.2em 0;
+}
+.currently-reading-author {
+    color: #ffffffa0;
+    font-size: 0.9em;
+    margin: 0 0 0.5em 0;
+}
+.currently-reading-desc {
+    color: #ffffffa0;
+    font-size: 0.85em;
+    line-height: 1.6;
+    margin-bottom: 0.8em;
+}
+.currently-reading-chapter {
+    color: #ffffffa0;
+    font-size: 0.8em;
+    margin: 0.3em 0 0 0;
+}
+.currently-reading-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1em;
+    flex-shrink: 0;
+}
+.reading-progress {
+    color: #e05555;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 0;
+}
+.continue-reading-btn {
+    background-color: transparent;
+    color: #ffffffe0;
+    border: 1px solid #ffffff40;
+    padding: 0.6em 1.2em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.continue-reading-btn:hover {
+    background-color: #ffffff10;
+}
+
+/* Books Grid (Saved and Finished) */
+.reader-books-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5em;
+    width: 100%;
+}
+.reader-book-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff10;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.reader-book-cover-placeholder {
+    width: 100%;
+    height: 180px;
+    background-color: #ffffff20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffffa0;
+    font-size: 0.8em;
+    text-align: center;
+    padding: 1em;
+}
+.reader-book-info {
+    padding: 0.8em;
+}
+.reader-book-title {
+    color: #ffffffe0;
+    font-size: 0.95em;
+    margin: 0 0 0.2em 0;
+}
+.reader-book-author {
+    color: #ffffffa0;
+    font-size: 0.8em;
+    margin: 0 0 0.5em 0;
+}
+.reader-book-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.reader-book-rating {
+    color: #ffffffa0;
+    font-size: 0.8em;
+}
+.reader-genre-badge {
+    font-size: 0.7em;
+    padding: 0.2em 0.6em;
+    border-radius: 20px;
+    background-color: #ffffff20;
+    color: #ffffffa0;
+}
+.reader.genre.badge.fiction { background-color: #5555e020; color: #8888ff; }
+.reader.genre.badge.mystery { background-color: #5555e020; color: #e05555; }
+.reader.genre.badge.drama { background-color: #55e09020; color: #55e090; }
+.reader.genre.badge.romance { background-color: #5555a020; color: #e055a0; }
+.reader.genre.badge.thriller { background-color: #e0a05520; color: #e0a055; }
+.reader.genre.badge.library { background-color: #55a0e020; color: #55a0e0; }
+.reader.genre.badge.adventure { background-color: #a055e020; color: #a055e0; }
+
+/* Reading Activity */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0em;
+}
+.activity-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 1.5em;
+    background-color: #ffffff10;
+    border-radius: 8px;
+    margin-bottom: 0.5em;
+}
+.activity-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+}
+.activity-icon {
+    color: #e05555;
+    font-size: 1em;
+    width: 20px;
+    text-align: center;
+}
+.activity-text {
+    color: #ffffffe0;
+    font-size: 0.9em;
+    margin: 0;
+}
+.activity-time {
+    color: #ffffff60;
+    font-size: 0.8em;
+}
+
+/* Reading Preferences */
+.preferences-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+    width: 100%;
+}
+.preferences-column {
+    flex: 1;
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 1.5em;
+}
+.preferences-column-title {
+    color: #ffffffe0;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+}
+.genre-tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em 0;
+    gap: 1em;
+}
+.genre-tag {
+    padding: 0.4em 1em;
+    border-radius: 20px;
+    font-size: 0.85em;
+    background-color: #ffffff15;
+    color: #ffffffe0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.genre-tag:hover {
+    background-color: #e0555530;
+    color: #e05555;
+}
+.reading-goals {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+}
+.goal-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+.goal-label {
+    color: #ffffffa0;
+    font-size: 0.85em;
+    margin: 0;
+}
+.goal-progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: #ffffff20;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.goal-progress-fill {
+    height: 100%;
+    background-color: #e05555;
+    border-radius: 3px;
+}
+.goal-progress-text {
+    color: #ffffffa0;
+    font-size: 0.75em;
+    margin: 0;
+}

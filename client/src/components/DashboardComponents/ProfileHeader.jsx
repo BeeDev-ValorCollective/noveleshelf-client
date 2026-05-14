@@ -7,7 +7,7 @@ import './dashboard.css'
 
 export default function ProfileHeader({user, currentProfile, fullName, currentRole}) {
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
-    console.log(currentRole)
+
 
     return (
         <section className='dashboard-section profile-header'>
