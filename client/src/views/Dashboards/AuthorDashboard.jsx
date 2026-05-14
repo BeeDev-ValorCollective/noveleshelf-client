@@ -3,15 +3,15 @@ import useFullName from '../../hooks/useFullName'
 import useAuthStore from '../../store/authStore'
 import useAuthorBooks from '../../hooks/useAuthorBooks'
 
-import ProfileHeader from '../../components/AuthorDashboardComponents/ProfileHeader'
-import StatsBar from '../../components/AuthorDashboardComponents/StatsBar'
-import CurrentProjects from '../../components/AuthorDashboardComponents/CurrentProjects'
-import PublishedWorks from '../../components/AuthorDashboardComponents/PublishedWorks'
-import AnalyticsOverview from '../../components/AuthorDashboardComponents/AnalyticsOverview'
-import ReaderFeedback from '../../components/AuthorDashboardComponents/ReaderFeedback'
-import AuthorSettings from '../../components/AuthorDashboardComponents/AuthorSettings'
+import ProfileHeader from '../../components/DashboardComponents/AuthorDashboardComponents/ProfileHeader'
+import StatsBar from '../../components/DashboardComponents/AuthorDashboardComponents/StatsBar'
+import CurrentProjects from '../../components/DashboardComponents/AuthorDashboardComponents/CurrentProjects'
+import PublishedWorks from '../../components/DashboardComponents/AuthorDashboardComponents/PublishedWorks'
+import AnalyticsOverview from '../../components/DashboardComponents/AuthorDashboardComponents/AnalyticsOverview'
+import ReaderFeedback from '../../components/DashboardComponents/AuthorDashboardComponents/ReaderFeedback'
+import AuthorSettings from '../../components/DashboardComponents/AuthorDashboardComponents/AuthorSettings'
 import ComingSoon from '../../components/BaseComponents/ComingSoon'
-import '../../components/AuthorDashboardComponents/authorDashboard.css'
+import '../../components/DashboardComponents/AuthorDashboardComponents/authorDashboard.css'
 
 export default function AuthorDashboard() {
     const { user } = useUser()

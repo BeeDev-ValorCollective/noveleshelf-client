@@ -1,4 +1,4 @@
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../../utils/mediaUrl'
 import './authorDashboard.css'
 
 export default function CurrentProjects({ books }) {

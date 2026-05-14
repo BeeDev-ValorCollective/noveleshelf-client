@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../../utils/mediaUrl'
 import './readerDash.css'
 
 const MEDIA_URL = import.meta.env.VITE_DB_MEDIA

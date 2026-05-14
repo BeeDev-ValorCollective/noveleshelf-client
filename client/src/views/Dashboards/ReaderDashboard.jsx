@@ -2,7 +2,7 @@ import useUser from '../../hooks/useUser'
 import useFullName from '../../hooks/useFullName'
 import useAuthStore from '../../store/authStore'
 
-import ProfileSection from '../../components/ReaderDashboardComponents/ProfileSection'
+import ProfileHeader from '../../components/DashboardComponents/ProfileHeader'
 
 
 export default function ReaderDashboard() {
@@ -18,7 +18,7 @@ export default function ReaderDashboard() {
 
     return(
         <>
-            <ProfileSection user={user} currentProfile={currentProfile} fullName={fullName} />
+            <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
         </>
     )
 }

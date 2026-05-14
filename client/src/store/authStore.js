@@ -1,20 +1,29 @@
 import { create } from 'zustand';
 
+const normalizeProfile = (profile, usernameKey) => {
+    if (!profile) return null;
+    return {
+        ...profile,
+        username: profile[usernameKey] ?? null
+    };
+};
+
+
 const getProfileForRole = (user, role) => {
-    if (!user) return null
-    switch(role) {
+    if (!user) return null;
+    switch (role) {
         case 'author':
-            return user.author_profile
+            return normalizeProfile(user.author_profile, 'author_username');
         case 'free_author':
-            return user.free_author_profile
+            return normalizeProfile(user.free_author_profile, 'free_author_username');
         case 'moderator':
-            return user.moderator_profile
+            return normalizeProfile(user.moderator_profile, 'moderator_username');
         case 'admin':
-            return user.admin_profile
+            return normalizeProfile(user.admin_profile, 'admin_username');
         default:
-            return user.profile
+            return normalizeProfile(user.profile, 'username');
     }
-}
+};
 
 const toTitleCase = str => str?.replace(/\b\w/g, c => c.toUpperCase()) ?? null;
 
