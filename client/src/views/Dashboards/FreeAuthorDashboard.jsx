@@ -1,11 +1,10 @@
-
-
+import ProfileHeader from "../../components/DashboardComponents/ProfileHeader";
 
 export default function FreeAuthorDashboard() {
 
     return(
-        <>
-        <p>Free Author</p>
-        </>
+        <div className="free-author-dashboard-container">
+            <ProfileHeader />
+        </div>
     )
 }
