@@ -3,6 +3,7 @@ import useAuthStore from '../../store/authStore'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getMediaUrl } from '../../utils/mediaUrl'
+import useFileInput from '../../hooks/useFileInput'
 
 import './updateProfile.css'
 
@@ -22,6 +23,8 @@ export default function UpdateAuthorProfile() {
     const [avatar_url, setAvatarUrl] = useState(null)
     const [avatarPreview, setAvatarPreview] = useState(null)
 
+    const { file: avatar_url, error: avatarError, handleChange: handleAvatarChange } = useFileInput(2)
+
     useEffect(() => {
         if (profile) {
             setAuthorUsername(profile.author_username || "")
@@ -31,16 +34,17 @@ export default function UpdateAuthorProfile() {
         }
     }, [profile])
 
-    const handleAvatarChange = (e) => {
-        const file = e.target.files[0]
-        if (file) {
-            setAvatarUrl(file)
-            setAvatarPreview(URL.createObjectURL(file))
+    useEffect(() => {
+        if (avatar_url) {
+            const url = URL.createObjectURL(avatar_url)
+            setAvatarPreview(url)
+            return () => URL.revokeObjectURL(url) // clean up blob url on unmount/change
         }
-    }
+    }, [avatar_url])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (avatarError) return
         setError("");
         setSuccess("");
         setIsLoading(true);

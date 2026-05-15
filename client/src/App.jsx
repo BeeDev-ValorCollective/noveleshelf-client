@@ -22,19 +22,22 @@ const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
 const ForReaders = React.lazy(() => import('./views/ForReaders'))
 const Profile = React.lazy(() => import('./views/Profile'))
 const UpdateProfile = React.lazy(() => import('./views/UpdateProfile'))
+const ErrorPage = React.lazy(() => import('./views/ErrorPage'))
+
+// Author Pages
+const CreateNewBook = React.lazy(() => import('./views/AuthorViews/CreateNewBook'))
 
 function App() {
   return (
     <BrowserRouter>
       <Suspense
-      // fallback={ <BadLink /> }
+      fallback={<ErrorPage type="notFound" />}
       >
         <AppContent />
       </Suspense>
     </BrowserRouter>
   );
 }
-
 function AppContent() {
   const [modal, setModal] = useState(null);
   const { user, accessToken } = useUser();
@@ -66,6 +69,9 @@ function AppContent() {
           <Route path="/for-authors" element={<ForAuthors />} />
           <Route path="/for-readers" element={<ForReaders />} />
 
+          <Route path="/unauthorized" element={<ErrorPage type="unauthorized" />} />
+          <Route path="*" element={<ErrorPage type="notFound" />} />
+
           {/* protected - login only */}
           <Route path="/dashboard" element={
             <ProtectedRoute>
@@ -81,6 +87,12 @@ function AppContent() {
             <ProtectedRoute>
               <UpdateProfile />
             </ProtectedRoute>}
+          />
+          <Route path="author/create-book" element={
+            <ProtectedRoute allowedRoles={['author', 'free_author']}>
+              <CreateNewBook  />
+            </ProtectedRoute>
+          }
           />
 
           {/* protected - login + verified */}

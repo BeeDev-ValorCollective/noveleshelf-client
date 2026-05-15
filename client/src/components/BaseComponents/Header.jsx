@@ -1,6 +1,7 @@
 import './baseComponents.css'
 import Shelf from '../../assets/images/shelf.png'
 import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useAuthStore from '../../store/authStore'
 import useLogout from '../../hooks/useLogout'
 import { Link } from 'react-router-dom'
@@ -19,6 +20,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
     const { logout } = useLogout()
     const [menuOpen, setMenuOpen] = useState(false)
     const menuRef = useRef(null)
+    const navigate = useNavigate()
 
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
 
@@ -36,7 +38,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                         <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
-                        <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
+                        <Link to="/author/create-book" onClick={() => setMenuOpen(false)}>New Book</Link>
                     </>
                 )
             case 'author':
@@ -44,7 +46,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                         <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
-                        <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
+                        <Link to="/author/create-book" onClick={() => setMenuOpen(false)}>New Book</Link>
                     </>
                 )
             case 'moderator':
@@ -125,7 +127,8 @@ export default function Header({ onLoginClick, onSignupClick }) {
                                         
                                             <a key={item.role}
                                             onClick={() => {
-                                                setCurrentRole(item.role)
+                                                navigate('/dashboard')
+                                                setTimeout(() => setCurrentRole(item.role), 50)
                                                 setMenuOpen(false)
                                             }}
                                             className={currentRole === item.role ? 'active-role' : ''}
