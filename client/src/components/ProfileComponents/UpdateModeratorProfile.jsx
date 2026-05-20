@@ -14,7 +14,7 @@ export default function UpdateModeratorProfile() {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [mod_username, setModUsername] = useState("");
-    const [avatar_url, setAvatarUrl] = useState(null)
+    // const [avatar_url, setAvatarUrl] = useState(null)
     const [avatarPreview, setAvatarPreview] = useState(null)
 
     const { file: avatar_url, error: avatarError, handleChange: handleAvatarChange } = useFileInput(2)

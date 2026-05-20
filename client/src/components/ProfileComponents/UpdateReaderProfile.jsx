@@ -19,7 +19,7 @@ export default function UpdateReaderProfile() {
     const [first_name, setFirstName] = useState("")
     const [last_name, setLastName] = useState("")
     const [bio, setBio] = useState("")
-    const [avatar_url, setAvatarUrl] = useState(null)
+    // const [avatar_url, setAvatarUrl] = useState(null)
     const [avatarPreview, setAvatarPreview] = useState(null)
 
     const { file: avatar_url, error: avatarError, handleChange: handleAvatarChange } = useFileInput(2)

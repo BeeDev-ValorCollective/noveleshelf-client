@@ -20,7 +20,7 @@ export default function UpdateFreeAuthorProfile() {
     const [last_name, setLastName] = useState("")
     const [show_real_name, setShowRealName] = useState(false)
     const [is_publicly_visible, setIsPubliclyVisible] = useState(false)
-    const [avatar_url, setAvatarUrl] = useState(null)
+    // const [avatar_url, setAvatarUrl] = useState(null)
     const [avatarPreview, setAvatarPreview] = useState(null)
 
     const { file: avatar_url, error: avatarError, handleChange: handleAvatarChange } = useFileInput(2)
