@@ -1,15 +1,18 @@
+import { useNavigate } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
 import useAuthStore from '../../store/authStore'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getMediaUrl } from '../../utils/mediaUrl'
 import useFileInput from '../../hooks/useFileInput'
+import UpdateDefaultRole from './UpdateDefaultRole'
 
 import './updateProfile.css'
 
 const DB_API = `${import.meta.env.VITE_DB_API}`;
 
 export default function UpdateAuthorProfile() {
+    const navigate = useNavigate()
     const { user, accessToken } = useUser();
     const updateUser = useAuthStore((state) => state.updateUser)
     const profile = user?.author_profile
@@ -20,7 +23,6 @@ export default function UpdateAuthorProfile() {
     const [pen_name, setPenName] = useState("")
     const [bio, setBio] = useState("")
     const [show_real_name, setShowRealName] = useState(false)
-    // const [avatar_url, setAvatarUrl] = useState(null)
     const [avatarPreview, setAvatarPreview] = useState(null)
 
     const { file: avatar_url, error: avatarError, handleChange: handleAvatarChange } = useFileInput(2)
@@ -83,67 +85,70 @@ export default function UpdateAuthorProfile() {
 
     if (!user) return <p>Loading...</p>
 
-    return(
+    return (
         <>
-        <form className='update_form' onSubmit={handleSubmit}>
-            <div className="form">
-                <div className='form_left'>
-                    <label>Avatar</label>
-                    {avatarPreview
-                        ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
-                        : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
-                    }
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleAvatarChange}
-                    />
-                </div>
-                <div className="form_right">
-                    <div>
-                        <label>Author Username</label>
+            <form className='update_form' onSubmit={handleSubmit}>
+                <div className="form">
+                    <div className='form_left'>
+                        <label>Avatar</label>
+                        {avatarPreview
+                            ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
+                            : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
+                        }
                         <input
-                            type="text"
-                            value={author_username}
-                            onChange={(e) => setAuthorUsername(e.target.value)}
+                            type="file"
+                            accept="image/*"
+                            onChange={handleAvatarChange}
                         />
                     </div>
-                    <div>
-                        <label>Pen Name</label>
-                        <input
-                            type="text"
-                            value={pen_name}
-                            onChange={(e) => setPenName(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>Bio</label>
-                        <textarea
-                            value={bio}
-                            onChange={(e) => setBio(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>
+                    <div className="form_right">
+                        <div>
+                            <label>Author Username</label>
                             <input
-                                type="checkbox"
-                                checked={show_real_name}
-                                onChange={(e) => setShowRealName(e.target.checked)}
+                                type="text"
+                                value={author_username}
+                                onChange={(e) => setAuthorUsername(e.target.value)}
                             />
-                            Show Real Name
-                        </label>
+                        </div>
+                        <div>
+                            <label>Pen Name</label>
+                            <input
+                                type="text"
+                                value={pen_name}
+                                onChange={(e) => setPenName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Bio</label>
+                            <textarea
+                                value={bio}
+                                onChange={(e) => setBio(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={show_real_name}
+                                    onChange={(e) => setShowRealName(e.target.checked)}
+                                />
+                                Show Real Name
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            
-            {error && <p className="error">{error}</p>}
-            {success && <p className="success">{success}</p>}
-            <button type="submit" disabled={isLoading}>
-                {isLoading ? 'Saving...' : 'Save Changes'}
-            </button>
-        </form>
-        <button><Link to="/dashboard">Cancel</Link></button>
+
+
+                {error && <p className="error">{error}</p>}
+                {success && <p className="success">{success}</p>}
+                <button type="submit" disabled={isLoading}>
+                    {isLoading ? 'Saving...' : 'Save Changes'}
+                </button>
+                <button type="button" onClick={() => navigate('/dashboard')}>
+                    Cancel
+                </button>
+            </form>
+            <UpdateDefaultRole />
         </>
     )
 }

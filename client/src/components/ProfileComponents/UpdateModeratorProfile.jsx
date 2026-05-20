@@ -1,12 +1,15 @@
+import { useNavigate } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
 import useAuthStore from '../../store/authStore'
 import { useState, useEffect } from 'react'
 import { getMediaUrl } from '../../utils/mediaUrl'
 import useFileInput from '../../hooks/useFileInput'
+import UpdateDefaultRole from './UpdateDefaultRole'
 
 const DB_API = `${import.meta.env.VITE_DB_API}`;
 
 export default function UpdateModeratorProfile() {
+    const navigate = useNavigate()
     const { user, accessToken } = useUser();
     const updateUser = useAuthStore((state) => state.updateUser)
     const profile = user?.moderator_profile
@@ -71,35 +74,39 @@ export default function UpdateModeratorProfile() {
 
     if (!user) return <p>Loading...</p>
 
-    return(
+    return (
         <>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Avatar</label>
-                {avatarPreview
-                    ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
-                    : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
-                }
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleAvatarChange}
-                />
-            </div>
-            <div>
-                <label>Moderator Username</label>
-                <input
-                    type="text"
-                    value={mod_username}
-                    onChange={(e) => setModUsername(e.target.value)}
-                />
-            </div>
-            {error && <p className="error">{error}</p>}
-            {success && <p className="success">{success}</p>}
-            <button type="submit" disabled={isLoading}>
-                {isLoading ? 'Saving...' : 'Save Changes'}
-            </button>
-        </form>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Avatar</label>
+                    {avatarPreview
+                        ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
+                        : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
+                    }
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleAvatarChange}
+                    />
+                </div>
+                <div>
+                    <label>Moderator Username</label>
+                    <input
+                        type="text"
+                        value={mod_username}
+                        onChange={(e) => setModUsername(e.target.value)}
+                    />
+                </div>
+                {error && <p className="error">{error}</p>}
+                {success && <p className="success">{success}</p>}
+                <button type="submit" disabled={isLoading}>
+                    {isLoading ? 'Saving...' : 'Save Changes'}
+                </button>
+                <button type="button" onClick={() => navigate('/dashboard')}>
+                    Cancel
+                </button>
+            </form>
+            <UpdateDefaultRole />
         </>
     )
 }

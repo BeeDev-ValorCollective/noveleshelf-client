@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
 import useAuthStore from '../../store/authStore'
 import { useState, useEffect } from 'react'
 import { getMediaUrl } from '../../utils/mediaUrl'
 import useFileInput from '../../hooks/useFileInput'
+import UpdateDefaultRole from './UpdateDefaultRole'
 
 import './updateProfile.css'
 
 const DB_API = `${import.meta.env.VITE_DB_API}`;
 
 export default function UpdateReaderProfile() {
+    const navigate = useNavigate()
     const { user, accessToken } = useUser();
     const updateUser = useAuthStore((state) => state.updateUser)
     const profile = user?.profile
@@ -19,7 +22,6 @@ export default function UpdateReaderProfile() {
     const [first_name, setFirstName] = useState("")
     const [last_name, setLastName] = useState("")
     const [bio, setBio] = useState("")
-    // const [avatar_url, setAvatarUrl] = useState(null)
     const [avatarPreview, setAvatarPreview] = useState(null)
 
     const { file: avatar_url, error: avatarError, handleChange: handleAvatarChange } = useFileInput(2)
@@ -60,8 +62,7 @@ export default function UpdateReaderProfile() {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
-                    // note: do NOT set Content-Type here
-                    // browser sets it automatically with the correct boundary for FormData
+
                 },
                 body: formData
             })
@@ -85,64 +86,68 @@ export default function UpdateReaderProfile() {
 
     if (!user) return <p>Loading...</p>
 
-    return(
+    return (
         <>
-        <form className='update_form' onSubmit={handleSubmit}>
-            <div className="form">
-                <div className='form_left'>
-                    <label>Avatar</label>
-                    {avatarPreview
-                        ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
-                        : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
-                    }
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleAvatarChange}
-                    />
+            <form className='update_form' onSubmit={handleSubmit}>
+                <div className="form">
+                    <div className='form_left'>
+                        <label>Avatar</label>
+                        {avatarPreview
+                            ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
+                            : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
+                        }
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleAvatarChange}
+                        />
+                    </div>
+                    <div className="form_right">
+                        <div>
+                            <label>First Name</label>
+                            <input
+                                type="text"
+                                value={first_name}
+                                onChange={(e) => setFirstName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Last Name</label>
+                            <input
+                                type="text"
+                                value={last_name}
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Username</label>
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Bio</label>
+                            <textarea
+                                value={bio}
+                                onChange={(e) => setBio(e.target.value)}
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div className="form_right">
-                    <div>
-                        <label>First Name</label>
-                        <input
-                            type="text"
-                            value={first_name}
-                            onChange={(e) => setFirstName(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>Last Name</label>
-                        <input
-                            type="text"
-                            value={last_name}
-                            onChange={(e) => setLastName(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>Username</label>
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>Bio</label>
-                        <textarea
-                            value={bio}
-                            onChange={(e) => setBio(e.target.value)}
-                        />
-                    </div>
-                </div>
-            </div>
-            
-            
-            {error && <p className="error">{error}</p>}
-            {success && <p className="success">{success}</p>}
-            <button type="submit" disabled={isLoading}>
-                {isLoading ? 'Saving...' : 'Save Changes'}
-            </button>
-        </form>
+
+
+                {error && <p className="error">{error}</p>}
+                {success && <p className="success">{success}</p>}
+                <button type="submit" disabled={isLoading}>
+                    {isLoading ? 'Saving...' : 'Save Changes'}
+                </button>
+                <button type="button" onClick={() => navigate('/dashboard')}>
+                    Cancel
+                </button>
+            </form>
+            <UpdateDefaultRole />
         </>
     )
 }
