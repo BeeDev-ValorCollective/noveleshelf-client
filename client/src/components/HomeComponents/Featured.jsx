@@ -1,51 +1,71 @@
-
 import { useState, useEffect } from 'react'
-
+import { getMediaUrl } from '../../utils/mediaUrl'
 import './home.css'
 
-const JSON_API = `${import.meta.env.VITE_JSON_API}/featured.json`
+const FEATURED_API = `${import.meta.env.VITE_DB_API}books/public/featured/`
 
 export default function Featured() {
-
-    const [featured, setFeatured] = useState([])
+    const [featuredBooks, setFeaturedBooks] = useState([])
+    const [featuredAuthors, setFeaturedAuthors] = useState([])
+    const [loading, setLoading] = useState(true)
     const [jsonError, setJsonError] = useState(null)
 
     useEffect(() => {
-        fetch(JSON_API)
+        fetch(FEATURED_API)
             .then((res) => {
                 if (!res.ok) throw new Error(`HTTP ${res.status}`)
                 return res.json()
             })
             .then((data) => {
-                console.log('data', data)
-                const activeFeatured = data.filter((d) => d.is_active)
-                setFeatured(activeFeatured)
+                setFeaturedBooks(data.featured_books || [])
+                setFeaturedAuthors(data.featured_authors || [])
             })
             .catch((err) => {
                 setJsonError(err.message)
             })
+            .finally(() => setLoading(false))
     }, [])
 
-    if (jsonError) {
-        return <p>Error loading services: {jsonError}</p>;
-    }
+    if (jsonError) return <p>Error loading featured content: {jsonError}</p>
+    if (loading) return <p>Loading...</p>
 
-    console.log("featured", featured)
-
-    return(
+    return (
         <div className="main_featured_container">
-            <h2>Featured Books</h2>
-            <p>Handpicked selections from our collection</p>
-            <div className="featured_container">
-                {featured.map((feature) => {
-                    return (
-                        <div className="feature" key={feature.id}>
-                            <img src={feature.img_url} alt={feature.img_ref} />
-                            <h3>{feature.book_title}</h3>
-                            <h3>{feature.book_author}</h3>
-                        </div>
-                    )
-                })}
+            <div className="featured_books_section">
+                <h2>Featured Books</h2>
+                <p>Handpicked selections from our collection</p>
+                {featuredBooks.length === 0 ? (
+                    <p className="featured_empty">Check back soon for featured books!</p>
+                ) : (
+                    <div className="featured_container">
+                        {featuredBooks.map((book) => (
+                            
+                            <div className="feature" key={book.id}>
+                                <img src={getMediaUrl(book.cover_image)} alt={book.title} />
+                                <h3>{book.title}</h3>
+                                <p>{book.author?.display_name}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            <div className="featured_authors_section">
+                <h2>Featured Authors</h2>
+                <p>Meet the voices behind the stories</p>
+                {featuredAuthors.length === 0 ? (
+                    <p className="featured_empty">Check back soon for featured authors!</p>
+                ) : (
+                    <div className="featured_container">
+                        {featuredAuthors.map((author, index) => (
+                            <div className="feature" key={index}>
+                                <img src={getMediaUrl(author.avatar_url)} alt={author.display_name} />
+                                <h3>{author.display_name}</h3>
+                                <p>{author.book_count} {author.book_count === 1 ? 'book' : 'books'}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,6 +12,55 @@
   </head>
 
   <body>
+    <!-- ── MODAL ── -->
+    <div
+      class="modal-backdrop"
+      id="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-box" id="modal-box">
+        <button
+          class="modal-close"
+          id="modal-close"
+          aria-label="Close countdown"
+        >
+          &times;
+        </button>
+        <p class="modal-eyebrow">Coming Soon</p>
+        <h2 class="modal-headline" id="modal-title">Author Launch</h2>
+        <p class="modal-sub">Start writing, start earning — opening June 1st</p>
+
+        <img
+          src="./assets/images/animated_comingSoon.gif"
+          alt="Curating your next adventure — the shelves are filling soon"
+          class="modal-gif"
+        />
+
+        <div class="modal-units" id="modal-units">
+          <div class="modal-unit">
+            <span class="modal-num" id="m-days">--</span>
+            <span class="modal-lbl">Days</span>
+          </div>
+          <div class="modal-unit">
+            <span class="modal-num" id="m-hours">--</span>
+            <span class="modal-lbl">Hours</span>
+          </div>
+          <div class="modal-unit">
+            <span class="modal-num" id="m-mins">--</span>
+            <span class="modal-lbl">Minutes</span>
+          </div>
+          <div class="modal-unit">
+            <span class="modal-num" id="m-secs">--</span>
+            <span class="modal-lbl">Seconds</span>
+          </div>
+        </div>
+
+        <p class="modal-date">June 1, 2026 &nbsp;·&nbsp; 12:00 PM EDT</p>
+      </div>
+    </div>
+    <!-- ── MAIN PAGE ── -->
     <div class="container">
       <div class="border-box">
         <div class="logo-glow"></div>
@@ -26,20 +75,49 @@
 
     <div class="cta">
       <p class="coming-soon">
-          <button class="cta-button"><a href="https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?tab=t.0" target="_blank" class="cta-link">Author Information</a></button>
-    </p>
-    <p class="coming-soon">
-          <button class="cta-button"><a href="https://forms.gle/8fPutWAspQryFGARA" target="_blank" class="cta-link">Reader Waitlist</a></button>
-    </p>
+        <button class="cta-button">
+          <a
+            href="https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?tab=t.0"
+            target="_blank"
+            class="cta-link"
+            >Author Information</a
+          >
+        </button>
+      </p>
+      <!-- Mini countdown — click to reopen modal -->
+      <p class="coming-soon">
+        <button
+          class="mini-countdown cta-button"
+          id="mini-countdown"
+          aria-label="View author launch countdown"
+        >
+          <span class="mini-label">Author Launch</span>
+          <span class="mini-ticker" id="mini-ticker">-- : -- : -- : --</span>
+          <span class="mini-date">June 1, 2026</span>
+        </button>
+      </p>
+      <p class="coming-soon">
+        <button class="cta-button">
+          <a
+            href="https://forms.gle/8fPutWAspQryFGARA"
+            target="_blank"
+            class="cta-link"
+            >Reader Waitlist</a
+          >
+        </button>
+      </p>
     </div>
 
     <footer>
       <img
-        src="./assets/images/BDS_Logo_No_BG.png"
+        src="./assets/images/BDS_Logo.png"
         alt="BeeDev Services Logo"
         class="footer-logo"
       />
-      <p class="footer-text">Powered by <a href="https://beedev-services.com">BeeDev Services LLC</a></p>
+      <p class="footer-text">
+        Powered by <a href="https://beedev-services.com">BeeDev Services LLC</a>
+      </p>
     </footer>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>

@@ -1,0 +1,450 @@
+/* Author Dashboard Container */
+.author-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    gap: 3em;
+    padding-bottom: 4em;
+}
+
+/* Shared Section Styles */
+.dashboard-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.section-heading {
+    font-size: 2em;
+    color: #ffffffe0;
+    text-align: center;
+    margin-bottom: 0.3em;
+}
+.section-subheading {
+    font-size: 1em;
+    color: #ffffffa0;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+.dashboard-card {
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 1.5em;
+}
+
+/* Stats Bar */
+.stats-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    width: 100%;
+}
+.stat-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.stat-label {
+    color: #ffffffa0;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}
+.stat-value {
+    color: #e05555;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+/* Current Projects */
+.projects-list {
+    width: 100%;
+}
+.project-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5em;
+    width: 100%;
+}
+.project-cover-placeholder {
+    width: 80px;
+    height: 110px;
+    background-color: #ffffff20;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffffa0;
+    font-size: 0.7em;
+    text-align: center;
+    padding: 0.5em;
+    flex-shrink: 0;
+}
+.project-info {
+    flex: 1;
+}
+.project-title {
+    color: #ffffffe0;
+    margin: 0 0 0.5em 0;
+}
+.project-status {
+    font-size: 0.8em;
+    padding: 0.2em 0.8em;
+    border-radius: 20px;
+}
+.project-status.draft {
+    background-color: #ffffff20;
+    color: #ffffffa0;
+}
+.continue-editing-btn {
+    background-color: transparent;
+    color: #ffffffe0;
+    border: 1px solid #ffffff40;
+    padding: 0.5em 1.2em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.continue-editing-btn:hover {
+    background-color: #ffffff10;
+}
+
+/* Published Works */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5em;
+    width: 100%;
+}
+.book-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.book-cover-placeholder {
+    width: 100%;
+    background-color: #ffffff20;
+    border-radius: 4px;
+    margin-bottom: 0.8em;
+
+}
+.book-title {
+    color: #ffffffe0;
+    font-size: 0.95em;
+    margin: 0 0 0.3em 0;
+}
+.book-rating {
+    color: #ffffffe0;
+    font-size: 0.8em;
+    margin: 0 0 0.2em 0;
+}
+.book-earnings {
+    display: flex;
+    gap: 0.5em;
+}
+
+/* Analytics Overview */
+.analytics-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+.time-toggle {
+    display: flex;
+    gap: 0.5em;
+}
+.time-btn {
+    background-color: transparent;
+    color: #ffffffa0;
+    border: 1px solid #ffffff30;
+    padding: 0.3em 0.8em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+.time-btn:active, .time-btn:hover {
+    background-color: #e05555;
+    color: #ffffffe0;
+    border-color: #e05555;
+}
+.analytics-large-stats {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+.large-stat-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.large-stat-value {
+    color: #e05555;
+    font-size: 2.5em;
+    margin: 0.2em 0 0 0;
+}
+.analytics-small-stats {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+.small-stat-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.small-stat-value {
+    color: #ffffffe0;
+    font-size: 1.5em;
+    margin: 0.2em 0 0 0;
+}
+.analytics-bottom {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    width: 100%;
+}
+.reading-activity {
+    flex: 1;
+}
+.reading-activity h3, .performance-insights h3 {
+    color: #ffffffe0;
+    margin: 0 0 0.3em 0;
+}
+.chart-subtitle {
+    color: #ffffffa0;
+    font-size: 0.8em;
+    margin-bottom: 1em;
+}
+.bar-chart-placeholder {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 0.5em;
+    height: 150px;
+    padding: 1em 0;
+}
+.bar {
+    flex: 1;
+    background-color: #e05555;
+    border-radius: 4px 4px 0 0;
+    opacity: 0.7;
+}
+.performance-insights {
+    flex: 1;
+}
+.insight-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8em 0;
+    border-bottom: 1px solid #ffffff10;
+}
+.insight-label {
+    color: #ffffffa0;
+    font-size: 0.85em;
+    margin: 0;
+}
+.insight-value {
+    color: #ffffffe0;
+    font-size: 0.85em;
+    margin: 0;
+}
+
+/* Reader Feedback */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+}
+.review-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    align-items: flex-start;
+}
+.review-book-cover-placeholder {
+    width: 60px;
+    height: 80px;
+    background-color: #ffffff20;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+.review-content {
+    flex: 1;
+}
+.review-book-title {
+    color: #ffffffe0;
+    margin: 0 0 0.3em 0;
+    font-size: 1em;
+}
+.review-text {
+    color: #ffffffa0;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-bottom: 0.5em;
+}
+.review-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.review-rating {
+    font-size: 0.8em;
+}
+.review-time {
+    color: #ffffff60;
+    font-size: 0.8em;
+}
+
+/* Author Settings */
+.settings-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    width: 100%;
+}
+.settings-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.settings-column-title {
+    color: #ffffffe0;
+    margin: 0 0 0.5em 0;
+}
+.setting-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8em 0;
+    border-bottom: 1px solid #ffffff10;
+}
+.setting-name {
+    color: #ffffffe0;
+    font-size: 0.9em;
+    margin: 0 0 0.2em 0;
+}
+.setting-desc {
+    color: #ffffffa0;
+    font-size: 0.8em;
+    margin: 0;
+}
+.toggle {
+    width: 40px;
+    height: 22px;
+    background-color: #ffffff30;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+}
+.toggle.active {
+    background-color: #e05555;
+}
+.toggle::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: left 0.3s ease;
+}
+.toggle.active::after {
+    left: 21px;
+}
+.settings-save-btn {
+    background-color: transparent;
+    color: #ffffffe0;
+    border: 1px solid #ffffff40;
+    padding: 0.6em 1.2em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin-top: 0.5em;
+}
+.settings-save-btn:hover {
+    background-color: #ffffff10;
+}
+.balance-card {
+    background-color: #e0555520;
+    border: 1px solid #e0555540;
+}
+.balace-label {
+    color: #ffffffa0;
+    font-size: 0.85em;
+    margin: 0 0 0.3em 0;
+}
+.balance-value {
+    color: #e05555;
+    font-size: 2em;
+    margin: 0 0 0.2em 0;
+}
+.balance-sub {
+    color: #ffffffa0;
+    font-size: 0.8em;
+    margin: 0;
+}
+.payout-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6em 0;
+    border-bottom: 1px solid #ffffff10;
+}
+.payout-label {
+    color: #ffffffa0;
+    font-size: 0.85em;
+    margin: 0;
+}
+.payout-value {
+    color: #ffffffe0;
+    font-size: 0.85em;
+    margin: 0;
+}
+.payout-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top: 0.5em;
+}
+.payout-btn {
+    background-color: transparent;
+    color: #ffffffa0;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 0.85em;
+    text-align: left;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+.payout-btn:hover {
+    color: #ffffffe0;
+}

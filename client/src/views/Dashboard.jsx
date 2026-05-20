@@ -1,10 +1,10 @@
 import useUser from '../hooks/useUser'
 import useAuthStore from '../store/authStore'
-import ReaderDashboard from '../components/DashboardComponents/ReaderDashboard'
-import FreeAuthorDashboard from '../components/DashboardComponents/FreeAuthorDashboard'
-import AuthorDashboard from '../components/DashboardComponents/AuthorDashboard'
-import ModeratorDashboard from '../components/DashboardComponents/ModeratorDashboard'
-import AdminDashboard from '../components/DashboardComponents/AdminDashboard'
+import ReaderDashboard from './Dashboards/ReaderDashboard'
+import FreeAuthorDashboard from './Dashboards/FreeAuthorDashboard'
+import AuthorDashboard from './Dashboards/AuthorDashboard'
+import ModeratorDashboard from './Dashboards/ModeratorDashboard'
+import AdminDashboard from './Dashboards/AdminDashboard'
 
 export default function Dashboard() {
     const { user } = useUser()

@@ -1,10 +1,12 @@
 import './baseComponents.css'
 import Shelf from '../../assets/images/shelf.png'
 import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useAuthStore from '../../store/authStore'
 import useLogout from '../../hooks/useLogout'
 import { Link } from 'react-router-dom'
 import { getMediaUrl } from '../../utils/mediaUrl'
+import { toTitleCase } from '../../utils/upperCase'
 
 const APP_URL = import.meta.env.VITE_APP_URL
 const DJANGO_ADMIN_URL = import.meta.env.VITE_DJANGO_ADMIN_URL
@@ -18,6 +20,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
     const { logout } = useLogout()
     const [menuOpen, setMenuOpen] = useState(false)
     const menuRef = useRef(null)
+    const navigate = useNavigate()
 
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
 
@@ -35,8 +38,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                         <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
-                        <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        <Link to="/author/create-book" onClick={() => setMenuOpen(false)}>New Book</Link>
                     </>
                 )
             case 'author':
@@ -44,26 +46,23 @@ export default function Header({ onLoginClick, onSignupClick }) {
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
                         <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
-                        <Link to="/my-books/new" onClick={() => setMenuOpen(false)}>New Book</Link>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        <Link to="/author/create-book" onClick={() => setMenuOpen(false)}>New Book</Link>
                     </>
                 )
             case 'moderator':
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        <Link to="/flagged-content" onClick={() => setMenuOpen(false)}>Flagged Content</Link>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        {/* <Link to="/flagged-content" onClick={() => setMenuOpen(false)}>Flagged Content</Link> */}
                     </>
                 )
             case 'admin':
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        <Link to="/admin/users" onClick={() => setMenuOpen(false)}>User Management</Link>
+                        {/* <Link to="/admin/users" onClick={() => setMenuOpen(false)}>User Management</Link> */}
                         <Link to="/admin/author-requests" onClick={() => setMenuOpen(false)}>Author Requests</Link>
                         <Link to="/admin/book-approvals" onClick={() => setMenuOpen(false)}>Book Approvals</Link>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
                         {user?.admin_profile?.is_super_admin && (
                             <a 
                                 href={DJANGO_ADMIN_URL}
@@ -81,9 +80,8 @@ export default function Header({ onLoginClick, onSignupClick }) {
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        <a href={`${APP_URL}/library`} onClick={() => setMenuOpen(false)}>My Library</a>
-                        <a href={`${APP_URL}/shop`} onClick={() => setMenuOpen(false)}>Shop</a>
-                        <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                        {/* <a href={`${APP_URL}/library`} onClick={() => setMenuOpen(false)}>My Library</a> */}
+                        {/* <a href={`${APP_URL}/shop`} onClick={() => setMenuOpen(false)}>Shop</a> */}
                     </>
                 )
         }
@@ -120,16 +118,17 @@ export default function Header({ onLoginClick, onSignupClick }) {
                             onClick={() => setMenuOpen(!menuOpen)}
                         />
                         <div className={`side-menu ${menuOpen ? 'side-menu-open' : ''}`}>
-                            <p className="current_role">Viewing as: {currentRole}</p>
+                            <p className="current_role">Viewing as: {toTitleCase(currentRole)}</p>
                             {getMenuItems()}
                             {availableRoles.length > 1 && user?.is_verified && (
                                 <div className="role-switcher">
-                                    <p>Change role</p>
+                                    <p>Change current role</p>
                                     {availableRoles.map(item => (
                                         
                                             <a key={item.role}
                                             onClick={() => {
-                                                setCurrentRole(item.role)
+                                                navigate('/dashboard')
+                                                setTimeout(() => setCurrentRole(item.role), 50)
                                                 setMenuOpen(false)
                                             }}
                                             className={currentRole === item.role ? 'active-role' : ''}

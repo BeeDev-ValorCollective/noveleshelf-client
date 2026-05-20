@@ -1,20 +1,31 @@
 import { create } from 'zustand';
 
+const normalizeProfile = (profile, usernameKey) => {
+    if (!profile) return null;
+    return {
+        ...profile,
+        username: profile[usernameKey] ?? null
+    };
+};
+
+
 const getProfileForRole = (user, role) => {
-    if (!user) return null
-    switch(role) {
+    if (!user) return null;
+    switch (role) {
         case 'author':
-            return user.author_profile
+            return normalizeProfile(user.author_profile, 'author_username');
         case 'free_author':
-            return user.free_author_profile
+            return normalizeProfile(user.free_author_profile, 'free_author_username');
         case 'moderator':
-            return user.moderator_profile
+            return normalizeProfile(user.moderator_profile, 'moderator_username');
         case 'admin':
-            return user.admin_profile
+            return normalizeProfile(user.admin_profile, 'admin_username');
         default:
-            return user.profile
+            return normalizeProfile(user.profile, 'username');
     }
-}
+};
+
+const toTitleCase = str => str?.replace(/\b\w/g, c => c.toUpperCase()) ?? null;
 
 const useAuthStore = create((set, get) => ({
     user: null,
@@ -22,6 +33,7 @@ const useAuthStore = create((set, get) => ({
     refreshToken: localStorage.getItem('refresh_token') || null,
     isAuthenticated: !!sessionStorage.getItem('access_token') || !!localStorage.getItem('refresh_token'),
     currentRole: localStorage.getItem('current_role') || null,
+    currentRoleDisplay: toTitleCase(localStorage.getItem('current_role')),
     currentProfile: null,
 
     setAuth: (user, accessToken, refreshToken) => {
@@ -36,6 +48,7 @@ const useAuthStore = create((set, get) => ({
             refreshToken, 
             isAuthenticated: true,
             currentRole: role,
+            currentRoleDisplay: toTitleCase(role),
             currentProfile: profile
         });
 
@@ -43,6 +56,7 @@ const useAuthStore = create((set, get) => ({
             console.log('🔐 AUTH SET:', {
                 user,
                 currentRole: role,
+                currentRoleDisplay: toTitleCase(role),
                 currentProfile: profile,
                 accessToken,
                 refreshToken
@@ -77,11 +91,12 @@ const useAuthStore = create((set, get) => ({
         const user = get().user
         const profile = getProfileForRole(user, role)
         localStorage.setItem('current_role', role);
-        set({ currentRole: role, currentProfile: profile });
+        set({ currentRole: role, currentRoleDisplay: toTitleCase(role), currentProfile: profile });
 
         if (import.meta.env.DEV) {
             console.log('🎭 ROLE SWITCHED:', {
                 currentRole: role,
+                currentRoleDisplay: toTitleCase(role),
                 currentProfile: profile
             })
         }
@@ -97,6 +112,7 @@ const useAuthStore = create((set, get) => ({
             refreshToken: null, 
             isAuthenticated: false,
             currentRole: null,
+            currentRoleDisplay: null,
             currentProfile: null
         });
 
