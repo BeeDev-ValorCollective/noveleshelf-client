@@ -45,7 +45,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
+                        <Link to="/author/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
                         <Link to="/author/create-book" onClick={() => setMenuOpen(false)}>New Book</Link>
                     </>
                 )
