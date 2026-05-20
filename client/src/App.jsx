@@ -26,6 +26,7 @@ const ErrorPage = React.lazy(() => import('./views/ErrorPage'))
 
 // Author Pages
 const CreateNewBook = React.lazy(() => import('./views/AuthorViews/CreateNewBook'))
+const ManageBook = React.lazy(() => import('./views/AuthorViews/ManageBook'))
 
 function App() {
   return (
@@ -91,6 +92,12 @@ function AppContent() {
           <Route path="author/create-book" element={
             <ProtectedRoute allowedRoles={['author', 'free_author']}>
               <CreateNewBook  />
+            </ProtectedRoute>
+          }
+          />
+          <Route path="author/books/:bookId/manage" element={
+            <ProtectedRoute allowedRoles={['author', 'free_author']}>
+              <ManageBook />
             </ProtectedRoute>
           }
           />
