@@ -1,4 +1,14 @@
 /* Free Author Dashboard */
+.free-author-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    gap: 3em;
+    padding-bottom: 4em;
+}
+
+/* Free Author Projects */
 .free-author-projects-list {
     display: flex;
     flex-direction: column;
@@ -55,4 +65,40 @@
 }
 .free-author-contune-btn:hover {
     background-color: #ffffff10;
+}
+
+/* Stats Bar */
+.dashboard-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dashboard-card {
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 1.5em;
+}
+.stats-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    width: 100%;
+}
+.stat-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.stat-label {
+    color: #ffffffa0;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}
+.stat-value {
+    color: #e05555;
+    font-size: 1.8em;
+    margin: 0;
 }
