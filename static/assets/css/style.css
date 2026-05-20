@@ -1,3 +1,59 @@
+@font-face {
+  font-family: 'Fredericka the Great';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/frederickathegreat/v23/9Bt33CxNwt7aOctW2xjbCstzwVKsIBVV-9Sk.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Merienda';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/merienda/v22/gNMaW3x8Qoy5_mf8uUkJGHtiYXjmKFy5JHhoSQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Merienda';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/merienda/v22/gNMaW3x8Qoy5_mf8uUkJGHtiYXjmKFy5enhoSQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Merienda';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/merienda/v22/gNMaW3x8Qoy5_mf8uUkJGHtiYXjmKFy5SHhoSQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Merienda';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/merienda/v22/gNMaW3x8Qoy5_mf8uUkJGHtiYXjmKFy5pH9oSQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Merienda';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/merienda/v22/gNMaW3x8Qoy5_mf8uUkJGHtiYXjmKFy5nX9oSQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Merienda';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/merienda/v22/gNMaW3x8Qoy5_mf8uUkJGHtiYXjmKFy5-n9oSQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Merienda';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/merienda/v22/gNMaW3x8Qoy5_mf8uUkJGHtiYXjmKFy5039oSQ.ttf) format('truetype');
+}
 body {
   margin: 0;
   padding: 0;
@@ -74,6 +130,45 @@ body .cta .coming-soon .cta-button {
 body .cta .coming-soon .cta-button .cta-link {
   color: #ffffff;
   text-decoration: none;
+  font-family: "Fredericka the Great", serif;
+}
+body .cta .coming-soon .mini-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+body .cta .coming-soon .mini-countdown .mini-label {
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.8;
+  font-family: "Fredericka the Great", serif;
+}
+body .cta .coming-soon .mini-countdown .mini-ticker {
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  color: #ffb4c8cc;
+  letter-spacing: 0.06em;
+  font-weight: 300;
+  text-shadow: 0 0 10px #00ffff88;
+  padding-top: 0.4em;
+}
+body .cta .coming-soon .mini-countdown .mini-date {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff48;
+  padding-top: 0.4em;
+}
+body .cta .coming-soon .cta-button:hover {
+  background: #ffffff0e;
+  border-color: #00ffff33;
+  box-shadow: 0 0 14px #00ffff22, 0 0 24px #7d55ff22;
 }
 body footer .footer-logo {
   width: 140px;
@@ -91,6 +186,132 @@ body footer .footer-text {
 body footer .footer-text a {
   color: #ffffff;
   text-decoration: none;
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 6, 15, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+  padding: 1rem;
+}
+.modal-backdrop.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.modal-backdrop.hidden .modal-box {
+  transform: translateY(16px);
+}
+.modal-backdrop .modal-box {
+  position: relative;
+  background: #0d0f1a;
+  border-radius: 20px;
+  border: 1px solid #ffffff18;
+  box-shadow: 0 0 40px #ffb4c8b3, 0 0 70px #7d55ff59;
+  padding: 2.5rem 2.5rem 2rem;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 0.25s ease;
+}
+.modal-backdrop .modal-box .modal-gif {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1.8rem;
+  display: block;
+}
+.modal-backdrop .modal-box .modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.1rem;
+  background: none;
+  border: none;
+  color: #ffffff55;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.2rem 0.4rem;
+  transition: color 0.15s;
+}
+.modal-backdrop .modal-box .modal-close:hover {
+  color: #ffffffcc;
+}
+.modal-backdrop .modal-box .modal-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffb4c8;
+  margin: 0 0 0.4rem;
+  font-weight: 300;
+  opacity: 0.85;
+}
+.modal-backdrop .modal-box .modal-headline {
+  font-family: "Fredericka the Great", serif;
+  font-size: clamp(2.5rem, 4vw, 3rem);
+  font-weight: 300;
+  color: #ffffff;
+  margin: 0 0 0.3rem;
+  text-shadow: 0 0 30px #ffb4c855;
+}
+.modal-backdrop .modal-box .modal-sub {
+  font-size: 0.85rem;
+  color: #ffffff66;
+  margin: 0 0 1.8rem;
+  font-weight: 300;
+}
+.modal-backdrop .modal-box .modal-units {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 1.5rem;
+}
+.modal-backdrop .modal-box .modal-units .modal-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 clamp(10px, 3vw, 22px);
+  font-family: "Fredericka the Great", serif;
+  font-weight: 300;
+}
+.modal-backdrop .modal-box .modal-units .modal-unit:not(:last-child) {
+  border-right: 1px solid #ffffff14;
+}
+.modal-backdrop .modal-box .modal-units .modal-unit .modal-num {
+  font-size: clamp(2.4rem, 7vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+  text-shadow: 0 0 18px #00ffffaa, 0 0 35px #7d55ff66;
+}
+.modal-backdrop .modal-box .modal-units .modal-unit .modal-lbl {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff55;
+  margin-top: 5px;
+}
+.modal-backdrop .modal-box .modal-date {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff33;
+  margin: 0;
+}
+.modal-backdrop .modal-box .modal-launched {
+  font-size: 1.5rem;
+  color: #ffb4c8;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  margin: 1rem 0;
 }
 /* Larger devices – scale BeeDev logo up smoothly */
 @media (min-width: 600px) {
@@ -147,18 +368,14 @@ body footer .footer-text a {
 }
 /* Mobile phones */
 @media (max-width: 600px) {
-  body {
-    display: block;
-    min-height: auto;
-  }
   .container {
     padding: 1.2rem;
     display: block;
     text-align: center;
   }
   .border-box {
-    padding: 1.8rem 2.2rem;
-    max-width: 92%;
+    padding: 1.8em 2.2em;
+    max-width: 82%;
     margin: 0 auto;
     margin-top: 1.2rem;
   }
@@ -175,6 +392,9 @@ body footer .footer-text a {
     font-size: 1.25rem;
     margin-top: 1.5rem;
     margin-bottom: 1.2rem;
+  }
+  .cta {
+    flex-direction: column;
   }
   footer {
     margin-top: 0.5rem;
