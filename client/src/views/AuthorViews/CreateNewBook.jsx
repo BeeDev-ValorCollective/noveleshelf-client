@@ -2,8 +2,8 @@ import { useState } from 'react'
 import useAuthStore from '../../store/authStore'
 import useBookReferenceData from '../../hooks/useBookReferenceData'
 import BookFormFields from '../../components/AuthorBookComponents/BookFormFields'
-import { ROLE_TO_AUTHOR_TYPE } from '../../constants/auth'
-import { DB_API, ENDPOINTS } from '../utils/api'
+import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
 
 export default function CreateNewBook() {

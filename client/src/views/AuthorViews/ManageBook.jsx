@@ -4,11 +4,12 @@ import useAuthStore from '../../store/authStore'
 import useBookReferenceData from '../../hooks/useBookReferenceData'
 import BookDetails from '../../components/AuthorBookComponents/BookDetails'
 import BookTags from '../../components/AuthorBookComponents/BookTags'
+import BookApprovalStatus from '../../components/AuthorBookComponents/BookApprovalStatus'
+import BookChapterList from '../../components/AuthorBookComponents/BookChapterList'
 import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
 import '../../components/AuthorBookComponents/authorBook.css'
-
 
 export default function ManageBook() {
     const { bookId } = useParams()
@@ -24,6 +25,10 @@ export default function ManageBook() {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
 
+    const [chapters, setChapters] = useState([])
+    const [chaptersLoading, setChaptersLoading] = useState(true)
+    const [chaptersError, setChaptersError] = useState(null)
+
     const fetchBook = async () => {
         setIsLoading(true)
         setError(null)
@@ -38,15 +43,40 @@ export default function ManageBook() {
             } else {
                 setError(data.error || 'Could not load book.')
             }
-        } catch (err) {
+        } catch {
             setError('Unable to connect. Please check your connection and try again.')
         } finally {
             setIsLoading(false)
         }
     }
 
+    const fetchChapters = async () => {
+        setChaptersLoading(true)
+        setChaptersError(null)
+        try {
+            const params = new URLSearchParams({ book_id: bookId })
+            if (authorType) params.append('author_type', authorType)
+            const res = await fetch(`${DB_API}${ENDPOINTS.chapterList}?${params}`, {
+                headers: { Authorization: `Bearer ${accessToken}` }
+            })
+            const data = await res.json()
+            if (res.ok) {
+                setChapters(data.chapters)
+            } else {
+                setChaptersError(data.error || 'Could not load chapters.')
+            }
+        } catch {
+            setChaptersError('Unable to connect. Please check your connection and try again.')
+        } finally {
+            setChaptersLoading(false)
+        }
+    }
+
     useEffect(() => {
-        if (bookId && accessToken) fetchBook()
+        if (bookId && accessToken) {
+            fetchBook()
+            fetchChapters()
+        }
     }, [bookId, accessToken])
 
     if (isLoading) return <p>Loading...</p>
@@ -82,7 +112,14 @@ export default function ManageBook() {
 
             <section className='manage-book-section'>
                 <h2>Chapters</h2>
-                <p className='coming-soon-note'>Chapter management coming next.</p>
+                <BookChapterList
+                    chapters={chapters}
+                    isLoading={chaptersLoading}
+                    error={chaptersError}
+                    bookId={bookId}
+                    book={book}
+                    navigate={navigate}
+                />
             </section>
 
             <section className='manage-book-section'>
@@ -103,76 +140,4 @@ export default function ManageBook() {
             )}
         </div>
     )
-}
-
-
-function BookApprovalStatus({ book, authorType, accessToken, onBookUpdated }) {
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [error, setError] = useState(null)
-
-    const handleSubmit = async () => {
-        setIsSubmitting(true)
-        setError(null)
-        try {
-            const res = await fetch(`${DB_API}${ENDPOINTS.bookSubmit}`, {
-                method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    book_id: book.id,
-                    author_type: authorType,
-                }),
-            })
-            const data = await res.json()
-            if (res.ok) {
-                onBookUpdated(data.book)
-            } else {
-                setError(data.error || 'Could not submit book.')
-            }
-        } catch (err) {
-            setError('Unable to connect. Please try again.')
-        } finally {
-            setIsSubmitting(false)
-        }
-    }
-
-    if (book.status === 'approved') {
-        return <p className='form-success'>This book has been approved and is live.</p>
-    }
-
-    if (book.status === 'pending_approval') {
-        return <p className='section-note'>Your book is currently under review. We'll notify you once a decision has been made.</p>
-    }
-
-    if (book.status === 'rejected') {
-        return <p className='form-error'>This book has been rejected. Please contact admin for more information.</p>
-    }
-
-    if (book.status === 'draft') {
-        return (
-            <div>
-                <p className='section-note'>Once you're happy with your book details, submit it for admin review.</p>
-                {error && <p className='form-error'>{error}</p>}
-                <button onClick={handleSubmit} disabled={isSubmitting}>
-                    {isSubmitting ? 'Submitting...' : 'Submit for Approval'}
-                </button>
-            </div>
-        )
-    }
-
-    if (book.status === 'changes_requested') {
-        return (
-            <div>
-                <p className='section-note'>Admin has requested changes to your book. Make the necessary updates and resubmit when ready.</p>
-                {error && <p className='form-error'>{error}</p>}
-                <button onClick={handleSubmit} disabled={isSubmitting}>
-                    {isSubmitting ? 'Submitting...' : 'Resubmit for Approval'}
-                </button>
-            </div>
-        )
-    }
-
-    return null
 }
