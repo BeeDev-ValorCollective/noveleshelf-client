@@ -8,7 +8,6 @@ import ProtectedRoute from './components/AuthComponents/ProtectedRoute';
 import VerificationBanner from './components/BaseComponents/VerificationBanner';
 import useUser from './hooks/useUser'
 
-const Static = React.lazy(() => import('./views/Static'))
 const Home = React.lazy(() => import('./views/Home'))
 const Login = React.lazy(() => import('./views/Login'))
 const Signup = React.lazy(() => import('./views/Signup'))

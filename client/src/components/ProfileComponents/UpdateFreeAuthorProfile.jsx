@@ -2,11 +2,10 @@ import { useNavigate } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
 import useAuthStore from '../../store/authStore'
 import { useState, useEffect } from 'react'
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../utils/api'
 import useFileInput from '../../hooks/useFileInput'
 import UpdateDefaultRole from './UpdateDefaultRole'
-
-const DB_API = `${import.meta.env.VITE_DB_API}`;
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
 export default function UpdateFreeAuthorProfile() {
     const navigate = useNavigate()
@@ -65,7 +64,7 @@ export default function UpdateFreeAuthorProfile() {
             formData.append('is_publicly_visible', is_publicly_visible)
             if (avatar_url) formData.append('avatar_url', avatar_url)
 
-            const res = await fetch(DB_API + "user/free-author-profile/update/", {
+            const res = await fetch(`${DB_API}${ENDPOINTS.freeAuthorProfileUpdate}`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${accessToken}`,

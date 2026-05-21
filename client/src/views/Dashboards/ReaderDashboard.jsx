@@ -21,8 +21,6 @@ export default function ReaderDashboard() {
     if (!user) return <p>Loading...</p>
 
     const fullName = useFullName()
-    
-    console.log('THE USER', user, 'CURRENT PROFILE', currentProfile)
 
     return(
         <div  className="reader-dashboard-container">

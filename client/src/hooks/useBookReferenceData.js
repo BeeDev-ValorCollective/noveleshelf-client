@@ -1,8 +1,7 @@
 // hooks/useBookReferenceData.js
 import { useState, useEffect } from 'react'
 import useAuthStore from '../store/authStore'
-
-const DB_API = `${import.meta.env.VITE_DB_API}`
+import { DB_API, ENDPOINTS } from '../utils/api'
 
 export default function useBookReferenceData() {
     const accessToken = useAuthStore((state) => state.accessToken)
@@ -18,7 +17,7 @@ export default function useBookReferenceData() {
     useEffect(() => {
         const fetchReferenceData = async () => {
             try {
-                const res = await fetch(DB_API + 'books/public/books/reference-data/')
+                const res = await fetch(`${DB_API}${ENDPOINTS.referenceData}`)
                 const data = await res.json()
                 if (res.ok) {
                     setReferenceData(data)

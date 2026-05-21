@@ -2,11 +2,10 @@ import { useNavigate } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
 import useAuthStore from '../../store/authStore'
 import { useState, useEffect } from 'react'
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../utils/api'
 import useFileInput from '../../hooks/useFileInput'
 import UpdateDefaultRole from './UpdateDefaultRole'
-
-const DB_API = `${import.meta.env.VITE_DB_API}`;
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
 export default function UpdateAdminProfile() {
     const navigate = useNavigate()
@@ -47,7 +46,7 @@ export default function UpdateAdminProfile() {
             formData.append('admin_username', admin_username)
             if (avatar_url) formData.append('avatar_url', avatar_url)
 
-            const res = await fetch(DB_API + "user/admin-profile/update/", {
+            const res = await fetch(`${DB_API}${ENDPOINTS.adminProfileUpdate}`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${accessToken}`,

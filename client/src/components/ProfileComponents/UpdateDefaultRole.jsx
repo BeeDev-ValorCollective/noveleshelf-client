@@ -3,16 +3,8 @@
 import { useState } from 'react'
 import useUser from '../../hooks/useUser'
 import useAuthStore from '../../store/authStore'
-
-const DB_API = `${import.meta.env.VITE_DB_API}`
-
-const ROLE_LABELS = {
-    reader: 'Reader',
-    author: 'Author',
-    free_author: 'Free Author',
-    moderator: 'Moderator',
-    admin: 'Admin',
-}
+import { ROLE_LABELS } from '../../utils/auth'
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
 export default function UpdateDefaultRole() {
     const { user, accessToken } = useUser()
@@ -39,7 +31,7 @@ export default function UpdateDefaultRole() {
         setIsLoading(true)
 
         try {
-            const res = await fetch(DB_API + "user/default-role/update/", {
+            const res = await fetch(`${DB_API}${ENDPOINTS.defaultRoleUpdate}`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${accessToken}`,

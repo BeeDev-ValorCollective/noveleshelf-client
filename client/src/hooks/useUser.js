@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useAuthStore from "../store/authStore";
+import { DB_API, ENDPOINTS } from "../utils/api";
 
-const DB_API = `${import.meta.env.VITE_DB_API}`
 
 export default function useUser() {
     const user = useAuthStore((state) => state.user);
@@ -17,7 +17,7 @@ export default function useUser() {
             // have access token - just fetch user
             if (!user && accessToken) {
                 try {
-                    const response = await fetch(DB_API + 'auth/me/', {
+                    const response = await fetch(`${DB_API}${ENDPOINTS.me}`, {
                         headers: {
                             'Authorization': `Bearer ${accessToken}`
                         }

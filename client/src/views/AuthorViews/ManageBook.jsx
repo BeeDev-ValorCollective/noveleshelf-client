@@ -4,13 +4,9 @@ import useAuthStore from '../../store/authStore'
 import useBookReferenceData from '../../hooks/useBookReferenceData'
 import BookDetails from '../../components/AuthorBookComponents/BookDetails'
 import BookTags from '../../components/AuthorBookComponents/BookTags'
+import { ROLE_TO_AUTHOR_TYPE } from '../../constants/auth'
+import { DB_API, ENDPOINTS } from '../utils/api'
 
-const DB_API = `${import.meta.env.VITE_DB_API}`
-
-const ROLE_TO_AUTHOR_TYPE = {
-    author: 'paid',
-    free_author: 'free',
-}
 
 export default function ManageBook() {
     const { bookId } = useParams()
@@ -29,7 +25,7 @@ export default function ManageBook() {
         setIsLoading(true)
         setError(null)
         try {
-            const url = DB_API + `books/author/books/${bookId}/` + (authorType ? `?author_type=${authorType}` : '')
+            const url = `${DB_API}${ENDPOINTS.bookDetail(bookId)}${authorType ? `?author_type=${authorType}` : ''}`
             const res = await fetch(url, {
                 headers: { Authorization: `Bearer ${accessToken}` }
             })

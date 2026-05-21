@@ -3,13 +3,13 @@ import useUser from '../../hooks/useUser'
 import useAuthStore from '../../store/authStore'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../utils/api'
 import useFileInput from '../../hooks/useFileInput'
 import UpdateDefaultRole from './UpdateDefaultRole'
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
 import './updateProfile.css'
 
-const DB_API = `${import.meta.env.VITE_DB_API}`;
 
 export default function UpdateAuthorProfile() {
     const navigate = useNavigate()
@@ -59,7 +59,7 @@ export default function UpdateAuthorProfile() {
             formData.append('show_real_name', show_real_name ? 'true' : 'false')
             if (avatar_url) formData.append('avatar_url', avatar_url)
 
-            const res = await fetch(DB_API + "user/author-profile/update/", {
+            const res = await fetch(`${DB_API}${ENDPOINTS.authorProfileUpdate}`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${accessToken}`,

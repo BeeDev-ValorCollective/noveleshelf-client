@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
 import useAuthStore from '../../store/authStore'
 import { useState, useEffect } from 'react'
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../utils/api'
 import useFileInput from '../../hooks/useFileInput'
 import UpdateDefaultRole from './UpdateDefaultRole'
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
 import './updateProfile.css'
 
-const DB_API = `${import.meta.env.VITE_DB_API}`;
 
 export default function UpdateReaderProfile() {
     const navigate = useNavigate()
@@ -58,7 +58,7 @@ export default function UpdateReaderProfile() {
             formData.append('bio', bio)
             if (avatar_url) formData.append('avatar_url', avatar_url)
 
-            const res = await fetch(DB_API + "user/profile/update/", {
+            const res = await fetch(`${DB_API}${ENDPOINTS.updateProfile}`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${accessToken}`,

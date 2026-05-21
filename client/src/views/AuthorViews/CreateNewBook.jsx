@@ -2,13 +2,8 @@ import { useState } from 'react'
 import useAuthStore from '../../store/authStore'
 import useBookReferenceData from '../../hooks/useBookReferenceData'
 import BookFormFields from '../../components/AuthorBookComponents/BookFormFields'
-
-const DB_API = `${import.meta.env.VITE_DB_API}`
- 
-const ROLE_TO_AUTHOR_TYPE = {
-    author: 'paid',
-    free_author: 'free',
-}
+import { ROLE_TO_AUTHOR_TYPE } from '../../constants/auth'
+import { DB_API, ENDPOINTS } from '../utils/api'
 
 
 export default function CreateNewBook() {
@@ -60,7 +55,7 @@ export default function CreateNewBook() {
         }
  
         try {
-            const res = await fetch(DB_API + 'books/author/books/create/', {
+            const res = await fetch(`${DB_API}${ENDPOINTS.bookCreate}`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${accessToken}`,

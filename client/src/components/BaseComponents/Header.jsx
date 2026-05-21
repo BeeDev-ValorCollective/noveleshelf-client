@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import useAuthStore from '../../store/authStore'
 import useLogout from '../../hooks/useLogout'
 import { Link } from 'react-router-dom'
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../utils/api'
 import { toTitleCase } from '../../utils/upperCase'
 
 const APP_URL = import.meta.env.VITE_APP_URL

@@ -12,8 +12,6 @@ export default function Profile() {
 
     const fullName = useFullName()
 
-    console.log('THE USER', user, 'CURRENT PROFILE', currentProfile)
-
     switch(currentRole) {
             case 'admin':
                 return(
