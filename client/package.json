@@ -12,6 +12,9 @@
   "dependencies": {
     "@tiptap/extension-blockquote": "^3.23.2",
     "@tiptap/extension-character-count": "^3.23.2",
+    "@tiptap/extension-text-align": "^3.23.2",
+    "@tiptap/extension-typography": "^3.23.2",
+    "@tiptap/extension-underline": "^3.23.2",
     "@tiptap/pm": "^3.23.2",
     "@tiptap/react": "^3.23.2",
     "@tiptap/starter-kit": "^3.23.2",
