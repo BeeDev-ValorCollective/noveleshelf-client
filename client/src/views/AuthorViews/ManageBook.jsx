@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import useAuthStore from '../../store/authStore'
 import useBookReferenceData from '../../hooks/useBookReferenceData'
 import BookDetails from '../../components/AuthorBookComponents/BookDetails'
 import BookTags from '../../components/AuthorBookComponents/BookTags'
-import { ROLE_TO_AUTHOR_TYPE } from '../../constants/auth'
-import { DB_API, ENDPOINTS } from '../utils/api'
+import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
 
 export default function ManageBook() {
     const { bookId } = useParams()
+    const navigate = useNavigate()
     const accessToken = useAuthStore((state) => state.accessToken)
     const currentRole = useAuthStore((state) => state.currentRole)
 
@@ -53,7 +54,7 @@ export default function ManageBook() {
     return (
         <div className='manage-book'>
             <div className='manage-book-header'>
-                <a href='/author/dashboard' className='back-link'>← Back to dashboard</a>
+                <button onClick={() => navigate('/dashboard')}>← Back to dashboard</button>
                 <h1>{book.title}</h1>
                 <span className={`project-status ${book.status}`}>{book.status.replace(/_/g, ' ')}</span>
             </div>
