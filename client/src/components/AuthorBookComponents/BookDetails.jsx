@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import BookFormFields from './BookFormFields'
 
+
 const DB_API = `${import.meta.env.VITE_DB_API}`
 
 export default function BookDetails({ book, authorType, accessToken, contentRatings, refLoading, onBookUpdated }) {

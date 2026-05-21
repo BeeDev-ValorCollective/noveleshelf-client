@@ -7,6 +7,8 @@ import BookTags from '../../components/AuthorBookComponents/BookTags'
 import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
+import '../../components/AuthorBookComponents/authorBook.css'
+
 
 export default function ManageBook() {
     const { bookId } = useParams()
@@ -78,30 +80,20 @@ export default function ManageBook() {
                 onBookUpdated={setBook}
             />
 
-            {currentRole === 'author' && (
-                <section className='manage-book-section'>
-                    <h2>Chapters</h2>
-                    <p className='coming-soon-note'>Chapter management coming next.</p>
-                </section>
-            )}
-
-            {currentRole === 'free_author' && (
-                <section className='manage-book-section'>
-                    <h2>Chapters</h2>
-                    <p className='coming-soon-note'>Chapter management coming next.</p>
-                </section>
-            )}
+            <section className='manage-book-section'>
+                <h2>Chapters</h2>
+                <p className='coming-soon-note'>Chapter management coming next.</p>
+            </section>
 
             <section className='manage-book-section'>
                 <h2>Book Pages</h2>
                 <p className='coming-soon-note'>Page management coming next.</p>
             </section>
 
-            {currentRole === 'author' && book.status === 'draft' && (
+            {currentRole === 'author' && (
                 <section className='manage-book-section'>
-                    <h2>Submit for Approval</h2>
-                    <p>Once you're happy with your book details, submit it for admin review.</p>
-                    <SubmitBookButton
+                    <h2>Approval Status</h2>
+                    <BookApprovalStatus
                         book={book}
                         authorType={authorType}
                         accessToken={accessToken}
@@ -114,17 +106,15 @@ export default function ManageBook() {
 }
 
 
-function SubmitBookButton({ book, authorType, accessToken, onBookUpdated }) {
+function BookApprovalStatus({ book, authorType, accessToken, onBookUpdated }) {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState(null)
-    const [success, setSuccess] = useState(null)
 
     const handleSubmit = async () => {
         setIsSubmitting(true)
         setError(null)
-        setSuccess(null)
         try {
-            const res = await fetch(DB_API + 'books/author/books/submit/', {
+            const res = await fetch(`${DB_API}${ENDPOINTS.bookSubmit}`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
@@ -137,7 +127,6 @@ function SubmitBookButton({ book, authorType, accessToken, onBookUpdated }) {
             })
             const data = await res.json()
             if (res.ok) {
-                setSuccess('Book submitted for approval.')
                 onBookUpdated(data.book)
             } else {
                 setError(data.error || 'Could not submit book.')
@@ -149,13 +138,41 @@ function SubmitBookButton({ book, authorType, accessToken, onBookUpdated }) {
         }
     }
 
-    return (
-        <div>
-            {error && <p className='form-error'>{error}</p>}
-            {success && <p className='form-success'>{success}</p>}
-            <button onClick={handleSubmit} disabled={isSubmitting}>
-                {isSubmitting ? 'Submitting...' : 'Submit for Approval'}
-            </button>
-        </div>
-    )
+    if (book.status === 'approved') {
+        return <p className='form-success'>This book has been approved and is live.</p>
+    }
+
+    if (book.status === 'pending_approval') {
+        return <p className='section-note'>Your book is currently under review. We'll notify you once a decision has been made.</p>
+    }
+
+    if (book.status === 'rejected') {
+        return <p className='form-error'>This book has been rejected. Please contact admin for more information.</p>
+    }
+
+    if (book.status === 'draft') {
+        return (
+            <div>
+                <p className='section-note'>Once you're happy with your book details, submit it for admin review.</p>
+                {error && <p className='form-error'>{error}</p>}
+                <button onClick={handleSubmit} disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Submit for Approval'}
+                </button>
+            </div>
+        )
+    }
+
+    if (book.status === 'changes_requested') {
+        return (
+            <div>
+                <p className='section-note'>Admin has requested changes to your book. Make the necessary updates and resubmit when ready.</p>
+                {error && <p className='form-error'>{error}</p>}
+                <button onClick={handleSubmit} disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Resubmit for Approval'}
+                </button>
+            </div>
+        )
+    }
+
+    return null
 }

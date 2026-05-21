@@ -1,0 +1,51 @@
+.manage-book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+}
+.manage-book-header {
+    display: flex;
+    font-family: "Fredericka the Great", serif;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+}
+h2 {
+    font-family: "Fredericka the Great", serif;
+}
+.manage-book-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+
+}
+.book-form-fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.bff-field {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    padding: .5em 0;
+}
+.manage-book-section button {
+    margin: .5em;
+}
+.tags {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 100%;
+}
+.tag-group {
+    display: flex;
+    flex-direction: column;
+}
