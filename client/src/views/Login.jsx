@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useAuthStore from "../store/authStore";
+import { DB_API, ENDPOINTS } from '../utils/api'
 
 import AuthModal from "../components/AuthComponents/AuthModal";
 import AuthCard from "../components/AuthComponents/AuthCard";
@@ -10,7 +11,6 @@ import useModalAuth from "../hooks/useModalAuth";
 
 import "../components/AuthComponents/auth.css";
 
-const DB_API = `${import.meta.env.VITE_DB_API}`;
 
 export default function Login({ onClose, isModal, onSwitchToSignup }) {
   const setAuth = useAuthStore((state) => state.setAuth);
@@ -27,7 +27,7 @@ export default function Login({ onClose, isModal, onSwitchToSignup }) {
     setIsLoading(true);
 
     try {
-      const response = await fetch(DB_API + "auth/login/", {
+      const response = await fetch(`${DB_API}${ENDPOINTS.login}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

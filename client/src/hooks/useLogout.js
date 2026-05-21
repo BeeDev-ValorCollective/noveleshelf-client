@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
+import { DB_API, ENDPOINTS } from '../utils/api'
 
-const DB_API = `${import.meta.env.VITE_DB_API}`
 
 export default function useLogout() {
     const navigate = useNavigate();
@@ -9,7 +9,7 @@ export default function useLogout() {
 
     const logout = async () => {
         try {
-            await fetch(DB_API + 'auth/logout/', {
+            await fetch(`${DB_API}${ENDPOINTS.logout}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

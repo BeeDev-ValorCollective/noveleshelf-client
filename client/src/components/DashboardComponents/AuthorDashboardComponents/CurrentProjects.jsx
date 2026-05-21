@@ -1,4 +1,4 @@
-import { getMediaUrl } from '../../../utils/mediaUrl'
+import { getMediaUrl } from '../../../utils/api'
 import './authorDashboard.css'
 
 export default function CurrentProjects({ books }) {
@@ -29,7 +29,9 @@ export default function CurrentProjects({ books }) {
                             <h3 className='project-title'>{book.title}</h3>
                             <span className={`project-status ${book.status}`}>{book.status.replace('_', ' ')}</span>
                         </div>
-                        <button className='continue-editing-btn'>Continue Editing</button>
+                        <button className='continue-editing-btn'><a href={`/author/books/${book.id}/manage`}>
+                            Manage Book
+                        </a></button>
                     </div>
                 ))}
             </div>

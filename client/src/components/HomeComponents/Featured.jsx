@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../utils/api'
 import './home.css'
-
-const FEATURED_API = `${import.meta.env.VITE_DB_API}books/public/featured/`
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
 export default function Featured() {
     const [featuredBooks, setFeaturedBooks] = useState([])
@@ -11,7 +10,7 @@ export default function Featured() {
     const [jsonError, setJsonError] = useState(null)
 
     useEffect(() => {
-        fetch(FEATURED_API)
+        fetch(`${DB_API}${ENDPOINTS.login}`)
             .then((res) => {
                 if (!res.ok) throw new Error(`HTTP ${res.status}`)
                 return res.json()

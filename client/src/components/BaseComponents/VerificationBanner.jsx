@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import useAuthStore from '../../store/authStore'
-
-const DB_API = `${import.meta.env.VITE_DB_API}`
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
 export default function VerificationBanner() {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
@@ -18,7 +17,7 @@ export default function VerificationBanner() {
         setSending(true)
         setError(null)
         try {
-            const response = await fetch(DB_API + 'auth/resend-verification/', {
+            const response = await fetch(`${DB_API}${ENDPOINTS.resendVerification}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`

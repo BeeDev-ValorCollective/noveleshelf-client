@@ -13,7 +13,6 @@ export default function ResetPassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Send reset link to:", email);
   };
 
   return (

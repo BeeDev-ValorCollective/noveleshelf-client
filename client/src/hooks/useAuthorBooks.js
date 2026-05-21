@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import useAuthStore from '../store/authStore'
-
-const DB_API = `${import.meta.env.VITE_DB_API}`
+import { DB_API, ENDPOINTS } from '../utils/api'
 
 export default function useAuthorBooks() {
     const [books, setBooks] = useState([])
@@ -14,7 +13,7 @@ export default function useAuthorBooks() {
 
         const fetchBooks = async () => {
             try {
-                const response = await fetch(DB_API + 'books/author/books/', {
+                const response = await fetch(`${DB_API}${ENDPOINTS.bookList}`, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`
                     }

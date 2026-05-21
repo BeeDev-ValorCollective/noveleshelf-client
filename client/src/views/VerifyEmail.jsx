@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import useAuthStore from '../store/authStore'
+import { DB_API, ENDPOINTS } from '../utils/api'
 
-const DB_API = `${import.meta.env.VITE_DB_API}`
 
 export default function VerifyEmail() {
     const [searchParams] = useSearchParams()
@@ -27,7 +27,7 @@ export default function VerifyEmail() {
 
         const verify = async () => {
             try {
-                const response = await fetch(`${DB_API}auth/verify-email/?token=${token}`)
+                const response = await fetch(`${DB_API}${ENDPOINTS.verifyEmail(token)}`)
                 const data = await response.json()
 
                 if (response.ok) {

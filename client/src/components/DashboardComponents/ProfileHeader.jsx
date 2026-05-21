@@ -1,4 +1,4 @@
-import { getMediaUrl } from '../../utils/mediaUrl'
+import { getMediaUrl } from '../../utils/api'
 import { toTitleCase } from '../../utils/upperCase'
 import { Link } from 'react-router-dom'
 

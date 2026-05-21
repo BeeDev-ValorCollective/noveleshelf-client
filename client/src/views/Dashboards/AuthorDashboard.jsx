@@ -23,8 +23,6 @@ export default function AuthorDashboard() {
 
     const fullName = useFullName()
 
-    console.log("AUTHOR DASH PROPS:", books)
-
 
     return (
         <div className='author-dashboard-container'>
