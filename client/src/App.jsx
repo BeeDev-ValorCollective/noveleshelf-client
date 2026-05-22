@@ -80,6 +80,7 @@ function AppContent() {
               <Dashboard />
             </ProtectedRoute>}
           />
+          {/* User Paths - has switch for different roles */}
           <Route path="/profile" element={
             <ProtectedRoute>
               <Profile />
@@ -90,6 +91,11 @@ function AppContent() {
               <UpdateProfile />
             </ProtectedRoute>}
           />
+          {/* protected - login + verified */}
+
+          {/* Reader */}
+
+          {/* Author */}
           <Route path="author/create-book" element={
             <ProtectedRoute allowedRoles={['author', 'free_author']}>
               <CreateNewBook  />
@@ -114,18 +120,9 @@ function AppContent() {
             </ProtectedRoute>
             }
           />
+          {/* Admin */}
 
-          {/* protected - login + verified */}
-          {/* <Route path="/shop" element={
-            <ProtectedRoute requiresVerification>
-              <Shop />
-            </ProtectedRoute>}
-          /> */}
-          {/* <Route path="/library" element={
-            <ProtectedRoute requiresVerification>
-              <Library />
-            </ProtectedRoute>}
-          /> */}
+          {/* Moderator */}
         </Routes>
       </main>
       <Footer />

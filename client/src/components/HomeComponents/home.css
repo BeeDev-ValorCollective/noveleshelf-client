@@ -39,6 +39,9 @@
     justify-content: center;
     align-items: center;
 }
+.feature .featured-book-cover {
+    height: 350px;
+}
 
 /* CTA component */
 

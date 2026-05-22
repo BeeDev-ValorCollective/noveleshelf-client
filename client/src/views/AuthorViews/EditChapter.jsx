@@ -148,19 +148,12 @@ export default function EditChapter() {
                 </div>
 
                 {authorType === 'paid' && (
-                    <div className="bff-field">
-                        <label className="bff-label" htmlFor="unlock_cost">Unlock Cost</label>
-                        <input
-                            id="unlock_cost"
-                            type="number"
-                            className="bff-input"
-                            value={formData.unlock_cost}
-                            onChange={(e) => onChange('unlock_cost', Number(e.target.value))}
-                            min={0}
-                            disabled={isSubmitting || isPublishing}
-                        />
-                        <p className="bff-hint">Set to 0 for free chapters.</p>
-                    </div>
+                    <p className="bff-hint">
+                        {chapter.status === 'published'
+                            ? `Unlock cost: ${chapter.unlock_cost === 0 ? 'Free' : `${chapter.unlock_cost} quills`} — locked in at time of publishing.`
+                            : `Unlock cost is calculated automatically based on book tier and word count.`
+                        }
+                    </p>
                 )}
 
                 {hasMultipleChapters && (

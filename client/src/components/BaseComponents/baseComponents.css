@@ -128,3 +128,7 @@ footer {
     background-color: #e0555520;
     color: #e05555;
 }
+.avail-roles {
+    display: flex;
+    flex-wrap: wrap;
+}
