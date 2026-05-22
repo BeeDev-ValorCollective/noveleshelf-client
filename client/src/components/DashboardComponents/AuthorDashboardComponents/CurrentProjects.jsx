@@ -11,6 +11,7 @@ export default function CurrentProjects({ books }) {
                         <p className='section-subheading'>Works in progress</p>
                     </div>
                     <a href='/author/books' className='view-all-link'>View All</a>
+                    <a href="/author/create-book">Create a Book</a>
                 </div>
                 <p style={{ color: '#ffffffa0', textAlign: 'center' }}>No current projects</p>
             </section>

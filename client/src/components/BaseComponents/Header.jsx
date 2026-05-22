@@ -123,7 +123,8 @@ export default function Header({ onLoginClick, onSignupClick }) {
                             {availableRoles.length > 1 && user?.is_verified && (
                                 <div className="role-switcher">
                                     <p>Change current role</p>
-                                    {availableRoles.map(item => (
+                                    <div className="avail-roles">
+                                        {availableRoles.map(item => (
                                         
                                             <a key={item.role}
                                             onClick={() => {
@@ -136,6 +137,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                                             {item.label}
                                         </a>
                                     ))}
+                                    </div>
                                 </div>
                             )}
                             <button onClick={() => { setMenuOpen(false); logout(); }}>Logout</button>

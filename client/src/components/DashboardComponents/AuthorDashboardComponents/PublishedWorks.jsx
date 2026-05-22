@@ -28,7 +28,7 @@ export default function PublishedWorks({ books }) {
             </div>
             <div className='books-grid'>
                 {books.map((book) => (
-                    <a key={book.id} href={`/author/books/${book.id}/manage`} className='book-card dashboard-card'>
+                    <a key={book.id} href={`/author/books/${book.id}/manage`} className='book-card dashboard-card published-book'>
                         <img
                             src={getMediaUrl(book.cover_image)}
                             alt={book.title}

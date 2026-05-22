@@ -10,7 +10,7 @@ export default function Featured() {
     const [jsonError, setJsonError] = useState(null)
 
     useEffect(() => {
-        fetch(`${DB_API}${ENDPOINTS.login}`)
+        fetch(`${DB_API}${ENDPOINTS.featured}`)
             .then((res) => {
                 if (!res.ok) throw new Error(`HTTP ${res.status}`)
                 return res.json()
@@ -40,7 +40,7 @@ export default function Featured() {
                         {featuredBooks.map((book) => (
                             
                             <div className="feature" key={book.id}>
-                                <img src={getMediaUrl(book.cover_image)} alt={book.title} />
+                                <img src={getMediaUrl(book.cover_image)} alt={book.title} className='featured-book-cover'/>
                                 <h3>{book.title}</h3>
                                 <p>{book.author?.display_name}</p>
                             </div>

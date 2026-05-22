@@ -126,8 +126,12 @@
     align-items: center;
     text-align: center;
 }
+.published-book {
+    width: 75%;
+}
 .book-cover-placeholder {
-    width: 100%;
+    /* width: 100px; */
+    height: 150px;
     background-color: #ffffff20;
     border-radius: 4px;
     margin-bottom: 0.8em;
