@@ -1,28 +1,15 @@
 import { getMediaUrl } from '../../../utils/api'
 import './authorDashboard.css'
 
-export default function PublishedWorks({ books }) {
-    if (!books || books.length === 0) {
-        return (
-            <section className='dashboard-section published-works'>
-                <div className='section-heading-row'>
-                    <div>
-                        <h2 className='section-heading'>Published</h2>
-                        <p className='section-subheading'>Live and still in progress</p>
-                    </div>
-                    <a href='/author/books' className='view-all-link'>View All</a>
-                </div>
-                <p style={{ color: '#ffffffa0', textAlign: 'center' }}>No published works yet</p>
-            </section>
-        )
-    }
+export default function FinishedBooks({ books }) {
+    if (!books || books.length === 0) return null
 
     return (
-        <section className='dashboard-section published-works'>
+        <section className='dashboard-section finished-books'>
             <div className='section-heading-row'>
                 <div>
-                    <h2 className='section-heading'>Published</h2>
-                    <p className='section-subheading'>Live and still in progress</p>
+                    <h2 className='section-heading'>Finished Books</h2>
+                    <p className='section-subheading'>Completed works</p>
                 </div>
                 <a href='/author/books' className='view-all-link'>View All</a>
             </div>

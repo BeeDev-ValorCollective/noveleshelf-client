@@ -1,28 +1,38 @@
 import { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import useAuthStore from '../../store/authStore'
 import TipTapEditor from '../../components/TipTapEditor/TipTapEditor'
+import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
-export default function CreateNewChapter({ book }) {
+export default function CreateNewChapter() {
     const { bookId } = useParams()
     const navigate = useNavigate()
+    const location = useLocation()
     const accessToken = useAuthStore((state) => state.accessToken)
     const currentRole = useAuthStore((state) => state.currentRole)
 
-    // Determine if user has both profiles
-    const hasBothProfiles = currentRole === 'both' // adjust to match your actual role value
+    const authorType = ROLE_TO_AUTHOR_TYPE[currentRole]
+    const { book } = location.state || {}
 
     const [formData, setFormData] = useState({
         title: '',
         content: '',
         is_final: false,
-        author_type: hasBothProfiles ? '' : currentRole === 'free_author' ? 'free' : 'paid',
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState(null)
 
-    const hasChapters = book?.chapter_count > 0  // adjust field name to match your book object
+    const hasChapters = book?.chapters?.length > 0
+
+    if (!book) {
+        return (
+            <div>
+                <p className='form-error'>Book data not found.</p>
+                <button onClick={() => navigate(`/author/books/${bookId}/manage`)}>← Back to book</button>
+            </div>
+        )
+    }
 
     const onChange = (field, value) => {
         setFormData(prev => ({ ...prev, [field]: value }))
@@ -31,10 +41,6 @@ export default function CreateNewChapter({ book }) {
     const handleSubmit = async () => {
         if (!formData.content || formData.content === '<p></p>') {
             setError('Content is required.')
-            return
-        }
-        if (hasBothProfiles && !formData.author_type) {
-            setError('Please select which author profile to publish under.')
             return
         }
 
@@ -53,12 +59,12 @@ export default function CreateNewChapter({ book }) {
                     title: formData.title || undefined,
                     content: formData.content,
                     is_final: formData.is_final,
-                    author_type: formData.author_type,
+                    author_type: authorType,
                 }),
             })
             const data = await res.json()
             if (res.ok) {
-                navigate(`/books/${bookId}/manage`)
+                navigate(`/author/books/${bookId}/manage`)
             } else {
                 setError(data.error || 'Could not create chapter.')
             }
@@ -77,25 +83,6 @@ export default function CreateNewChapter({ book }) {
             </div>
 
             <div className="create-chapter-form">
-
-                {hasBothProfiles && (
-                    <div className="bff-field">
-                        <label className="bff-label" htmlFor="author_type">
-                            Publishing as <span className="bff-required">*</span>
-                        </label>
-                        <select
-                            id="author_type"
-                            className="bff-select"
-                            value={formData.author_type}
-                            onChange={(e) => onChange('author_type', e.target.value)}
-                            disabled={isSubmitting}
-                        >
-                            <option value="">Select author profile</option>
-                            <option value="paid">Paid Author</option>
-                            <option value="free">Free Author</option>
-                        </select>
-                    </div>
-                )}
 
                 <div className="bff-field">
                     <label className="bff-label" htmlFor="title">Title <span className="bff-hint-inline">(optional)</span></label>
@@ -141,7 +128,7 @@ export default function CreateNewChapter({ book }) {
                 {error && <p className="form-error">{error}</p>}
 
                 <div className="create-chapter-actions">
-                    <button onClick={() => navigate(`/authors/books/${bookId}/manage`)} disabled={isSubmitting}>
+                    <button onClick={() => navigate(`/author/books/${bookId}/manage`)} disabled={isSubmitting}>
                         Cancel
                     </button>
                     <button onClick={handleSubmit} disabled={isSubmitting}>
