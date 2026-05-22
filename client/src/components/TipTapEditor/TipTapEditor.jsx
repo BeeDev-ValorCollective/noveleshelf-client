@@ -3,6 +3,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
 import Typography from '@tiptap/extension-typography'
+import CharacterCount from '@tiptap/extension-character-count'
 import './tipTap.css'
 
 export default function TipTapEditor({ content, onChange, disabled }) {
@@ -14,6 +15,7 @@ export default function TipTapEditor({ content, onChange, disabled }) {
             TextAlign.configure({
                 types: ['heading', 'paragraph'],
             }),
+            CharacterCount,
         ],
         content,
         editable: !disabled,
@@ -56,6 +58,13 @@ export default function TipTapEditor({ content, onChange, disabled }) {
                 {/* History */}
                 <button type="button" onClick={() => editor.chain().focus().undo().run()}>↩</button>
                 <button type="button" onClick={() => editor.chain().focus().redo().run()}>↪</button>
+
+                <span className="tiptap-divider" />
+
+                {/* Word Count */}
+                <span className="tiptap-word-count">
+                    {editor.storage.characterCount.words()} words
+                </span>
             </div>
             <EditorContent editor={editor} className="tiptap-content" />
         </div>

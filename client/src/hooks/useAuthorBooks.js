@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import useAuthStore from '../store/authStore'
+import { ROLE_TO_AUTHOR_TYPE } from '../utils/auth'
 import { DB_API, ENDPOINTS } from '../utils/api'
 
 export default function useAuthorBooks() {
@@ -7,13 +8,16 @@ export default function useAuthorBooks() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const accessToken = useAuthStore((state) => state.accessToken)
+    const currentRole = useAuthStore((state) => state.currentRole)
+
+    const authorType = ROLE_TO_AUTHOR_TYPE[currentRole]
 
     useEffect(() => {
-        if (!accessToken) return
+        if (!accessToken || !authorType) return
 
         const fetchBooks = async () => {
             try {
-                const response = await fetch(`${DB_API}${ENDPOINTS.bookList}`, {
+                const response = await fetch(`${DB_API}${ENDPOINTS.bookList}?author_type=${authorType}`, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`
                     }
@@ -32,7 +36,7 @@ export default function useAuthorBooks() {
         }
 
         fetchBooks()
-    }, [accessToken])
+    }, [accessToken, authorType])
 
     const currentProjects = books.filter(b =>
         ['draft', 'pending_approval', 'changes_requested', 'rejected'].includes(b.status)

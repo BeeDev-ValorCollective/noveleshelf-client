@@ -28,7 +28,7 @@ export default function PublishedWorks({ books }) {
             </div>
             <div className='books-grid'>
                 {books.map((book) => (
-                    <div key={book.id} className='book-card dashboard-card'>
+                    <a key={book.id} href={`/author/books/${book.id}/manage`} className='book-card dashboard-card'>
                         <img
                             src={getMediaUrl(book.cover_image)}
                             alt={book.title}
@@ -36,7 +36,7 @@ export default function PublishedWorks({ books }) {
                         />
                         <h3 className='book-title'>{book.title}</h3>
                         <p className='book-rating'>⭐ {book.content_rating?.code || 'NR'} · {book.published_chapter_count} chapters</p>
-                    </div>
+                    </a>
                 ))}
             </div>
         </section>
