@@ -140,7 +140,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto auto;
-    align-items: end;
+    align-items: center;
     gap: 2rem;
 
     h2 {
@@ -156,7 +156,7 @@
     grid-template-rows: subgrid;
     grid-row: span 3;
     gap: 1.5rem;
-    align-items: end;
+    align-items: center;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: var(--card-radius);
