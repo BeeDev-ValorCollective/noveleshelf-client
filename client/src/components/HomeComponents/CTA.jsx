@@ -1,22 +1,44 @@
-
 import './home.css'
 
 export default function CTA() {
 
-
-
     return(
-        <div className="cta_container">
-            <div className="cta">
-                <h2></h2>
-                <p></p>
-                <button></button>
+        <section className='cta_section'>
+
+            <div className='cta_card'>
+                <h2>Ready to Start Reading?</h2>
+                <p>Start building your Novel eShelf library and discover your next favorite story.</p>
+                <button className='primary_btn'>Browse Books</button>
             </div>
-            <div className="cta">
-                <h2></h2>
-                <p></p>
-                <button></button>
+
+            <div className='cta_card'>
+                <h2>Are You An Author?</h2>
+                <p>Publish your work and connect with passionate readers.</p>
+                <button className='secondary_btn'>Start Publishing</button>
             </div>
-        </div>
+
+        </section>
     )
 }
+
+// import './home.css'
+
+// export default function CTA() {
+
+
+
+//     return(
+//         <div className="cta_container">
+//             <div className="cta">
+//                 <h2></h2>
+//                 <p></p>
+//                 <button></button>
+//             </div>
+//             <div className="cta">
+//                 <h2></h2>
+//                 <p></p>
+//                 <button></button>
+//             </div>
+//         </div>
+//     )
+// }
