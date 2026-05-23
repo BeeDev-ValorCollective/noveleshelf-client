@@ -117,118 +117,6 @@ body footer .footer-text a {
   color: #ffffff;
   text-decoration: none;
 }
-
-/* Larger devices – scale BeeDev logo up smoothly */
-@media (min-width: 600px) {
-  .footer-logo {
-    width: 175px;
-  }
-}
-@media (min-width: 900px) {
-  .footer-logo {
-    width: 210px;
-  }
-}
-@media (min-width: 1400px) {
-  .footer-logo {
-    width: 250px;
-  }
-}
-
-/* -------------------------------------
-RESPONSIVE
--------------------------------------- */
-/* Large tablets and below */
-@media (max-width: 1000px) {
-  .border-box {
-    padding: 4rem 5rem;
-    max-width: 700px;
-  }
-  .logo {
-    width: 420px;
-  }
-  .logo-glow {
-    width: 480px;
-    height: 480px;
-    filter: blur(45px);
-  }
-}
-
-/* Tablets and small laptops */
-@media (max-width: 800px) {
-  .border-box {
-    padding: 3.5rem 4rem;
-    max-width: 600px;
-  }
-  .logo {
-    width: 360px;
-  }
-  .logo-glow {
-    width: 420px;
-    height: 420px;
-    filter: blur(40px);
-  }
-  .coming-soon {
-    font-size: 1.5rem;
-    margin-top: 1.2rem;
-  }
-}
-
-/* Mobile phones */
-@media (max-width: 600px) {
-  body {
-    display: block;
-    min-height: auto;
-  }
-  .container {
-    padding: 1.2rem;
-    display: block;
-    text-align: center;
-  }
-  .border-box {
-    padding: 1.8rem 2.2rem;
-    max-width: 92%;
-    margin: 0 auto;
-    margin-top: 1.2rem;
-  }
-  .logo {
-    width: 240px;
-    border-radius: 14px;
-  }
-  .logo-glow {
-    width: 260px;
-    height: 260px;
-    filter: blur(30px);
-  }
-  .coming-soon {
-    font-size: 1.25rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1.2rem;
-  }
-  footer {
-    margin-top: 0.5rem;
-    padding-bottom: 1rem;
-  }
-}
-
-/* Very small devices */
-@media (max-width: 400px) {
-  .border-box {
-    padding: 1.6rem;
-  }
-  .logo {
-    width: 210px;
-  }
-  .logo-glow {
-    width: 235px;
-    height: 235px;
-    filter: blur(26px);
-  }
-  .coming-soon {
-    font-size: 1.1rem;
-  }
-}
-
 :root {
   --bg-primary: #090414;
   --bg-secondary: rgba(255,255,255,0.05);
@@ -298,4 +186,105 @@ p {
 .primary_btn:hover,
 .secondary_btn:hover {
   background: var(--accent-coral);
+}
+
+/* RESPONSIVE BEHAVIOR */
+/* Large tablets and below */
+@media (max-width: 1000px) {
+  .border-box {
+    padding: 4rem 5rem;
+    max-width: 700px;
+  }
+  .logo {
+    width: 420px;
+  }
+  .logo-glow {
+    width: 480px;
+    height: 480px;
+    filter: blur(45px);
+  }
+  .footer-logo {
+    width: 250px;
+  }
+}
+
+/* Tablets and small laptops */
+@media (max-width: 800px) {
+  .border-box {
+    padding: 3.5rem 4rem;
+    max-width: 600px;
+  }
+  .logo {
+    width: 360px;
+  }
+  .logo-glow {
+    width: 420px;
+    height: 420px;
+    filter: blur(40px);
+  }
+  .coming-soon {
+    font-size: 1.5rem;
+    margin-top: 1.2rem;
+  }
+  .footer-logo {
+    width: 210px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+  body {
+    display: block;
+    min-height: auto;
+  }
+  .container {
+    padding: 1.2rem;
+    display: block;
+    text-align: center;
+  }
+  .border-box {
+    padding: 1.8rem 2.2rem;
+    max-width: 92%;
+    margin: 0 auto;
+    margin-top: 1.2rem;
+  }
+  .logo {
+    width: 240px;
+    border-radius: 14px;
+  }
+  .logo-glow {
+    width: 260px;
+    height: 260px;
+    filter: blur(30px);
+  }
+  .coming-soon {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  footer {
+    margin-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
+  .footer-logo {
+    width: 175px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 400px) {
+  .border-box {
+    padding: 1.6rem;
+  }
+  .logo {
+    width: 210px;
+  }
+  .logo-glow {
+    width: 235px;
+    height: 235px;
+    filter: blur(26px);
+  }
+  .coming-soon {
+    font-size: 1.1rem;
+  }
 }

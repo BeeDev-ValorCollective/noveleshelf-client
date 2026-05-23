@@ -226,6 +226,67 @@
     transition: var(--transition);
 }
 
+/* Why Section */
+.main_why_container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding:
+        var(--section-padding)
+        clamp(1.5rem, 5vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.why_heading {
+    font-family: "Fredericka the Great", serif;
+    text-align: center;
+    color: var(--text-primary);
+}
+.why_subheading {
+    font-family: "Merienda", cursive;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+.why_grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    width: 100%;
+}
+.why {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: 2rem;
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+.why:hover {
+    border-color: rgba(255,255,255,0.15);
+}
+.why_icon {
+    color: var(--accent-coral);
+    width: 32px;
+    height: 32px;
+}
+.why h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+}
+.why p {
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    line-height: 1.7;
+}
+
 /* Tablets */
 @media (max-width: 992px) {
     .hero_container {
@@ -243,6 +304,9 @@
     }
     .offering_grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .why_grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
