@@ -308,6 +308,114 @@
     margin-bottom: 0.5em;
 }
 
+/* For Authors Upgrade Section */
+.for-authors-upgrade-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+    text-align: center;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+.for-authors-upgrade-title {
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    margin-bottom: 0.5em;
+}
+.for-authors-upgrade-subtitle {
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    margin-bottom: 2em;
+}
+.author-upgrade-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+    width: 100%;
+}
+.upgrade-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5em;
+    padding: 2em;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+    text-align: left;
+}
+.upgrade-card:hover {
+    border-color: rgba(255,255,255,0.15);
+}
+.upgrade-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.upgrade-card-title {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    margin: 0;
+}
+.upgrade-card a {
+    font-family: "Merienda", cursive;
+}
+.upgrade-card-learn-more {
+    font-size: clamp(0.8rem, 1.2vw, 0.85em);
+    color: var(--accent-teal);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.upgrade-card-learn-more:hover {
+    color: var(--accent-coral);
+}
+.upgrade-card-description {
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    line-height: 1.7;
+    flex: 1;
+    margin: 0;
+}
+.upgrade-card-btn {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
+    padding: 0.8em 1.5em;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
+    width: 100%;
+    align-self: flex-end;
+}
+.upgrade-card-btn:hover {
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+.upgrade-card-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.upgrade-card-btn:disabled:hover {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+.form-success {
+    color: #4caf50;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    line-height: 1.7;
+    text-align: center;
+    padding: 1em 0;
+}
+
 /* CTA Component */
 .authors-cta {
     display: flex;
@@ -368,6 +476,15 @@
     .upload-status {
         margin-left: 0;
     }
+    .author-upgrade-section {
+        grid-template-columns: 1fr;
+    }
+    .upgrade-card {
+        text-align: center;
+    }
+    .upgrade-card-header {
+        align-items: center;
+    }
 }
 
 /* Mobile */
@@ -392,6 +509,9 @@
     .authors-cta {
         padding: 3rem clamp(1.5rem, 5vw, 5rem);
     }
+    .upgrade-card {
+        padding: 1.5rem;
+    }
 }
 
 /* Small Mobile */
@@ -406,6 +526,9 @@
         grid-template-columns: 1fr;
     }
     .authors-cta-button {
+        width: 100%;
+    }
+    .upgrade-card-btn {
         width: 100%;
     }
 }
