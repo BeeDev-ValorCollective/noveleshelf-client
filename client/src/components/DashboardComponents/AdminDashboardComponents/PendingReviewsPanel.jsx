@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { DB_API, ENDPOINTS } from '../../../utils/api'
 
+import './adminDash.css'
+
 export default function PendingReviewsPanel({ accessToken }) {
     const [requests, setRequests] = useState([])
     const [books, setBooks] = useState([])
@@ -18,11 +20,11 @@ export default function PendingReviewsPanel({ accessToken }) {
     const fetchPendingRequests = async () => {
         setRequestsLoading(true)
         try {
-            const res = await fetch(`${DB_API}${ENDPOINTS.adminAuthorRequests}?status=pending&page_size=5`, {
+            const res = await fetch(`${DB_API}${ENDPOINTS.adminAuthorRequests}?status=pending`, {
                 headers: { Authorization: `Bearer ${accessToken}` }
             })
             const data = await res.json()
-            if (res.ok) setRequests(data.results || [])
+            if (res.ok) setRequests((data.results || []).slice(0, 5))
             else setRequestsError(data.error || 'Could not load requests.')
         } catch {
             setRequestsError('Unable to connect.')
@@ -34,11 +36,11 @@ export default function PendingReviewsPanel({ accessToken }) {
     const fetchPendingBooks = async () => {
         setBooksLoading(true)
         try {
-            const res = await fetch(`${DB_API}${ENDPOINTS.adminBooks}?status=pending_approval&page_size=5`, {
+            const res = await fetch(`${DB_API}${ENDPOINTS.adminBooks}?status=pending_approval`, {
                 headers: { Authorization: `Bearer ${accessToken}` }
             })
             const data = await res.json()
-            if (res.ok) setBooks(data.books || [])
+            if (res.ok) setBooks((data.results || []).slice(0, 5))
             else setBooksError(data.error || 'Could not load books.')
         } catch {
             setBooksError('Unable to connect.')
@@ -48,7 +50,7 @@ export default function PendingReviewsPanel({ accessToken }) {
     }
 
     return (
-        <div className='pending-reviews-panel'>
+        <section className='dashboard-section pending-reviews-panel'>
             <PendingAuthorRequests
                 requests={requests}
                 isLoading={requestsLoading}
@@ -59,7 +61,7 @@ export default function PendingReviewsPanel({ accessToken }) {
                 isLoading={booksLoading}
                 error={booksError}
             />
-        </div>
+        </section>
     )
 }
 
@@ -75,22 +77,30 @@ function PendingAuthorRequests({ requests, isLoading, error }) {
             {!isLoading && !error && requests.length === 0 && (
                 <p className='section-note'>No pending author requests.</p>
             )}
-            {!isLoading && !error && requests.map((req) => (
-                <div key={req.id} className='pending-item'>
-                    <div className='pending-item-info'>
-                        <span className='pending-item-title'>
-                            {req.request_type.replace(/_/g, ' ')}
-                        </span>
-                        <span className='pending-item-meta'>
-                            User #{req.user} · {new Date(req.created_at).toLocaleDateString()}
-                        </span>
-                        {req.genre_interest && (
-                            <span className='pending-item-meta'>{req.genre_interest}</span>
-                        )}
-                    </div>
-                    <span className={`project-status ${req.status}`}>{req.status}</span>
-                </div>
-            ))}
+            {!isLoading && !error && requests.length > 0 && (
+                <table className='pending-table'>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>User</th>
+                            <th>Genre Interest</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {requests.map((req) => (
+                            <tr key={req.id}>
+                                <td>{req.request_type.replace(/_/g, ' ')}</td>
+                                <td>#{req.user}</td>
+                                <td>{req.genre_interest || '—'}</td>
+                                <td>{new Date(req.created_at).toLocaleDateString()}</td>
+                                <td><span className={`project-status ${req.status}`}>{req.status}</span></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     )
 }
@@ -107,22 +117,35 @@ function PendingBookApprovals({ books, isLoading, error }) {
             {!isLoading && !error && books.length === 0 && (
                 <p className='section-note'>No books pending approval.</p>
             )}
-            {!isLoading && !error && books.map((book) => (
-                <div key={book.id} className='pending-item'>
-                    <div className='pending-item-info'>
-                        <span className='pending-item-title'>{book.title}</span>
-                        <span className='pending-item-meta'>
-                            {book.author?.pen_name || book.author?.author_username || 'Unknown'} · {new Date(book.submitted_at).toLocaleDateString()}
-                        </span>
-                        {book.has_pending_changes && (
-                            <span className='pending-item-badge'>Has changes</span>
-                        )}
-                    </div>
-                    <a href={`/admin/book-approvals/${book.id}`} className='pending-item-action'>
-                        Review
-                    </a>
-                </div>
-            ))}
+            {!isLoading && !error && books.length > 0 && (
+                <table className='pending-table'>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Rating</th>
+                            <th>Chapters</th>
+                            <th>Submitted</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {books.map((book) => (
+                            <tr key={book.id}>
+                                <td>
+                                    {book.title}
+                                    {book.has_pending_changes && (
+                                        <span className='pending-item-badge'>Has changes</span>
+                                    )}
+                                </td>
+                                <td>{book.content_rating?.code || 'NR'}</td>
+                                <td>{book.chapter_count}</td>
+                                <td>{book.submitted_at ? new Date(book.submitted_at).toLocaleDateString() : '—'}</td>
+                                <td><a href={`/admin/book-approvals/${book.id}`} className='pending-item-action'>Review</a></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     )
 }
