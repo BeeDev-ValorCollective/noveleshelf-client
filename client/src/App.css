@@ -4,7 +4,6 @@ body {
   margin: 0;
   padding: 0;
   background: #0d0f1a;
-  font-family: "Cambria", "Georgia", serif;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -118,25 +117,78 @@ body footer .footer-text a {
   color: #ffffff;
   text-decoration: none;
 }
-/* Larger devices – scale BeeDev logo up smoothly */
-@media (min-width: 600px) {
-  .footer-logo {
-    width: 175px;
-  }
+:root {
+  --bg-primary: #090414;
+  --bg-secondary: rgba(255,255,255,0.05);
+  --border-color: rgba(255,255,255,0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #cfc7e6;
+  --accent-coral: #DD7a7a;
+  --accent-teal: #68b9b9;
+  --accent-purple: #7474cc;
+  --max-width: 1280px;
+  --section-padding: clamp(4rem, 8vw, 8rem);
+  --card-radius: 24px;
+  --transition: 0.3s ease;
 }
-@media (min-width: 900px) {
-  .footer-logo {
-    width: 210px;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-@media (min-width: 1400px) {
-  .footer-logo {
-    width: 250px;
-  }
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
 }
-/* -------------------------------------
-   RESPONSIVE
--------------------------------------- */
+
+/* Typography */
+h1 {
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  line-height: 1.05;
+  font-weight: 700;
+}
+h2 { 
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+h3 {
+  font-size: 1.25rem;
+}
+p {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Buttons */
+.primary_btn,
+.secondary_btn {
+  padding: 1rem 1.75rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  font-family: "Fredericka the Great", serif;
+}
+.primary_btn {
+  background: linear-gradient(135 deg, var(--accent-coral), var(--accent-purple));
+  border: 1px solid var(--accent-coral);
+  color: white;
+}
+.secondary_btn {
+  background: transparent;
+  border: 1px solid var(--accent-coral);
+  color: white;
+}
+.primary_btn:hover,
+.secondary_btn:hover {
+  background: var(--accent-coral);
+}
+
+/* RESPONSIVE BEHAVIOR */
 /* Large tablets and below */
 @media (max-width: 1000px) {
   .border-box {
@@ -151,7 +203,11 @@ body footer .footer-text a {
     height: 480px;
     filter: blur(45px);
   }
+  .footer-logo {
+    width: 250px;
+  }
 }
+
 /* Tablets and small laptops */
 @media (max-width: 800px) {
   .border-box {
@@ -170,7 +226,11 @@ body footer .footer-text a {
     font-size: 1.5rem;
     margin-top: 1.2rem;
   }
+  .footer-logo {
+    width: 210px;
+  }
 }
+
 /* Mobile phones */
 @media (max-width: 600px) {
   body {
@@ -206,7 +266,11 @@ body footer .footer-text a {
     margin-top: 0.5rem;
     padding-bottom: 1rem;
   }
+  .footer-logo {
+    width: 175px;
+  }
 }
+
 /* Very small devices */
 @media (max-width: 400px) {
   .border-box {

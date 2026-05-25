@@ -5,7 +5,7 @@ export default function CTA() {
         <>
         <section className='readers-cta'>
             <h2>Start Your Reading Journey Today</h2>
-            <p>Join thousands of readers discovering their next favorit book</p>
+            <p>Join thousands of readers discovering their next favorite book</p>
             <button className='cta-button'>Get Started Free</button>
         </section>
         </>

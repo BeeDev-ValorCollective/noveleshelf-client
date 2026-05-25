@@ -4,24 +4,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 400px;
+    min-height: clamp(250px, 40vw, 400px);
     text-align: center;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 5rem);
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .readers-hero h1 {
-    font-size: 3em;
-    color: #ffffffe0;
+    font-size: clamp(2rem, 5vw, 3.5em);
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
 }
 .hero-divider {
     border: none;
     height: 4px;
-    width: 1000px;
-    background: linear-gradient(to right, transparent, #DD7a7a, transparent);
+    width: min(1000px, 80%);
+    background: linear-gradient(to right, transparent, var(--accent-coral), transparent);
     margin: 0.5em auto;
 }
-.reader-hero h4 {
-    font-size: 1.2em;
-    color: #ffffffa0;
+.readers-hero h4 {
+    font-size: clamp(1rem, 2vw, 1.2em);
+    color: var(--text-secondary);
     font-weight: 400;
+    font-family: "Merienda", cursive;
 }
 
 /* Premium Features Component */
@@ -30,43 +36,53 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     text-align: center;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .premium-features h2 {
-    font-size: 2em;
-    color: #ffffffe0;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
     margin-bottom: 1.5em;
+    font-family: "Fredericka the Great", serif;
 }
 .features-grid {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2em;
     width: 100%;
 }
 .feature-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 30%;
     padding: 2em;
-    background-color: #ffffff10;
-    border-radius: 8px;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+.feature-card:hover {
+    border-color: rgba(255,255,255,0.15);
 }
 .feature-card h3 {
-    color: #ffffffe0;
+    color: var(--text-primary);
     margin: 0.5em 0;
+    font-size: 1.25rem;
+    font-family: "Merienda", cursive;
 }
 .feature-card p {
-    color: #ffffffa0;
-    font-size: 0.9em;
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
     text-align: center;
+    line-height: 1.7;
 }
 .feature-icon {
-    color: #DD7a7a;
+    color: var(--accent-coral);
     width: 32px;
     height: 32px;
     margin-bottom: 0.5em;
@@ -74,41 +90,42 @@
 
 /* Discover Component */
 .discover {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     gap: 4em;
-    width: 90%;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .discover-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 50%;
+    gap: 1em;
 }
 .discover-text h2 {
-    font-size: 2em;
-    color: #ffffffe0;
-    margin-bottom: 0.5em;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
 }
 .discover-text p {
-    color: #ffffffa0;
-    font-size: 1em;
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 1.5vw, 1em);
     line-height: 1.6;
 }
 .discover-image {
-    width: 50%;
-    border-radius: 8px;
+    width: 100%;
+    border-radius: var(--card-radius);
     overflow: hidden;
 }
 .discover-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: var(--card-radius);
 }
 
 /* Reading Modes Component */
@@ -117,44 +134,53 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     text-align: center;
-    width: 90%;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .reading-modes h2 {
-    font-size: 2em;
-    color: #ffffffe0;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
     margin-bottom: 1.5em;
+    font-family: "Fredericka the Great", serif;
 }
 .modes-grid {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2em;
     width: 100%;
 }
 .mode-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 30%;
     padding: 2em;
-    background-color: #ffffff10;
-    border-radius: 8px;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+.mode-card:hover {
+    border-color: rgba(255,255,255,0.15);
 }
 .mode-card h3 {
-    color: #ffffffe0;
+    color: var(--text-primary);
     margin: 0.5em 0;
+    font-size: 1.25rem;
+    font-family: "Merienda", cursive;
 }
 .mode-card p {
-    color: #ffffffa0;
-    font-size: 0.9em;
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
     text-align: center;
+    line-height: 1.7;
 }
 .mode-icon {
-    color: #DD7a7a;
+    color: var(--accent-coral);
     width: 32px;
     height: 32px;
     margin-bottom: 0.5em;
@@ -166,29 +192,32 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     text-align: center;
-    width: 90%;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .read-anywhere h2 {
-    font-size: 2em;
-    color: #ffffffe0;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
     margin-bottom: 1em;
+    font-family: "Fredericka the Great", serif;
 }
 .read-anywhere-image {
-    width: 75%;
-    border-radius: 8px;
+    width: min(75%, 900px);
+    border-radius: var(--card-radius);
     overflow: hidden;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
 }
 .read-anywhere-img {
     width: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: var(--card-radius);
 }
 .read-anywhere-text {
-    color: #ffffffa0;
-    font-size: 1em;
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 1.5vw, 1em);
     line-height: 1.6;
     max-width: 700px;
 }
@@ -199,32 +228,91 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     text-align: center;
     width: 100%;
-    background-color: #ffffff10;
+    background-color: rgba(255,255,255,0.04);
+    border-top: 1px solid rgba(255,255,255,0.08);
     margin-top: 2em;
 }
 .readers-cta h2 {
-    font-size: 2em;
-    color: #ffffffe0;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
     margin-bottom: 0.5em;
+    font-family: "Fredericka the Great", serif;
 }
 .readers-cta p {
-    color: #ffffffa0;
+    color: var(--text-secondary);
     margin-bottom: 1.5em;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    font-family: "Merienda", cursive;
 }
 .cta-button {
     background-color: transparent;
-    color: #ffffffe0;
-    border: 2px solid #ffffffe0;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
     padding: 0.8em 2em;
-    font-size: 1em;
-    border-radius: 4px;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    border-radius: 999px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
 }
 .cta-button:hover {
-    background-color: #ffffffe0;
-    color: #000000;
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .modes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .discover {
+        grid-template-columns: 1fr;
+        gap: 2em;
+    }
+    .discover-text {
+        align-items: center;
+        text-align: center;
+    }
+    .read-anywhere-image {
+        width: 90%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .modes-grid {
+        grid-template-columns: 1fr;
+    }
+    .feature-card,
+    .mode-card {
+        padding: 1.5rem;
+    }
+    .read-anywhere-image {
+        width: 100%;
+    }
+    .readers-cta {
+        padding: 3rem clamp(1.5rem, 5vw, 5rem);
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .readers-hero h1 {
+        font-size: 2rem;
+    }
+    .hero-divider {
+        width: 90%;
+    }
+    .cta-button {
+        width: 100%;
+    }
 }

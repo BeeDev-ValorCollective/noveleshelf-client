@@ -36,7 +36,7 @@ export default function Featured() {
                 {featuredBooks.length === 0 ? (
                     <p className="featured_empty">Check back soon for featured books!</p>
                 ) : (
-                    <div className="featured_container">
+                    <div className="featured_grid">
                         {featuredBooks.map((book) => (
                             
                             <div className="feature" key={book.id}>
@@ -55,7 +55,7 @@ export default function Featured() {
                 {featuredAuthors.length === 0 ? (
                     <p className="featured_empty">Check back soon for featured authors!</p>
                 ) : (
-                    <div className="featured_container">
+                    <div className="featured_grid">
                         {featuredAuthors.map((author, index) => (
                             <div className="feature" key={index}>
                                 <img src={getMediaUrl(author.avatar_url)} alt={author.display_name} />
