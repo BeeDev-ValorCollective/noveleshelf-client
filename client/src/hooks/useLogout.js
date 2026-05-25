@@ -26,7 +26,7 @@ export default function useLogout() {
                 console.log('🚪 LOGGED OUT')
             }
             clearAuth();
-            navigate('/login');
+            navigate('/');
         }
     };
 

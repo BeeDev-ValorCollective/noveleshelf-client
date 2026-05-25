@@ -4,8 +4,9 @@ import EarningsAnalytics from "../components/ForAuthorsComponent/EarningsAnalyti
 import ChapterUpload from "../components/ForAuthorsComponent/ChapterUpload"
 import DRMProtection from "../components/ForAuthorsComponent/DRMProtection"
 import CTA from "../components/ForAuthorsComponent/CTA"
+import ForAuthorsUpgradeSection from "../components/ForAuthorsComponent/ForAuthorsUpgradeSection"
 
-export default function ForAuthors() {
+export default function ForAuthors({ onLoginClick }) {
     return (
         <>
             <Hero />
@@ -13,6 +14,7 @@ export default function ForAuthors() {
             <EarningsAnalytics />
             <ChapterUpload />
             <DRMProtection />
+            <ForAuthorsUpgradeSection onLoginClick={onLoginClick} />
             <CTA />
         </>
     )

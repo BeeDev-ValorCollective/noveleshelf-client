@@ -68,7 +68,7 @@ function AppContent() {
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/new-password/:token" element={<NewPassword />} />
-          <Route path="/for-authors" element={<ForAuthors />} />
+          <Route path="/for-authors" element={<ForAuthors onLoginClick={() => setModal('login')} />} />
           <Route path="/for-readers" element={<ForReaders />} />
 
           <Route path="/unauthorized" element={<ErrorPage type="unauthorized" />} />

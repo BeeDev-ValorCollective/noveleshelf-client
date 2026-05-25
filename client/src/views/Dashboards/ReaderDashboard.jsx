@@ -3,6 +3,7 @@ import useFullName from '../../hooks/useFullName'
 import useAuthStore from '../../store/authStore'
 
 import ProfileHeader from '../../components/DashboardComponents/ProfileHeader'
+import AuthorUpgradeSection from '../../components/DashboardComponents/AuthorUpgradeSection'
 
 import ComingSoon from '../../components/BaseComponents/ComingSoon'
 
@@ -21,18 +22,14 @@ export default function ReaderDashboard() {
     return(
         <div  className="reader-dashboard-container">
             <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
+            <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} />
             {/* <RenderStatsBar /> */}
             {/* <CurrentlyReading /> */}
             {/* <SavedBooks /> */}
             {/* <FinishedBooks /> */}
             {/* <ReadingActivity /> */}
             {/* <ReadingPreferences /> */}
-            <ComingSoon title='Reader Stats' description='This section is coming soon. Check back after launch!' />
-            <ComingSoon title='Currently Reading' />
-            <ComingSoon title='Saved Books' />
-            <ComingSoon title='Finished Books' />
-            <ComingSoon title='Reading Activity' />
-            <ComingSoon title='Preferences' />
+            <ComingSoon title="We're busy stocking the shelves." description='The reading experience is coming soon — for now, explore your profile.' />
         </div>
 
     )

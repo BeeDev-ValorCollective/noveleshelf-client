@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children, requiresVerification = false,
     const currentRole = useAuthStore((state) => state.currentRole);
     
     if (!isAuthenticated) {
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/" replace />;
     }
 
     if (requiresVerification && user && !user.is_verified) {

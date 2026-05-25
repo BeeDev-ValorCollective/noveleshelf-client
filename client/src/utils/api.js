@@ -20,7 +20,6 @@ export const ENDPOINTS = {
     changePassword:         'user/change-password/',
     changeEmail:            'user/change-email/',
     updateProfile:          'user/profile/update/',
-    upgradeToFreeAuthor:    'user/free-author/upgrade/',
     adminProfileUpdate:     'user/admin-profile/update/',
     authorProfileUpdate:    'user/author-profile/update/',
     defaultRoleUpdate:      'user/default-role/update/',
@@ -28,7 +27,8 @@ export const ENDPOINTS = {
     moderatorProfileUpdate: 'user/moderator-profile/update/',
 
     // ─── Author Requests ──────────────────────────────────────────
-    authorRequestSubmit:    'user/author-request/',
+    upgradeToFreeAuthor:    'user/free-author/upgrade/',
+    authorRequestSubmit:    'user/author-request/submit/',
     authorRequestList:      'user/author-requests/',
 
     // ─── Books — Public ───────────────────────────────────────────
