@@ -29,11 +29,14 @@ const ManageBook = React.lazy(() => import('./views/AuthorViews/ManageBook'))
 const CreateNewChapter = React.lazy(() => import('./views/AuthorViews/CreateNewChapter'))
 const EditChapter = React.lazy(() => import('./views/AuthorViews/EditChapter'))
 
+// Admin Pages
+const AdminAuthorRequests = React.lazy(() => import('./views/AdminViews/AdminAuthorRequests'))
+
 function App() {
   return (
     <BrowserRouter>
       <Suspense
-      fallback={<ErrorPage type="notFound" />}
+        fallback={<ErrorPage type="notFound" />}
       >
         <AppContent />
       </Suspense>
@@ -45,13 +48,13 @@ function AppContent() {
   const { user, accessToken } = useUser();
 
   // DEV ONLY
-    if (import.meta.env.DEV) {
-        const refreshToken = localStorage.getItem('refresh_token')
-        console.log('🔑 CURRENT TOKENS:', {
-            access: accessToken,
-            refresh: refreshToken
-        })
-    }
+  if (import.meta.env.DEV) {
+    const refreshToken = localStorage.getItem('refresh_token')
+    console.log('🔑 CURRENT TOKENS:', {
+      access: accessToken,
+      refresh: refreshToken
+    })
+  }
 
   return (
     <>
@@ -98,7 +101,7 @@ function AppContent() {
           {/* Author */}
           <Route path="author/create-book" element={
             <ProtectedRoute allowedRoles={['author', 'free_author']}>
-              <CreateNewBook  />
+              <CreateNewBook />
             </ProtectedRoute>
           }
           />
@@ -112,15 +115,20 @@ function AppContent() {
             <ProtectedRoute allowedRoles={['author', 'free_author']}>
               <CreateNewChapter />
             </ProtectedRoute>
-            }
+          }
           />
           <Route path="author/books/:bookId/chapters/:chapterId/edit" element={
             <ProtectedRoute allowedRoles={['author', 'free_author']}>
               <EditChapter />
             </ProtectedRoute>
-            }
+          }
           />
           {/* Admin */}
+          <Route path="/admin/author-requests" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminAuthorRequests />
+            </ProtectedRoute>
+          } />
 
           {/* Moderator */}
         </Routes>

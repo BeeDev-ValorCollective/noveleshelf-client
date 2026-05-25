@@ -66,5 +66,5 @@ export const ENDPOINTS = {
     adminAuthorRequests:    'admin/users/author-requests/',
     adminAuthorReqUpdate:   'admin/users/author-request/update/',
     adminAuthorReqApprove:  'admin/users/author-request/approve/',
-    adminBooks:             'books/admin/books',
+    adminBooks:             'books/admin/books/',
 }
