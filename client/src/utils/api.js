@@ -61,4 +61,10 @@ export const ENDPOINTS = {
     pagePublish:            'books/author/pages/publish/',
     pageUnpublish:          'books/author/pages/unpublish/',
     pageDelete:             'books/author/pages/delete/',
+
+    // ─── Admin ─────────────────────────────────────────────────
+    adminAuthorRequests:    'admin/users/author-requests/',
+    adminAuthorReqUpdate:   'admin/users/author-request/update/',
+    adminAuthorReqApprove:  'admin/users/author-request/approve/',
+    adminBooks:             'books/admin/books',
 }
