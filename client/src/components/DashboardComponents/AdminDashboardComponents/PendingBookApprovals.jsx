@@ -33,11 +33,6 @@ export default function PendingBookApprovals({ books, isLoading, error }) {
                                 <td>{book.content_rating?.code || 'NR'}</td>
                                 <td>{book.chapter_count}</td>
                                 <td>{book.submitted_at ? new Date(book.submitted_at).toLocaleDateString() : '—'}</td>
-                                <td>
-                                    <a href={`/admin/book-approvals/${book.id}`} className='pending-item-action'>
-                                        Review
-                                    </a>
-                                </td>
                             </tr>
                         ))}
                     </tbody>

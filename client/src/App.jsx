@@ -15,8 +15,7 @@ const VerifyEmail = React.lazy(() => import('./views/VerifyEmail'))
 const ResetPassword = React.lazy(() => import('./views/ResetPassword'))
 const NewPassword = React.lazy(() => import('./views/NewPassword'))
 const Dashboard = React.lazy(() => import('./views/Dashboard'))
-// const Shop = React.lazy(() => import('./views/Shop'))
-// const Library = React.lazy(() => import('./views/Library'))
+const Library = React.lazy(() => import('./views/Library'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
 const ForReaders = React.lazy(() => import('./views/ForReaders'))
 const Profile = React.lazy(() => import('./views/Profile'))
@@ -31,6 +30,7 @@ const EditChapter = React.lazy(() => import('./views/AuthorViews/EditChapter'))
 
 // Admin Pages
 const AdminAuthorRequests = React.lazy(() => import('./views/AdminViews/AdminAuthorRequests'))
+const AdminBookApprovals = React.lazy(() => import('./views/AdminViews/AdminBookApprovals'))
 
 function App() {
   return (
@@ -71,6 +71,7 @@ function AppContent() {
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/new-password/:token" element={<NewPassword />} />
+          <Route path="/library" element={<Library />} />
           <Route path="/for-authors" element={<ForAuthors onLoginClick={() => setModal('login')} />} />
           <Route path="/for-readers" element={<ForReaders />} />
 
@@ -127,6 +128,11 @@ function AppContent() {
           <Route path="/admin/author-requests" element={
             <ProtectedRoute allowedRoles={['admin']}>
               <AdminAuthorRequests />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/book-approvals" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminBookApprovals />
             </ProtectedRoute>
           } />
 

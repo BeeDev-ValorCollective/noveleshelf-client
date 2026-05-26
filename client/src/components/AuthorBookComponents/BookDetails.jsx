@@ -1,8 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getMediaUrl, DB_API, ENDPOINTS } from '../../utils/api'
 import BookFormFields from './BookFormFields'
-
-
-const DB_API = `${import.meta.env.VITE_DB_API}`
+import useFileInput from '../../hooks/useFileInput'
 
 export default function BookDetails({ book, authorType, accessToken, contentRatings, refLoading, onBookUpdated }) {
     const [formData, setFormData] = useState({
@@ -10,9 +9,22 @@ export default function BookDetails({ book, authorType, accessToken, contentRati
         description: book.description || '',
         content_rating_id: book.content_rating?.id ? String(book.content_rating.id) : '',
     })
+    const [coverPreview, setCoverPreview] = useState(
+        book.cover_image ? getMediaUrl(book.cover_image) : null
+    )
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
+
+    const { file: coverFile, error: coverError, handleChange: handleCoverChange } = useFileInput(5)
+
+    useEffect(() => {
+        if (coverFile) {
+            const url = URL.createObjectURL(coverFile)
+            setCoverPreview(url)
+            return () => URL.revokeObjectURL(url)
+        }
+    }, [coverFile])
 
     const handleChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }))
@@ -25,6 +37,10 @@ export default function BookDetails({ book, authorType, accessToken, contentRati
 
         if (!formData.title.trim()) {
             setError('Title is required.')
+            return
+        }
+        if (coverError) {
+            setError(coverError)
             return
         }
 
@@ -41,9 +57,12 @@ export default function BookDetails({ book, authorType, accessToken, contentRati
         if (formData.content_rating_id) {
             payload.append('content_rating_id', formData.content_rating_id)
         }
+        if (coverFile) {
+            payload.append('cover_image', coverFile)
+        }
 
         try {
-            const res = await fetch(DB_API + 'books/author/books/update/', {
+            const res = await fetch(`${DB_API}${ENDPOINTS.bookUpdate}`, {
                 method: 'PATCH',
                 headers: { Authorization: `Bearer ${accessToken}` },
                 body: payload,
@@ -52,10 +71,11 @@ export default function BookDetails({ book, authorType, accessToken, contentRati
             if (res.ok) {
                 setSuccess('Book details saved.')
                 onBookUpdated(data.book)
+                setCoverPreview(data.book.cover_image ? getMediaUrl(data.book.cover_image) : null)
             } else {
                 setError(data.error || 'Could not save changes.')
             }
-        } catch (err) {
+        } catch {
             setError('Unable to connect. Please try again.')
         } finally {
             setIsSubmitting(false)
@@ -76,6 +96,9 @@ export default function BookDetails({ book, authorType, accessToken, contentRati
                 contentRatings={contentRatings}
                 isLoading={refLoading}
                 disabled={isSubmitting || isRejected}
+                coverPreview={coverPreview}
+                onCoverChange={handleCoverChange}
+                coverError={coverError}
             />
             {error && <p className='form-error'>{error}</p>}
             {success && <p className='form-success'>{success}</p>}

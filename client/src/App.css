@@ -23,6 +23,11 @@ main {
   align-items: center;
   width: 95%;
 }
+main.main--full-width {
+    width: 100%;
+    align-items: stretch;
+    padding: 0;
+}
 body main .container {
   flex: 1;
   display: flex;
