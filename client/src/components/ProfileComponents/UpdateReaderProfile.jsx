@@ -140,12 +140,14 @@ export default function UpdateReaderProfile() {
 
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? 'Saving...' : 'Save Changes'}
-                </button>
-                <button type="button" onClick={() => navigate('/dashboard')}>
-                    Cancel
-                </button>
+                <div className="form_buttons">
+                    <button type="submit" disabled={isLoading}>
+                        {isLoading ? 'Saving...' : 'Save Changes'}
+                    </button>
+                    <button type="button" onClick={() => navigate('/dashboard')}>
+                        Cancel
+                    </button>
+                </div>
             </form>
             <UpdateDefaultRole />
         </>
