@@ -7,6 +7,8 @@ import useFileInput from '../../hooks/useFileInput'
 import UpdateDefaultRole from './UpdateDefaultRole'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
+import './updateProfile.css'
+
 export default function UpdateAdminProfile() {
     const navigate = useNavigate()
     const { user, accessToken } = useUser();
@@ -74,35 +76,39 @@ export default function UpdateAdminProfile() {
 
     return(
         <>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Avatar</label>
-                {avatarPreview
-                    ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
-                    : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
-                }
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleAvatarChange}
-                />
-            </div>
-            <div>
-                <label>Admin Username</label>
-                <input
-                    type="text"
-                    value={admin_username}
-                    onChange={(e) => setAdminUsername(e.target.value)}
-                />
+        <form className="update_form" onSubmit={handleSubmit}>
+            <div className='form'>
+                <div className='form_left'>
+                    <label>Avatar</label>
+                    {avatarPreview
+                        ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
+                        : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
+                    }
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleAvatarChange}
+                    />
+                </div>
+                <div className='form_right'>
+                    <label>Admin Username</label>
+                    <input
+                        type="text"
+                        value={admin_username}
+                        onChange={(e) => setAdminUsername(e.target.value)}
+                        />
+                </div>
             </div>
             {error && <p className="error">{error}</p>}
             {success && <p className="success">{success}</p>}
-            <button type="submit" disabled={isLoading}>
-                {isLoading ? 'Saving...' : 'Save Changes'}
-            </button>
-            <button type="button" onClick={() => navigate('/dashboard')}>
-                    Cancel
+            <div className='form_buttons'>
+                <button type="submit" disabled={isLoading}>
+                    {isLoading ? 'Saving...' : 'Save Changes'}
                 </button>
+                <button type="button" onClick={() => navigate('/dashboard')}>
+                        Cancel
+                    </button>
+            </div>
         </form>
         <UpdateDefaultRole />
         </>
