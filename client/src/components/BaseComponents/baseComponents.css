@@ -185,7 +185,7 @@ header {
 }
 .avail-roles {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 0.4em;
     padding: 0.3em 1.5em 0.8em 1.5em;
 }
@@ -195,7 +195,6 @@ header {
     font-size: 0.78em !important;
     border-radius: 999px !important;
     border: 1px solid rgba(255,255,255,0.2) !important;
-    width: auto !important;
     cursor: pointer !important;
     white-space: nowrap;
     transition: var(--transition);
