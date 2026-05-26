@@ -9,6 +9,8 @@
     padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     margin: 0 auto;
     gap: 2em;
+    position: relative;
+    z-index: 0;
 }
 
 /*  Form Layout  */
@@ -23,6 +25,8 @@
     border-radius: var(--card-radius);
     padding: clamp(1.5rem, 3vw, 2.5rem);
     backdrop-filter: blur(14px);
+    position: relative;
+    z-index: 0;
 }
 
 /*  Left Column — Avatar  */
