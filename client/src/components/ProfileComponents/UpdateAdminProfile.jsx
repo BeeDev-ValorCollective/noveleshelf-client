@@ -106,8 +106,8 @@ export default function UpdateAdminProfile() {
                     {isLoading ? 'Saving...' : 'Save Changes'}
                 </button>
                 <button type="button" onClick={() => navigate('/dashboard')}>
-                        Cancel
-                    </button>
+                    Cancel
+                </button>
             </div>
         </form>
         <UpdateDefaultRole />
