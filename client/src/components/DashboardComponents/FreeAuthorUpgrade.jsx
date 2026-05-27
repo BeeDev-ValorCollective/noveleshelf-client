@@ -1,21 +1,16 @@
 import { useState } from 'react'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import TermsModal from './TermsModal'
 
 export default function FreeAuthorUpgrade({ accessToken, hasPaidAuthor, onUpgradeSuccess }) {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
+    const [showTerms, setShowTerms] = useState(false)
 
     const handleUpgrade = async () => {
-        const message = hasPaidAuthor
-            ? 'You already have a paid author profile. Adding a free author profile means two separate author identities. Are you sure?'
-            : 'As a free author your books will always be free to read. Are you sure?'
-
-        if (!window.confirm(message)) return
-
         setIsSubmitting(true)
         setError(null)
-
         try {
             const res = await fetch(`${DB_API}${ENDPOINTS.upgradeToFreeAuthor}`, {
                 method: 'POST',
@@ -51,11 +46,23 @@ export default function FreeAuthorUpgrade({ accessToken, hasPaidAuthor, onUpgrad
             {error && <p className='form-error'>{error}</p>}
             <button
                 className='upgrade-card-btn'
-                onClick={handleUpgrade}
+                onClick={() => setShowTerms(true)}
                 disabled={isSubmitting}
             >
                 {isSubmitting ? 'Upgrading...' : 'Become a Free Author'}
             </button>
+
+            {showTerms && (
+                <TermsModal
+                    role='free_author'
+                    hasPaidAuthor={hasPaidAuthor}
+                    onClose={() => setShowTerms(false)}
+                    onAgree={() => {
+                        setShowTerms(false)
+                        handleUpgrade()
+                    }}
+                />
+            )}
         </div>
     )
 }

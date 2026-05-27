@@ -144,3 +144,23 @@
     gap: 10px;
     margin-top: 1.5rem;
 }
+
+.terms-list {
+    margin: 1rem 0 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.terms-item {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.terms-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1rem;
+}
