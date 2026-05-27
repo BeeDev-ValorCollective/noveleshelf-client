@@ -72,4 +72,10 @@ export const ENDPOINTS = {
     adminBookApprove: 'books/admin/books/approve/',
     adminBookRequestChanges: 'books/admin/books/request-changes/',
     adminBookReject: 'books/admin/books/reject/',
+    adminListUsers: 'admin/users/list/',
+    adminUpgradeToAuthor: 'admin/users/author-upgrade/',
+    adminUpgradeToAdmin: 'admin/users/admin-upgrade/',
+    adminUpgradeToModerator: 'admin/users/moderator-upgrade/',
+    adminAuthorUpdate: 'admin/users/author-update/',
+    adminFreeAuthorUpdate: 'admin/users/free-author/update/',
 }

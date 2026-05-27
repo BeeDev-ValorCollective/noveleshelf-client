@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import AuthorRequestModal from './AuthorRequestModal'
+import TermsModal from './TermsModal'
 
 export default function PaidAuthorRequest({ accessToken }) {
+    const [showTerms, setShowTerms] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
     const [submitted, setSubmitted] = useState(false)
 
@@ -24,9 +26,21 @@ export default function PaidAuthorRequest({ accessToken }) {
             <p className='upgrade-card-description'>
                 Apply to join as a paid author. Share your writing sample and genre interests — our team will review your request.
             </p>
-            <button className='upgrade-card-btn' onClick={() => setModalOpen(true)}>
+            <button className='upgrade-card-btn' onClick={() => setShowTerms(true)}>
                 Apply to Become an Author
             </button>
+
+            {showTerms && (
+                <TermsModal
+                    role='paid_author'
+                    onClose={() => setShowTerms(false)}
+                    onAgree={() => {
+                        setShowTerms(false)
+                        setModalOpen(true)
+                    }}
+                />
+            )}
+
             {modalOpen && (
                 <AuthorRequestModal
                     accessToken={accessToken}

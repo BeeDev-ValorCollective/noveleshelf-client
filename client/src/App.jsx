@@ -31,6 +31,7 @@ const EditChapter = React.lazy(() => import('./views/AuthorViews/EditChapter'))
 // Admin Pages
 const AdminAuthorRequests = React.lazy(() => import('./views/AdminViews/AdminAuthorRequests'))
 const AdminBookApprovals = React.lazy(() => import('./views/AdminViews/AdminBookApprovals'))
+const AdminUserManagement = React.lazy(() => import('./views/AdminViews/AdminUserManagement'))
 
 function App() {
   return (
@@ -133,6 +134,11 @@ function AppContent() {
           <Route path="/admin/book-approvals" element={
             <ProtectedRoute allowedRoles={['admin']}>
               <AdminBookApprovals />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/users" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminUserManagement />
             </ProtectedRoute>
           } />
 

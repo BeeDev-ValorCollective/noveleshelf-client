@@ -62,7 +62,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        {/* <Link to="/admin/users" onClick={() => setMenuOpen(false)}>User Management</Link> */}
+                        <Link to="/admin/users" onClick={() => setMenuOpen(false)}>User Management</Link>
                         <Link to="/admin/author-requests" onClick={() => setMenuOpen(false)}>Author Requests</Link>
                         <Link to="/admin/book-approvals" onClick={() => setMenuOpen(false)}>Book Approvals</Link>
                         {user?.admin_profile?.is_super_admin && (
@@ -139,7 +139,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
             {/* Desktop Nav */}
             <nav className='desktop-nav'>
                 <Link to="/">Home</Link>
-                <Link to="#">Library</Link>
+                <Link to="/library">Library</Link>
                 <Link to="/for-readers">For Readers</Link>
                 <Link to="/for-authors">For Authors</Link>
                 {isAuthenticated ? (
@@ -204,7 +204,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                 </div>
                 <div className='mobile-nav-links'>
                     <Link to="/" onClick={() => setMobileNavOpen(false)}>Home</Link>
-                    <Link to="#" onClick={() => setMobileNavOpen(false)}>Library</Link>
+                    <Link to="/library" onClick={() => setMobileNavOpen(false)}>Library</Link>
                     <Link to="/for-readers" onClick={() => setMobileNavOpen(false)}>For Readers</Link>
                     <Link to="/for-authors" onClick={() => setMobileNavOpen(false)}>For Authors</Link>
                     {isAuthenticated ? (
@@ -231,6 +231,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                             {currentRole === 'admin' && (
                                 <>
                                     <Link to="/dashboard" onClick={() => setMobileNavOpen(false)}>Dashboard</Link>
+                                    <Link to="/admin/users" onClick={() => setMobileNavOpen(false)}>User Management</Link>
                                     <Link to="/admin/author-requests" onClick={() => setMobileNavOpen(false)}>Author Requests</Link>
                                     <Link to="/admin/book-approvals" onClick={() => setMobileNavOpen(false)}>Book Approvals</Link>
                                 </>
