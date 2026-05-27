@@ -8,7 +8,6 @@ const normalizeProfile = (profile, usernameKey) => {
     };
 };
 
-
 const getProfileForRole = (user, role) => {
     if (!user) return null;
     switch (role) {
@@ -35,6 +34,24 @@ const useAuthStore = create((set, get) => ({
     currentRole: localStorage.getItem('current_role') || null,
     currentRoleDisplay: toTitleCase(localStorage.getItem('current_role')),
     currentProfile: null,
+
+    setTokens: (accessToken, refreshToken) => {
+        sessionStorage.setItem('access_token', accessToken)
+        localStorage.setItem('refresh_token', refreshToken)
+        set({
+            accessToken,
+            refreshToken,
+            isAuthenticated: true,
+            user: null,
+            currentRole: null,
+            currentRoleDisplay: null,
+            currentProfile: null,
+        })
+
+        if (import.meta.env.DEV) {
+            console.log('🔑 TOKENS SET — awaiting /me/ for user data')
+        }
+    },
 
     setAuth: (user, accessToken, refreshToken) => {
         const role = user.default_login_role

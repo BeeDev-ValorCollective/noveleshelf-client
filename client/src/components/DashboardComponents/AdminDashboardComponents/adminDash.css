@@ -1,0 +1,29 @@
+.pending-reviews-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 2em;
+}
+.pending-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+}
+.pending-table {
+    width: 85%;
+}
+th, td {
+    border-bottom: 1px solid var(--accent-coral);
+    border-right: 1px solid var(--accent-coral);
+}
+th:last-child, td:last-child {
+    border-right: none;
+}
+tr:last-child td {
+    border-bottom: none;
+}
