@@ -58,6 +58,7 @@ export default function Library() {
                             src={getMediaUrl(book.cover_image)}
                             alt={book.title}
                         />
+                        <span className='bookTitle'>{book.title}</span>
                         {book.is_complete && (
                             <span className='book-complete-badge'>✓ Complete</span>
                         )}
