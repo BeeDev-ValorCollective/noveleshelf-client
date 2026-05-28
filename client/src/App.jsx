@@ -27,6 +27,7 @@ const CreateNewBook = React.lazy(() => import('./views/AuthorViews/CreateNewBook
 const ManageBook = React.lazy(() => import('./views/AuthorViews/ManageBook'))
 const CreateNewChapter = React.lazy(() => import('./views/AuthorViews/CreateNewChapter'))
 const EditChapter = React.lazy(() => import('./views/AuthorViews/EditChapter'))
+const CreateEditBookPage = React.lazy(() => import('./views/AuthorViews/CreateEditBookPage'))
 
 // Admin Pages
 const AdminAuthorRequests = React.lazy(() => import('./views/AdminViews/AdminAuthorRequests'))
@@ -125,6 +126,11 @@ function AppContent() {
             </ProtectedRoute>
           }
           />
+          <Route path="author/books/:bookId/pages/:pageType" element={
+            <ProtectedRoute allowedRoles={['author', 'free_author']}>
+              <CreateEditBookPage />
+            </ProtectedRoute>
+          } />
           {/* Admin */}
           <Route path="/admin/author-requests" element={
             <ProtectedRoute allowedRoles={['admin']}>

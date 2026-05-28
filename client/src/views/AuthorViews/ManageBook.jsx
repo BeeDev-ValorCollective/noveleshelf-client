@@ -6,6 +6,7 @@ import BookDetails from '../../components/AuthorBookComponents/BookDetails'
 import BookTags from '../../components/AuthorBookComponents/BookTags'
 import BookApprovalStatus from '../../components/AuthorBookComponents/BookApprovalStatus'
 import BookChapterList from '../../components/AuthorBookComponents/BookChapterList'
+import BookPages from '../../components/AuthorBookComponents/BookPages'
 import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
@@ -79,6 +80,38 @@ export default function ManageBook() {
         }
     }, [bookId, accessToken])
 
+    const [isDeleting, setIsDeleting] = useState(false)
+    const [deleteError, setDeleteError] = useState(null)
+
+    const handleDeleteBook = async () => {
+        if (!window.confirm(`Delete "${book.title}"? This cannot be undone.`)) return
+        setIsDeleting(true)
+        setDeleteError(null)
+        try {
+            const res = await fetch(`${DB_API}${ENDPOINTS.bookDelete}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    book_id: book.id,
+                    author_type: authorType,
+                }),
+            })
+            const data = await res.json()
+            if (res.ok) {
+                navigate('/dashboard')
+            } else {
+                setDeleteError(data.error || 'Could not delete book.')
+            }
+        } catch {
+            setDeleteError('Unable to connect. Please try again.')
+        } finally {
+            setIsDeleting(false)
+        }
+    }
+
     if (isLoading) return <p>Loading...</p>
     if (error) return <p>{error}</p>
     if (!book) return null
@@ -119,12 +152,20 @@ export default function ManageBook() {
                     bookId={bookId}
                     book={book}
                     navigate={navigate}
+                    onChaptersUpdated={fetchChapters}
                 />
             </section>
 
             <section className='manage-book-section'>
                 <h2>Book Pages</h2>
-                <p className='coming-soon-note'>Page management coming next.</p>
+                <BookPages
+                    book={book}
+                    authorType={authorType}
+                    accessToken={accessToken}
+                    onBookUpdated={setBook}
+                    navigate={navigate}
+                    bookId={bookId}
+                />
             </section>
 
             {currentRole === 'author' && (
@@ -136,6 +177,18 @@ export default function ManageBook() {
                         accessToken={accessToken}
                         onBookUpdated={setBook}
                     />
+                </section>
+            )}
+            {book.published_chapter_count === 0 && (
+                <section className='manage-book-section'>
+                    <h2>Danger Zone</h2>
+                    <p className='section-note'>
+                        This book has no published chapters and can be permanently deleted.
+                    </p>
+                    {deleteError && <p className='form-error'>{deleteError}</p>}
+                    <button onClick={handleDeleteBook} disabled={isDeleting}>
+                        {isDeleting ? 'Deleting...' : 'Delete Book'}
+                    </button>
                 </section>
             )}
         </div>

@@ -7,6 +7,10 @@ import './dashboard.css'
 
 export default function ProfileHeader({ user, currentProfile, fullName, currentRole }) {
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
+    
+    const displayRole = currentRole || localStorage.getItem('current_role')
+
+    console.log('ProfileHeader props:', { currentRole, currentProfile, user }, 'DisplayRole:', displayRole)
 
 
     return (

@@ -36,15 +36,17 @@ const useAuthStore = create((set, get) => ({
     currentProfile: null,
 
     setTokens: (accessToken, refreshToken) => {
+        const existingRole = localStorage.getItem('current_role')
         sessionStorage.setItem('access_token', accessToken)
         localStorage.setItem('refresh_token', refreshToken)
+
         set({
             accessToken,
             refreshToken,
             isAuthenticated: true,
             user: null,
-            currentRole: null,
-            currentRoleDisplay: null,
+            currentRole: existingRole,
+            currentRoleDisplay: toTitleCase(existingRole),
             currentProfile: null,
         })
 
@@ -82,9 +84,15 @@ const useAuthStore = create((set, get) => ({
     },
 
     updateUser: (user) => {
-        const role = get().currentRole
+        const role = get().currentRole || user.default_login_role
         const profile = getProfileForRole(user, role)
-        set({ user, currentProfile: profile });
+        localStorage.setItem('current_role', role)
+        set({ 
+            user, 
+            currentRole: role,
+            currentRoleDisplay: toTitleCase(role),
+            currentProfile: profile 
+        })
 
         if (import.meta.env.DEV) {
             console.log('👤 USER UPDATED:', {
