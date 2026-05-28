@@ -40,11 +40,11 @@ export default function Login({ onClose, isModal, onSwitchToSignup }) {
 
         // DEV ONLY - remove before production
         if (import.meta.env.DEV) {
-        console.log('🔑 DEV TOKENS:', {
-            access: data.tokens.access,
-            refresh: data.tokens.refresh
-        })
-    }
+          console.log('🔑 DEV TOKENS:', {
+              access: data.tokens.access,
+              refresh: data.tokens.refresh
+          })
+      }
         closeAndNavigate("/dashboard");
       } else {
         setError(data.error || "Login failed");

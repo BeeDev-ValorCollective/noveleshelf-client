@@ -39,7 +39,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
+                        {/* <Link to="/my-books" onClick={() => setMenuOpen(false)}>My Books</Link> */}
                         <Link to="/author/create-book" onClick={() => setMenuOpen(false)}>New Book</Link>
                     </>
                 )
@@ -47,7 +47,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                 return (
                     <>
                         <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        <Link to="/author/my-books" onClick={() => setMenuOpen(false)}>My Books</Link>
+                        {/* <Link to="/author/my-books" onClick={() => setMenuOpen(false)}>My Books</Link> */}
                         <Link to="/author/create-book" onClick={() => setMenuOpen(false)}>New Book</Link>
                     </>
                 )
@@ -214,14 +214,14 @@ export default function Header({ onLoginClick, onSignupClick }) {
                             {currentRole === 'free_author' && (
                                 <>
                                     <Link to="/dashboard" onClick={() => setMobileNavOpen(false)}>Dashboard</Link>
-                                    <Link to="/my-books" onClick={() => setMobileNavOpen(false)}>My Books</Link>
+                                    {/* <Link to="/my-books" onClick={() => setMobileNavOpen(false)}>My Books</Link> */}
                                     <Link to="/author/create-book" onClick={() => setMobileNavOpen(false)}>New Book</Link>
                                 </>
                             )}
                             {currentRole === 'author' && (
                                 <>
                                     <Link to="/dashboard" onClick={() => setMobileNavOpen(false)}>Dashboard</Link>
-                                    <Link to="/author/my-books" onClick={() => setMobileNavOpen(false)}>My Books</Link>
+                                    {/* <Link to="/author/my-books" onClick={() => setMobileNavOpen(false)}>My Books</Link> */}
                                     <Link to="/author/create-book" onClick={() => setMobileNavOpen(false)}>New Book</Link>
                                 </>
                             )}
