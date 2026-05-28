@@ -1,3 +1,5 @@
+import { getMediaUrl } from '../../../utils/api'
+
 import './freeAuthorDashboard.css';
 
 const projects = [
@@ -5,22 +7,47 @@ const projects = [
     { title: "Lolita", status: "In Progress" },
 ]
 
-export default function FreeAuthorProjects() {
+export default function FreeAuthorProjects({ books }) {
+    if (!books || books.length === 0) {
+        return (
+            <section className='dashboard-section current-projects'>
+                <div className='section-heading-row'>
+                    <div>
+                        <h2 className='section-heading'>Current Projects</h2>
+                        <p className='section-subheading'>Works in progress</p>
+                    </div>
+                    <a href='/author/books' className='view-all-link'>View All</a>
+                    <a href="/author/create-book">Create a Book</a>
+                </div>
+                <p style={{ color: '#ffffffa0', textAlign: 'center' }}>No current projects</p>
+            </section>
+        )
+    }
+
     return (
-        <section className='reader-section'>
-            <h2 className='reader-section-heading'>My Projects</h2>
-            <p className='reader-section-subheading'>Works in progress</p>
-            <div className='free-author-projects-list'>
-                {projects.map((project, index) => (
-                    <div key={index} className='free-author-project-card'>
-                        <div className='free-author-cover-placeholder'>
-                            {project.title}
+        <section className='dashboard-section current-projects'>
+            <div className='section-heading-row'>
+                <div>
+                    <h2 className='section-heading'>Current Projects</h2>
+                    <p className='section-subheading'>Works in progress</p>
+                </div>
+                <a href='/author/books' className='view-all-link'>View All</a>
+            </div>
+            <div className='projects-list'>
+                {books.map((book) => (
+                    <div key={book.id} className='project-card dashboard-card'>
+                        <img
+                            src={getMediaUrl(book.cover_image)}
+                            alt={book.title}
+                            className='project-cover-placeholder'
+                        />
+                        <div className='project-info'>
+                            <h3 className='project-title'>{book.title}</h3>
+                            <span className={`project-status ${book.status}`}>{book.status.replace(/_/g, ' ')}</span>
                         </div>
-                        <div className='free-author-project-info'>
-                            <h3 className='free-author-project-title'>{project.title}</h3>
-                            <span className='free-author-project-status'>{project.status}</span>
-                        </div>
-                        <button className='free-author-continue-btn'>Continue Editing</button>
+                        <button className='continue-editing-btn'>
+                            <a href={`/author/books/${book.id}/manage`}>Manage Book</a>
+                        </button>
                     </div>
                 ))}
             </div>

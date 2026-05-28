@@ -4,6 +4,7 @@ import useAuthStore from '../../store/authStore'
 import useAuthorBooks from '../../hooks/useAuthorBooks'
 
 import ProfileHeader from '../../components/DashboardComponents/ProfileHeader'
+import AuthorUpgradeSection from '../../components/DashboardComponents/AuthorUpgradeSection'
 import StatsBar from '../../components/DashboardComponents/AuthorDashboardComponents/StatsBar'
 import CurrentProjects from '../../components/DashboardComponents/AuthorDashboardComponents/CurrentProjects'
 import PublishedWorks from '../../components/DashboardComponents/AuthorDashboardComponents/PublishedWorks'
@@ -34,6 +35,7 @@ export default function AuthorDashboard() {
     return (
         <div className='author-dashboard-container'>
             <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
+            <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} />
             <StatsBar booksPublished={publishedBooks.length} booksInProgress={draftBooks.length + pendingBooks.length + changesRequestedBooks.length} />
             <CurrentProjects books={currentProjects.slice(0, 5)} />
             <PublishedWorks books={publishedBooks.slice(0, 5)} />
@@ -41,9 +43,7 @@ export default function AuthorDashboard() {
             {/* <ReaderFeedback /> */}
             {/* <AnalyticsOverview /> */}
             {/* <AuthorSettings /> */}
-            <ComingSoon title='Reader Feedback' />
-            <ComingSoon title='Analytics' />
-            <ComingSoon title='Author Settings' />
+            <ComingSoon title="More tools are on the way." description="We're building out your author toolkit — check back soon." />
         </div>
     )
 }

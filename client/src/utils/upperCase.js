@@ -1,1 +1,1 @@
-export const toTitleCase = str => str ? str.replace(/\b\w/g, c => c.toUpperCase()) : ''
+export const toTitleCase = str => str ? str.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : ''

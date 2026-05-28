@@ -33,6 +33,9 @@ h2 {
     display: flex;
     flex-direction: column;
 }
+.bff-cover-preview {
+    width: 200px;
+}
 label {
     padding: .5em 0;
 }

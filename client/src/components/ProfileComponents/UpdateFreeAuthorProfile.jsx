@@ -7,6 +7,8 @@ import useFileInput from '../../hooks/useFileInput'
 import UpdateDefaultRole from './UpdateDefaultRole'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
+import './updateProfile.css'
+
 export default function UpdateFreeAuthorProfile() {
     const navigate = useNavigate()
     const { user, accessToken } = useUser();
@@ -81,7 +83,9 @@ export default function UpdateFreeAuthorProfile() {
                 setError(data.error || "Update failed")
             }
         } catch (err) {
-            console.error("Update error:", err)
+            if (import.meta.env.DEV) {
+                console.error("Update error:", err)
+            }
             setError("Something went wrong. Please try again.")
         } finally {
             setIsLoading(false)
@@ -92,86 +96,92 @@ export default function UpdateFreeAuthorProfile() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Avatar</label>
-                    {avatarPreview
-                        ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
-                        : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
-                    }
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleAvatarChange}
-                    />
-                </div>
-                <div>
-                    <label>Author Username</label>
-                    <input
-                        type="text"
-                        value={author_username}
-                        onChange={(e) => setAuthorUsername(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Pen Name</label>
-                    <input
-                        type="text"
-                        value={pen_name}
-                        onChange={(e) => setPenName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>First Name</label>
-                    <input
-                        type="text"
-                        value={first_name}
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Last Name</label>
-                    <input
-                        type="text"
-                        value={last_name}
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Bio</label>
-                    <textarea
-                        value={bio}
-                        onChange={(e) => setBio(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>
+            <form className='update_form' onSubmit={handleSubmit}>
+                <div className='form'>
+                    <div className='form_left'>
+                        <label>Avatar</label>
+                        {avatarPreview
+                            ? <img src={avatarPreview} alt="Avatar preview" width={150} height={150} />
+                            : profile?.avatar_url && <img src={getMediaUrl(profile.avatar_url)} alt="Current avatar" width={150} height={150} />
+                        }
                         <input
-                            type="checkbox"
-                            checked={show_real_name}
-                            onChange={(e) => setShowRealName(e.target.checked)}
+                            type="file"
+                            accept="image/*"
+                            onChange={handleAvatarChange}
                         />
-                        Show Real Name
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={is_publicly_visible}
-                            onChange={(e) => setIsPubliclyVisible(e.target.checked)}
-                        />
-                        Publicly Visible
-                    </label>
+                    </div>
+                    <div className='form_right'>
+                        <div>
+                            <label>Author Username</label>
+                            <input
+                                type="text"
+                                value={author_username}
+                                onChange={(e) => setAuthorUsername(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Pen Name</label>
+                            <input
+                                type="text"
+                                value={pen_name}
+                                onChange={(e) => setPenName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>First Name</label>
+                            <input
+                                type="text"
+                                value={first_name}
+                                onChange={(e) => setFirstName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Last Name</label>
+                            <input
+                                type="text"
+                                value={last_name}
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Bio</label>
+                            <textarea
+                                value={bio}
+                                onChange={(e) => setBio(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={show_real_name}
+                                    onChange={(e) => setShowRealName(e.target.checked)}
+                                />
+                                Show Real Name
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={is_publicly_visible}
+                                    onChange={(e) => setIsPubliclyVisible(e.target.checked)}
+                                />
+                                Publicly Visible
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? 'Saving...' : 'Save Changes'}
-                </button>
-                <button type="button" onClick={() => navigate('/dashboard')}>
-                    Cancel
-                </button>
+                <div className='form_buttons'>
+                    <button type="submit" disabled={isLoading}>
+                        {isLoading ? 'Saving...' : 'Save Changes'}
+                    </button>
+                    <button type="button" onClick={() => navigate('/dashboard')}>
+                        Cancel
+                    </button>
+                </div>
             </form>
             <UpdateDefaultRole />
         </>

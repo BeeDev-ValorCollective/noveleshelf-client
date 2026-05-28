@@ -32,10 +32,12 @@ export default function NewPassword() {
     }
 
     // Send token + new password to backend
-    console.log({
-      token,
-      password: form.password,
-    });
+    if (import.meta.env.DEV) {
+      console.log({
+        token,
+        password: form.password,
+      });
+    }
 
     // After success
     navigate("/login");

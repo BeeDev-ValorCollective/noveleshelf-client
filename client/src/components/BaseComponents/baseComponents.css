@@ -1,134 +1,410 @@
+/*  Header  */
 header {
-    min-height: 100px;
+    min-height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 95%;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 3rem auto 1rem;
+    position: relative;
+    z-index: 100;
+    box-sizing: border-box;
 }
+
+/*  Title  */
 .title {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    gap: 0.5em;
+    text-decoration: none;
+    flex-shrink: 0;
 
     h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
         font-family: "Fredericka the Great", serif;
-        color: #ffffffe0;
-        font-size: 3em;
     }
 }
-nav {
+.title-text {
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+    font-size: clamp(1.4rem, 3vw, 2.2em);
+    margin: 0;
+    white-space: nowrap;
+}
+.shelfImg {
+    width: clamp(35px, 8vw, 7vw);
+    height: auto;
+}
+
+/*  Desktop Nav  */
+.desktop-nav {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
-    width: 50%;
-
-    a {
-        font-size: 1.4em;
-        color: #ffffffe0;
-        font-family: "Fredericka the Great", serif;
-        text-decoration: none;
-    }
-    a:hover {
-        color: #DD7a7a;
-    }
+    gap: clamp(1rem, 2.5vw, 2rem);
+    position: relative;
+    z-index: 100;
 }
-
-nav button {
-    font-size: 1.4em;
-    color: #ffffffe0;
+.desktop-nav a,
+.desktop-nav > button {
+    font-size: clamp(0.85rem, 1.5vw, 1.05em);
+    color: var(--text-primary);
     font-family: "Fredericka the Great", serif;
     text-decoration: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.desktop-nav a:hover,
+.desktop-nav > button:hover {
+    color: var(--accent-coral);
 }
 
-nav button:hover {
-    color: #DD7a7a;
+/*  Mobile Menu Toggle  */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.3em;
+    z-index: 200;
+    flex-shrink: 0;
 }
 
-.shelfImg {
-    max-width: 15%;
-}
-footer {
-    margin-top: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 95%;
-}
-
-/* Avatar */
+/*  Avatar  */
 .avatar-container {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    z-index: 200;
 }
 .avatar-icon {
-    width: 45px;
-    height: 45px;
+    width: clamp(36px, 4vw, 45px);
+    height: clamp(36px, 4vw, 45px);
     border-radius: 50%;
     cursor: pointer;
-    border: 2px solid #ffffffe0;
-    transition: border-color 0.3s ease;
+    border: 2px solid var(--text-primary);
+    transition: var(--transition);
     object-fit: cover;
 }
 .avatar-icon:hover {
-    border-color: #DD7a7a;
+    border-color: var(--accent-coral);
 }
 
-/* Side Menu */
+/*  Desktop Side Menu  */
 .side-menu {
     position: absolute;
-    top: 55px;
+    top: calc(100% + 10px);
     right: 0;
-    background-color: #1a1a1a;
-    border: 1px solid transparent;
-    border-radius: 8px;
+    background-color: #1a1a2e;
+    border-radius: var(--card-radius);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-width: 180px;
+    min-width: 200px;
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.4s ease;
+    transition: max-height 0.4s ease, border-color 0.4s ease;
+    z-index: 300;
+    backdrop-filter: blur(14px);
 }
 .side-menu.side-menu-open {
-    max-height: 500px;
+    max-height: 600px;
+    border-color: rgba(255,255,255,0.2);
 }
-.side-menu a, .side-menu button {
+.side-menu a,
+.side-menu button,
+.side-menu p {
     width: 100%;
     padding: 0.9em 1.5em;
-    color: #ffffffe0;
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.85rem, 1.5vw, 1em);
+    text-decoration: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+    margin: 0;
+    box-sizing: border-box;
+}
+.side-menu p {
+    cursor: default;
+    color: var(--text-secondary);
+    font-size: 0.8em;
+}
+.side-menu a:hover,
+.side-menu button:hover {
+    background-color: rgba(255,255,255,0.06);
+    color: var(--accent-coral);
+}
+.side-menu button:last-child {
+    border-bottom: none;
+    color: var(--accent-coral);
+}
+.side-menu button:last-child:hover {
+    background-color: rgba(221,122,122,0.1);
+}
+.current_role {
+    color: var(--text-secondary) !important;
+    font-size: 0.8em !important;
+    cursor: default !important;
+}
+.current_role:hover {
+    background-color: transparent !important;
+    color: var(--text-secondary) !important;
+}
+
+/*  Role Switcher  */
+.role-switcher {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.role-switcher p {
+    font-size: 0.75em !important;
+    color: var(--text-secondary) !important;
+    padding-bottom: 0.3em !important;
+    border-bottom: none !important;
+    cursor: default !important;
+}
+.role-switcher p:hover {
+    background-color: transparent !important;
+}
+.avail-roles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    padding: 0.3em 1.5em 0.8em 1.5em;
+}
+.avail-roles a {
+    border-bottom: none !important;
+    padding: 0.25em 0.7em !important;
+    font-size: 0.78em !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    cursor: pointer !important;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+.avail-roles a:hover {
+    background-color: rgba(255,255,255,0.08) !important;
+    border-color: var(--accent-coral) !important;
+    color: var(--accent-coral) !important;
+}
+.active-role {
+    background-color: rgba(221,122,122,0.15) !important;
+    border-color: var(--accent-coral) !important;
+    color: var(--accent-coral) !important;
+}
+
+/*  Mobile Nav Overlay  */
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 149;
+    backdrop-filter: blur(2px);
+}
+
+/*  Mobile Nav Drawer  */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: clamp(260px, 75vw, 320px);
+    background-color: #1a1a2e;
+    border-left: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    flex-direction: column;
+    z-index: 150;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    backdrop-filter: blur(14px);
+}
+.mobile-nav.mobile-nav-open {
+    right: 0;
+}
+.mobile-nav-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    min-height: 80px;
+}
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+    flex: 1;
+}
+.mobile-nav-links a,
+.mobile-nav-links button {
+    width: 100%;
+    padding: 0.9em 1.5em;
+    color: var(--text-primary);
     font-family: "Fredericka the Great", serif;
     font-size: 1em;
     text-decoration: none;
     background: none;
     border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
     text-align: left;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
-    border-bottom: 1px solid #ffffff10;
+    box-sizing: border-box;
 }
-.side-menu a:hover, .side-menu button:hover {
-    background-color: #ffffff10;
-    color: #DD7a7a;
+.mobile-nav-links a:hover,
+.mobile-nav-links button:hover {
+    background-color: rgba(255,255,255,0.06);
+    color: var(--accent-coral);
 }
-.side-menu button:last-child {
-    border-bottom: none;
-    color: #e05555;
+.mobile-nav-divider {
+    height: 1px;
+    background-color: rgba(255,255,255,0.1);
+    margin: 0.5em 0;
 }
-.side-menu button:last-child:hover {
-    background-color: #e0555520;
-    color: #e05555;
+.mobile-nav-role {
+    padding: 0.5em 1.5em;
+    color: var(--text-secondary);
+    font-family: "Fredericka the Great", serif;
+    font-size: 0.8em;
+    margin: 0;
 }
-.avail-roles {
+.mobile-avail-roles {
     display: flex;
     flex-wrap: wrap;
+    gap: 0.4em;
+    padding: 0.3em 1.5em 0.8em 1.5em;
+}
+.mobile-avail-roles a {
+    padding: 0.25em 0.7em;
+    font-size: 0.85em;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+.mobile-avail-roles a:hover {
+    border-color: var(--accent-coral);
+    color: var(--accent-coral);
+}
+.mobile-nav-logout {
+    color: var(--accent-coral) !important;
+    border-bottom: none !important;
+}
+.mobile-nav-logout:hover {
+    background-color: rgba(221,122,122,0.1) !important;
+    color: var(--accent-coral) !important;
+}
+.mobile-nav-btn {
+    color: var(--text-primary) !important;
+}
+
+/*  Footer  */
+footer {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 5vw, 5rem);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    box-sizing: border-box;
+}
+.footer-logo {
+    width: clamp(80px, 12vw, 140px);
+    opacity: 0.9;
+    display: block;
+    margin: 0 auto 0.8rem auto;
+    filter: drop-shadow(0px 4px 12px rgba(255,255,255,0.15));
+    transition: var(--transition);
+}
+.footer-logo:hover {
+    filter: drop-shadow(0px 4px 18px rgba(255,255,255,0.3));
+}
+.footer-text {
+    opacity: 0.7;
+    text-align: center;
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+.footer-text a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.footer-text a:hover {
+    color: var(--accent-coral);
+}
+
+/*  Tablets  */
+@media (max-width: 992px) {
+    header {
+        padding: 1rem 3rem;
+    }
+    .desktop-nav {
+        gap: clamp(0.8rem, 2vw, 1.5rem);
+    }
+}
+
+/*  Mobile  */
+@media (max-width: 768px) {
+    header {
+        min-height: 65px;
+    }
+    .title-text {
+        display: none;
+    }
+    .desktop-nav {
+        display: none;
+    }
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .mobile-nav-overlay {
+        display: block;
+    }
+}
+
+/*  Small Mobile  */
+@media (max-width: 480px) {
+    header {
+        padding: 0 2.25rem;
+    }
+    .title h1 {
+        font-size: 1.5rem;
+    }
+    .shelfImg {
+        width: 13vw;
+    }
+    footer {
+        padding: 1.5rem 1rem;
+    }
 }

@@ -1,79 +1,361 @@
-/* Offering Component */
-.main_offering_container {
+/* Hero */
+.hero_section {
+    padding-top: clamp(4rem, 7vw, 8rem);
+    padding-right: clamp(1.5rem, 5vw, 5rem);
+    padding-bottom: clamp(2rem, 5vw, 4rem);
+    padding-left: clamp(1.5rem, 5vw, 5rem);
+}
+.hero_container {
+    max-width: var(--max-width);
+    margin: 5rem auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+.hero_text {
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
+
+    h1 {
+        font-family: "Fredericka the Great", serif;
+    }
+    
+    p {
+        font-family: "Merienda", cursive;
+    }
+}
+.hero_buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+.hero_logo_container {
+    position: relative;
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+.hero_logo {
+    width: min(100%, 420px);
+    border: 1px solid var(--accent-coral);
+    filter: drop-shadow(0 0 2.5rem var(--accent-coral));
+    position: relative;
+    border-radius: 25%;
+    z-index: 2;
 }
 
-.main_offering_container .offering_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.offering_container .offering {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Featured Component */
-.main_featured_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.main_featured_container .featured_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-.featured_container .feature {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.feature .featured-book-cover {
-    height: 350px;
-}
-
-/* CTA component */
-
-.cta_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-.cta_container .cta {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Why component */
+/* Sections */
+.main_offering_container,
+.main_featured_container,
 .main_why_container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 
+        var(--section-padding)
+        clamp(1.5rem, 5vw, 5rem);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 1rem;
 }
-.main_why_container .why_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.main_offering_container h1,
+.main_featured_container h2,
+.main_why_container h2 {
+    text-align: center;
 }
-.why_container .why {
+.main_offering_container h3,
+.main_featured_container p,
+.main_why_container p {
+    text-align: center;
+}
+.main_offering_container h1 {
+    font-family: "Fredericka the Great", serif;
+}
+.main_offering_container h3 {
+    font-family: "Merienda", cursive;
+}
+
+/* Grids */
+.offering_grid,
+.featured_grid,
+.why_grid {
+    margin-top: 3rem;
+    display: grid;
+    gap: 2rem;
+}
+.offering_grid {
+    grid-template-columns: 
+        repeat(auto-fit, minmax(220px, 1fr));
+}
+.why_grid {
+    grid-template-columns: 
+        repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* Cards */
+.offering,
+.feature,
+.why,
+.cta_card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: 2rem;
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+.offering,
+.feature,
+.why {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+/* Offerings Section */
+.main_offering_container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding:
+        var(--section-padding)
+        clamp(1.5rem, 5vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.offering_heading {
+    font-family: "Fredericka the Great", serif;
+    text-align: center;
+    color: var(--text-primary);
+}
+.offering_subheading {
+    font-family: "Merienda", cursive;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+.offering_grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+}
+.offering {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: 2rem;
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+.offering:hover {
+    border-color: rgba(255,255,255,0.15);
+}
+.offering_icon {
+    color: var(--accent-coral);
+    width: 32px;
+    height: 32px;
+}
+.offering h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+}
+.offering p {
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    line-height: 1.7;
+}
+
+/* Featured */
+.feature img {
+    width: 100%;
+    max-width: 180px;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 16px;
+}
+.featured_books_section,
+.featured_authors_section {
+    margin-top: 4rem;
+}
+.featured_empty {
+    margin-top: 2rem;
+}
+
+/* CTA */
+.cta_section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    gap: 2rem;
+
+    h2 {
+        font-family: "Fredericka the Great", serif;
+    }
+    p {
+        font-family: "Merienda", cursive;
+    }
+}
+.cta_card {
+    text-align: center;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    gap: 1.5rem;
+    align-items: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: 2rem;
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+
+/* Why Section */
+.main_why_container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding:
+        var(--section-padding)
+        clamp(1.5rem, 5vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.why_heading {
+    font-family: "Fredericka the Great", serif;
+    text-align: center;
+    color: var(--text-primary);
+}
+.why_subheading {
+    font-family: "Merienda", cursive;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+.why_grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    width: 100%;
+}
+.why {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: 2rem;
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+.why:hover {
+    border-color: rgba(255,255,255,0.15);
+}
+.why_icon {
+    color: var(--accent-coral);
+    width: 32px;
+    height: 32px;
+}
+.why h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+}
+.why p {
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    line-height: 1.7;
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .hero_container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero_text {
+        align-items: center;
+    }
+    .hero_logo_container {
+        display: none;
+    }
+    .cta_section {
+        grid-template-columns: 1fr;
+    }
+    .offering_grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .why_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero_section {
+        padding-top: 3rem;
+    }
+    .hero_container {
+        gap: 3rem;
+    }
+    .hero_logo_container {
+        display: none;
+    }
+    .offering,
+    .feature,
+    .why,
+    .cta_card {
+        padding: 1.5rem;
+    }
+    .featured_grid {
+        grid-template-columns: 1fr;
+    }
+    .offering_grid,
+    .why_grid {
+        grid-template-columns: 1fr;
+    }
+    .hero_buttons {
+        justify-content: center;
+    }
+    .offering {
+        padding: 1.5rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    .primary_btn,
+    .secondary_btn {
+        width: 100%;
+    }
+    .hero_buttons {
+        width: 100%;
+        flex-direction: column;
+    }
 }

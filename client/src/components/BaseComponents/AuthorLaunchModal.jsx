@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './authorLaunchModal.css'
 import logo from '../../assets/images/logo.png'
+import { BookOpenText } from 'lucide-react'
 
 export default function AuthorLaunchModal() {
     const [isVisible, setIsVisible] = useState(false)
@@ -51,7 +52,7 @@ export default function AuthorLaunchModal() {
 
                 <div className='launch-modal-sub-divider-row'>
                     <span className='launch-modal-sub-divider-line' />
-                    <span className='launch-modal-sub-icon'>📖</span>
+                    <BookOpenText className='launch-modal-sub-icon' />
                     <span className='launch-modal-sub-divider-line right' />
                 </div>
 

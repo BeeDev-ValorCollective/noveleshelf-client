@@ -13,7 +13,7 @@ import "../components/AuthComponents/auth.css";
 
 
 export default function Login({ onClose, isModal, onSwitchToSignup }) {
-  const setAuth = useAuthStore((state) => state.setAuth);
+  const setTokens = useAuthStore((state) => state.setTokens)
   const { closeAndNavigate, safeClose } = useModalAuth(onClose);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,15 +36,15 @@ export default function Login({ onClose, isModal, onSwitchToSignup }) {
       const data = await response.json();
 
       if (response.ok) {
-        setAuth(data.user, data.tokens.access, data.tokens.refresh);
+        setTokens(data.tokens.access, data.tokens.refresh)
 
         // DEV ONLY - remove before production
         if (import.meta.env.DEV) {
-        console.log('🔑 DEV TOKENS:', {
-            access: data.tokens.access,
-            refresh: data.tokens.refresh
-        })
-    }
+          console.log('🔑 DEV TOKENS:', {
+              access: data.tokens.access,
+              refresh: data.tokens.refresh
+          })
+      }
         closeAndNavigate("/dashboard");
       } else {
         setError(data.error || "Login failed");

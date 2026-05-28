@@ -5,8 +5,14 @@ import { Link } from 'react-router-dom'
 import './dashboard.css'
 
 
-export default function ProfileHeader({user, currentProfile, fullName, currentRole}) {
+export default function ProfileHeader({ user, currentProfile, fullName, currentRole }) {
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
+    
+    const displayRole = currentRole || localStorage.getItem('current_role')
+
+    if (import.meta.env.DEV) {
+        console.log('ProfileHeader props:', { currentRole, currentProfile, user }, 'DisplayRole:', displayRole)
+    }
 
 
     return (
@@ -40,6 +46,14 @@ export default function ProfileHeader({user, currentProfile, fullName, currentRo
 
                         {currentProfile?.bio !== undefined && (
                             <p className='profile-bio'>{currentProfile.bio || <em>No Bio Written</em>}</p>
+                        )}
+                        {currentRole === 'author' && (
+                            <p className='profile-contract'>
+                                {currentProfile?.contract_link
+                                    ? <a href={currentProfile.contract_link} target='_blank' rel='noopener noreferrer'>View your contract →</a>
+                                    : <em>Your contract link will appear here once added by admin.</em>
+                                }
+                            </p>
                         )}
                     </div>
                 </div>

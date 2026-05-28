@@ -1,0 +1,141 @@
+.admin-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.admin-page-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 1.5rem;
+}
+
+.admin-page-header h1 {
+    margin: 0;
+}
+
+.admin-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.admin-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.pending-reviews-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 2em;
+}
+.pending-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+}
+.pending-table {
+    width: 85%;
+}
+th, td {
+    border-bottom: 1px solid var(--accent-coral);
+    border-right: 1px solid var(--accent-coral);
+}
+th:last-child, td:last-child {
+    border-right: none;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+
+@media (max-width: 900px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.admin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-list-row {
+    cursor: pointer;
+}
+
+/* .admin-list-row.active td {
+    background: #f0f4ff;
+} */
+
+.admin-pagination {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 12px;
+    font-size: 0.875rem;
+}
+
+.admin-detail {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    /* background: #fafafa; */
+    background-color: #ffffff10;
+    position: sticky;
+    top: 20px;
+}
+
+.request-detail-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 4px;
+    text-transform: capitalize;
+    color: #444;
+}
+
+.request-detail-date {
+    font-size: 0.82rem;
+    color: #888;
+    margin: 0 0 1rem;
+}
+
+.request-detail-section {
+    margin-bottom: 1rem;
+    color: #444;
+}
+
+.request-detail-text {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+.request-detail-link {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.request-approve-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    color: #444;
+}
+
+.request-approve-section h3 {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+}

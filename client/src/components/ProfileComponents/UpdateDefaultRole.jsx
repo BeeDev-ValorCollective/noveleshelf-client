@@ -49,7 +49,9 @@ export default function UpdateDefaultRole() {
                 setError(data.error || "Role update failed")
             }
         } catch (err) {
-            console.error("Role update error:", err)
+            if (import.meta.env.DEV) {
+                console.error("Role update error:", err)
+            }
             setError("Something went wrong. Please try again.")
         } finally {
             setIsLoading(false)

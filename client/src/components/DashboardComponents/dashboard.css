@@ -1,8 +1,11 @@
-/* Profile Header */
+/*  Profile Header  */
 .profile-header {
-    background-color: #ffffff10;
-    border-radius: 8px;
-    padding: 2em;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    width: 100%;
+    backdrop-filter: blur(14px);
 }
 .profile-header-content {
     display: flex;
@@ -10,86 +13,333 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    gap: 1.5em;
 }
 .profile-header-left {
     display: flex;
     flex-direction: row;
     gap: 1.5em;
     align-items: flex-start;
+    flex: 1;
 }
 .profile-avatar {
-    width: 150px;
-    /* height: 100px; */
+    width: clamp(80px, 10vw, 150px);
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ffffff30;
+    border: 2px solid rgba(255,255,255,0.2);
+    flex-shrink: 0;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
 }
 .profile-name {
-    font-size: 1.8em;
-    color: #ffffffe0;
+    font-size: clamp(1.3rem, 3vw, 1.8em);
+    color: var(--text-primary);
     margin: 0;
+    font-family: "Fredericka the Great", serif;
 }
 .profile-username {
-    color: #ffffffa0;
+    color: var(--text-secondary);
     margin: 0.2em 0;
+    font-size: clamp(0.85rem, 1.5vw, 1em);
 }
 .profile-badges {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5em;
     margin: 0.5em 0;
 }
 .badge {
     padding: 0.2em 0.8em;
     border-radius: 20px;
-    font-size: 0.8em;
+    font-size: clamp(0.7rem, 1.2vw, 0.8em);
     font-weight: 600;
 }
 .badge-author {
-    background-color: #ffffff20;
-    color: #ffffffe0;
+    background-color: rgba(255,255,255,0.12);
+    color: var(--text-primary);
 }
 .badge-pro {
-    background-color: #e0555530;
-    color: #e05555;
+    background-color: rgba(221,122,122,0.2);
+    color: var(--accent-coral);
+}
+.badge-free-author {
+    background-color: rgba(104,185,185,0.2);
+    color: var(--accent-teal);
 }
 .profile-bio {
-    color: #ffffffa0;
-    font-size: 0.9em;
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.9em);
     max-width: 600px;
     line-height: 1.6;
+    margin: 0;
 }
 .profile-header-right {
     display: flex;
     flex-direction: row;
     gap: 0.8em;
     align-items: center;
+    flex-shrink: 0;
 }
 .edit-profile-btn {
     background-color: transparent;
-    color: #ffffffe0;
-    border: 1px solid #ffffff40;
+    color: var(--text-primary);
+    border: 1px solid var(--accent-teal);
     padding: 0.5em 1.2em;
-    border-radius: 4px;
+    border-radius: 999px;
     cursor: pointer;
-    font-size: 0.9em;
-    transition: all 0.3s ease;
-
-    a {
-        color: #ffffffe0;
-        text-decoration: none;
-    }
+    font-size: clamp(0.8rem, 1.2vw, 0.9em);
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
+}
+.edit-profile-btn a {
+    color: var(--text-primary);
+    text-decoration: none;
 }
 .edit-profile-btn:hover {
-    background-color: #ffffff10;
-
-    a:hover {
-        background-color: #ffffff10;
-    }
+    background-color: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.4);
 }
 .settings-btn {
     background: none;
     border: none;
-    color: #ffffffa0;
+    color: var(--text-secondary);
     font-size: 1.2em;
     cursor: pointer;
+    transition: var(--transition);
+    padding: 0.3em;
+}
+.settings-btn:hover {
+    color: var(--text-primary);
+}
+
+/*  Author Upgrade Section  */
+.author-upgrade-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+    width: 100%;
+}
+.upgrade-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+    padding: 2em;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+    text-align: left;
+}
+.upgrade-card:hover {
+    border-color: rgba(255,255,255,0.15);
+}
+.upgrade-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+.upgrade-card-header a {
+    font-family: "Merienda", cursive;
+}
+.upgrade-card-title {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    margin: 0;
+}
+.upgrade-card-learn-more {
+    font-size: clamp(0.78rem, 1.2vw, 0.85em);
+    color: var(--accent-teal);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.upgrade-card-learn-more:hover {
+    color: var(--accent-coral);
+}
+.upgrade-card-description {
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    line-height: 1.7;
+    flex: 1;
+    margin: 0;
+}
+.upgrade-card-btn {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
+    padding: 0.8em 1.5em;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
+    width: 100%;
+    margin-top: auto;
+}
+.upgrade-card-btn:hover {
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+.upgrade-card-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.upgrade-card-btn:disabled:hover {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+/*  Form Feedback  */
+.form-success {
+    color: #4caf50;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    line-height: 1.7;
+    padding: 0.8em 0;
+}
+.form-error {
+    color: var(--accent-coral);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    line-height: 1.7;
+    padding: 0.4em 0;
+}
+
+/*  Modal  */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 3vw, 2rem);
+    z-index: 1000;
+}
+.modal-box {
+    background: #1a1a2e;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--card-radius);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.modal-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.modal-box-title {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+}
+.modal-box-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: var(--transition);
+    padding: 0.2em;
+}
+.modal-box-close:hover {
+    color: var(--text-primary);
+}
+.modal-box-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8em;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/*  Tablets  */
+@media (max-width: 992px) {
+    .profile-header-content {
+        flex-direction: column;
+    }
+    .profile-header-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .author-upgrade-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*  Mobile  */
+@media (max-width: 768px) {
+    .profile-header-left {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+    .profile-info {
+        align-items: center;
+    }
+    .profile-bio {
+        max-width: 100%;
+        text-align: center;
+    }
+    .profile-badges {
+        justify-content: center;
+    }
+    .profile-header-right {
+        justify-content: center;
+    }
+    .upgrade-card {
+        padding: 1.5rem;
+    }
+    .modal-box {
+        max-height: 85vh;
+    }
+}
+
+/*  Small Mobile  */
+@media (max-width: 480px) {
+    .profile-name {
+        font-size: 1.3rem;
+    }
+    .edit-profile-btn {
+        width: 100%;
+        text-align: center;
+    }
+    .upgrade-card-btn {
+        width: 100%;
+    }
+    .modal-box-actions {
+        flex-direction: column-reverse;
+    }
+}
+
+.terms-list {
+    margin: 1rem 0 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.terms-item {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.terms-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1rem;
 }

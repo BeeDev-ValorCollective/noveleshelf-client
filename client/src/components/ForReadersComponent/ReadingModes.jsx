@@ -15,7 +15,7 @@ export default function ReadingModes() {
                     <div className='mode-card'>
                         <Sun className='mode-icon' />
                             <h3>Day Mode</h3>
-                            <p>Crisp, clear text on bright backgrounds optimised for daytime reading in any lighting condition.</p>
+                            <p>Crisp, clear text on bright backgrounds optimized for daytime reading in any lighting condition.</p>
                     </div>
                     <div className='mode-card'>
                         <EyeOff className='mode-icon' />

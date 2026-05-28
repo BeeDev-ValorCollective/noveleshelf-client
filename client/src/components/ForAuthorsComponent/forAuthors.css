@@ -4,24 +4,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 400px;
+    min-height: clamp(250px, 40vw, 400px);
     text-align: center;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 5rem);
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .authors-hero h1 {
-    font-size: 3em;
-    color: #ffffffe0;
+    font-size: clamp(2rem, 5vw, 3.5em);
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
 }
 .authors-hero-divider {
     border: none;
     height: 4px;
-    width: 1000px;
-    background: linear-gradient(to right, transparent, #DD7a7a, transparent);
+    width: min(1000px, 80%);
+    background: linear-gradient(to right, transparent, var(--accent-coral), transparent);
     margin: 0.5em auto;
 }
 .authors-hero h4 {
-    font-size: 1.2em;
-    color: #ffffffa0;
+    font-size: clamp(1rem, 2vw, 1.2em);
+    color: var(--text-secondary);
     font-weight: 400;
+    font-family: "Merienda", cursive;
 }
 
 /* Author Dashboard Component */
@@ -30,21 +36,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     text-align: center;
-    width: 90%;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .author-dashboard h2 {
-    font-size: 2em;
-    color: #ffffffe0;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
     margin-bottom: 1.5em;
+    font-family: "Fredericka the Great", serif;
 }
 .dashboard-stats {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 2em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5em;
     width: 100%;
     margin-bottom: 2em;
 }
@@ -53,30 +60,37 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1.5em 2em;
-    background-color: #ffffff10;
-    border-radius: 8px;
-    width: 20%;
+    padding: 1.5em;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+.stat-card:hover {
+    border-color: rgba(255,255,255,0.15);
 }
 .stat-label {
-    color: #ffffffa0;
-    font-size: 0.9em;
+    color: var(--text-secondary);
+    font-size: clamp(0.8rem, 1.2vw, 0.9em);
     margin-bottom: 0.5em;
+    font-family: "Fredericka the Great", serif;
 }
 .stat-value {
-    color: #DD7a7a;
-    font-size: 1.8em;
+    color: var(--accent-coral);
+    font-size: clamp(1.3rem, 2.5vw, 1.8em);
     margin: 0;
+    font-family: "Fredericka the Great", serif;
 }
 .dashboard-image {
     width: 100%;
-    border-radius: 8px;
+    border-radius: var(--card-radius);
     overflow: hidden;
 }
 .dashboard-img {
     width: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: var(--card-radius);
 }
 
 /* Earnings & Analytics Component */
@@ -85,20 +99,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     text-align: center;
-    width: 90%;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .earnings-analytics h2 {
-    font-size: 2em;
-    color: #ffffffe0;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
     margin-bottom: 1.5em;
+    font-family: "Fredericka the Great", serif;
 }
 .earnings-grid {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2em;
     width: 100%;
 }
@@ -108,29 +123,36 @@
     justify-content: center;
     align-items: center;
     padding: 2em;
-    background-color: #ffffff10;
-    border-radius: 8px;
-    width: 30%;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+.earnings-card:hover {
+    border-color: rgba(255,255,255,0.15);
 }
 .earnings-icon {
-    color: #DD7a7a;
+    color: var(--accent-coral);
     width: 32px;
     height: 32px;
     margin-bottom: 0.5em;
 }
 .earnings-label {
-    color: #ffffffa0;
-    font-size: 0.9em;
+    color: var(--text-secondary);
+    font-size: clamp(0.8rem, 1.2vw, 0.9em);
     margin-bottom: 0.3em;
+    font-family: "Fredericka the Great", serif;
 }
 .earnings-value {
-    color: #DD7a7a;
-    font-size: 1.8em;
+    color: var(--accent-coral);
+    font-size: clamp(1.3rem, 2.5vw, 1.8em);
     margin: 0.2em 0;
+    font-family: "Fredericka the Great", serif;
 }
 .earnings-sub {
-    color: #ffffffa0;
-    font-size: 0.8em;
+    color: var(--text-secondary);
+    font-size: clamp(0.75rem, 1vw, 0.8em);
 }
 
 /* Chapter Upload Component */
@@ -139,14 +161,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     text-align: center;
-    width: 90%;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .chapter-upload h2 {
-    font-size: 2em;
-    color: #ffffffe0;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
     margin-bottom: 1.5em;
+    font-family: "Fredericka the Great", serif;
 }
 .upload-box {
     display: flex;
@@ -154,35 +179,41 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 3em;
-    background-color: #ffffff10;
-    border-radius: 8px;
-    border: 2px dashed #ffffff30;
+    padding: clamp(2em, 5vw, 3em);
+    background-color: rgba(255,255,255,0.04);
+    border-radius: var(--card-radius);
+    border: 2px dashed rgba(255,255,255,0.2);
     margin-bottom: 1.5em;
+    transition: var(--transition);
+}
+.upload-box:hover {
+    border-color: var(--accent-coral);
 }
 .upload-icon {
-    color: #DD7a7a;
+    color: var(--accent-coral);
     width: 48px;
     height: 48px;
     margin-bottom: 0.5em;
 }
 .upload-text {
-    color: #ffffffa0;
+    color: var(--text-secondary);
     margin-bottom: 1em;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
 }
 .upload-button {
     background-color: transparent;
-    color: #ffffffe0;
-    border: 2px solid #ffffffe0;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
     padding: 0.6em 1.5em;
-    font-size: 0.9em;
-    border-radius: 4px;
+    font-size: clamp(0.85rem, 1.2vw, 0.9em);
+    border-radius: 999px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
 }
 .upload-button:hover {
-    background-color: #ffffffe0;
-    color: #000000;
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
 }
 .upload-file-list {
     display: flex;
@@ -196,22 +227,27 @@
     justify-content: space-between;
     align-items: center;
     padding: 1em 1.5em;
-    background-color: #ffffff10;
-    border-radius: 8px;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
 }
 .upload-file-item p {
-    color: #ffffffe0;
+    color: var(--text-primary);
     margin: 0;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    text-align: left;
 }
 .upload-status {
-    font-size: 0.9em;
+    font-size: clamp(0.8rem, 1.2vw, 0.9em);
     font-weight: 600;
+    white-space: nowrap;
+    margin-left: 1em;
 }
 .upload-status.uploaded {
     color: #4caf50;
 }
 .upload-status.processing {
-    color: #DD7a7a;
+    color: var(--accent-coral);
 }
 
 /* DRM Protection Component */
@@ -220,81 +256,279 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     text-align: center;
-    width: 90%;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .drm-protection h2 {
-    font-size: 2em;
-    color: #ffffffe0;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
     margin-bottom: 1.5em;
+    font-family: "Fredericka the Great", serif;
 }
 .drm-grid {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2em;
     width: 100%;
 }
 .drm-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 2em;
-    background-color: #ffffff10;
-    border-radius: 8px;
-    width: 45%;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+}
+.drm-card:hover {
+    border-color: rgba(255,255,255,0.15);
 }
 .drm-card h3 {
-    color: #ffffffe0;
+    color: var(--text-primary);
     margin: 0.5em 0;
+    font-size: 1.25rem;
+    font-family: "Fredericka the Great", serif;
 }
 .drm-card p {
-    color: #ffffffa0;
-    font-size: 0.9em;
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
     text-align: center;
+    line-height: 1.7;
 }
 .drm-icon {
-    color: #DD7a7a;
+    color: var(--accent-coral);
     width: 32px;
     height: 32px;
     margin-bottom: 0.5em;
 }
 
-/* CTAComponent */
+/* For Authors Upgrade Section */
+.for-authors-upgrade-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+    text-align: center;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+.for-authors-upgrade-title {
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    margin-bottom: 0.5em;
+}
+.for-authors-upgrade-subtitle {
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    margin-bottom: 2em;
+}
+.author-upgrade-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+    width: 100%;
+}
+.upgrade-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5em;
+    padding: 2em;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(14px);
+    transition: var(--transition);
+    text-align: left;
+}
+.upgrade-card:hover {
+    border-color: rgba(255,255,255,0.15);
+}
+.upgrade-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.upgrade-card-title {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    margin: 0;
+}
+.upgrade-card a {
+    font-family: "Merienda", cursive;
+}
+.upgrade-card-learn-more {
+    font-size: clamp(0.8rem, 1.2vw, 0.85em);
+    color: var(--accent-teal);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.upgrade-card-learn-more:hover {
+    color: var(--accent-coral);
+}
+.upgrade-card-description {
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    line-height: 1.7;
+    flex: 1;
+    margin: 0;
+}
+.upgrade-card-btn {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
+    padding: 0.8em 1.5em;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
+    width: 100%;
+    align-self: flex-end;
+}
+.upgrade-card-btn:hover {
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+.upgrade-card-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.upgrade-card-btn:disabled:hover {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+.form-success {
+    color: #4caf50;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    line-height: 1.7;
+    text-align: center;
+    padding: 1em 0;
+}
+
+/* CTA Component */
 .authors-cta {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
     text-align: center;
     width: 100%;
-    background-color: #ffffff10;
+    background-color: rgba(255,255,255,0.04);
+    border-top: 1px solid rgba(255,255,255,0.08);
     margin-top: 2em;
 }
 .authors-cta h2 {
-    font-size: 2em;
-    color: #ffffffe0;
+    font-size: clamp(1.5rem, 3vw, 2em);
+    color: var(--text-primary);
     margin-bottom: 0.5em;
+    font-family: "Fredericka the Great", serif;
 }
 .authors-cta p {
-    color: #ffffffa0;
+    color: var(--text-secondary);
     margin-bottom: 1.5em;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    font-family: "Merienda", cursive;
 }
 .authors-cta-button {
     background-color: transparent;
-    color: #ffffffe0;
-    border: 2px solid #ffffffe0;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
     padding: 0.8em 2em;
-    font-size: 1em;
-    border-radius: 4px;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    border-radius: 999px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
 }
 .authors-cta-button:hover {
-    background-color: #ffffffe0;
-    color: #000000;
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .earnings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .drm-grid {
+        grid-template-columns: 1fr;
+    }
+    .upload-file-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5em;
+    }
+    .upload-status {
+        margin-left: 0;
+    }
+    .author-upgrade-section {
+        grid-template-columns: 1fr;
+    }
+    .upgrade-card {
+        text-align: center;
+    }
+    .upgrade-card-header {
+        align-items: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .earnings-grid {
+        grid-template-columns: 1fr;
+    }
+    .drm-grid {
+        grid-template-columns: 1fr;
+    }
+    .stat-card,
+    .earnings-card,
+    .drm-card {
+        padding: 1.5rem;
+    }
+    .upload-box {
+        padding: 2em 1.5em;
+    }
+    .authors-cta {
+        padding: 3rem clamp(1.5rem, 5vw, 5rem);
+    }
+    .upgrade-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .authors-hero h1 {
+        font-size: 2rem;
+    }
+    .authors-hero-divider {
+        width: 90%;
+    }
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    .authors-cta-button {
+        width: 100%;
+    }
+    .upgrade-card-btn {
+        width: 100%;
+    }
 }

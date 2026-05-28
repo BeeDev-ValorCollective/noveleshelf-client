@@ -8,14 +8,13 @@ const normalizeProfile = (profile, usernameKey) => {
     };
 };
 
-
 const getProfileForRole = (user, role) => {
     if (!user) return null;
     switch (role) {
         case 'author':
             return normalizeProfile(user.author_profile, 'author_username');
         case 'free_author':
-            return normalizeProfile(user.free_author_profile, 'free_author_username');
+            return normalizeProfile(user.free_author_profile, 'author_username');
         case 'moderator':
             return normalizeProfile(user.moderator_profile, 'moderator_username');
         case 'admin':
@@ -35,6 +34,26 @@ const useAuthStore = create((set, get) => ({
     currentRole: localStorage.getItem('current_role') || null,
     currentRoleDisplay: toTitleCase(localStorage.getItem('current_role')),
     currentProfile: null,
+
+    setTokens: (accessToken, refreshToken) => {
+        const existingRole = localStorage.getItem('current_role')
+        sessionStorage.setItem('access_token', accessToken)
+        localStorage.setItem('refresh_token', refreshToken)
+
+        set({
+            accessToken,
+            refreshToken,
+            isAuthenticated: true,
+            user: null,
+            currentRole: existingRole,
+            currentRoleDisplay: toTitleCase(existingRole),
+            currentProfile: null,
+        })
+
+        if (import.meta.env.DEV) {
+            console.log('🔑 TOKENS SET — awaiting /me/ for user data')
+        }
+    },
 
     setAuth: (user, accessToken, refreshToken) => {
         const role = user.default_login_role
@@ -65,9 +84,15 @@ const useAuthStore = create((set, get) => ({
     },
 
     updateUser: (user) => {
-        const role = get().currentRole
+        const role = get().currentRole || user.default_login_role
         const profile = getProfileForRole(user, role)
-        set({ user, currentProfile: profile });
+        localStorage.setItem('current_role', role)
+        set({ 
+            user, 
+            currentRole: role,
+            currentRoleDisplay: toTitleCase(role),
+            currentProfile: profile 
+        })
 
         if (import.meta.env.DEV) {
             console.log('👤 USER UPDATED:', {
