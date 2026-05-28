@@ -76,8 +76,7 @@ export default function CreateNewBook() {
             setIsSubmitting(false)
         }
     }
-
-    console.log("url", DB_API + 'books/author/books/create/')
+    
     return(
         <div className="create-book">
             <div className="cb-header">

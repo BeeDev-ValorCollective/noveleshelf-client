@@ -124,8 +124,8 @@ body footer .footer-text a {
 }
 :root {
   --bg-primary: #090414;
-  --bg-secondary: rgba(255,255,255,0.05);
-  --border-color: rgba(255,255,255,0.08);
+  --bg-secondary: #ffffff0d;
+  --border-color: #ffffff14;
   --text-primary: #ffffff;
   --text-secondary: #cfc7e6;
   --accent-coral: #DD7a7a;

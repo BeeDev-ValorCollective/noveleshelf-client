@@ -76,7 +76,9 @@ export default function UpdateAuthorProfile() {
                 setError(data.error || "Update failed")
             }
         } catch (err) {
-            console.error("Update error:", err)
+            if (import.meta.env.DEV) {
+                console.error("Update error:", err)
+            }
             setError("Something went wrong. Please try again.")
         } finally {
             setIsLoading(false)

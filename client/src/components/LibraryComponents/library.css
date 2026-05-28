@@ -23,21 +23,21 @@
     font-size: 2.5rem;
     font-weight: 500;
     margin: 0 0 0.5rem;
-    background: linear-gradient(135deg, #e879a0, #2dd4bf);
+    background: linear-gradient(135deg, var(--accent-coral), var(--accent-teal));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .library-header p {
-    color: #7b6fa0;
+    color: var(--accent-purple);
     font-size: 1rem;
     margin: 0;
 }
 
 .library-error {
     text-align: center;
-    color: #e879a0;
+    color: var(--accent-coral);
     padding: 4rem;
 }
 
@@ -49,7 +49,7 @@
 .book-grid {
     display: grid;
     grid-template-columns: repeat(var(--lib-columns), 1fr);
-    margin: 40px 0;
+    margin: 140px 0;
     padding: 0;
     list-style: none;
 }
@@ -83,48 +83,81 @@
     clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
     background-repeat: no-repeat;
     background-image:
-        linear-gradient(-45deg, #7b5ea7 53.5%, #e879a0 53.5%, #e879a0 60%, #7b5ea7 60%),
-        linear-gradient(45deg, #7b5ea7 65.3%, #e879a0 65.3%, #e879a0 69.9%, #7b5ea7 69.9%);
+        linear-gradient(-45deg, var(--accent-purple) 53.5%, var(--accent-coral) 53.5%, var(--accent-coral) 60%, var(--accent-purple) 60%),
+        linear-gradient(45deg, var(--accent-purple) 65.3%, var(--accent-coral) 65.3%, var(--accent-coral) 69.9%, var(--accent-purple) 69.9%);
 }
 
 .book-grid li::after {
-    z-index: 0;
+    z-index: 10;
     clip-path: polygon(100% 50%, 50% 100%, 0 50%, 20% 50%, 50% 80%, 80% 50%);
     background-repeat: no-repeat;
     background-image:
-        linear-gradient(45deg, #7b5ea7 40%, #e879a0 40%),
-        linear-gradient(-45deg, #7b5ea7 30%, #e879a0 30%);
+        linear-gradient(45deg, var(--accent-purple) 40%, var(--accent-coral) 40%),
+        linear-gradient(-45deg, var(--accent-purple) 30%, var(--accent-coral) 30%);
 }
 
 .book-grid li:nth-child(2n)::before {
     background-image:
-        linear-gradient(-45deg, #2dd4bf 53.5%, #0d1130 53.5%, #0d1130 60%, #2dd4bf 60%),
-        linear-gradient(45deg, #2dd4bf 65.3%, #0d1130 65.3%, #0d1130 69.9%, #2dd4bf 69.9%);
+        linear-gradient(-45deg, var(--accent-teal) 53.5%, var(--bg-primary) 53.5%, var(--bg-primary) 60%, var(--accent-teal) 60%),
+        linear-gradient(45deg, var(--accent-teal) 65.3%, var(--bg-primary) 65.3%, var(--bg-primary) 69.9%, var(--accent-teal) 69.9%);
 }
 
 .book-grid li:nth-child(2n)::after {
     background-image:
-        linear-gradient(45deg, #2dd4bf 40%, #0d1130 40%),
-        linear-gradient(-45deg, #2dd4bf 30%, #0d1130 30%);
+        linear-gradient(45deg, var(--accent-teal) 40%, var(--bg-primary) 40%),
+        linear-gradient(-45deg, var(--accent-teal) 30%, var(--bg-primary) 30%);
 }
 
-.book-grid li:nth-child(5n)::before {
+.book-grid li:nth-child(3n)::before {
     background-image:
-        linear-gradient(-45deg, #e879a0 53.5%, #2dd4bf 53.5%, #2dd4bf 60%, #e879a0 60%),
-        linear-gradient(45deg, #e879a0 65.3%, #2dd4bf 65.3%, #2dd4bf 69.9%, #e879a0 69.9%);
+        linear-gradient(-45deg, var(--accent-coral) 53.5%, var(--accent-teal) 53.5%, var(--accent-teal) 60%, var(--accent-coral) 60%),
+        linear-gradient(45deg, var(--accent-coral) 65.3%, var(--accent-teal) 65.3%, var(--accent-teal) 69.9%, var(--accent-coral) 69.9%);
 }
 
-.book-grid li:nth-child(5n)::after {
+.book-grid li:nth-child(3n)::after {
     background-image:
-        linear-gradient(45deg, #e879a0 40%, #2dd4bf 40%),
-        linear-gradient(-45deg, #e879a0 30%, #2dd4bf 30%);
+        linear-gradient(45deg, var(--accent-coral) 40%, var(--accent-teal) 40%),
+        linear-gradient(-45deg, var(--accent-coral) 30%, var(--accent-teal) 30%);
+}
+.book-grid li:nth-child(4n)::before {
+    background-image:
+        linear-gradient(-45deg, var(--accent-coral) 53.5%, var(--accent-teal) 53.5%, var(--accent-teal) 60%, var(--accent-coral) 60%),
+        linear-gradient(45deg, var(--accent-coral) 65.3%, var(--accent-teal) 65.3%, var(--accent-teal) 69.9%, var(--accent-coral) 69.9%);
+}
+
+.book-grid li:nth-child(4n)::after {
+    background-image:
+        linear-gradient(45deg, var(--accent-coral) 40%, var(--accent-teal) 40%),
+        linear-gradient(-45deg, var(--accent-coral) 30%, var(--accent-teal) 30%);
+}
+/* .book-grid li:nth-child(9n)::before, li:nth-child(2n+3)::before {
+    background-image:
+        linear-gradient(-45deg, #F3db18 53.5%, #000 53.5%, #000 60%, #F3db18 60%),
+        linear-gradient(45deg, #F3db18 65.3%, #000 65.3%, #000 69.9%, #F3db18 69.9%);
+}
+
+.book-grid li:nth-child(9n)::after, li:nth-child(2n+3)::after {
+    background-image:
+        linear-gradient(45deg, #f3db18 40%, #000 40%),
+        linear-gradient(-45deg, #f3db18 30%, #000 30%);
+} */
+.book-grid li:nth-child(9n)::before {
+    background-image:
+        linear-gradient(-45deg, #F3db18 53.5%, #000 53.5%, #000 60%, #F3db18 60%),
+        linear-gradient(45deg, #F3db18 65.3%, #000 65.3%, #000 69.9%, #F3db18 69.9%);
+}
+
+.book-grid li:nth-child(9n)::after {
+    background-image:
+        linear-gradient(45deg, #f3db18 40%, #000 40%),
+        linear-gradient(-45deg, #f3db18 30%, #000 30%);
 }
 
 .book-grid img {
     position: absolute;
     width: 43%;
     left: 50%;
-    top: 50%;
+    top: 45%;
     transform: translateX(-50%) translateY(-50%);
     box-shadow: 5px -5px 10px rgba(0,0,0,0.5);
     transition: transform 0.3s;
@@ -135,15 +168,29 @@
 .book-grid li:hover img {
     transform: translateX(-40%) translateY(-60%) rotateZ(25deg);
 }
+.bookTitle {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    color: var(--bg-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    z-index: 11;
+    white-space: nowrap;
+}
 
 .book-complete-badge {
     position: absolute;
-    bottom: 18%;
+    bottom: 14%;
     left: 50%;
     transform: translateX(-50%);
-    background: #2dd4bf;
-    color: #0d1130;
-    font-size: 0.65rem;
+    background: white;
+    color: var(--bg-primary);
+    font-size: .7rem;
     font-weight: 600;
     padding: 2px 8px;
     border-radius: 999px;
@@ -153,12 +200,12 @@
 
 .book-new-badge {
     position: absolute;
-    top: 22%;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    background: #e879a0;
+    background: var(--accent-coral);
     color: #fff;
-    font-size: 0.65rem;
+    font-size: .7rem;
     font-weight: 600;
     padding: 2px 8px;
     border-radius: 999px;
@@ -166,7 +213,10 @@
 }
 
 @media (min-width: 450px) {
-    .book-grid { margin: 120px 40px; }
+    .book-grid { 
+        margin: 140px 40px;
+        padding-top: 120px;
+    }
 }
 
 @media (min-width: 600px) {
@@ -213,7 +263,7 @@
 }
 
 .library-empty-subtitle {
-    color: #7b6fa0;
+    color: var(--accent-purple);
     font-size: 0.95rem;
     margin: 0;
 }
@@ -239,7 +289,7 @@
 
 .library-modal {
     background: #1a1530;
-    border: 1px solid #7b5ea7;
+    border: 1px solid var(--accent-purple);
     border-radius: 16px;
     max-width: 560px;
     width: 100%;
@@ -255,7 +305,7 @@
     right: 14px;
     background: none;
     border: none;
-    color: #7b6fa0;
+    color: var(--accent-purple);
     font-size: 18px;
     cursor: pointer;
 }
@@ -292,14 +342,14 @@
 
 .library-modal-author {
     font-size: 0.875rem;
-    color: #7b6fa0;
+    color: var(--accent-purple);
     margin: 0 0 12px;
 }
 
 .library-modal-rating {
     font-size: 0.75rem;
-    background: #2dd4bf22;
-    color: #2dd4bf;
+    background: var(--accent-teal)22;
+    color: var(--accent-teal);
     padding: 2px 8px;
     border-radius: 999px;
     display: inline-block;
@@ -315,15 +365,15 @@
 
 .library-modal-tag {
     font-size: 0.72rem;
-    background: #7b5ea722;
+    background: var(--accent-purple)22;
     color: #b89fd4;
     padding: 2px 8px;
     border-radius: 999px;
 }
 
 .library-modal-tag--rel {
-    background: #e879a022;
-    color: #e879a0;
+    background: var(--accent-coral)22;
+    color: var(--accent-coral);
 }
 
 .library-modal-description {
@@ -337,16 +387,16 @@
     display: flex;
     gap: 12px;
     font-size: 0.8rem;
-    color: #7b6fa0;
+    color: var(--accent-purple);
     margin-bottom: 12px;
 }
 
 .library-modal-coming-soon {
     font-size: 0.8rem;
-    color: #7b6fa0;
+    color: var(--accent-purple);
     font-style: italic;
     margin: 0;
-    border-top: 1px solid #7b5ea733;
+    border-top: 1px solid var(--accent-purple)33;
     padding-top: 12px;
 }
 

@@ -10,7 +10,9 @@ export default function ProfileHeader({ user, currentProfile, fullName, currentR
     
     const displayRole = currentRole || localStorage.getItem('current_role')
 
-    console.log('ProfileHeader props:', { currentRole, currentProfile, user }, 'DisplayRole:', displayRole)
+    if (import.meta.env.DEV) {
+        console.log('ProfileHeader props:', { currentRole, currentProfile, user }, 'DisplayRole:', displayRole)
+    }
 
 
     return (
