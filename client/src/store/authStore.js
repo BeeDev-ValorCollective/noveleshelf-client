@@ -14,7 +14,7 @@ const getProfileForRole = (user, role) => {
         case 'author':
             return normalizeProfile(user.author_profile, 'author_username');
         case 'free_author':
-            return normalizeProfile(user.free_author_profile, 'free_author_username');
+            return normalizeProfile(user.free_author_profile, 'author_username');
         case 'moderator':
             return normalizeProfile(user.moderator_profile, 'moderator_username');
         case 'admin':
