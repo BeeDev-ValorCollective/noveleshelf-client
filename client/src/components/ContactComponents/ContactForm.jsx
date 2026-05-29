@@ -1,15 +1,25 @@
-
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import useFormValidation from '../../hooks/useFormValidation'
 import useMailSubmission from '../../hooks/useMailSubmission'
 
+const CONTACT_TYPES = [
+    { value: '', label: 'What can we help you with?' },
+    { value: 'account', label: 'My Account' },
+    { value: 'book_reading', label: 'Book / Reading Issue' },
+    { value: 'author_support', label: 'Author Support' },
+    { value: 'technical', label: 'Technical Issue' },
+    { value: 'partnership', label: 'Partnership / Business' },
+    { value: 'other', label: 'Other' },
+]
+
 export default function ContactUs() {
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
     const [contact, setContact] = useState('');
     const [userName, setUserName] = useState('');
+    const [contactType, setContactType] = useState('');
     const [success, setSuccess] = useState('');
     const [mailError, setMailError] = useState('');
     const [errorCount, setErrorCount] = useState(0);
@@ -24,15 +34,14 @@ export default function ContactUs() {
     const [captchaLoadError, setCaptchaLoadError] = useState('');
     const [website, setWebsite] = useState('')
     
-    // Custom hook for form validation
-    const isFormValid = useFormValidation({ userName, subject, message, contact });
+    const isFormValid = useFormValidation({ userName, subject, message, contact, contactType })
     
-    // Custom hook for mail submission logic
     const { sendMail, isSubmitting } = useMailSubmission({
         subject,
         message,
         contact,
         userName,
+        contactType,
         captchaId,
         captchaAnswer,
         website,
@@ -45,24 +54,19 @@ export default function ContactUs() {
         setMessage,
         setContact,
         setUserName,
+        setContactType,
         setCaptchaAnswer,
     });
 
-        useEffect(() => {
+    useEffect(() => {
         const fetchCaptcha = async () => {
             try {
                 setIsCaptchaLoading(true);
                 setCaptchaLoadError('');
-
-                // Adjust base URL if needed
                 const apiBase = import.meta.env.VITE_EMAIL_URL || '';
                 const response = await fetch(`${apiBase}/captcha`);
-                console.log(response)
-                if (!response.ok) {
-                    throw new Error('Failed to load captcha');
-                }
-
-                const data = await response.json(); // { id, question }
+                if (!response.ok) throw new Error('Failed to load captcha');
+                const data = await response.json();
                 setCaptchaId(data.id);
                 setCaptchaQuestion(data.question);
                 setCaptchaAnswer('');
@@ -73,17 +77,30 @@ export default function ContactUs() {
                 setIsCaptchaLoading(false);
             }
         };
-
         fetchCaptcha();
     }, []);
     
     return (
         <div className="contact_container">
-            {/* FORM SECTION */}
             <form onSubmit={sendMail}>
-                {/* TITLE SECTION */}
                 <h2>Send us a Message</h2>
-                {/* CLIENT NAME */}
+
+                {/* CONTACT TYPE */}
+                <div className="entry_area">
+                    <select
+                        name="contactType"
+                        id="contactType"
+                        required
+                        value={contactType}
+                        onChange={(e) => setContactType(e.target.value)}
+                    >
+                        {CONTACT_TYPES.map(({ value, label }) => (
+                            <option key={value} value={value}>{label}</option>
+                        ))}
+                    </select>
+                </div>
+
+                {/* NAME */}
                 <div className="entry_area">
                     <input
                         name="userName"
@@ -93,14 +110,12 @@ export default function ContactUs() {
                         minLength={3}
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
-                        placeholder="" // Leave blank!!
+                        placeholder=""
                     />
-                    <label htmlFor="userName" className="label_line">
-                        Name:
-                    </label>
+                    <label htmlFor="userName" className="label_line">Name:</label>
                 </div>
-                {/* END CLIENT NAME */}
-                {/* CLIENT CONTACT EMAIL */}
+
+                {/* EMAIL */}
                 <div className="entry_area">
                     <input
                         name="contact"
@@ -109,14 +124,12 @@ export default function ContactUs() {
                         required
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
-                        placeholder="" // Leave blank!!
+                        placeholder=""
                     />
-                    <label htmlFor="contact" className="label_line">
-                        Email:
-                    </label>
+                    <label htmlFor="contact" className="label_line">Email:</label>
                 </div>
-                {/* END CLIENT CONTACT EMAIL */}
-                {/* CLIENT SUBJECT */}
+
+                {/* SUBJECT */}
                 <div className="entry_area">
                     <input
                         name="title"
@@ -126,14 +139,12 @@ export default function ContactUs() {
                         minLength={3}
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
-                        placeholder="" // Leave blank!!
+                        placeholder=""
                     />
-                    <label htmlFor="title" className="label_line">
-                        Subject:
-                    </label>
+                    <label htmlFor="title" className="label_line">Subject:</label>
                 </div>
-                {/* END CLIENT SUBJECT */}
-                {/* CLIENT MESSAGE */}
+
+                {/* MESSAGE */}
                 <div className="entry_area">
                     <textarea
                         name="description"
@@ -144,15 +155,12 @@ export default function ContactUs() {
                         rows={5}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        placeholder="" // Leave blank!!
+                        placeholder=""
                     />
-                    <label htmlFor="description" className="label_line">
-                        Message:
-                    </label>
+                    <label htmlFor="description" className="label_line">Message:</label>
                 </div>
-                {/* END CLIENT MESSAGE */}
 
-                {/* HONEYPOT FIELD (hidden from humans, visible to bots) */}
+                {/* HONEYPOT */}
                 <input
                     type="text"
                     name="website"
@@ -162,8 +170,8 @@ export default function ContactUs() {
                     style={{ display: 'none' }}
                     tabIndex={-1}
                 />
-                {/* END HONEYPOT FIELD */}
-                {/* CAPTCHA FIELD */}
+
+                {/* CAPTCHA */}
                 <div className="entry_area captcha">
                     <label className="label_line" htmlFor="captchaAnswer">
                         {isCaptchaLoading
@@ -177,15 +185,15 @@ export default function ContactUs() {
                         required
                         value={captchaAnswer}
                         onChange={(e) => setCaptchaAnswer(e.target.value)}
-                        placeholder="" // Leave blank!!
+                        placeholder=""
                         disabled={isCaptchaLoading || !captchaId}
                     />
                     {captchaLoadError && (
                         <p className="captcha_error">{captchaLoadError}</p>
                     )}
                 </div>
-                {/* CAPTCHA FIELD */}
-                {/* SUBMIT BUTTON AND SPINNER */}
+
+                {/* SUBMIT */}
                 {isSubmitting ? (
                     <div className="form_button_box">
                         {!mailError && !mailFail && !success ? (
@@ -202,8 +210,8 @@ export default function ContactUs() {
                         </button>
                     </div>
                 )}
-                {/* END SUBMIT BUTTON AND SPINNER */}
-                {/* ERROR / SUCCESS MESSAGES */}
+
+                {/* MESSAGES */}
                 <div>
                     {mailError && !mailFail && (
                         <div className="mailer_messages">
@@ -214,10 +222,8 @@ export default function ContactUs() {
                     {mailFail && (
                         <div className="mailer_messages failure">
                             <h3>We are experiencing technical problems</h3>
-                            <p>Please contact us directly at -</p>
-                            <a
-                                href={`mailto:${SupportEmail}?subject=Customer%20Contact%20Support&body=Hello,%0A%0AI%20would%20like%20to%20inquire%20about`}
-                            >
+                            <p>Please contact us directly at —</p>
+                            <a href={`mailto:${SupportEmail}?subject=Customer%20Contact%20Support&body=Hello,%0A%0AI%20would%20like%20to%20inquire%20about`}>
                                 <b>{SupportEmail}</b>
                             </a>
                         </div>
@@ -226,15 +232,11 @@ export default function ContactUs() {
                         <div className="mailer_messages success">
                             <h2>{success}</h2>
                             <p>Redirecting you home...</p>
-                            <p>
-                                Click <Link to="/">HERE</Link> if you are not redirected
-                            </p>
+                            <p>Click <Link to="/">HERE</Link> if you are not redirected</p>
                         </div>
                     )}
                 </div>
-                {/* END ERROR / SUCCESS MESSAGES */}
             </form>
-            {/* FORM SECTION */}
         </div>
     );
-};
+}

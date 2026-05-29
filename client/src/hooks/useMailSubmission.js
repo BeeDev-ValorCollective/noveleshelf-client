@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -7,6 +6,7 @@ export default function useMailSubmission({
     message,
     contact,
     userName,
+    contactType,
     captchaId,
     captchaAnswer,
     website,
@@ -20,6 +20,7 @@ export default function useMailSubmission({
     setContact,
     setUserName,
     setCaptchaAnswer,
+    setContactType,
 }) {
 
     const EmailURL = import.meta.env.VITE_EMAIL_URL + '/sendContactMail';
@@ -28,18 +29,16 @@ export default function useMailSubmission({
     
     const sendMail = async (e) => {
         e.preventDefault();
-        
         setIsSubmitting(true);
-
         setIsButtonVisible(false);
         
         try {
-
             const response = await axios.post(EmailURL, {
                 subject,
                 message,
                 contact,
                 userName,
+                contactType,
                 captchaId,
                 captchaAnswer,
                 website,
@@ -47,30 +46,24 @@ export default function useMailSubmission({
             
             const { status } = response;
             const data = response.data || {};
-            const successFlag = data.success ?? (status === 200)
 
             if (response.status === 200) {
-
                 setSuccess(data.message || 'Your message was successfully sent!')
-
                 setMailError('');
-
                 setErrorCount(0);
-
                 setMailFail(false);
-
                 setSubject('');
                 setMessage('');
                 setContact('');
                 setUserName('');
+                setContactType('');
                 setCaptchaAnswer('')
 
                 setTimeout(() => {
                     window.location.href = '/';
                 }, 4000);
             } else {
-                data.message ||
-                    'An error has occurred, please try again.';
+                const msg = data.message || 'An error has occurred, please try again.';
                 handleFailure(msg);
             }
         } catch (error) {
@@ -87,7 +80,6 @@ export default function useMailSubmission({
     const handleFailure = (message) => {
         setMailError(message);
         setSuccess('')
-        
         setErrorCount((prev) => {
             const next = prev + 1
             if (next < 3) {
@@ -100,4 +92,4 @@ export default function useMailSubmission({
     };
     
     return { sendMail, isSubmitting };
-};
+}

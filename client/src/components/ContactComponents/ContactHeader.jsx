@@ -1,8 +1,7 @@
 
 
 // IMPORT IMAGES
-// import Email_Icon from '../../../assets/images/email_icon.png'
-
+import { Mail } from 'lucide-react'
 export default function ContactHeader() {
     
     // IMPORT ENV DATA
@@ -16,7 +15,7 @@ export default function ContactHeader() {
 
                 <div className='contact_methods'>
                     <div className='contact_type'>
-                        <img src="" alt="Email Us" />
+                        <Mail />
                         <h4>Email Us</h4>
                         <a href={`mailto:${ EmailLink }?subject=Request%20For%20Tax%20Services&body=Hello,%0A%0AI%20would%20like%20to%20inquire%20about...`}>
                             <h5>{ EmailLink }</h5>
