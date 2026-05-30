@@ -1,8 +1,7 @@
 import ProfileHeader from "../../components/DashboardComponents/ProfileHeader"
 import AuthorUpgradeSection from '../../components/DashboardComponents/AuthorUpgradeSection'
-import FreeAuthorProjects from "../../components/DashboardComponents/FreeAuthorDashboardComponents/FreeAuthorProjects"
-import PublishedWorks from '../../components/DashboardComponents/AuthorDashboardComponents/PublishedWorks'
-import FinishedBooks from '../../components/DashboardComponents/AuthorDashboardComponents/FinishedBooks'
+import PublishedWorks from '../../components/DashboardComponents/FreeAuthorDashboardComponents/PublishedWorks'
+import FinishedBooks from '../../components/DashboardComponents/FreeAuthorDashboardComponents/FinishedBooks'
 import StatsBar from "../../components/DashboardComponents/FreeAuthorDashboardComponents/StatsBar"
 import ComingSoon from '../../components/BaseComponents/ComingSoon'
 import useUser from '../../hooks/useUser'
@@ -18,7 +17,6 @@ export default function FreeAuthorDashboard() {
     const fullName = useFullName()
 
     const {
-            currentProjects,
             publishedBooks,
             finishedBooks,
             draftBooks,
@@ -33,7 +31,7 @@ export default function FreeAuthorDashboard() {
             <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
             <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} />
             <StatsBar booksPublished={publishedBooks.length} booksInProgress={draftBooks.length + pendingBooks.length + changesRequestedBooks.length} />
-            <FreeAuthorProjects books={currentProjects.slice(0, 5)} />
+            {/* <FreeAuthorProjects books={currentProjects.slice(0, 5)} /> */}
             <PublishedWorks books={publishedBooks.slice(0, 5)} />
             <FinishedBooks books={finishedBooks.slice(0, 5)} />
             <ComingSoon title="More tools are on the way." description="We're building out your author toolkit — check back soon." />

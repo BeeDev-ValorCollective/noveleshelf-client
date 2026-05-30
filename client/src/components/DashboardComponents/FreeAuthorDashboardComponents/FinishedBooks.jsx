@@ -1,5 +1,5 @@
 import { getMediaUrl } from '../../../utils/api'
-import './authorDashboard.css'
+import './freeAuthorDashboard.css'
 
 export default function FinishedBooks({ books }) {
     if (!books || books.length === 0) return null
