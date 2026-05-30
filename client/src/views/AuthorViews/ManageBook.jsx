@@ -116,11 +116,14 @@ export default function ManageBook() {
     if (error) return <p>{error}</p>
     if (!book) return null
 
+    fetch('http://localhost:8000/api/books/public/books/reference-data/')
+        .then(r => r.json())
+        .then(d => console.log(d))
+
     return (
         <div className='manage-book'>
             <div className='manage-book-header'>
-                <button onClick={() => navigate('/dashboard')}>← Back to dashboard</button>
-                <h1>{book.title}</h1>
+                <button className="mb-back-btn" onClick={() => navigate('/dashboard')}>← Back to dashboard</button>                <h1>{book.title}</h1>
                 <span className={`project-status ${book.status}`}>{book.status.replace(/_/g, ' ')}</span>
             </div>
 

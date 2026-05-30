@@ -362,6 +362,74 @@ footer {
     color: var(--accent-coral);
 }
 
+/*  Verification Banner  */
+.verification-banner {
+    width: 100%;
+    background-color: var(--accent-coral);
+    padding: 0.9em clamp(1.5rem, 5vw, 5rem);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    box-sizing: border-box;
+}
+.verification-banner-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    min-width: 0;
+}
+.verification-banner-icon {
+    color: #1a0a0a;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+.verification-banner p {
+    color: #1a0a0a;
+    font-size: clamp(0.82rem, 1.5vw, 0.95rem);
+    margin: 0;
+    line-height: 1.5;
+    font-family: "Merienda", cursive;
+}
+.verification-banner-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    flex-shrink: 0;
+}
+.resend-btn {
+    background-color: #1a0a0a;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 0.6em 1.4em;
+    border-radius: 999px;
+    font-size: clamp(0.82rem, 1.5vw, 0.92rem);
+    font-family: "Fredericka the Great", serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+.resend-btn:hover:not(:disabled) {
+    background-color: #ffffff;
+    color: #1a0a0a;
+    border-color: #1a0a0a;
+}
+.resend-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.banner-error {
+    color: #1a0a0a;
+    font-size: clamp(0.78rem, 1.2vw, 0.85rem);
+    margin: 0;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
 /*  Tablets  */
 @media (max-width: 992px) {
     header {
@@ -391,6 +459,19 @@ footer {
     .mobile-nav-overlay {
         display: block;
     }
+    .verification-banner {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8em;
+        padding: 0.9em 1rem;
+    }
+    .verification-banner-right {
+        width: 100%;
+    }
+    .resend-btn {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /*  Small Mobile  */
@@ -406,5 +487,12 @@ footer {
     }
     footer {
         padding: 1.5rem 1rem;
+    }
+    .verification-banner p {
+        font-size: 0.8rem;
+    }
+    .resend-btn {
+        font-size: 0.8rem;
+        padding: 0.5em 1em;
     }
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import useAuthStore from '../../store/authStore'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import { Mail } from 'lucide-react'
 
 export default function VerificationBanner() {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
@@ -58,6 +59,17 @@ export default function VerificationBanner() {
         }
     }
 
+    if (sent) {
+        return (
+            <div className="verification-banner">
+                <div className="verification-banner-left">
+                    <Mail className="verification-banner-icon" />
+                    <p>Verification email sent! Please check your inbox.</p>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="verification-banner">
             {sent ? (
@@ -65,10 +77,10 @@ export default function VerificationBanner() {
             ) : (
                 <>
                     <p>
-                        Please verify your email to unlock all features.
+                        Please verify your email to unlock all features. 
                         Check your inbox or{' '}
-                        <button
-                            onClick={handleResend}
+                        <button 
+                            onClick={handleResend} 
                             disabled={sending}
                             className="resend-btn"
                         >
