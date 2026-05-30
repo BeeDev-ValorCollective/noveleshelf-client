@@ -1,5 +1,6 @@
 // views/ErrorPage.jsx
 import { Link } from 'react-router-dom'
+import './views.css'
 
 const ERROR_CONFIGS = {
     unauthorized: {

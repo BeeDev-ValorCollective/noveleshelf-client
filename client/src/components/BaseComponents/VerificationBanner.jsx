@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import useAuthStore from '../../store/authStore'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import { Mail } from 'lucide-react'
 
 export default function VerificationBanner() {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
@@ -10,7 +11,6 @@ export default function VerificationBanner() {
     const [sent, setSent] = useState(false)
     const [error, setError] = useState(null)
 
-    // only show if logged in and not verified
     if (!isAuthenticated || !user || user.is_verified) return null
 
     const handleResend = async () => {
@@ -23,7 +23,6 @@ export default function VerificationBanner() {
                     'Authorization': `Bearer ${accessToken}`
                 }
             })
-
             if (response.ok) {
                 setSent(true)
             } else {
@@ -36,26 +35,33 @@ export default function VerificationBanner() {
         }
     }
 
+    if (sent) {
+        return (
+            <div className="verification-banner">
+                <div className="verification-banner-left">
+                    <Mail className="verification-banner-icon" />
+                    <p>Verification email sent! Please check your inbox.</p>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="verification-banner">
-            {sent ? (
-                <p>✉️ Verification email sent! Please check your inbox.</p>
-            ) : (
-                <>
-                    <p>
-                        Please verify your email to unlock all features. 
-                        Check your inbox or{' '}
-                        <button 
-                            onClick={handleResend} 
-                            disabled={sending}
-                            className="resend-btn"
-                        >
-                            {sending ? 'Sending...' : 'resend the verification email'}
-                        </button>
-                    </p>
-                    {error && <p className="banner-error">{error}</p>}
-                </>
-            )}
+            <div className="verification-banner-left">
+                <Mail className="verification-banner-icon" />
+                <p>Please check your inbox and verify your email to unlock all features.</p>
+            </div>
+            <div className="verification-banner-right">
+                {error && <p className="banner-error">{error}</p>}
+                <button
+                    onClick={handleResend}
+                    disabled={sending}
+                    className="resend-btn"
+                >
+                    {sending ? 'Sending...' : 'Resend Verification Email'}
+                </button>
+            </div>
         </div>
     )
 }
