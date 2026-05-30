@@ -1,3 +1,5 @@
+import './authorBook.css';
+
 export default function BookFormFields({ formData, onChange, contentRatings, isLoading, disabled, coverPreview, onCoverChange, coverError }) {
     return (
         <div className="book-form-fields">
