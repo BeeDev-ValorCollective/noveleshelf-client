@@ -15,7 +15,6 @@ const CONTACT_TYPES = [
 ]
 
 export default function ContactUs() {
-    const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
     const [contact, setContact] = useState('');
     const [userName, setUserName] = useState('');
@@ -33,11 +32,10 @@ export default function ContactUs() {
     const [isCaptchaLoading, setIsCaptchaLoading] = useState(false);
     const [captchaLoadError, setCaptchaLoadError] = useState('');
     const [website, setWebsite] = useState('')
-    
-    const isFormValid = useFormValidation({ userName, subject, message, contact, contactType })
-    
+
+    const isFormValid = useFormValidation({ userName, message, contact, contactType })
+
     const { sendMail, isSubmitting } = useMailSubmission({
-        subject,
         message,
         contact,
         userName,
@@ -50,7 +48,6 @@ export default function ContactUs() {
         setErrorCount,
         setMailFail,
         setIsButtonVisible,
-        setSubject,
         setMessage,
         setContact,
         setUserName,
@@ -79,86 +76,79 @@ export default function ContactUs() {
         };
         fetchCaptcha();
     }, []);
-    
+
     return (
         <div className="contact_container">
-            <form onSubmit={sendMail}>
-                <h2>Send us a Message</h2>
+            <h2>Send us a Message</h2>
+            <form onSubmit={sendMail} className='contact_form'>
+                <div className="contact_inputs">
+                    <div className="contact_left">
+                        {/* CONTACT TYPE */}
+                        <div className="entry_area">
+                            <select
+                                name="contactType"
+                                id="contactType"
+                                required
+                                value={contactType}
+                                onChange={(e) => setContactType(e.target.value)}
+                            >
+                                {CONTACT_TYPES.map(({ value, label }) => (
+                                    <option key={value} value={value}>{label}</option>
+                                ))}
+                            </select>
+                        </div>
 
-                {/* CONTACT TYPE */}
-                <div className="entry_area">
-                    <select
-                        name="contactType"
-                        id="contactType"
-                        required
-                        value={contactType}
-                        onChange={(e) => setContactType(e.target.value)}
-                    >
-                        {CONTACT_TYPES.map(({ value, label }) => (
-                            <option key={value} value={value}>{label}</option>
-                        ))}
-                    </select>
+                        {/* NAME */}
+                        <div className="entry_area">
+                            <label htmlFor="userName" className="label_line">Name:</label>
+                            <input
+                                name="userName"
+                                type="text"
+                                id="userName"
+                                required
+                                minLength={3}
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
+                                placeholder=""
+                            />
+                        </div>
+
+                        {/* EMAIL */}
+                        <div className="entry_area">
+                            <label htmlFor="contact" className="label_line">Email:</label>
+                            <input
+                                name="contact"
+                                type="email"
+                                id="contact"
+                                required
+                                value={contact}
+                                onChange={(e) => setContact(e.target.value)}
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div className="contact_right">
+                        {/* MESSAGE */}
+                        <div className="entry_area">
+                            <label htmlFor="description" className="label_line">Message:</label>
+                            <textarea
+                                name="description"
+                                id="description"
+                                required
+                                minLength={5}
+                                cols={30}
+                                rows={10}
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
                 </div>
 
-                {/* NAME */}
-                <div className="entry_area">
-                    <input
-                        name="userName"
-                        type="text"
-                        id="userName"
-                        required
-                        minLength={3}
-                        value={userName}
-                        onChange={(e) => setUserName(e.target.value)}
-                        placeholder=""
-                    />
-                    <label htmlFor="userName" className="label_line">Name:</label>
-                </div>
 
-                {/* EMAIL */}
-                <div className="entry_area">
-                    <input
-                        name="contact"
-                        type="email"
-                        id="contact"
-                        required
-                        value={contact}
-                        onChange={(e) => setContact(e.target.value)}
-                        placeholder=""
-                    />
-                    <label htmlFor="contact" className="label_line">Email:</label>
-                </div>
 
-                {/* SUBJECT */}
-                <div className="entry_area">
-                    <input
-                        name="title"
-                        type="text"
-                        id="title"
-                        required
-                        minLength={3}
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                        placeholder=""
-                    />
-                    <label htmlFor="title" className="label_line">Subject:</label>
-                </div>
 
-                {/* MESSAGE */}
-                <div className="entry_area">
-                    <textarea
-                        name="description"
-                        id="description"
-                        required
-                        minLength={5}
-                        cols={10}
-                        rows={5}
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder=""
-                    />
-                    <label htmlFor="description" className="label_line">Message:</label>
-                </div>
 
                 {/* HONEYPOT */}
                 <input
@@ -197,7 +187,7 @@ export default function ContactUs() {
                 {isSubmitting ? (
                     <div className="form_button_box">
                         {!mailError && !mailFail && !success ? (
-                            <img src='' alt="Spinner Icon" className="spinner"/>
+                            <img src='' alt="Spinner Icon" className="spinner" />
                         ) : (
                             <>&nbsp;</>
                         )}

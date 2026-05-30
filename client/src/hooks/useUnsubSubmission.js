@@ -1,69 +1,63 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function useMailSubmission({
-    message,
-    contact,
+export default function useUnsubSubmission({
+    firstName,
+    lastName,
     userName,
-    contactType,
-    captchaId,
-    captchaAnswer,
-    website,
+    contact,
+    reason,
     setSuccess,
     setMailError,
     setErrorCount,
     setMailFail,
     setIsButtonVisible,
-    setMessage,
-    setContact,
+    setFirstName,
+    setLastName,
     setUserName,
-    setCaptchaAnswer,
-    setContactType,
+    setContact,
+    setReason,
 }) {
 
-    const EmailURL = import.meta.env.VITE_EMAIL_URL + '/sendContactMail';
+    const UnsubURL = import.meta.env.VITE_EMAIL_URL + '/sendUnsubMail';
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     
-    const sendMail = async (e) => {
+    const sendUnsub = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setIsButtonVisible(false);
         
         try {
-            const response = await axios.post(EmailURL, {
-                message,
-                contact,
+            const response = await axios.post(UnsubURL, {
+                firstName,
+                lastName,
                 userName,
-                contactType,
-                captchaId,
-                captchaAnswer,
-                website,
+                contact,
+                reason,
             });
             
-            const { status } = response;
             const data = response.data || {};
 
             if (response.status === 200) {
-                setSuccess(data.message || 'Your message was successfully sent!')
+                setSuccess(data.message || 'You have been successfully unsubscribed!')
                 setMailError('');
                 setErrorCount(0);
                 setMailFail(false);
-                setMessage('');
-                setContact('');
+                setFirstName('');
+                setLastName('');
                 setUserName('');
-                setContactType('');
-                setCaptchaAnswer('')
+                setContact('');
+                setReason('');
 
                 setTimeout(() => {
                     window.location.href = '/';
                 }, 4000);
             } else {
-                const msg = data.message || 'An error has occurred, please try again.';
-                handleFailure(msg);
+                handleFailure(data.message || 'An error has occurred, please try again.');
             }
         } catch (error) {
-            console.error('Error sending mail:', error);
+            console.error('Error sending unsubscribe request:', error);
             const serverMsg =
                 error.response?.data?.message ||
                 'An error has occurred, please try again.';
@@ -75,17 +69,17 @@ export default function useMailSubmission({
     
     const handleFailure = (message) => {
         setMailError(message);
-        setSuccess('')
+        setSuccess('');
         setErrorCount((prev) => {
-            const next = prev + 1
+            const next = prev + 1;
             if (next < 3) {
-                setIsButtonVisible(true)
+                setIsButtonVisible(true);
             } else {
-                setMailFail(true)
+                setMailFail(true);
             }
-            return next
-        })
+            return next;
+        });
     };
     
-    return { sendMail, isSubmitting };
+    return { sendUnsub, isSubmitting };
 }

@@ -142,6 +142,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                     <Link to="/library">Library</Link>
                     <Link to="/for-readers">For Readers</Link>
                     <Link to="/for-authors">For Authors</Link>
+                    <Link to="/contact">Contact</Link>
                     {isAuthenticated ? (
                         <div className='avatar-container' ref={menuRef}>
                             <img
@@ -207,6 +208,7 @@ export default function Header({ onLoginClick, onSignupClick }) {
                         <Link to="/library" onClick={() => setMobileNavOpen(false)}>Library</Link>
                         <Link to="/for-readers" onClick={() => setMobileNavOpen(false)}>For Readers</Link>
                         <Link to="/for-authors" onClick={() => setMobileNavOpen(false)}>For Authors</Link>
+                        <Link to="/contact" onClick={() => setMobileNavOpen(false)}>Contact</Link>
                         {isAuthenticated ? (
                             <>
                                 <div className="mobile-nav-divider" />
