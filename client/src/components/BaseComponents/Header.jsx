@@ -65,7 +65,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                         <Link to="/admin/users" onClick={() => setMenuOpen(false)}>User Management</Link>
                         <Link to="/admin/author-requests" onClick={() => setMenuOpen(false)}>Author Requests</Link>
                         <Link to="/admin/book-approvals" onClick={() => setMenuOpen(false)}>Book Approvals</Link>
-                        {user?.admin_profile?.is_super_admin && (
                             <a
                                 href={DJANGO_ADMIN_URL}
                                 target="_blank"
@@ -74,7 +73,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                             >
                                 Django Admin
                             </a>
-                        )}
                     </>
                 )
             default:
@@ -236,7 +234,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                                         <Link to="/admin/users" onClick={() => setMobileNavOpen(false)}>User Management</Link>
                                         <Link to="/admin/author-requests" onClick={() => setMobileNavOpen(false)}>Author Requests</Link>
                                         <Link to="/admin/book-approvals" onClick={() => setMobileNavOpen(false)}>Book Approvals</Link>
-                                        {user?.admin_profile?.is_super_admin && (
                                             <a
                                                 href={DJANGO_ADMIN_URL}
                                                 target="_blank"
@@ -245,7 +242,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
                                             >
                                                 Django Admin
                                             </a>
-                                        )}
                                     </>
                                 )}
                                 {(currentRole === 'reader' || !currentRole) && (

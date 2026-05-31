@@ -25,7 +25,7 @@ export default function AdminDashboard() {
     return (
         <div className="reader-dashboard-container">
             <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
-            <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} />
+            {/* <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} /> */}
             <PendingReviewsPanel accessToken={accessToken} />
             <ComingSoon title="More admin tools are on the way." description="The platform is live — additional management features are being added." />
         </div>
