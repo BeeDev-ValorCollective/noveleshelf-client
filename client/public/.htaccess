@@ -5,12 +5,29 @@
 #PassengerAppType node
 #PassengerStartupFile vite.config.js
 # DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Redirect www to non-www
+  RewriteCond %{HTTP_HOST} ^www\.noveleshelf\.com$ [NC]
+  RewriteRule ^ https://noveleshelf.com%{REQUEST_URI} [R=301,L]
+
+  # Bypass — let /beeshelf through immediately
+  RewriteCond %{HTTP_HOST} ^(www\.)?noveleshelf\.com$ [NC]
+  RewriteRule ^beeshelf(/.*)?$ /index.html [END]
+
+  # MAINTENANCE MODE (uncomment to enable)
+  # RewriteCond %{HTTP_HOST} ^(www\.)?noveleshelf\.com$ [NC]
+  # RewriteRule ^ https://maintenance.beedev-services.com/client/noveleshelf [R=302,L]
+
+  # SPA fallback
+  RewriteCond %{HTTP_HOST} ^(www\.)?noveleshelf\.com$ [NC]
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l
   RewriteRule . /index.html [L]
+
 </IfModule>

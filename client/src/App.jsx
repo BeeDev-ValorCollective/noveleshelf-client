@@ -6,6 +6,7 @@ import Header from './components/BaseComponents/Header'
 import Footer from './components/BaseComponents/Footer'
 import ProtectedRoute from './components/AuthComponents/ProtectedRoute';
 import VerificationBanner from './components/BaseComponents/VerificationBanner';
+import MaintenanceNotice from './components/MaintenanceNotice' 
 import useUser from './hooks/useUser'
 
 const Home = React.lazy(() => import('./views/Home'))
@@ -19,6 +20,8 @@ const Library = React.lazy(() => import('./views/Library'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
 const ForReaders = React.lazy(() => import('./views/ForReaders'))
 const Profile = React.lazy(() => import('./views/Profile'))
+const Contact = React.lazy(() => import('./views/Contact'))
+const Unsubscribe = React.lazy(() => import('./views/Unsubscribe'))
 const UpdateProfile = React.lazy(() => import('./views/UpdateProfile'))
 const ErrorPage = React.lazy(() => import('./views/ErrorPage'))
 
@@ -60,6 +63,7 @@ function AppContent() {
 
   return (
     <>
+      <MaintenanceNotice />  
       <Header
         onLoginClick={() => setModal('login')}
         onSignupClick={() => setModal('signup')}
@@ -76,7 +80,8 @@ function AppContent() {
           <Route path="/library" element={<Library />} />
           <Route path="/for-authors" element={<ForAuthors onLoginClick={() => setModal('login')} />} />
           <Route path="/for-readers" element={<ForReaders />} />
-
+          <Route path="/contact" element={<Contact />} />
+          <Route path='/unsubscribe' element={<Unsubscribe />} />
           <Route path="/unauthorized" element={<ErrorPage type="unauthorized" />} />
           <Route path="*" element={<ErrorPage type="notFound" />} />
 

@@ -1,0 +1,161 @@
+/* ─── Verify Email ───────────────────────────────────────────── */
+.verify-email {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 60vh;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+    gap: 1.5em;
+}
+.verify-email h1 {
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--text-primary);
+    margin: 0;
+}
+.verify-email p {
+    color: var(--text-secondary);
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0;
+}
+.verify-email a {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
+    padding: 0.8em 2em;
+    border-radius: 999px;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    text-decoration: none;
+    transition: var(--transition);
+    margin-top: 0.5em;
+}
+.verify-email a:hover {
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+
+/* ─── Verify Email Status Cards ──────────────────────────────── */
+.verify-email-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: clamp(2rem, 5vw, 3rem);
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(14px);
+    max-width: 480px;
+    width: 100%;
+}
+.verify-email-card--success {
+    border-color: rgba(76,175,80,0.3);
+    background-color: rgba(76,175,80,0.05);
+}
+.verify-email-card--error {
+    border-color: rgba(221,122,122,0.3);
+    background-color: rgba(221,122,122,0.05);
+}
+.verify-email-icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+.verify-email-verifying {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+.verify-email-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: var(--accent-teal);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─── Error Page ─────────────────────────────────────────────── */
+.error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 60vh;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+    gap: 1.5em;
+}
+.error-page h1 {
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(4rem, 10vw, 7rem);
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1;
+    opacity: 0.8;
+}
+.error-page h2 {
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--text-secondary);
+    margin: 0;
+}
+.error-page p {
+    color: var(--text-secondary);
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0;
+}
+.error-page a {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
+    padding: 0.8em 2em;
+    border-radius: 999px;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.error-page a:hover {
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .verify-email,
+    .error-page {
+        min-height: 50vh;
+        padding: 3rem clamp(1.5rem, 5vw, 3rem);
+    }
+    .verify-email-card {
+        padding: 1.5rem;
+    }
+}
+
+/* ─── Small Mobile ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .verify-email a,
+    .error-page a {
+        width: 100%;
+        text-align: center;
+    }
+}

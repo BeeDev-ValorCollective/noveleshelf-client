@@ -2,10 +2,21 @@ import { useState } from 'react'
 import AuthorRequestModal from './AuthorRequestModal'
 import TermsModal from './TermsModal'
 
-export default function PaidAuthorRequest({ accessToken }) {
+export default function PaidAuthorRequest({ accessToken, user }) {
     const [showTerms, setShowTerms] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
     const [submitted, setSubmitted] = useState(false)
+
+    if (user?.paid_author_agreed_to_terms) {
+        return (
+            <div className='upgrade-card'>
+                <div className='upgrade-card-header'>
+                    <h3 className='upgrade-card-title'>Become a Paid Author</h3>
+                </div>
+                <p className='form-success'>Your application is under review. We'll be in touch soon.</p>
+            </div>
+        )
+    }
 
     if (submitted) {
         return (

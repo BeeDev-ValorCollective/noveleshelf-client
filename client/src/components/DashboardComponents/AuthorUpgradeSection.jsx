@@ -20,7 +20,7 @@ export default function AuthorUpgradeSection({ user, currentRole, onUpgradeSucce
                 />
             )}
             {!hasPaidAuthor && (
-                <PaidAuthorRequest accessToken={accessToken} />
+                <PaidAuthorRequest accessToken={accessToken} user={user} />
             )}
         </div>
     )

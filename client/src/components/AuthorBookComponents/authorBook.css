@@ -1,54 +1,782 @@
+/* ─── Manage Book ────────────────────────────────────────────── */
 .manage-book {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 95%;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+    gap: 2em;
 }
 .manage-book-header {
     display: flex;
-    font-family: "Fredericka the Great", serif;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    width: 80%;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1em;
+    flex-wrap: wrap;
 }
-h2 {
+.mb-back-btn {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.5em 1.2em;
+    border-radius: 999px;
+    cursor: pointer;
     font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.mb-back-btn:hover {
+    background-color: rgba(255,255,255,0.08);
+    color: var(--text-primary);
+    border-color: rgba(255,255,255,0.4);
+}
+.manage-book-header h1 {
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+    font-size: clamp(1.5rem, 3vw, 2em);
+    margin: 0;
 }
 .manage-book-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 80%;
-
-}
-.book-form-fields {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    align-items: flex-start;
     width: 100%;
+    gap: 1em;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    backdrop-filter: blur(14px);
 }
-.bff-field {
-    display: flex;
-    flex-direction: column;
-}
-.bff-cover-preview {
-    width: 200px;
-}
-label {
-    padding: .5em 0;
+.manage-book-section h2 {
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+    font-size: clamp(1.2rem, 2.5vw, 1.5em);
+    margin: 0 0 0.5em 0;
+    width: 100%;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .manage-book-section button {
-    margin: .5em;
+    margin: 0.3em;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 0.5em 1.2em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    transition: var(--transition);
 }
+.manage-book-section button:hover {
+    background-color: rgba(255,255,255,0.08);
+    border-color: var(--accent-coral);
+    color: var(--accent-coral);
+}
+.coming-soon-note {
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    font-style: italic;
+}
+
+/* ─── Project Status Badge ───────────────────────────────────── */
+.project-status {
+    font-size: clamp(0.75rem, 1.2vw, 0.85em);
+    padding: 0.3em 0.9em;
+    border-radius: 999px;
+    font-family: "Fredericka the Great", serif;
+    font-weight: 600;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+.project-status.draft {
+    background-color: rgba(255,255,255,0.1);
+    color: var(--text-secondary);
+}
+.project-status.published {
+    background-color: rgba(76,175,80,0.15);
+    color: #4caf50;
+}
+.project-status.under_review {
+    background-color: rgba(104,185,185,0.15);
+    color: var(--accent-teal);
+}
+.project-status.rejected {
+    background-color: rgba(221,122,122,0.15);
+    color: var(--accent-coral);
+}
+
+/* ─── Tags ───────────────────────────────────────────────────── */
 .tags {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5em;
     width: 100%;
 }
 .tag-group {
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
+}
+.tag-group h3 {
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.95rem, 1.5vw, 1.1em);
+    margin: 0 0 0.3em 0;
+}
+
+/* ─── Book Form Fields ───────────────────────────────────────── */
+.book-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    width: 100%;
+}
+.bff-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    width: 100%;
+}
+.bff-label {
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    font-family: "Fredericka the Great", serif;
+}
+.bff-required {
+    color: var(--accent-coral);
+    margin-left: 0.2em;
+}
+.bff-input,
+.bff-textarea,
+.bff-select {
+    background-color: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    padding: 0.75em 1em;
+    width: 100%;
+    transition: var(--transition);
+    font-family: "Merienda", cursive;
+    outline: none;
+    box-sizing: border-box;
+}
+.bff-input:focus,
+.bff-textarea:focus,
+.bff-select:focus {
+    border-color: var(--accent-teal);
+    background-color: rgba(255,255,255,0.08);
+}
+.bff-input::placeholder,
+.bff-textarea::placeholder {
+    color: rgba(255,255,255,0.3);
+}
+.bff-input:disabled,
+.bff-textarea:disabled,
+.bff-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.bff-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+}
+.bff-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff60' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1em center;
+    padding-right: 2.5em;
+}
+.bff-select option {
+    background-color: #1a1a2e;
+    color: var(--text-primary);
+}
+.bff-cover-preview {
+    width: clamp(100px, 20vw, 200px);
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+.bff-hint {
+    color: var(--text-secondary);
+    font-size: clamp(0.75rem, 1.2vw, 0.82em);
+    line-height: 1.5;
+    margin: 0;
+    font-style: italic;
+}
+.bff-error {
+    color: var(--accent-coral);
+    font-size: clamp(0.8rem, 1.2vw, 0.88em);
+    margin: 0;
+}
+.bff-loading {
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    font-style: italic;
+    margin: 0;
+}
+.bff-input[type="file"] {
+    padding: 0.5em;
+    cursor: pointer;
+}
+.bff-input[type="file"]::file-selector-button {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--accent-coral);
+    padding: 0.4em 0.8em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.75rem, 1.2vw, 0.85em);
+    transition: var(--transition);
+    margin-right: 0.5em;
+}
+.bff-input[type="file"]::file-selector-button:hover {
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+
+/* ─── Create New Book ────────────────────────────────────────── */
+.create-book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+    gap: 2em;
+}
+.cb-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5em;
+    width: 100%;
+}
+.cb-title {
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+    font-size: clamp(1.5rem, 3vw, 2em);
+    margin: 0;
+}
+.cb-subtitle {
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0;
+}
+.cb-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    width: 100%;
+    max-width: 700px;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    backdrop-filter: blur(14px);
+}
+.cb-alert {
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    padding: 0.8em 1.2em;
+    border-radius: 8px;
+    margin: 0;
+    line-height: 1.5;
+}
+.cb-alert--warning {
+    background-color: rgba(255,193,7,0.1);
+    border: 1px solid rgba(255,193,7,0.3);
+    color: #ffc107;
+}
+.cb-alert--error {
+    background-color: rgba(221,122,122,0.1);
+    border: 1px solid rgba(221,122,122,0.3);
+    color: var(--accent-coral);
+}
+.cb-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 0.5em;
+}
+.cb-btn {
+    padding: 0.8em 2em;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.cb-btn--primary {
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
+}
+.cb-btn--primary:hover {
+    background-color: transparent;
+    color: var(--accent-coral);
+}
+.cb-btn--primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.cb-btn--primary:disabled:hover {
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+.cb-btn--secondary {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: inline-flex;
+    align-items: center;
+}
+.cb-btn--secondary:hover {
+    background-color: rgba(255,255,255,0.08);
+    color: var(--text-primary);
+    border-color: rgba(255,255,255,0.4);
+}
+
+/* ─── Tag Group ──────────────────────────────────────────────── */
+.tag-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+}
+.tag-group h3 {
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+    font-size: clamp(1rem, 1.8vw, 1.2em);
+    margin: 0 0 0.3em 0;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    width: 100%;
+}
+
+/* ─── Tag Subsection ─────────────────────────────────────────── */
+.tag-subsection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    background-color: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 1em;
+}
+.tag-subsection-label {
+    color: var(--text-secondary);
+    font-size: clamp(0.75rem, 1.2vw, 0.82em);
+    font-style: italic;
+    margin: 0;
+}
+
+/* ─── Tag Checkbox List ──────────────────────────────────────── */
+.tag-checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+.tag-checkbox-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.3em 0.8em;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: clamp(0.8rem, 1.2vw, 0.88em);
+    font-family: "Merienda", cursive;
+    transition: var(--transition);
+    user-select: none;
+}
+.tag-checkbox-item:hover {
+    border-color: var(--accent-teal);
+    background-color: rgba(104,185,185,0.08);
+}
+.tag-checkbox-item input[type="checkbox"] {
+    accent-color: var(--accent-teal);
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.tag-checkbox-item input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+}
+
+/* ─── Tag Subsection Buttons ─────────────────────────────────── */
+.tag-subsection button {
+    align-self: flex-start;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.5em 1.2em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.8rem, 1.2vw, 0.88em);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.tag-subsection button:hover:not(:disabled) {
+    background-color: rgba(255,255,255,0.08);
+    border-color: var(--accent-coral);
+    color: var(--accent-coral);
+}
+.tag-subsection button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ─── Tag Feedback ───────────────────────────────────────────── */
+.tag-empty {
+    color: var(--text-secondary);
+    font-size: clamp(0.82rem, 1.2vw, 0.9em);
+    font-style: italic;
+    margin: 0;
+}
+.section-note {
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    line-height: 1.6;
+    margin: 0;
+    width: 100%;
+}
+.form-error {
+    color: var(--accent-coral);
+    font-size: clamp(0.82rem, 1.2vw, 0.9em);
+    margin: 0;
+}
+.form-success {
+    color: #4caf50;
+    font-size: clamp(0.82rem, 1.2vw, 0.9em);
+    margin: 0;
+}
+
+/* ─── Chapter List ───────────────────────────────────────────── */
+.chapter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+}
+.chapter-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    width: 100%;
+}
+.chapter-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    padding: 1em 1.2em;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    transition: var(--transition);
+    flex-wrap: wrap;
+}
+.chapter-list-item:hover {
+    border-color: rgba(255,255,255,0.15);
+    background-color: rgba(255,255,255,0.06);
+}
+.chapter-list-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    flex: 1;
+    min-width: 0;
+}
+.chapter-list-title {
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.chapter-list-meta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--text-secondary);
+    font-size: clamp(0.75rem, 1.2vw, 0.82em);
+}
+.chapter-badge {
+    font-size: 0.75em;
+    padding: 0.15em 0.6em;
+    border-radius: 999px;
+    font-weight: 600;
+    font-family: "Fredericka the Great", serif;
+}
+.chapter-badge--free {
+    background-color: rgba(104,185,185,0.15);
+    color: var(--accent-teal);
+}
+.chapter-badge--final {
+    background-color: rgba(221,122,122,0.15);
+    color: var(--accent-coral);
+}
+.chapter-list-item-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+.chapter-list-item-actions button {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.4em 1em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.78rem, 1.2vw, 0.85em);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.chapter-list-item-actions button:hover:not(:disabled) {
+    background-color: rgba(255,255,255,0.08);
+    border-color: var(--accent-coral);
+    color: var(--accent-coral);
+}
+.chapter-list-item-actions button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.chapter-list > button {
+    align-self: flex-start;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-teal);
+    padding: 0.6em 1.4em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    transition: var(--transition);
+    margin-top: 0.5em;
+}
+.chapter-list > button:hover {
+    background-color: rgba(104,185,185,0.1);
+    color: var(--accent-teal);
+}
+.chapter-list > div > button {
+    align-self: flex-start;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-teal);
+    padding: 0.6em 1.4em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    transition: var(--transition);
+    margin-top: 0.5em;
+}
+.chapter-list > div > button:hover {
+    background-color: rgba(104,185,185,0.1);
+    color: var(--accent-teal);
+}
+
+/* ─── Book Pages List ────────────────────────────────────────── */
+.book-pages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    width: 100%;
+}
+
+/* ─── Book Page Card ─────────────────────────────────────────── */
+.book-page-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 1em 1.2em;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+.book-page-card:hover {
+    border-color: rgba(255,255,255,0.15);
+    background-color: rgba(255,255,255,0.06);
+}
+.book-page-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+.book-page-card-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8em;
+    flex: 1;
+}
+.book-page-card-title {
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+}
+.book-page-card-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+.book-page-card-actions button {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.4em 1em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.78rem, 1.2vw, 0.85em);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.book-page-card-actions button:hover:not(:disabled) {
+    background-color: rgba(255,255,255,0.08);
+    border-color: var(--accent-coral);
+    color: var(--accent-coral);
+}
+.book-page-card-actions button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .chapter-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .chapter-list-item-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .chapter-list-item-actions button {
+        flex: 1;
+        text-align: center;
+    }
+    .book-page-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .book-page-card-actions {
+        width: 100%;
+    }
+    .book-page-card-actions button {
+        flex: 1;
+        text-align: center;
+    }
+    .chapter-list > button,
+    .chapter-list > div > button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ─── Small Mobile ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .chapter-list-item {
+        padding: 0.8em 1em;
+    }
+    .book-page-card {
+        padding: 0.8em 1em;
+    }
+}
+
+/* ─── Tablets ────────────────────────────────────────────────── */
+@media (max-width: 992px) {
+    .manage-book-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .tags {
+        grid-template-columns: 1fr;
+    }
+    .tag-checkbox-list {
+        gap: 0.4em;
+    }
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .manage-book-section {
+        padding: 1.5rem;
+    }
+    .tags {
+        grid-template-columns: 1fr;
+    }
+    .cb-actions {
+        flex-direction: column-reverse;
+        width: 100%;
+    }
+    .cb-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    .cb-form {
+        padding: 1.5rem;
+    }
+    .tag-subsection {
+        padding: 0.8em;
+    }
+    .tag-subsection button {
+        width: 100%;
+        text-align: center;
+        align-self: stretch;
+    }
+    .tag-checkbox-item {
+        font-size: 0.82em;
+    }
+}
+
+/* ─── Small Mobile ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .manage-book-header {
+        gap: 0.5em;
+    }
+    .bff-cover-preview {
+        width: 120px;
+    }
 }

@@ -23,7 +23,7 @@ export default function ModeratorDashboard() {
     return (
         <div className="reader-dashboard-container">
             <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
-            <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} />
+            {/* <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} /> */}
             <ComingSoon title="More moderation tools are coming." description="Additional tools to help keep the shelves in order are on the way." />
         </div>
     )
