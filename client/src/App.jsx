@@ -6,6 +6,7 @@ import Header from './components/BaseComponents/Header'
 import Footer from './components/BaseComponents/Footer'
 import ProtectedRoute from './components/AuthComponents/ProtectedRoute';
 import VerificationBanner from './components/BaseComponents/VerificationBanner';
+import MaintenanceNotice from './components/MaintenanceNotice' 
 import useUser from './hooks/useUser'
 
 const Home = React.lazy(() => import('./views/Home'))
@@ -62,6 +63,7 @@ function AppContent() {
 
   return (
     <>
+      <MaintenanceNotice />  
       <Header
         onLoginClick={() => setModal('login')}
         onSignupClick={() => setModal('signup')}

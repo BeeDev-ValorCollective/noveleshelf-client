@@ -33,6 +33,7 @@ export default function BookApprovalList({ books, selectedBook, onSelect, page, 
                     <thead>
                         <tr>
                             <th>Title</th>
+                            <th>Author</th>
                             <th>Rating</th>
                             <th>Chapters</th>
                             <th>Submitted</th>
@@ -51,6 +52,10 @@ export default function BookApprovalList({ books, selectedBook, onSelect, page, 
                                     {book.has_pending_changes && (
                                         <span className='pending-item-badge'>Has changes</span>
                                     )}
+                                </td>
+                                <td>
+                                    <span>{book.author?.pen_name || '—'}</span>
+                                    <span className='admin-subtext'>@{book.author?.author_username || '—'}</span>
                                 </td>
                                 <td>{book.content_rating?.code || 'NR'}</td>
                                 <td>{book.chapter_count}</td>
