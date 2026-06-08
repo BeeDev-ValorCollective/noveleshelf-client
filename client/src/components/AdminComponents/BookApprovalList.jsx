@@ -1,4 +1,5 @@
 import { BOOK_STATUS_LABELS } from '../../utils/constants'
+import { resolveApiAuthorDisplay } from '../../utils/display'
 
 const STATUS_OPTIONS = [
     'pending_approval',
@@ -41,32 +42,35 @@ export default function BookApprovalList({ books, selectedBook, onSelect, page, 
                         </tr>
                     </thead>
                     <tbody>
-                        {books.map((book) => (
-                            <tr
-                                key={book.id}
-                                onClick={() => onSelect(book)}
-                                className={`admin-list-row ${selectedBook?.id === book.id ? 'active' : ''}`}
-                            >
-                                <td>
-                                    {book.title}
-                                    {book.has_pending_changes && (
-                                        <span className='pending-item-badge'>Has changes</span>
-                                    )}
-                                </td>
-                                <td>
-                                    <span>{book.author?.pen_name || '—'}</span>
-                                    <span className='admin-subtext'>@{book.author?.author_username || '—'}</span>
-                                </td>
-                                <td>{book.content_rating?.code || 'NR'}</td>
-                                <td>{book.chapter_count}</td>
-                                <td>{book.submitted_at ? new Date(book.submitted_at).toLocaleDateString() : '—'}</td>
-                                <td>
-                                    <span className={`project-status ${book.status}`}>
-                                        {BOOK_STATUS_LABELS[book.status] || book.status}
-                                    </span>
-                                </td>
-                            </tr>
-                        ))}
+                        {books.map((book) => {
+                            const { name, identifier } = resolveApiAuthorDisplay(book.author)
+                            return (
+                                <tr
+                                    key={book.id}
+                                    onClick={() => onSelect(book)}
+                                    className={`admin-list-row ${selectedBook?.id === book.id ? 'active' : ''}`}
+                                >
+                                    <td>
+                                        {book.title}
+                                        {book.has_pending_changes && (
+                                            <span className='pending-item-badge'>Has changes</span>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <span>{name}</span>
+                                        <span className='admin-subtext'>{identifier}</span>
+                                    </td>
+                                    <td>{book.content_rating?.code || 'NR'}</td>
+                                    <td>{book.chapter_count}</td>
+                                    <td>{book.submitted_at ? new Date(book.submitted_at).toLocaleDateString() : '—'}</td>
+                                    <td>
+                                        <span className={`project-status ${book.status}`}>
+                                            {BOOK_STATUS_LABELS[book.status] || book.status}
+                                        </span>
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
             )}

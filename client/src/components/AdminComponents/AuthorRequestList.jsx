@@ -54,7 +54,6 @@ export default function AuthorRequestList({ requests, selectedRequest, onSelect,
                                 <td>{REQUEST_TYPE_LABELS[req.request_type] || req.request_type}</td>
                                 <td>
                                     <span>{req.user?.email || '—'}</span>
-                                    <span className='admin-subtext'>#{req.user?.id}</span>
                                 </td>
                                 <td>{new Date(req.created_at).toLocaleDateString()}</td>
                                 <td>
