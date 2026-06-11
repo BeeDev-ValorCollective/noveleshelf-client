@@ -7,8 +7,8 @@ export default function CurrentProjects({ books }) {
             <section className='dashboard-section current-projects'>
                 <div className='section-heading-row'>
                     <div>
-                        <h2 className='section-heading'>Current Projects</h2>
-                        <p className='section-subheading'>Works in progress</p>
+                        <h2 className='section-heading'>Current Draft Projects</h2>
+                        <p className='section-subheading'>Drafts in progress - Not searchable by users</p>
                     </div>
                     <a href='/author/books' className='view-all-link'>View All</a>
                     <a href="/author/create-book">Create a Book</a>
@@ -22,8 +22,8 @@ export default function CurrentProjects({ books }) {
         <section className='dashboard-section current-projects'>
             <div className='section-heading-row'>
                 <div>
-                    <h2 className='section-heading'>Current Projects</h2>
-                    <p className='section-subheading'>Works in progress</p>
+                    <h2 className='section-heading'>Current Draft Projects</h2>
+                    <p className='section-subheading'>Drafts in progress - Not searchable by users</p>
                 </div>
                 <a href='/author/books' className='view-all-link'>View All</a>
             </div>
