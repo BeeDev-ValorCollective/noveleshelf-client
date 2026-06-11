@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function LibraryBookModal({ book, onClose }) {
     const navigate = useNavigate()
- 
+
     const handleViewDetails = () => {
         onClose()
         navigate(`/library/${book.id}`)
@@ -49,8 +49,8 @@ export default function LibraryBookModal({ book, onClose }) {
                             <p className='library-modal-description'>{book.description}</p>
                         )}
                         <button className='library-modal-details-btn' onClick={handleViewDetails}>
-                                View full details →
-                            </button>
+                            View full details →
+                        </button>
 
                         <div className='library-modal-meta'>
                             <span>{book.published_chapter_count} chapter{book.published_chapter_count !== 1 ? 's' : ''}</span>
@@ -66,7 +66,7 @@ export default function LibraryBookModal({ book, onClose }) {
                         )}
 
                         <p className='library-modal-coming-soon'>
-                            Reading experience coming soon — available on the app.
+                            Love what you see? The Novel eShelf app is coming soon — <em>{book.title}</em> will be waiting for you.
                         </p>
                     </div>
                 </div>

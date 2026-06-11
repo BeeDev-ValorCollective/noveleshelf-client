@@ -1,0 +1,370 @@
+/* ─── Book Detail Page ───────────────────────────────────────── */
+.bd-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 60vh;
+}
+
+.bd-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+}
+
+/* ─── Back Button ────────────────────────────────────────────── */
+.bd-back-btn {
+    align-self: flex-start;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.5em 1.2em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.bd-back-btn:hover {
+    background-color: rgba(255,255,255,0.08);
+    color: var(--text-primary);
+    border-color: rgba(255,255,255,0.4);
+}
+
+/* ─── Loading / Error ────────────────────────────────────────── */
+.bd-loading,
+.bd-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    padding: 4em 2em;
+    color: var(--text-secondary);
+    font-size: clamp(0.95rem, 1.5vw, 1.05em);
+    font-style: italic;
+    text-align: center;
+    width: 100%;
+}
+
+/* ─── Hero ───────────────────────────────────────────────────── */
+.bd-hero {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: flex-start;
+    width: 100%;
+}
+
+.bd-cover-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.bd-cover {
+    width: clamp(140px, 22vw, 240px);
+    height: auto;
+    border-radius: var(--card-radius);
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: block;
+}
+
+.bd-badge {
+    position: absolute;
+    font-size: clamp(0.7rem, 1.1vw, 0.78em);
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    font-family: "Fredericka the Great", serif;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.bd-badge--complete {
+    top: 0.6em;
+    left: 0.6em;
+    background-color: rgba(76,175,80,0.2);
+    color: #4caf50;
+    border: 1px solid rgba(76,175,80,0.3);
+}
+.bd-badge--new {
+    top: 0.6em;
+    right: 0.6em;
+    background-color: rgba(104,185,185,0.2);
+    color: var(--accent-teal);
+    border: 1px solid rgba(104,185,185,0.3);
+}
+
+.bd-hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    flex: 1;
+    min-width: 0;
+}
+
+.bd-title {
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+    font-size: clamp(1.6rem, 3.5vw, 2.4em);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.bd-author {
+    color: var(--text-secondary);
+    font-size: clamp(0.95rem, 1.5vw, 1.05em);
+    margin: 0;
+    font-style: italic;
+}
+
+.bd-meta-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.bd-rating-badge {
+    font-size: clamp(0.75rem, 1.1vw, 0.82em);
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    background-color: rgba(255,255,255,0.08);
+    color: var(--text-secondary);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-family: "Fredericka the Great", serif;
+    white-space: nowrap;
+}
+
+.bd-tier-badge {
+    font-size: clamp(0.75rem, 1.1vw, 0.82em);
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    background-color: rgba(221,122,122,0.1);
+    color: var(--accent-coral);
+    border: 1px solid rgba(221,122,122,0.2);
+    font-family: "Fredericka the Great", serif;
+    white-space: nowrap;
+}
+
+.bd-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+}
+
+.bd-tag {
+    font-size: clamp(0.75rem, 1.1vw, 0.82em);
+    padding: 0.25em 0.7em;
+    border-radius: 999px;
+    background-color: rgba(255,255,255,0.06);
+    color: var(--text-secondary);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-family: "Merienda", cursive;
+    white-space: nowrap;
+}
+.bd-tag--rel {
+    background-color: rgba(104,185,185,0.08);
+    color: var(--accent-teal);
+    border-color: rgba(104,185,185,0.2);
+}
+.bd-tag--keyword {
+    background-color: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.4);
+    border-color: rgba(255,255,255,0.07);
+}
+
+.bd-stats {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    color: var(--text-secondary);
+    font-size: clamp(0.82rem, 1.2vw, 0.9em);
+    margin-top: 0.2em;
+}
+
+/* ─── Sections ───────────────────────────────────────────────── */
+.bd-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    backdrop-filter: blur(14px);
+}
+
+.bd-section-title {
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+    font-size: clamp(1.1rem, 2vw, 1.4em);
+    margin: 0 0 0.3em 0;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    width: 100%;
+}
+
+/* ─── Description ────────────────────────────────────────────── */
+.bd-description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+.bd-description p {
+    color: var(--text-primary);
+    font-size: clamp(0.92rem, 1.5vw, 1em);
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ─── Chapter List ───────────────────────────────────────────── */
+.bd-chapter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+}
+
+.bd-chapter-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    padding: 0.9em 1.1em;
+    background-color: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+.bd-chapter-item:hover {
+    background-color: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+}
+
+.bd-chapter-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    flex: 1;
+    min-width: 0;
+}
+
+.bd-chapter-title {
+    color: var(--text-primary);
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.88rem, 1.4vw, 0.98em);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bd-chapter-meta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--text-secondary);
+    font-size: clamp(0.72rem, 1.1vw, 0.8em);
+    flex-wrap: wrap;
+}
+
+.bd-chapter-badge {
+    font-size: 0.85em;
+    padding: 0.15em 0.6em;
+    border-radius: 999px;
+    font-weight: 600;
+    font-family: "Fredericka the Great", serif;
+}
+.bd-chapter-badge--free {
+    background-color: rgba(104,185,185,0.15);
+    color: var(--accent-teal);
+}
+.bd-chapter-badge--final {
+    background-color: rgba(221,122,122,0.15);
+    color: var(--accent-coral);
+}
+.bd-chapter-badge--new {
+    background-color: rgba(255,193,7,0.12);
+    color: #ffc107;
+}
+
+.bd-chapter-cost {
+    color: var(--text-secondary);
+    font-size: clamp(0.78rem, 1.2vw, 0.85em);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-family: "Fredericka the Great", serif;
+}
+
+/* ─── CTA ────────────────────────────────────────────────────── */
+.bd-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    text-align: center;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    background-color: rgba(104,185,185,0.06);
+    border: 1px solid rgba(104,185,185,0.15);
+    border-radius: var(--card-radius);
+    margin-bottom: 1em;
+}
+
+.bd-cta-text {
+    color: var(--text-primary);
+    font-size: clamp(0.95rem, 1.6vw, 1.1em);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.bd-cta-sub {
+    color: var(--text-secondary);
+    font-size: clamp(0.82rem, 1.2vw, 0.9em);
+    margin: 0;
+    font-style: italic;
+}
+
+/* ─── Tablet ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .bd-hero {
+        flex-direction: column;
+        align-items: center;
+    }
+    .bd-cover {
+        width: clamp(160px, 50vw, 220px);
+    }
+    .bd-hero-info {
+        align-items: center;
+        text-align: center;
+    }
+    .bd-meta-row,
+    .bd-tags,
+    .bd-stats {
+        justify-content: center;
+    }
+    .bd-chapter-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5em;
+    }
+    .bd-chapter-cost {
+        align-self: flex-end;
+    }
+}
+
+/* ─── Small Mobile ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .bd-section {
+        padding: 1.2rem;
+    }
+    .bd-chapter-item {
+        padding: 0.8em 0.9em;
+    }
+}
