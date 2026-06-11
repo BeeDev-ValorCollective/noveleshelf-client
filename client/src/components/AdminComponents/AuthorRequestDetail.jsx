@@ -109,7 +109,7 @@ export default function AuthorRequestDetail({ request, accessToken, onUpdated, o
             <button className='admin-detail-close' onClick={onClose}>✕ Close</button>
 
             <h2 className='request-detail-title'>
-                {REQUEST_TYPE_LABELS[request.request_type] || request.request_type} — User #{request.user}
+                {REQUEST_TYPE_LABELS[request.request_type] || request.request_type} — {request.user?.email || `User #${request.user?.id}`}
             </h2>
             <p className='request-detail-date'>
                 Submitted {new Date(request.created_at).toLocaleDateString()}
