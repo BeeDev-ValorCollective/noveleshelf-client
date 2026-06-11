@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import useAuthStore from '../store/authStore'
-import { DB_API, ENDPOINTS } from '../utils/api'
-import './views.css'
+import useAuthStore from '../../store/authStore'
+import { DB_API, ENDPOINTS } from '../../utils/api'
+import '../views.css'
 
 export default function VerifyEmail() {
     const [searchParams] = useSearchParams()

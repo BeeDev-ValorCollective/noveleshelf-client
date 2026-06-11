@@ -1,6 +1,14 @@
 import { getMediaUrl } from '../../utils/api'
+import { useNavigate } from 'react-router-dom'
 
 export default function LibraryBookModal({ book, onClose }) {
+    const navigate = useNavigate()
+ 
+    const handleViewDetails = () => {
+        onClose()
+        navigate(`/library/${book.id}`)
+    }
+
     return (
         <div className='library-modal-overlay' onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className='library-modal'>
@@ -40,6 +48,9 @@ export default function LibraryBookModal({ book, onClose }) {
                         {book.description && (
                             <p className='library-modal-description'>{book.description}</p>
                         )}
+                        <button className='library-modal-details-btn' onClick={handleViewDetails}>
+                                View full details →
+                            </button>
 
                         <div className='library-modal-meta'>
                             <span>{book.published_chapter_count} chapter{book.published_chapter_count !== 1 ? 's' : ''}</span>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { DB_API, ENDPOINTS, getMediaUrl } from '../utils/api'
-import LibraryBookModal from '../components/LibraryComponents/LibraryBookModal'
-import LibraryEmptyState from '../components/LibraryComponents/LibraryEmptyState'
-import '../components/LibraryComponents/library.css'
+import { DB_API, ENDPOINTS, getMediaUrl } from '../../utils/api'
+import LibraryBookModal from '../../components/LibraryComponents/LibraryBookModal'
+import LibraryEmptyState from '../../components/LibraryComponents/LibraryEmptyState'
+import '../../components/LibraryComponents/library.css'
 
 export default function Library() {
     const [books, setBooks] = useState([])

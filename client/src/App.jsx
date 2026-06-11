@@ -10,20 +10,26 @@ import MaintenanceNotice from './components/MaintenanceNotice'
 import useUser from './hooks/useUser'
 
 const Home = React.lazy(() => import('./views/Home'))
-const Login = React.lazy(() => import('./views/Login'))
-const Signup = React.lazy(() => import('./views/Signup'))
-const VerifyEmail = React.lazy(() => import('./views/VerifyEmail'))
-const ResetPassword = React.lazy(() => import('./views/ResetPassword'))
-const NewPassword = React.lazy(() => import('./views/NewPassword'))
-const Dashboard = React.lazy(() => import('./views/Dashboard'))
-const Library = React.lazy(() => import('./views/Library'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
 const ForReaders = React.lazy(() => import('./views/ForReaders'))
-const Profile = React.lazy(() => import('./views/Profile'))
 const Contact = React.lazy(() => import('./views/Contact'))
 const Unsubscribe = React.lazy(() => import('./views/Unsubscribe'))
-const UpdateProfile = React.lazy(() => import('./views/UpdateProfile'))
 const ErrorPage = React.lazy(() => import('./views/ErrorPage'))
+
+// Auth Pages
+const Login = React.lazy(() => import('./views/AuthViews/Login'))
+const Signup = React.lazy(() => import('./views/AuthViews/Signup'))
+const VerifyEmail = React.lazy(() => import('./views/AuthViews/VerifyEmail'))
+const ResetPassword = React.lazy(() => import('./views/AuthViews/ResetPassword'))
+const NewPassword = React.lazy(() => import('./views/AuthViews/NewPassword'))
+
+// User Pages
+const Dashboard = React.lazy(() => import('./views/UserViews/Dashboard'))
+const Profile = React.lazy(() => import('./views/UserViews/Profile'))
+const UpdateProfile = React.lazy(() => import('./views/UserViews/UpdateProfile'))
+
+// Library Pages
+const Library = React.lazy(() => import('./views/LibraryViews/Library'))
 
 // Author Pages
 const CreateNewBook = React.lazy(() => import('./views/AuthorViews/CreateNewBook'))
