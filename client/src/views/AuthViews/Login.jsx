@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useAuthStore from "../store/authStore";
+import useAuthStore from "../../store/authStore";
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
 import AuthModal from "../../components/AuthComponents/AuthModal";
@@ -9,7 +9,7 @@ import InputField from "../../components/AuthComponents/InputField";
 import PrimaryButton from "../../components/AuthComponents/PrimaryButton";
 import useModalAuth from "../../hooks/useModalAuth";
 
-import "../components/AuthComponents/auth.css";
+import "../../components/AuthComponents/auth.css";
 
 
 export default function Login({ onClose, isModal, onSwitchToSignup }) {
