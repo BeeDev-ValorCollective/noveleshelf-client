@@ -1,4 +1,4 @@
-import { STATUS_LABELS, SORT_OPTIONS } from '../../utils/books'
+import { STATUS_LABELS, SORT_OPTIONS } from '../../../utils/books'
 
 export default function BooksFilterSort({ books, statusFilter, onStatusChange, sortValue, onSortChange }) {
     return (

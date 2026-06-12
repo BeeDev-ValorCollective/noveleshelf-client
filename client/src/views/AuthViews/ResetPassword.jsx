@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import AuthCard from "../components/AuthComponents/AuthCard";
-import InputField from "../components/AuthComponents/InputField";
-import PrimaryButton from "../components/AuthComponents/PrimaryButton";
+import AuthCard from "../../components/AuthComponents/AuthCard";
+import InputField from "../../components/AuthComponents/InputField";
+import PrimaryButton from "../../components/AuthComponents/PrimaryButton";
 
 import "../components/AuthComponents/auth.css";
 

@@ -35,6 +35,7 @@ export const ENDPOINTS = {
     referenceData: 'books/public/books/reference-data/',
     featured: 'books/public/featured/',
     library: 'books/public/books/',
+    publicBookDetail: (id) => `books/public/books/${id}/`,
 
     // ─── Books — Author ───────────────────────────────────────────
     bookCreate: 'books/author/books/create/',

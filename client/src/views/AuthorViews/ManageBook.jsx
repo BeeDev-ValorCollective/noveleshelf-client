@@ -116,10 +116,6 @@ export default function ManageBook() {
     if (error) return <p>{error}</p>
     if (!book) return null
 
-    fetch('http://localhost:8000/api/books/public/books/reference-data/')
-        .then(r => r.json())
-        .then(d => console.log(d))
-
     return (
         <div className='manage-book'>
             <div className='manage-book-header'>

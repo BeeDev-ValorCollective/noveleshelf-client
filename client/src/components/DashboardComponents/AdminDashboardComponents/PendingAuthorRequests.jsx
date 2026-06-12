@@ -27,7 +27,7 @@ export default function PendingAuthorRequests({ requests, isLoading, error }) {
                         {requests.map((req) => (
                             <tr key={req.id}>
                                 <td>{req.request_type.replace(/_/g, ' ')}</td>
-                                <td>#{req.user}</td>
+                                <td>{req.user?.email || `#${req.user?.id}`}</td>
                                 <td>{req.genre_interest || '—'}</td>
                                 <td>{new Date(req.created_at).toLocaleDateString()}</td>
                                 <td>

@@ -20,7 +20,9 @@ export default function CreateNewBook() {
         description: '',
         content_rating_id: '',
     })
-
+    const [coverFile, setCoverFile] = useState(null)
+    const [coverPreview, setCoverPreview] = useState(null)
+    const [coverError, setCoverError] = useState(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState(null)
 
@@ -28,7 +30,19 @@ export default function CreateNewBook() {
         setFormData((prev) => ({ ...prev, [field]: value }))
     }
 
-        const handleSubmit = async () => {
+    const handleCoverChange = (e) => {
+        const file = e.target.files[0]
+        if (!file) return
+        if (file.size > 5 * 1024 * 1024) {
+            setCoverError('Cover image must be under 5MB.')
+            return
+        }
+        setCoverError(null)
+        setCoverFile(file)
+        setCoverPreview(URL.createObjectURL(file))
+    }
+
+    const handleSubmit = async () => {
         setError(null)
 
         if (!formData.title.trim()) {
@@ -55,6 +69,9 @@ export default function CreateNewBook() {
         if (formData.content_rating_id) {
             payload.append('content_rating_id', formData.content_rating_id)
         }
+        if (coverFile) {
+            payload.append('cover_image', coverFile)
+        }
 
         try {
             const res = await fetch(`${DB_API}${ENDPOINTS.bookCreate}`, {
@@ -78,8 +95,8 @@ export default function CreateNewBook() {
             setIsSubmitting(false)
         }
     }
-    
-    return(
+
+    return (
         <div className="create-book">
             <div className="cb-header">
                 <h1 className="cb-title">Create a new book</h1>
@@ -101,6 +118,9 @@ export default function CreateNewBook() {
                     contentRatings={content_ratings}
                     isLoading={isLoading}
                     disabled={isSubmitting}
+                    coverPreview={coverPreview}
+                    onCoverChange={handleCoverChange}
+                    coverError={coverError}
                 />
 
                 {error && <p className="cb-alert cb-alert--error">{error}</p>}

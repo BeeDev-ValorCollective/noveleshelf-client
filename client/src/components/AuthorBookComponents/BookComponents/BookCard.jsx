@@ -1,4 +1,4 @@
-import { STATUS_LABELS } from '../../utils/books'
+import { STATUS_LABELS } from '../../../utils/books'
 
 export default function BookCard({ book, onClick, actions }) {
     const handleKeyDown = (e) => {

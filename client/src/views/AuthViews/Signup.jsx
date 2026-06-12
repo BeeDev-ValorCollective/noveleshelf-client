@@ -1,13 +1,13 @@
 import { useState } from "react";
-import useAuthStore from "../store/authStore";
-import { DB_API, ENDPOINTS } from '../utils/api'
+import useAuthStore from "../../store/authStore";
+import { DB_API, ENDPOINTS } from '../../utils/api'
 
-import AuthModal from "../components/AuthComponents/AuthModal";
-import AuthCard from "../components/AuthComponents/AuthCard";
-import AuthPage from "../components/AuthComponents/AuthPage";
-import InputField from "../components/AuthComponents/InputField";
-import PrimaryButton from "../components/AuthComponents/PrimaryButton";
-import useModalAuth from "../hooks/useModalAuth";
+import AuthModal from "../../components/AuthComponents/AuthModal";
+import AuthCard from "../../components/AuthComponents/AuthCard";
+import AuthPage from "../../components/AuthComponents/AuthPage";
+import InputField from "../../components/AuthComponents/InputField";
+import PrimaryButton from "../../components/AuthComponents/PrimaryButton";
+import useModalAuth from "../../hooks/useModalAuth";
 
 import "../components/AuthComponents/auth.css";
 

@@ -1,6 +1,6 @@
-import useUser from '../hooks/useUser'
-import useFullName from '../hooks/useFullName'
-import useAuthStore from '../store/authStore'
+import useUser from '../../hooks/useUser'
+import useFullName from '../../hooks/useFullName'
+import useAuthStore from '../../store/authStore'
 import { Link } from 'react-router-dom'
 
 export default function Profile() {
