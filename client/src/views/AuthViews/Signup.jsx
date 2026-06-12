@@ -9,7 +9,7 @@ import InputField from "../../components/AuthComponents/InputField";
 import PrimaryButton from "../../components/AuthComponents/PrimaryButton";
 import useModalAuth from "../../hooks/useModalAuth";
 
-import "../components/AuthComponents/auth.css";
+import "../../components/AuthComponents/auth.css";
 
 export default function Signup({ onClose, isModal, onSwitchToLogin }) {
   const setTokens = useAuthStore((state) => state.setTokens)

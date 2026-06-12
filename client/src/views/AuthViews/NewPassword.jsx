@@ -5,7 +5,7 @@ import AuthCard from "../../components/AuthComponents/AuthCard";
 import InputField from "../../components/AuthComponents/InputField";
 import PrimaryButton from "../../components/AuthComponents/PrimaryButton";
 
-import "../components/AuthComponents/auth.css";
+import "../../components/AuthComponents/auth.css";
 
 export default function NewPassword() {
   const { token } = useParams(); // get token from URL
