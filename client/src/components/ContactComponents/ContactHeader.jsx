@@ -23,13 +23,7 @@ export default function ContactHeader() {
                     </div>
                 </div>
             </div>
-            <div className="message_hr">
-                <hr />
-                <p>
-                    Or send us a message
-                </p>
-                <p>(To make sure you don’t miss any messages, please add us to your email contacts. That way, our emails will drive straight into your inbox!)</p>
-            </div>
+
         </>
     );
 };

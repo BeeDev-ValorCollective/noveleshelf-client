@@ -50,3 +50,6 @@
     align-items: flex-start;
     margin: 1em;
 }
+a {
+    color: var(--text-primary);
+}

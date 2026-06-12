@@ -79,6 +79,13 @@ export default function ContactUs() {
 
     return (
         <div className="contact_container">
+            <div className="message_hr">
+                <hr />
+                <p>
+                    Or send us a message
+                </p>
+                <p>(To make sure you don’t miss any messages, please add us to your email contacts. That way, our emails will drive straight into your inbox!)</p>
+            </div>
             <h2>Send us a Message</h2>
             <form onSubmit={sendMail} className='contact_form'>
                 <div className="contact_inputs">
