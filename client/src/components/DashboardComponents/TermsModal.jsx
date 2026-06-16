@@ -1,5 +1,8 @@
 import { useState } from "react"
 
+const FREE_AUTHOR_AGREEMENT_VIEW_URL = "https://docs.google.com/document/d/153aPeE6QDBH_8gUWRinpC4RQNuYCSldw/edit?usp=sharing&ouid=100577313488847648002&rtpof=true&sd=true/view"
+const FREE_AUTHOR_AGREEMENT_PREVIEW_URL = "https://docs.google.com/document/d/153aPeE6QDBH_8gUWRinpC4RQNuYCSldw/edit?usp=sharing&ouid=100577313488847648002&rtpof=true&sd=true/preview"
+
 const TERMS = {
     free_author: {
         title: 'Free Author Terms',
@@ -52,8 +55,22 @@ const TERMS = {
 
 export default function TermsModal({ role, onAgree, onClose, hasPaidAuthor }) {
     const [checked, setChecked] = useState(false)
+    const [hasScrolledAgreement, setHasScrolledAgreement] = useState(false)
     const terms = TERMS[role]
     if (!terms) return null
+
+    const requiresAgreementScroll = role === 'free_author'
+
+    const handleAgreementScroll = (e) => {
+        const el = e.currentTarget
+        const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 8
+
+        if (atBottom) {
+            setHasScrolledAgreement(true)
+        }
+    }
+
+    const canCheckTerms = !requiresAgreementScroll || hasScrolledAgreement
 
     return (
         <div className='modal-overlay' onClick={(e) => e.target === e.currentTarget && onClose()}>
@@ -77,12 +94,45 @@ export default function TermsModal({ role, onAgree, onClose, hasPaidAuthor }) {
                     ))}
                 </ul>
 
+                {role === 'free_author' && (
+                <>
+                    <p className='section-note'>
+                        Please review the full Free Author Publishing Agreement before continuing.
+                    </p>
+                    <a
+                        href={FREE_AUTHOR_AGREEMENT_VIEW_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open the agreement in a new tab
+                    </a>
+
+                    <div
+                        className='agreement-scroll-box'
+                        onScroll={handleAgreementScroll}
+                    >
+                        <iframe
+                            src={FREE_AUTHOR_AGREEMENT_PREVIEW_URL}
+                            title="Free Author Publishing Agreement"
+                            className="agreement-frame"
+                        />
+                    </div>
+
+                    {!hasScrolledAgreement && (
+                        <p className='section-note'>
+                            Scroll to the bottom of the agreement to enable the checkbox.
+                        </p>
+                    )}
+                </>
+            )}
+
                 <div className='bff-field bff-field--toggle'>
                     <label className='bff-label bff-label--toggle' htmlFor='terms-checkbox'>
                         <input
                             id='terms-checkbox'
                             type='checkbox'
                             checked={checked}
+                            disabled={!canCheckTerms}
                             onChange={(e) => setChecked(e.target.checked)}
                         />
                         I have read and agree to the above terms
