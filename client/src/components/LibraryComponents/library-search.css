@@ -278,3 +278,31 @@
 .library-filter-apply:hover {
     opacity: 0.9;
 }
+@media (max-width: 700px) {
+    .library-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .library-header-text {
+        text-align: center;
+    }
+
+    .library-header-text h1,
+    .library-header-text p {
+        text-align: center;
+    }
+
+    .library-search-row {
+        width: 100%;
+        margin: auto;
+    }
+
+    .library-search-bar {
+        min-width: 0;
+    }
+
+    .library-header-text h1 {
+        font-size: 2.25rem;
+    }
+}
