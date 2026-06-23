@@ -112,7 +112,7 @@ export default function TermsModal({ role, onAgree, onClose, hasPaidAuthor }) {
                         onScroll={handleAgreementScroll}
                     >
                         <iframe
-                            src={FREE_AUTHOR_AGREEMENT_PREVIEW_URL}
+                            src="/agreement/free-author"
                             title="Free Author Publishing Agreement"
                             className="agreement-frame"
                         />
