@@ -1,0 +1,43 @@
+.agreement-page {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    color: var(--text-primary);
+
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+
+    border-radius: var(--card-radius);
+
+    line-height: 1.7;
+}
+
+.agreement-page h1 {
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.agreement-page h2 {
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.agreement-page p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.agreement-page li {
+    color: var(--text-secondary);
+}
+
+.agreement-page a {
+    color: var(--accent-coral);
+}
