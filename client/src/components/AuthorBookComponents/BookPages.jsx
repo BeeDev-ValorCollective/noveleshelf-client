@@ -1,10 +1,10 @@
 import BookPageCard from './BookPageCard'
 
 const PAGE_TYPE_LABELS = {
-    prologue: 'Prologue',
-    authors_note: "Author's Note",
     dedication: 'Dedication',
     acknowledgements: 'Acknowledgements',
+    authors_note: "Author's Note",
+    prologue: 'Prologue',
     next_book_teaser: 'Next Book Teaser',
 }
 
@@ -16,8 +16,16 @@ export default function BookPages({ book, authorType, accessToken, onBookUpdated
     return (
         <section className='manage-book-section'>
             <p className='section-note'>
-                Add optional pages to your book — prologue, dedication, author's note and more. These are always free for readers.
+                Add optional pages to your book — these are always free for readers. They'll appear in this fixed order when readers open your book:
             </p>
+            <ol className='page-order-guide'>
+                <li>Dedication</li>
+                <li>Acknowledgements</li>
+                <li>Author's Note</li>
+                <li>Prologue</li>
+                <li><strong>Your chapters</strong>, in chapter order</li>
+                <li>Next Book Teaser</li>
+            </ol>
             <div className='book-pages-list'>
                 {PAGE_TYPES.map(type => (
                     <BookPageCard

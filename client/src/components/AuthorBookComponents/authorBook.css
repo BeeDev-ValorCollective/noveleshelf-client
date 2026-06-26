@@ -609,6 +609,48 @@
     color: var(--accent-teal);
 }
 
+/* ─── Page Order Guide ───────────────────────────────────────── */
+.page-order-guide {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    width: 100%;
+    margin: 0;
+    padding: 1em 1.2em;
+    list-style: none;
+    counter-reset: page-order;
+    background-color: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+}
+.page-order-guide li {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    counter-increment: page-order;
+    color: var(--text-secondary);
+    font-size: clamp(0.82rem, 1.2vw, 0.9em);
+    font-family: "Merienda", cursive;
+}
+.page-order-guide li::before {
+    content: counter(page-order);
+    flex-shrink: 0;
+    width: 1.6em;
+    height: 1.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(104,185,185,0.12);
+    color: var(--accent-teal);
+    border-radius: 50%;
+    font-family: "Fredericka the Great", serif;
+    font-size: 0.85em;
+}
+.page-order-guide li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
 /* ─── Book Pages List ────────────────────────────────────────── */
 .book-pages-list {
     display: flex;
