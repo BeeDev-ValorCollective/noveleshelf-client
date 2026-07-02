@@ -4,6 +4,7 @@ import LibraryBookModal from '../../components/LibraryComponents/LibraryBookModa
 import LibraryEmptyState from '../../components/LibraryComponents/LibraryEmptyState'
 import LibrarySearchBar from '../../components/LibraryComponents/LibrarySearchBar'
 import LibraryFilterPanel from '../../components/LibraryComponents/LibraryFilterPanel'
+import LibraryAuthorModal from '../../components/LibraryComponents/LibraryAuthorModal'
 import '../../components/LibraryComponents/library.css'
 import '../../components/LibraryComponents/library-search.css'
 import '../../components/LibraryComponents/library-authors.css'
@@ -34,6 +35,7 @@ export default function Library() {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
     const [selectedBook, setSelectedBook] = useState(null)
+    const [selectedAuthor, setSelectedAuthor] = useState(null)
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
 
@@ -112,7 +114,7 @@ export default function Library() {
         if (newView === view) return
         const emptyFilters = newView === 'books' ? { ...EMPTY_BOOK_FILTERS } : { ...EMPTY_AUTHOR_FILTERS }
         const newOrder = DEFAULT_ORDER[newView]
-        setResults([])  // clear immediately so old results don't bleed through
+        setResults([])
         setView(newView)
         setOrder(newOrder)
         setSearchQuery('')
@@ -120,6 +122,7 @@ export default function Library() {
         setPendingFilters(emptyFilters)
         setFilterPanelOpen(false)
         setSelectedBook(null)
+        setSelectedAuthor(null)
         fetchResults(1, '', emptyFilters, newView, newOrder)
     }
 
@@ -198,7 +201,11 @@ export default function Library() {
                     ) : (
                         <ul className='author-grid'>
                             {results.map((author) => (
-                                <li key={`${author.author_type}-${author.id}`} className='author-card'>
+                                <li
+                                    key={`${author.author_type}-${author.id}`}
+                                    className='author-card'
+                                    onClick={() => setSelectedAuthor(author)}
+                                >
                                     <div className='author-card-avatar'>
                                         {author.avatar_url
                                             ? <img src={getMediaUrl(author.avatar_url)} alt={author.display_name} />
@@ -252,6 +259,14 @@ export default function Library() {
                 <LibraryBookModal
                     book={selectedBook}
                     onClose={() => setSelectedBook(null)}
+                    backTo='/library'
+                />
+            )}
+
+            {selectedAuthor && (
+                <LibraryAuthorModal
+                    author={selectedAuthor}
+                    onClose={() => setSelectedAuthor(null)}
                 />
             )}
         </div>

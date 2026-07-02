@@ -1,12 +1,12 @@
 import { getMediaUrl } from '../../utils/api'
 import { useNavigate } from 'react-router-dom'
 
-export default function LibraryBookModal({ book, onClose }) {
+export default function LibraryBookModal({ book, onClose, backTo = '/library' }) {
     const navigate = useNavigate()
 
     const handleViewDetails = () => {
         onClose()
-        navigate(`/library/${book.id}`)
+        navigate(`/library/${book.id}`, { state: { backTo } })
     }
 
     return (

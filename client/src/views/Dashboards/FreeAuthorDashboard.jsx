@@ -1,3 +1,5 @@
+import { Navigate } from 'react-router-dom'
+
 import ProfileHeader from "../../components/DashboardComponents/ProfileHeader"
 import AuthorUpgradeSection from '../../components/DashboardComponents/AuthorUpgradeSection'
 import PublishedWorks from '../../components/DashboardComponents/FreeAuthorDashboardComponents/PublishedWorks'
@@ -24,6 +26,9 @@ export default function FreeAuthorDashboard() {
             changesRequestedBooks,
             loading
         } = useAuthorBooks()
+
+    if (!user) return <p>Loading...</p>
+    if (!currentProfile?.author_username) return <Navigate to='/set-author-username' replace />
 
 
     return(

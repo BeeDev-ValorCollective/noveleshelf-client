@@ -1,3 +1,5 @@
+import { Navigate } from 'react-router-dom'
+
 import useUser from '../../hooks/useUser'
 import useFullName from '../../hooks/useFullName'
 import useAuthStore from '../../store/authStore'
@@ -30,6 +32,7 @@ export default function AuthorDashboard() {
     const fullName = useFullName()
 
     if (!user) return <p>Loading...</p>
+    if (!currentProfile?.author_username) return <Navigate to='/set-author-username' replace />
 
 
     return (

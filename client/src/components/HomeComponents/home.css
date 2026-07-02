@@ -77,6 +77,7 @@
     font-family: "Merienda", cursive;
 }
 
+
 /* Grids */
 .offering_grid,
 .featured_grid,
@@ -84,6 +85,11 @@
     margin-top: 3rem;
     display: grid;
     gap: 2rem;
+}
+.featured_grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .offering_grid {
     grid-template-columns: 

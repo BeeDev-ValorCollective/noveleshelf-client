@@ -36,6 +36,8 @@ export const ENDPOINTS = {
     featured: 'books/public/featured/',
     library: 'books/public/books/',
     publicBookDetail: (id) => `books/public/books/${id}/`,
+    authors: 'public/authors/',
+    publicAuthorDetail: (username) => `public/authors/${username}/`,
 
     // ─── Books — Author ───────────────────────────────────────────
     bookCreate: 'books/author/books/create/',

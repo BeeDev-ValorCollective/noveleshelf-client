@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+
 
 import Text from '../components/HomeComponents/TextSection'
 import Offerings from '../components/HomeComponents/Offerings'
