@@ -197,7 +197,21 @@
     z-index: 11;
     white-space: nowrap;
 }
-
+.book-founding-star {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    height: 40px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    background: #ffffff85;
+    /* background: linear-gradient(135deg, var(--accent-coral), var(--accent-teal)); */
+    color: #ffd900;
+    font-size: 1.7rem;
+    z-index: 12;
+    text-shadow: 0 1px 2px #00000099;
+    box-shadow: 0 1px 2px #00000099;
+}
 .book-new-badge {
     position: absolute;
     top: 10%;

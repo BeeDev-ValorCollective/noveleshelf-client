@@ -62,7 +62,7 @@ export default function CreateEditBookPage() {
             })
             const data = await res.json()
             if (res.ok) {
-                navigate(`/author/books/${bookId}/manage`)
+                navigate(`/author/books/${bookId}/manage#manage-pages`)
             } else {
                 setError(data.error || 'Could not save page.')
             }
@@ -76,7 +76,7 @@ export default function CreateEditBookPage() {
     return (
         <div className='create-chapter'>
             <div className='manage-book-header'>
-                <button onClick={() => navigate(`/author/books/${bookId}/manage`)}>← Back to book</button>
+                <button onClick={() => navigate(`/author/books/${bookId}/manage#manage-pages`)}>← Back to book</button>
                 <h1>{isEditing ? `Edit ${label}` : `Add ${label}`}</h1>
             </div>
 
@@ -93,7 +93,7 @@ export default function CreateEditBookPage() {
                 {error && <p className='form-error'>{error}</p>}
 
                 <div className='create-chapter-actions'>
-                    <button onClick={() => navigate(`/author/books/${bookId}/manage`)} disabled={isSubmitting}>
+                    <button onClick={() => navigate(`/author/books/${bookId}/manage#manage-pages`)} disabled={isSubmitting}>
                         Cancel
                     </button>
                     <button onClick={handleSave} disabled={isSubmitting}>

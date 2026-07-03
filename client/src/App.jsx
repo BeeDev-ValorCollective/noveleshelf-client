@@ -8,6 +8,7 @@ import ProtectedRoute from './components/AuthComponents/ProtectedRoute';
 import VerificationBanner from './components/BaseComponents/VerificationBanner';
 import MaintenanceNotice from './components/MaintenanceNotice'
 import useUser from './hooks/useUser'
+import ScrollToTop from './components/ScrollToTop'
 
 const Home = React.lazy(() => import('./views/Home'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
@@ -72,6 +73,7 @@ function AppContent() {
 
   return (
     <>
+      <ScrollToTop />
       <MaintenanceNotice />
       <Header
         onLoginClick={() => setModal('login')}

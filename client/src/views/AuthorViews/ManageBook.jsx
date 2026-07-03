@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import useAuthStore from '../../store/authStore'
 import useBookReferenceData from '../../hooks/useBookReferenceData'
 import BookDetails from '../../components/AuthorBookComponents/BookDetails'
@@ -15,6 +15,7 @@ import '../../components/AuthorBookComponents/authorBook.css'
 export default function ManageBook() {
     const { bookId } = useParams()
     const navigate = useNavigate()
+    const location = useLocation()
     const accessToken = useAuthStore((state) => state.accessToken)
     const currentRole = useAuthStore((state) => state.currentRole)
 
@@ -80,6 +81,15 @@ export default function ManageBook() {
         }
     }, [bookId, accessToken])
 
+    useEffect(() => {
+        if (!isLoading && !chaptersLoading && location.hash) {
+            const el = document.getElementById(location.hash.slice(1))
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+        }
+    }, [isLoading, chaptersLoading, location.hash])
+
     const [isDeleting, setIsDeleting] = useState(false)
     const [deleteError, setDeleteError] = useState(null)
 
@@ -142,7 +152,7 @@ export default function ManageBook() {
                 onBookUpdated={setBook}
             />
 
-            <section className='manage-book-section'>
+            <section className='manage-book-section' id='manage-chapters'>
                 <h2>Chapters</h2>
                 <BookChapterList
                     chapters={chapters}
@@ -155,7 +165,7 @@ export default function ManageBook() {
                 />
             </section>
 
-            <section className='manage-book-section'>
+            <section className='manage-book-section' id='manage-pages'>
                 <h2>Book Pages</h2>
                 <BookPages
                     book={book}

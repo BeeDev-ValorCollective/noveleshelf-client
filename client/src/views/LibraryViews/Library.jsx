@@ -156,6 +156,8 @@ export default function Library() {
 
     const activeFilterCount = Object.values(activeFilters).filter(Boolean).length
 
+    console.log('RESULTS:', results)
+
     if (isLoading && page === 1 && results.length === 0) return <LibraryEmptyState loading />
     if (error) return <p className='library-error'>{error}</p>
 
@@ -194,6 +196,9 @@ export default function Library() {
                                     <span className='bookTitle'>{book.title}</span>
                                     {book.is_complete && (
                                         <span className='book-complete-badge'>✓ Complete</span>
+                                    )}
+                                    {book.is_founding_eligible && (
+                                        <span className='book-founding-star' title='Founding Author Book'>★</span>
                                     )}
                                 </li>
                             ))}

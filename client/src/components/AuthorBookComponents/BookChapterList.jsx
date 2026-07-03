@@ -88,7 +88,7 @@ export default function BookChapterList({ chapters, isLoading, error, bookId, bo
             {actionError && <p className='form-error'>{actionError}</p>}
             <div className='chapter-list-items'>
                 {chapters.map((chapter) => (
-                    <div key={chapter.id} className='chapter-list-item'>
+                    <div key={chapter.id} className='chapter-list-item' id={`chapter-${chapter.id}`}>
                         <div className='chapter-list-item-info'>
                             <span className='chapter-list-title'>{chapter.display_title}</span>
                             <span className='chapter-list-meta'>

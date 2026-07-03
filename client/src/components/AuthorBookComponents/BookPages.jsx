@@ -23,7 +23,7 @@ export default function BookPages({ book, authorType, accessToken, onBookUpdated
                 <li>Acknowledgements</li>
                 <li>Author's Note</li>
                 <li>Prologue</li>
-                <li><strong>Your chapters</strong>, in chapter order</li>
+                <li><strong>Your chapters</strong>- in chapter order</li>
                 <li>Next Book Teaser</li>
             </ol>
             <div className='book-pages-list'>
