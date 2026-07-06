@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { UserStar } from 'lucide-react'
 import { DB_API, ENDPOINTS, getMediaUrl } from '../../utils/api'
 import LibraryBookModal from '../../components/LibraryComponents/LibraryBookModal'
 import LibraryEmptyState from '../../components/LibraryComponents/LibraryEmptyState'
@@ -198,7 +199,7 @@ export default function Library() {
                                         <span className='book-complete-badge'>✓ Complete</span>
                                     )}
                                     {book.is_founding_eligible && (
-                                        <span className='book-founding-star' title='Founding Author Book'>★</span>
+                                        <span className='book-founding-star' title='Founding Author Book'><UserStar color="#ffd900" /></span>
                                     )}
                                 </li>
                             ))}

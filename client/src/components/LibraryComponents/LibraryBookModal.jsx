@@ -1,5 +1,6 @@
 import { getMediaUrl } from '../../utils/api'
 import { useNavigate } from 'react-router-dom'
+import { UserStar } from 'lucide-react'
 
 export default function LibraryBookModal({ book, onClose, backTo = '/library' }) {
     const navigate = useNavigate()
@@ -29,10 +30,11 @@ export default function LibraryBookModal({ book, onClose, backTo = '/library' })
                         <h2 className='library-modal-title'>{book.title}</h2>
                         <p className='library-modal-author'>
                             by {book.author?.display_name || 'Unknown Author'}
-                            {book.is_founding_eligible && (
-                                <span className='book-founding-badge'>   ⭐ Founding Author Book</span>
-                            )}
+                            
                         </p>
+                        <p className='library-modal-author'>{book.is_founding_eligible && (
+                                <span className='book-founding-badge'><UserStar color="#ffd900" /> Founding Author Book</span>
+                            )}</p>
 
 
                         {book.content_rating && (

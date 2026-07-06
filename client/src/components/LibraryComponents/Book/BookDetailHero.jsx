@@ -1,4 +1,5 @@
 import { getMediaUrl } from '../../../utils/api'
+import { UserStar } from 'lucide-react'
 
 export default function BookDetailHero({ book }) {
     const { author } = book
@@ -26,7 +27,7 @@ export default function BookDetailHero({ book }) {
                     <p className='bd-author'>by {author.display_name}</p>
 
                 )}{book.is_founding_eligible && (
-                    <span className='bd-founding-badge'>⭐ Founding Author Book</span>
+                    <span className='bd-founding-badge'><UserStar color="#ffd900" /> Founding Author Book</span>
                 )}
 
                 <div className='bd-meta-row'>
