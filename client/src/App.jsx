@@ -6,8 +6,9 @@ import Header from './components/BaseComponents/Header'
 import Footer from './components/BaseComponents/Footer'
 import ProtectedRoute from './components/AuthComponents/ProtectedRoute';
 import VerificationBanner from './components/BaseComponents/VerificationBanner';
-import MaintenanceNotice from './components/MaintenanceNotice' 
+import MaintenanceNotice from './components/MaintenanceNotice'
 import useUser from './hooks/useUser'
+import ScrollToTop from './components/ScrollToTop'
 
 const Home = React.lazy(() => import('./views/Home'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
@@ -39,6 +40,7 @@ const ManageBook = React.lazy(() => import('./views/AuthorViews/ManageBook'))
 const CreateNewChapter = React.lazy(() => import('./views/AuthorViews/CreateNewChapter'))
 const EditChapter = React.lazy(() => import('./views/AuthorViews/EditChapter'))
 const CreateEditBookPage = React.lazy(() => import('./views/AuthorViews/CreateEditBookPage'))
+const SetAuthorUsername = React.lazy(() => import('./views/AuthorViews/SetAuthorUsername'))
 
 // Admin Pages
 const AdminAuthorRequests = React.lazy(() => import('./views/AdminViews/AdminAuthorRequests'))
@@ -71,7 +73,8 @@ function AppContent() {
 
   return (
     <>
-      <MaintenanceNotice />  
+      <ScrollToTop />
+      <MaintenanceNotice />
       <Header
         onLoginClick={() => setModal('login')}
         onSignupClick={() => setModal('signup')}
@@ -120,6 +123,11 @@ function AppContent() {
           {/* Reader */}
 
           {/* Author */}
+          <Route path='/set-author-username' element={
+            <ProtectedRoute allowedRoles={['author', 'free_author']}>
+              <SetAuthorUsername />
+            </ProtectedRoute>
+          } />
           <Route path="author/create-book" element={
             <ProtectedRoute allowedRoles={['author', 'free_author']}>
               <CreateNewBook />

@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import { getMediaUrl } from '../../utils/api'
 import './home.css'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import LibraryBookModal from '../LibraryComponents/LibraryBookModal'
 
 export default function Featured() {
     const [featuredBooks, setFeaturedBooks] = useState([])
     const [featuredAuthors, setFeaturedAuthors] = useState([])
     const [loading, setLoading] = useState(true)
     const [jsonError, setJsonError] = useState(null)
+    const [selectedBook, setSelectedBook] = useState(null)
 
     useEffect(() => {
         fetch(`${DB_API}${ENDPOINTS.featured}`)
@@ -38,8 +40,11 @@ export default function Featured() {
                 ) : (
                     <div className="featured_grid">
                         {featuredBooks.map((book) => (
-                            
-                            <div className="feature" key={book.id}>
+                            <div
+                                className="feature feature--clickable"
+                                key={book.id}
+                                onClick={() => setSelectedBook(book)}
+                            >
                                 <img src={getMediaUrl(book.cover_image)} alt={book.title} className='featured-book-cover'/>
                                 <h3>{book.title}</h3>
                                 <p>{book.author?.display_name}</p>
@@ -66,6 +71,14 @@ export default function Featured() {
                     </div>
                 )}
             </div>
+
+            {selectedBook && (
+                <LibraryBookModal
+                    book={selectedBook}
+                    onClose={() => setSelectedBook(null)}
+                    backTo='/'
+                />
+            )}
         </div>
     )
 }

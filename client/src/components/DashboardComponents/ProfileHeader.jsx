@@ -7,7 +7,7 @@ import './dashboard.css'
 
 export default function ProfileHeader({ user, currentProfile, fullName, currentRole }) {
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
-    
+
     const displayRole = currentRole || localStorage.getItem('current_role')
 
     if (import.meta.env.DEV) {
@@ -41,6 +41,9 @@ export default function ProfileHeader({ user, currentProfile, fullName, currentR
                                 <span className='badge badge-pro'>
                                     {currentRole === 'author' ? 'Paid Author' : 'Free Author'}
                                 </span>
+                            )}
+                            {currentRole === 'author' && currentProfile?.founding_author && (
+                                <span className='badge badge-founding'>⭐ Founding Author</span>
                             )}
                         </div>
 

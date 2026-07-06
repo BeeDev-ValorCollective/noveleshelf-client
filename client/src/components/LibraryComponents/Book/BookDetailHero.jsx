@@ -24,6 +24,9 @@ export default function BookDetailHero({ book }) {
 
                 {author && (
                     <p className='bd-author'>by {author.display_name}</p>
+
+                )}{book.is_founding_eligible && (
+                    <span className='bd-founding-badge'>⭐ Founding Author Book</span>
                 )}
 
                 <div className='bd-meta-row'>

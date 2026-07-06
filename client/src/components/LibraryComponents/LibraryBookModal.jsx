@@ -1,12 +1,12 @@
 import { getMediaUrl } from '../../utils/api'
 import { useNavigate } from 'react-router-dom'
 
-export default function LibraryBookModal({ book, onClose }) {
+export default function LibraryBookModal({ book, onClose, backTo = '/library' }) {
     const navigate = useNavigate()
 
     const handleViewDetails = () => {
         onClose()
-        navigate(`/library/${book.id}`)
+        navigate(`/library/${book.id}`, { state: { backTo } })
     }
 
     return (
@@ -29,7 +29,11 @@ export default function LibraryBookModal({ book, onClose }) {
                         <h2 className='library-modal-title'>{book.title}</h2>
                         <p className='library-modal-author'>
                             by {book.author?.display_name || 'Unknown Author'}
+                            {book.is_founding_eligible && (
+                                <span className='book-founding-badge'>   ⭐ Founding Author Book</span>
+                            )}
                         </p>
+
 
                         {book.content_rating && (
                             <span className='library-modal-rating'>

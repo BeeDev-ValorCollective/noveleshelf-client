@@ -1,0 +1,122 @@
+.set-username-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+    margin: 0 auto;
+}
+
+.set-username-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    width: 100%;
+    max-width: 540px;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    backdrop-filter: blur(14px);
+}
+
+.set-username-card h1 {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    font-weight: 500;
+    margin: 0;
+    background: linear-gradient(135deg, var(--accent-coral), var(--accent-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: "Fredericka the Great", serif;
+}
+
+.set-username-card > p {
+    color: var(--text-secondary);
+    font-size: clamp(0.88rem, 1.3vw, 0.95rem);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.set-username-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    width: 100%;
+}
+
+.set-username-field label {
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    font-family: "Fredericka the Great", serif;
+}
+
+.set-username-hint {
+    color: rgba(255,255,255,0.35);
+    font-size: clamp(0.75rem, 1vw, 0.82rem);
+    margin: 0;
+}
+
+.set-username-field input {
+    background-color: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    padding: 0.75em 1em;
+    width: 100%;
+    transition: var(--transition);
+    font-family: "Merienda", cursive;
+    outline: none;
+}
+
+.set-username-field input:focus {
+    border-color: var(--accent-teal);
+    background-color: rgba(255,255,255,0.08);
+}
+
+.set-username-field input::placeholder {
+    color: rgba(255,255,255,0.3);
+}
+
+.set-username-error {
+    color: var(--accent-coral);
+    font-size: clamp(0.85rem, 1.2vw, 0.9em);
+    margin: 0;
+}
+
+.set-username-btn {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-coral);
+    padding: 0.8em 2em;
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.set-username-btn:hover {
+    background-color: var(--accent-coral);
+    color: var(--text-primary);
+}
+
+.set-username-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.set-username-btn:disabled:hover {
+    background-color: transparent;
+}
+
+@media (max-width: 480px) {
+    .set-username-card {
+        padding: 1.5rem;
+    }
+}

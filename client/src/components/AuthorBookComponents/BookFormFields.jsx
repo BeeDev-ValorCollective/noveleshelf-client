@@ -22,7 +22,7 @@ export default function BookFormFields({ formData, onChange, contentRatings, isL
                     disabled={disabled}
                 />
                 {coverError && <p className="bff-error">{coverError}</p>}
-                <p className="bff-hint">Leave blank to keep the current cover. Max 5MB.</p>
+                <p className="bff-hint">Leave blank to keep the current cover. Max 2MB.</p>
             </div>
 
             <div className="bff-field">

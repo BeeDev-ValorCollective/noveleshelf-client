@@ -1,4 +1,5 @@
 export default function LibraryFilterPanel({
+    view,
     referenceData,
     pendingFilters,
     setPendingFilters,
@@ -49,22 +50,31 @@ export default function LibraryFilterPanel({
         <div className='library-filter-overlay' onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className='library-filter-panel'>
                 <div className='library-filter-header'>
-                    <h3>Filter the shelf</h3>
+                    <h3>{view === 'authors' ? 'Filter authors' : 'Filter the shelf'}</h3>
                     <button className='library-filter-close' onClick={onClose}>✕</button>
                 </div>
 
                 <div className='library-filter-body'>
-                    {renderChipSection('Genre', referenceData?.genres, 'genre')}
-                    {renderChipSection('Content rating', referenceData?.content_ratings, 'content_rating', 'code')}
-                    {renderChipSection('Relationship', referenceData?.relationship_tags, 'relationship_tag')}
-                    {renderChipSection('Keywords', referenceData?.keywords, 'keyword')}
-
-                    <div className='library-filter-section'>
-                        <h4>Status</h4>
-                        {renderToggle('New releases', 'is_new')}
-                        {renderToggle('Complete', 'is_complete')}
-                        {renderToggle('Featured', 'is_featured')}
-                    </div>
+                    {view === 'authors' ? (
+                        <div className='library-filter-section'>
+                            <h4>Show</h4>
+                            {renderToggle('Featured authors', 'is_featured')}
+                            {renderToggle('Founding authors', 'is_founding_author')}
+                        </div>
+                    ) : (
+                        <>
+                            {renderChipSection('Genre', referenceData?.genres, 'genre')}
+                            {renderChipSection('Content rating', referenceData?.content_ratings, 'content_rating', 'code')}
+                            {renderChipSection('Relationship', referenceData?.relationship_tags, 'relationship_tag')}
+                            {renderChipSection('Keywords', referenceData?.keywords, 'keyword')}
+                            <div className='library-filter-section'>
+                                <h4>Status</h4>
+                                {renderToggle('New releases', 'is_new')}
+                                {renderToggle('Complete', 'is_complete')}
+                                {renderToggle('Featured', 'is_featured')}
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 <div className='library-filter-footer'>

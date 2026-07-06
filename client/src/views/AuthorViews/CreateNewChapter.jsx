@@ -64,7 +64,7 @@ export default function CreateNewChapter() {
             })
             const data = await res.json()
             if (res.ok) {
-                navigate(`/author/books/${bookId}/manage`)
+                navigate(`/author/books/${bookId}/manage#manage-chapters`)
             } else {
                 setError(data.error || 'Could not create chapter.')
             }
@@ -78,11 +78,16 @@ export default function CreateNewChapter() {
     return (
         <div className="create-chapter">
             <div className="manage-book-header">
-                <button onClick={() => navigate(`/author/books/${bookId}/manage`)}>← Back to book</button>
+                <button onClick={() => navigate(`/author/books/${bookId}/manage#manage-chapters`)}>← Back to book</button>
                 <h1>Add New Chapter</h1>
             </div>
 
             <div className="create-chapter-form">
+                <div className="create-chapter-actions">
+                    <button onClick={handleSubmit} disabled={isSubmitting}>
+                        {isSubmitting ? 'Saving...' : 'Save Chapter'}
+                    </button>
+                </div>
 
                 <div className="bff-field">
                     <label className="bff-label" htmlFor="title">Title <span className="bff-hint-inline">(optional)</span></label>
@@ -128,8 +133,8 @@ export default function CreateNewChapter() {
                 {error && <p className="form-error">{error}</p>}
 
                 <div className="create-chapter-actions">
-                    <button onClick={() => navigate(`/author/books/${bookId}/manage`)} disabled={isSubmitting}>
-                        Cancel
+                    <button onClick={() => navigate(`/author/books/${bookId}/manage#manage-chapters`)} disabled={isSubmitting}>
+                        ← Back to book
                     </button>
                     <button onClick={handleSubmit} disabled={isSubmitting}>
                         {isSubmitting ? 'Saving...' : 'Save Chapter'}
