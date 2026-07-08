@@ -396,6 +396,24 @@
     margin: 0 0 12px;
 }
 
+.library-modal-details-btn {
+    padding: 0.5rem 0.75rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: var(--transition);
+    font-family: "Fredericka the Great", serif;
+    background: linear-gradient(135 deg, var(--accent-coral), var(--accent-purple));
+    border: 1px solid var(--accent-coral);
+    color: white;
+}
+
+.library-modal-details-btn:hover {
+    background: var(--accent-coral);
+}
+
 .library-modal-meta {
     display: flex;
     gap: 12px;
