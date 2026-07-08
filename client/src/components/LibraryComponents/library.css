@@ -414,6 +414,10 @@
     background: var(--accent-coral);
 }
 
+.disabled { 
+    display: none;
+}
+
 .library-modal-meta {
     display: flex;
     gap: 12px;

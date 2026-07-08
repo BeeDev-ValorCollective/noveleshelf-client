@@ -1,0 +1,109 @@
+.ad-hero-section {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 3rem;
+    background: #ffffff0a;
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.05);
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+.ad-avatar-frame {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 20px rgba(125, 85, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.ad-avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ad-avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-secondary);
+    color: var(--accent-teal);
+    font-size: 3.5rem;
+    font-weight: bold;
+    font-family: "Merienda", cursive;
+}
+
+.ad-profile-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ad-name-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.ad-name-row h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+}
+
+.ad-handle {
+    color: var(--accent-coral);
+    font-weight: 500;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.ad-bio {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+    font-size: 1.05rem;
+    max-width: 800px;
+}
+
+.ad-section-title {
+    font-family: "Merienda", cursive;
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.ad-no-books {
+    text-align: center;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--card-radius);
+    color: var(--text-secondary);
+    border: 1px dashed var(--border-color);
+}
+
+/* RESPONSIVE DESIGN (Media Queries) */
+
+@media (max-width: 800px) {
+    .ad-hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .ad-name-row {
+        justify-content: center;
+        gap: 1rem;
+    }
+}

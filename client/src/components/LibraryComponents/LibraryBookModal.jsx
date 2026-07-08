@@ -7,7 +7,7 @@ export default function LibraryBookModal({ book, onClose, backTo = '/library' })
 
     const handleViewDetails = () => {
         onClose()
-        navigate(`/library/${book.id}`, { state: { backTo } })
+        navigate(`/library/book/${book.id}`, { state: { backTo } })
     }
 
     return (
