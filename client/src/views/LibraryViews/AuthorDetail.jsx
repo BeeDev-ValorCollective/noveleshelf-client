@@ -32,6 +32,10 @@ export default function AuthorDetail() {
                     return
                 }
                 const data = await res.json()
+
+                console.log("SERVER PAYLOAD:", data)
+
+                
                 setAuthor(data)
             } catch {
                 setError('network')
