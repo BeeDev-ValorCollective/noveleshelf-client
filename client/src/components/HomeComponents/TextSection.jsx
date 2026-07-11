@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 import './home.css';
 
@@ -11,8 +12,8 @@ export default function TextSection() {
                     <h1>Your Personal Library, Reimagined</h1>
                     <p>Discover, read, and publish literary works in a premium digital environment designed for book lovers and authors alike.</p>
                     <div className='hero_buttons'>
-                        <button className='primary_btn'>Start Reading</button>
-                        <button className='secondary_btn'>Explore Library</button>
+                        <Link to='/signup' className='primary_btn'>Become a Reader</Link>
+                        <Link to='/library' className='secondary_btn'>Explore Library</Link>
                     </div>
                 </div>
                 <div className='hero_logo_container'>
