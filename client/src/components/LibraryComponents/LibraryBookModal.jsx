@@ -7,7 +7,7 @@ export default function LibraryBookModal({ book, onClose, backTo = '/library' })
 
     const handleViewDetails = () => {
         onClose()
-        navigate(`/library/${book.id}`, { state: { backTo } })
+        navigate(`/library/book/${book.id}`, { state: { backTo } })
     }
 
     return (
@@ -51,18 +51,6 @@ export default function LibraryBookModal({ book, onClose, backTo = '/library' })
                             </div>
                         )}
 
-                        {book.description && (
-                            <p className='library-modal-description'>{book.description}</p>
-                        )}
-                        <button className='library-modal-details-btn' onClick={handleViewDetails}>
-                            View full details →
-                        </button>
-
-                        <div className='library-modal-meta'>
-                            <span>{book.published_chapter_count} chapter{book.published_chapter_count !== 1 ? 's' : ''}</span>
-                            {book.book_tier && <span>Tier {book.book_tier}</span>}
-                        </div>
-
                         {book.relationship_tags?.length > 0 && (
                             <div className='library-modal-tags'>
                                 {book.relationship_tags.map(t => (
@@ -70,6 +58,18 @@ export default function LibraryBookModal({ book, onClose, backTo = '/library' })
                                 ))}
                             </div>
                         )}
+
+                        {book.description && (
+                            <p className='library-modal-description'>{book.description}</p>
+                        )}
+
+                        <div className='library-modal-meta'>
+                            <span>{book.published_chapter_count} chapter{book.published_chapter_count !== 1 ? 's' : ''}</span>{book.book_tier && <span>Tier {book.book_tier}</span>}
+                        </div>
+
+                        <button className='library-modal-details-btn' onClick={handleViewDetails}>
+                            View full book details →
+                        </button>
 
                         <p className='library-modal-coming-soon'>
                             Love what you see? The Novel eShelf app is coming soon — <em>{book.title}</em> will be waiting for you.

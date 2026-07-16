@@ -90,20 +90,6 @@ export default function ContactUs() {
             <form onSubmit={sendMail} className='contact_form'>
                 <div className="contact_inputs">
                     <div className="contact_left">
-                        {/* CONTACT TYPE */}
-                        <div className="entry_area">
-                            <select
-                                name="contactType"
-                                id="contactType"
-                                required
-                                value={contactType}
-                                onChange={(e) => setContactType(e.target.value)}
-                            >
-                                {CONTACT_TYPES.map(({ value, label }) => (
-                                    <option key={value} value={value}>{label}</option>
-                                ))}
-                            </select>
-                        </div>
 
                         {/* NAME */}
                         <div className="entry_area">
@@ -133,6 +119,22 @@ export default function ContactUs() {
                                 placeholder=""
                             />
                         </div>
+
+                        {/* CONTACT TYPE */}
+                        <div className="entry_area">
+                            <select
+                                name="contactType"
+                                id="contactType"
+                                required
+                                value={contactType}
+                                onChange={(e) => setContactType(e.target.value)}
+                            >
+                                {CONTACT_TYPES.map(({ value, label }) => (
+                                    <option key={value} value={value}>{label}</option>
+                                ))}
+                            </select>
+                        </div>
+                        
                     </div>
                     <div className="contact_right">
                         {/* MESSAGE */}

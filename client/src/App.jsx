@@ -47,6 +47,7 @@ const UpdateProfile = React.lazy(() => import('./views/UserViews/UpdateProfile')
 // Library Pages
 const Library = React.lazy(() => import('./views/LibraryViews/Library'))
 const BookDetail = React.lazy(() => import('./views/LibraryViews/BookDetail'))
+const AuthorDetail = React.lazy(() => import('./views/LibraryViews/AuthorDetail'))
 
 // Author Pages
 const CreateNewBook = React.lazy(() => import('./views/AuthorViews/CreateNewBook'))
@@ -105,7 +106,8 @@ function AppContent() {
           <Route path="/new-password/:token" element={<NewPassword />} />
           {/* Library */}
           <Route path="/library" element={<Library />} />
-          <Route path="/library/:bookId" element={<BookDetail />} />
+          <Route path="/library/book/:bookId" element={<BookDetail />} />
+          <Route path="/library/author/:authorUsername" element={<AuthorDetail />} />
           {/* Other */}
           <Route path="/for-authors" element={<ForAuthors onLoginClick={() => setModal('login')} />} />
           <Route path="/for-readers" element={<ForReaders />} />
