@@ -30,7 +30,7 @@ export default function PaidAuthorRequest({ accessToken, user }) {
         <div className='upgrade-card'>
             <div className='upgrade-card-header'>
                 <h3 className='upgrade-card-title'>Become a Paid Author</h3>
-                <a href='/for-authors#paid-author' className='upgrade-card-learn-more'>
+                <a href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing' className='upgrade-card-learn-more' target="_blank" rel="noopener noreferrer">
                     Learn more about paid authorship →
                 </a>
             </div>

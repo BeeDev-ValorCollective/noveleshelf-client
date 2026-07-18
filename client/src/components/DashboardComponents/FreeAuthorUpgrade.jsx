@@ -36,7 +36,7 @@ export default function FreeAuthorUpgrade({ accessToken, hasPaidAuthor, onUpgrad
         <div className='upgrade-card'>
             <div className='upgrade-card-header'>
                 <h3 className='upgrade-card-title'>Share Your Stories for Free</h3>
-                <a href='/for-authors#free-author' className='upgrade-card-learn-more'>
+                <a href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing' className='upgrade-card-learn-more' target="_blank" rel="noopener noreferrer">
                     Learn more about free authorship →
                 </a>
             </div>
