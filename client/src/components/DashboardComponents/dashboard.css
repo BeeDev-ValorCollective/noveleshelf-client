@@ -167,6 +167,25 @@
     flex: 1;
     margin: 0;
 }
+.cancel-upgrade-card-btn {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-purple);
+    padding: 0.8em 1.5em;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
+    width: 100%;
+    margin-top: auto;
+}
+.cancel-upgrade-card-btn:hover {
+    background-color: var(--text-secondary);
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+    color: var(--bg-primary);
+}
 .upgrade-card-btn {
     background-color: transparent;
     color: var(--text-primary);
@@ -262,6 +281,13 @@
     margin-top: 1.5rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(255,255,255,0.08);
+}
+.modal-box a {
+    font-family: "Merienda", cursive;
+    color: var(--accent-teal);
+}
+.modal-box a:hover {
+    color: var(--accent-coral);
 }
 
 /*  Tablets  */

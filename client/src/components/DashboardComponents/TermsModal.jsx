@@ -140,8 +140,8 @@ export default function TermsModal({ role, onAgree, onClose, hasPaidAuthor }) {
                 </div>
 
                 <div className='terms-actions'>
-                    <button onClick={onClose}>Cancel</button>
-                    <button onClick={onAgree} disabled={!checked}>
+                    <button className="cancel-upgrade-card-btn" onClick={onClose}>Cancel</button>
+                    <button className="upgrade-card-btn" onClick={onAgree} disabled={!checked}>
                         I Agree
                     </button>
                 </div>
