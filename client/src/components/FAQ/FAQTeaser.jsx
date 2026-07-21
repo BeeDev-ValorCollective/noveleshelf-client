@@ -19,8 +19,8 @@ export default function FaqTeaserSection() {
 
             <div className="faq-teaser-cta">
                 <p>Have more questions?</p>
-                <Link to="/faq" className="primary_btn">
-                    View All 70+ FAQs →
+                <Link to="/faq" className="faq-cta-btn">
+                    View All FAQs →
                 </Link>
             </div>
         </section>
