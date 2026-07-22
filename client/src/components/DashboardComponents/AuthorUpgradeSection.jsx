@@ -1,6 +1,7 @@
 import useAuthStore from '../../store/authStore'
 import FreeAuthorUpgrade from './FreeAuthorUpgrade'
 import PaidAuthorRequest from './PaidAuthorRequest'
+import Button from '../ui/Button'
 
 export default function AuthorUpgradeSection({ onLoginClick }) {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
@@ -28,16 +29,29 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                     <div className='upgrade-card'>
                         <div className='upgrade-card-header'>
                             <h3 className='upgrade-card-title'>Share Your Stories for Free</h3>
-                            <a href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing' className='upgrade-card-learn-more' target="_blank" rel="noopener noreferrer">
+                            <Button
+                                href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing'
+                                variant='ghost'
+                                size='sm'
+                                className='upgrade-card-learn-more'
+                                style={{ 
+                                    width: 'fit-content', 
+                                    justifyContent: 'flex-start', 
+                                    textAlign: 'left',
+                                    paddingLeft: 0 
+                                }}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 Learn more about free authorship →
-                            </a>
+                            </Button>
                         </div>
                         <p className='upgrade-card-description'>
                             No approval needed — upgrade instantly and start publishing. Your books will always be free to read.
                         </p>
-                        <button className='upgrade-card-btn' onClick={onLoginClick}>
+                        <Button variant='primary' size='md' onClick={onLoginClick}>
                             Sign In to Get Started
-                        </button>
+                        </Button>
                     </div>
                 )
             )}
@@ -53,16 +67,29 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                     <div className='upgrade-card'>
                         <div className='upgrade-card-header'>
                             <h3 className='upgrade-card-title'>Become a Paid Author</h3>
-                            <a href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing' className='upgrade-card-learn-more' target="_blank" rel="noopener noreferrer">
+                            <Button
+                                href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing'
+                                variant='ghost'
+                                size='sm'
+                                className='upgrade-card-learn-more'
+                                style={{ 
+                                    width: 'fit-content', 
+                                    justifyContent: 'flex-start', 
+                                    textAlign: 'left',
+                                    paddingLeft: 0 
+                                }}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 Learn more about paid authorship →
-                            </a>
+                            </Button>
                         </div>
                         <p className='upgrade-card-description'>
                             Apply to join as a paid author. Share your writing sample and genre interests — our team will review your request.
                         </p>
-                        <button className='upgrade-card-btn' onClick={onLoginClick}>
+                        <Button variant='primary' size='md' onClick={onLoginClick}>
                             Sign In to Apply
-                        </button>
+                        </Button>
                     </div>
                 )
             )}

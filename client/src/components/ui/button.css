@@ -22,7 +22,7 @@
 
 /* --- VARIANTS --- */
 
-/* Primary Pill Action (View All, Call to Actions) */
+/* Primary Pill Action */
 .btn-primary {
     background: transparent;
     color: var(--text-primary);
@@ -37,7 +37,7 @@
     border-color: transparent;
 }
 
-/* Secondary Action (Manage Book, Save Settings) */
+/* Secondary Action */
 .btn-secondary {
     background: var(--bg-secondary);
     color: var(--text-primary);
@@ -52,7 +52,7 @@
     color: var(--text-primary);
 }
 
-/* Outline Filter Toggle (Time filters, Category tabs) */
+/* Outline Filter Toggle */
 .btn-outline {
     background: transparent;
     color: var(--text-secondary, #ffffffa0);

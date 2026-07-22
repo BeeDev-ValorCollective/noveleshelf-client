@@ -1,6 +1,7 @@
 import { getMediaUrl } from '../../utils/api'
 import { useNavigate } from 'react-router-dom'
 import { UserStar } from 'lucide-react'
+import Button from '../ui/Button'
 
 export default function LibraryBookModal({ book, onClose, backTo = '/library' }) {
     const navigate = useNavigate()
@@ -13,7 +14,15 @@ export default function LibraryBookModal({ book, onClose, backTo = '/library' })
     return (
         <div className='library-modal-overlay' onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className='library-modal'>
-                <button className='library-modal-close' onClick={onClose}>✕</button>
+                <Button
+                    variant='ghost'
+                    size='sm'
+                    className='library-modal-close'
+                    onClick={onClose}
+                    aria-label='Close modal'
+                >
+                    ✕
+                </Button>
 
                 <div className='library-modal-content'>
                     <div className='library-modal-cover'>
@@ -67,9 +76,13 @@ export default function LibraryBookModal({ book, onClose, backTo = '/library' })
                             <span>{book.published_chapter_count} chapter{book.published_chapter_count !== 1 ? 's' : ''}</span>{book.book_tier && <span>Tier {book.book_tier}</span>}
                         </div>
 
-                        <button className='library-modal-details-btn' onClick={handleViewDetails}>
+                        <Button
+                            variant='secondary'
+                            size='sm'
+                            onClick={handleViewDetails}
+                        >
                             View full book details →
-                        </button>
+                        </Button>
 
                         <p className='library-modal-coming-soon'>
                             Love what you see? The Novel eShelf app is coming soon — <em>{book.title}</em> will be waiting for you.
