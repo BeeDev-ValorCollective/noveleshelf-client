@@ -1,0 +1,84 @@
+/* Base Button Styling */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: var(--transition, all 0.3s ease);
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* --- VARIANTS --- */
+
+/* Primary Pill Action (View All, Call to Actions) */
+.btn-primary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--accent-coral);
+    border-radius: 999px;
+    font-family: "Fredericka the Great", serif;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--accent-coral);
+    color: var(--text-primary);
+    border-color: transparent;
+}
+
+/* Secondary Action (Manage Book, Save Settings) */
+.btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--accent-purple);
+    border-radius: 999px;
+    font-family: "Fredericka the Great", serif;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    border-color: var(--accent-purple);
+    background: var(--accent-purple);
+    color: var(--text-primary);
+}
+
+/* Outline Filter Toggle (Time filters, Category tabs) */
+.btn-outline {
+    background: transparent;
+    color: var(--text-secondary, #ffffffa0);
+    border-color: var(--border-color, rgba(255, 255, 255, 0.2));
+    border-radius: 8px;
+}
+
+.btn-outline:hover:not(:disabled),
+.btn-outline.active {
+    background: rgba(221, 122, 122, 0.15);
+    color: var(--text-primary, #ffffff);
+    border-color: var(--accent-coral, #dd7a7a);
+}
+
+/* --- SIZES --- */
+.btn-sm {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+.btn-md {
+    padding: 0.55rem 1.25rem;
+    font-size: 0.95rem;
+}
+
+.btn-lg {
+    padding: 0.75rem 1.8rem;
+    font-size: 1.05rem;
+}
