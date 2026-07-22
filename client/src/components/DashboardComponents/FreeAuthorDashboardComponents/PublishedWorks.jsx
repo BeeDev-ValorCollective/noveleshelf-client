@@ -10,7 +10,7 @@ export default function PublishedWorks({ books }) {
                         <h2 className='section-heading'>On the Shelf</h2>
                         <p className='section-subheading'>Live and still in progress</p>
                     </div>
-                    <a href='/author/books' className='view-all-link'>View All</a>
+                    <a href='/author/books' className='view-all-btn'>View All</a>
                 </div>
                 <p style={{ color: '#ffffffa0', textAlign: 'center' }}>No published works yet</p>
             </section>
@@ -24,7 +24,7 @@ export default function PublishedWorks({ books }) {
                     <h2 className='section-heading'>On the Shelf</h2>
                     <p className='section-subheading'>Live and still in progress</p>
                 </div>
-                <a href='/author/books' className='view-all-link'>View All</a>
+                <a href='/author/books' className='view-all-btn'>View All</a>
             </div>
             <div className='projects-list'>
                 {books.map((book) => (
@@ -43,9 +43,7 @@ export default function PublishedWorks({ books }) {
                                 ⭐ {book.content_rating?.code || 'NR'} · {book.published_chapter_count} chapters
                             </span>
                         </div>
-                        <button className='continue-editing-btn'>
-                            <a href={`/author/books/${book.id}/manage`}>Manage Book</a>
-                        </button>
+                        <a href={`/author/books/${book.id}/manage`} className='continue-editing-btn'>Manage Book</a>
                     </div>
                 ))}
             </div>
