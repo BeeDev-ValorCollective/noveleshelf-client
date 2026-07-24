@@ -29,6 +29,7 @@ const Home = React.lazy(() => import('./views/Home'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
 const ForReaders = React.lazy(() => import('./views/ForReaders'))
 const Contact = React.lazy(() => import('./views/Contact'))
+const FAQ = React.lazy(() => import('./views/FAQ'))
 const FreeAuthorAgreement = React.lazy(() => import('./views/iFrameViews/FreeAuthorAgreement'))
 const Unsubscribe = React.lazy(() => import('./views/Unsubscribe'))
 const ErrorPage = React.lazy(() => import('./views/ErrorPage'))
@@ -114,6 +115,7 @@ function AppContent() {
           <Route path="/for-authors" element={<ForAuthors onLoginClick={() => setModal('login')} />} />
           <Route path="/for-readers" element={<ForReaders />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/agreement/free-author" element={<FreeAuthorAgreement />} />
           <Route path='/unsubscribe' element={<Unsubscribe />} />
           <Route path="/unauthorized" element={<ErrorPage type="unauthorized" />} />

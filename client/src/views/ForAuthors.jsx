@@ -3,7 +3,6 @@ import AuthorDashboard from "../components/ForAuthorsComponent/AuthorDashboard"
 import EarningsAnalytics from "../components/ForAuthorsComponent/EarningsAnalytics"
 import ChapterUpload from "../components/ForAuthorsComponent/ChapterUpload"
 import DRMProtection from "../components/ForAuthorsComponent/DRMProtection"
-import CTA from "../components/ForAuthorsComponent/CTA"
 import ForAuthorsUpgradeSection from "../components/ForAuthorsComponent/ForAuthorsUpgradeSection"
 
 export default function ForAuthors({ onLoginClick }) {
@@ -15,7 +14,6 @@ export default function ForAuthors({ onLoginClick }) {
             <ChapterUpload />
             <DRMProtection />
             <ForAuthorsUpgradeSection onLoginClick={onLoginClick} />
-            <CTA />
         </>
     )
 }
