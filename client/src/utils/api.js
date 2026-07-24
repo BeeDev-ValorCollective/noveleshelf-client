@@ -68,6 +68,10 @@ export const ENDPOINTS = {
     pageUnpublish: 'books/author/pages/unpublish/',
     pageDelete: 'books/author/pages/delete/',
 
+    // ─── Currency ──────────────────────────────────────────────
+    listQuillBundles: 'currency/quills/bundles/',
+    createQuillCheckout: 'currency/quills/checkout/create/',
+
     // ─── Admin ─────────────────────────────────────────────────
     adminAuthorRequests: 'admin/users/author-requests/',
     adminAuthorReqUpdate: 'admin/users/author-request/update/',

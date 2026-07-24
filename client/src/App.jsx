@@ -45,6 +45,8 @@ const NewPassword = React.lazy(() => import('./views/AuthViews/NewPassword'))
 const Dashboard = React.lazy(() => import('./views/UserViews/Dashboard'))
 const Profile = React.lazy(() => import('./views/UserViews/Profile'))
 const UpdateProfile = React.lazy(() => import('./views/UserViews/UpdateProfile'))
+const PurchaseQuills = React.lazy(() => import('./views/UserViews/PurchaseQuills'))
+const PurchaseComplete = React.lazy(() => import('./views/UserViews/PurchaseComplete'))
 
 // Library Pages
 const Library = React.lazy(() => import('./views/LibraryViews/Library'))
@@ -141,6 +143,16 @@ function AppContent() {
           {/* protected - login + verified */}
 
           {/* Reader */}
+          <Route path="/purchase-quills" element={
+            <ProtectedRoute>
+              <PurchaseQuills />
+            </ProtectedRoute>}
+          />
+          <Route path="/purchase-complete" element={
+            <ProtectedRoute>
+              <PurchaseComplete />
+            </ProtectedRoute>}
+          />
 
           {/* Author */}
           <Route path='/set-author-username' element={

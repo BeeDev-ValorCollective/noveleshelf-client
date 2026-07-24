@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './authorLaunchModal.css'
 import logo from '../../assets/images/logo.png'
 import { BookOpenText } from 'lucide-react'
+import useAuthStore from '../../store/authStore'
+import { sendToExpo } from '../../utils/authHandoff'
 
 export default function AuthorLaunchModal() {
     const [isVisible, setIsVisible] = useState(false)
+    const navigate = useNavigate()
+    const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
 
     useEffect(() => {
         const seen = sessionStorage.getItem('author_launch_modal_seen')
@@ -14,6 +19,20 @@ export default function AuthorLaunchModal() {
     const handleClose = () => {
         sessionStorage.setItem('author_launch_modal_seen', 'true')
         setIsVisible(false)
+    }
+
+    const handleStartReading = () => {
+        handleClose()
+        if (isAuthenticated) {
+            sendToExpo()
+        } else {
+            navigate('/login')
+        }
+    }
+
+    const handleBrowseShelves = () => {
+        handleClose()
+        navigate('/library')
     }
 
     if (!isVisible) return null
@@ -33,7 +52,7 @@ export default function AuthorLaunchModal() {
                     <span className='launch-modal-eyebrow-line right' />
                 </div>
 
-                <h2 className='launch-modal-headline' id='launch-modal-title'>Welcome, authors.</h2>
+                <h2 className='launch-modal-headline' id='launch-modal-title'>Welcome, Readers.</h2>
 
                 <div className='launch-modal-divider-row'>
                     <span className='launch-modal-divider-line' />
@@ -42,12 +61,11 @@ export default function AuthorLaunchModal() {
                 </div>
 
                 <p className='launch-modal-body'>
-                    The shelves are open. Your stories now have a home — a place where readers
-                    discover, unlock, and lose themselves in the worlds you create.
+                    The shelves are open. A world of stories is waiting — come discover, unlock, and lose yourself in worlds only you can imagine.
                 </p>
 
                 <p className='launch-modal-tagline'>
-                    Start filling the shelves with<br />the stories only you can tell.
+                    Start exploring the shelves —<br />find the stories only you can love.
                 </p>
 
                 <div className='launch-modal-sub-divider-row'>
@@ -56,13 +74,11 @@ export default function AuthorLaunchModal() {
                     <span className='launch-modal-sub-divider-line right' />
                 </div>
 
-                <p className='launch-modal-sub-note'>Readers are waiting for their next adventure.</p>
-
-                <button className='launch-modal-cta' onClick={handleClose}>
-                    ✦ Start writing
+                <button className='launch-modal-cta' onClick={handleStartReading}>
+                    ✦ Start reading
                 </button>
-                <button className='launch-modal-dismiss' onClick={handleClose}>
-                    ⊞ Explore first
+                <button className='launch-modal-dismiss' onClick={handleBrowseShelves}>
+                    ⊞ Browse the shelves
                 </button>
             </div>
         </div>
