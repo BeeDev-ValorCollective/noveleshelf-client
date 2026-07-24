@@ -17,6 +17,8 @@ export const ENDPOINTS = {
     resendVerification: 'auth/resend-verification/',
     forgotPassword: 'auth/forgot-password/',
     resetPassword: 'auth/reset-password/',
+    createHandoffToken: 'auth/create-handoff-token/',
+    exchangeHandoffToken: 'auth/exchange-handoff-token/',
     changePassword: 'user/change-password/',
     changeEmail: 'user/change-email/',
     updateProfile: 'user/profile/update/',

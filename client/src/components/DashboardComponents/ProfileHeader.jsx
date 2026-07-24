@@ -3,6 +3,8 @@ import { toTitleCase } from '../../utils/upperCase'
 import { Link } from 'react-router-dom'
 
 import './dashboard.css'
+// import { sendToExpo } from '../../utils/authHandoff'; // adjust path to match Dashboard's location
+
 
 
 export default function ProfileHeader({ user, currentProfile, fullName, currentRole }) {
@@ -63,6 +65,9 @@ export default function ProfileHeader({ user, currentProfile, fullName, currentR
                 <div className='profile-header-right'>
                     <button className='edit-profile-btn'><Link to="/profile-update">Update Profile</Link></button>
                 </div>
+                {/* <button onClick={() => sendToExpo('settings')}>
+                    Open in App
+                </button> */}
             </div>
         </section>
     )

@@ -1,6 +1,7 @@
 import React, { Suspense, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
+import { useAuthHandoffListener } from './hooks/useAuthHandoffListener';
 
 import Header from './components/BaseComponents/Header'
 import Footer from './components/BaseComponents/Footer'
@@ -76,6 +77,7 @@ function App() {
 function AppContent() {
   const [modal, setModal] = useState(null);
   const { user, accessToken } = useUser();
+  useAuthHandoffListener();
 
   // DEV ONLY
   if (import.meta.env.DEV) {
