@@ -28,6 +28,9 @@ export const ENDPOINTS = {
     freeAuthorProfileUpdate: 'user/free-author-profile/update/',
     moderatorProfileUpdate: 'user/moderator-profile/update/',
 
+    // ─── Stats ────────────────────────────────────────────────────
+    readerStats: 'books/reader/stats/',
+
     // ─── Author Requests ──────────────────────────────────────────
     upgradeToFreeAuthor: 'user/free-author/upgrade/',
     authorRequestSubmit: 'user/author-request/submit/',

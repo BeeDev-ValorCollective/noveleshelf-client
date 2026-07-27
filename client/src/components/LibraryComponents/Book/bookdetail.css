@@ -368,3 +368,34 @@
         padding: 0.8em 0.9em;
     }
 }
+
+/* ─── Add to Shelf ───────────────────────────────────────────── */
+.bd-shelf {
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.bd-shelf-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    background-color: rgba(104,185,185,0.12);
+    color: var(--accent-teal);
+    border: 1px solid rgba(104,185,185,0.3);
+    padding: 0.7em 1.4em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.bd-shelf-btn:hover {
+    background-color: rgba(104,185,185,0.22);
+    border-color: rgba(104,185,185,0.5);
+}
+
+.bd-shelf-btn:active {
+    transform: scale(0.97);
+}

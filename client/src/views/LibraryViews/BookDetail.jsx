@@ -69,7 +69,7 @@ export default function BookDetail() {
             </div>
         )
     }
-
+    console.log('book details', book)
 
     return (
         <div className='bd-page'>
