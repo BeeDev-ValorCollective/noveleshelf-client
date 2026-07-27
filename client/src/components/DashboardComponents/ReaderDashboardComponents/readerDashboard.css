@@ -401,3 +401,17 @@
     font-size: 0.75em;
     margin: 0;
 }
+
+.reader-stat-icon {
+    height: 56px;
+    object-fit: contain;
+    margin-bottom: 0.4em;
+}
+
+.reader-stat-icon--ink {
+    width: calc(56px * (148 / 265));
+}
+
+.reader-stat-icon--quill {
+    width: calc(56px * (394 / 881));
+}

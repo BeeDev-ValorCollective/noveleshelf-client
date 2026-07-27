@@ -91,7 +91,7 @@ export default function BookDetailHero({ book }) {
             <div className="bd-shelf">
                 <button className='bd-shelf-btn' onClick={handleAddToShelf}>
                     <BookmarkPlus size={18} />
-                    {isAuthenticated ? 'Go to App' : 'Sign in to Add'}
+                    {isAuthenticated ? 'Go to the Web App' : 'Sign in to Add'}
                 </button>
             </div>
         </div>
