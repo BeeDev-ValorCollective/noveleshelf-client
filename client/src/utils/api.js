@@ -71,6 +71,7 @@ export const ENDPOINTS = {
     // ─── Currency ──────────────────────────────────────────────
     listQuillBundles: 'currency/quills/bundles/',
     createQuillCheckout: 'currency/quills/checkout/create/',
+    checkQuillPurchaseStatus: 'currency/quills/checkout/status/',
 
     // ─── Admin ─────────────────────────────────────────────────
     adminAuthorRequests: 'admin/users/author-requests/',

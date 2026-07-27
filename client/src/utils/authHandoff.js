@@ -19,7 +19,9 @@ export async function sendToExpo(nextPath = '') {
       return false;
     }
 
-    const query = nextPath ? `token=${data.handoff_token}&next=${nextPath}` : `token=${data.handoff_token}`;
+    const query = nextPath
+    ? `token=${data.handoff_token}&next=${encodeURIComponent(nextPath)}`
+    : `token=${data.handoff_token}`;
     window.location.href = `${EXPO_WEB_URL}/handoff?${query}`;
     return true;
   } catch (err) {

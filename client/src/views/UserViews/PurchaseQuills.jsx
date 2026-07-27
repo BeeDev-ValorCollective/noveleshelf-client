@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import useAuthStore from '../../store/authStore'
 import '../../components/BaseComponents/purchaseQuills.css'
@@ -10,6 +11,8 @@ export default function PurchaseQuills() {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
     const [purchasingId, setPurchasingId] = useState(null)
+    const [searchParams] = useSearchParams()
+    const returnPath = searchParams.get('return') || ''
 
     useEffect(() => {
         const fetchBundles = async () => {
@@ -43,7 +46,7 @@ export default function PurchaseQuills() {
                     Authorization: `Bearer ${accessToken}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ bundle_id: bundleId }),
+                body: JSON.stringify({ bundle_id: bundleId, return_path: returnPath }),
             })
             const data = await res.json()
             if (res.ok) {
