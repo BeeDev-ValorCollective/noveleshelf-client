@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { DB_API } from '../../utils/api'
+import Button from '../ui/Button'
 
 export default function TagGroup({ title, bookItems, allItems, itemKey, addEndpoint, removeEndpoint, authorType, bookId, accessToken, onBookUpdated, displayFn }) {
     const bookItemIds = new Set(bookItems.map((item) => item.id))
@@ -144,9 +145,14 @@ export default function TagGroup({ title, bookItems, allItems, itemKey, addEndpo
                             </label>
                         ))}
                     </div>
-                    <button onClick={handleRemove} disabled={isWorking || toRemove.size === 0}>
+                    <Button
+                        variant='tertiary'
+                        size='sm'
+                        onClick={handleRemove}
+                        disabled={isWorking || toRemove.size === 0}
+                    >
                         {isWorking ? 'Working...' : `Remove Selected (${toRemove.size})`}
-                    </button>
+                    </Button>
                 </div>
             )}
 
@@ -166,9 +172,14 @@ export default function TagGroup({ title, bookItems, allItems, itemKey, addEndpo
                             </label>
                         ))}
                     </div>
-                    <button onClick={handleAdd} disabled={isWorking || toAdd.size === 0}>
+                    <Button
+                        variant='primary'
+                        size='sm'
+                        onClick={handleAdd}
+                        disabled={isWorking || toAdd.size === 0}
+                    >
                         {isWorking ? 'Working...' : `Add Selected (${toAdd.size})`}
-                    </button>
+                    </Button>
                 </div>
             )}
 

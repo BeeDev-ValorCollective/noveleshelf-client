@@ -7,6 +7,7 @@ import BookTags from '../../components/AuthorBookComponents/BookTags'
 import BookApprovalStatus from '../../components/AuthorBookComponents/BookApprovalStatus'
 import BookChapterList from '../../components/AuthorBookComponents/BookChapterList'
 import BookPages from '../../components/AuthorBookComponents/BookPages'
+import Button from '../../components/ui/Button'
 import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
@@ -129,7 +130,14 @@ export default function ManageBook() {
     return (
         <div className='manage-book'>
             <div className='manage-book-header'>
-                <button className="mb-back-btn" onClick={() => navigate('/dashboard')}>← Back to dashboard</button>                <h1>{book.title}</h1>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate('/dashboard')}
+                >
+                    ← Back to dashboard
+                </Button>
+                <h1>{book.title}</h1>
                 <span className={`project-status ${book.status}`}>{book.status.replace(/_/g, ' ')}</span>
             </div>
 
@@ -195,9 +203,14 @@ export default function ManageBook() {
                         This book has no published chapters and can be permanently deleted.
                     </p>
                     {deleteError && <p className='form-error'>{deleteError}</p>}
-                    <button onClick={handleDeleteBook} disabled={isDeleting}>
+                    <Button
+                        variant='primary'
+                        size='md'
+                        onClick={handleDeleteBook}
+                        disabled={isDeleting}
+                    >
                         {isDeleting ? 'Deleting...' : 'Delete Book'}
-                    </button>
+                    </Button>
                 </section>
             )}
         </div>

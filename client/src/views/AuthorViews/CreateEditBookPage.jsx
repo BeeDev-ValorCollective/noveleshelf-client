@@ -4,6 +4,7 @@ import useAuthStore from '../../store/authStore'
 import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import TipTapEditor from '../../components/TipTapEditor/TipTapEditor'
+import Button from '../../components/ui/Button'
 
 const PAGE_TYPE_LABELS = {
     prologue: 'Prologue',
@@ -34,7 +35,13 @@ export default function CreateEditBookPage() {
         return (
             <div>
                 <p className='form-error'>Book data not found.</p>
-                <button onClick={() => navigate(`/author/books/${bookId}/manage`)}>← Back to book</button>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate(`/author/books/${bookId}/manage`)}
+                >
+                    ← Back to book
+                </Button>
             </div>
         )
     }
@@ -76,7 +83,13 @@ export default function CreateEditBookPage() {
     return (
         <div className='create-chapter'>
             <div className='manage-book-header'>
-                <button onClick={() => navigate(`/author/books/${bookId}/manage#manage-pages`)}>← Back to book</button>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate(`/author/books/${bookId}/manage#manage-pages`)}
+                >
+                    ← Back to book
+                </Button>
                 <h1>{isEditing ? `Edit ${label}` : `Add ${label}`}</h1>
             </div>
 
@@ -93,12 +106,22 @@ export default function CreateEditBookPage() {
                 {error && <p className='form-error'>{error}</p>}
 
                 <div className='create-chapter-actions'>
-                    <button onClick={() => navigate(`/author/books/${bookId}/manage#manage-pages`)} disabled={isSubmitting}>
+                    <Button
+                        variant='primary'
+                        size='sm'
+                        onClick={() => navigate(`/author/books/${bookId}/manage#manage-pages`)}
+                        disabled={isSubmitting}
+                    >
                         Cancel
-                    </button>
-                    <button onClick={handleSave} disabled={isSubmitting}>
+                    </Button>
+                    <Button
+                        variant='secondary'
+                        size='sm'
+                        onClick={handleSave}
+                        disabled={isSubmitting}
+                    >
                         {isSubmitting ? 'Saving...' : 'Save'}
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

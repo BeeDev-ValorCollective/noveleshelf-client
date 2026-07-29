@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { getMediaUrl, DB_API, ENDPOINTS } from '../../utils/api'
 import BookFormFields from './BookFormFields'
 import useFileInput from '../../hooks/useFileInput'
+import Button from '../ui/Button'
 
 export default function BookDetails({ book, authorType, accessToken, contentRatings, refLoading, onBookUpdated }) {
     const [formData, setFormData] = useState({
@@ -103,12 +104,14 @@ export default function BookDetails({ book, authorType, accessToken, contentRati
             {error && <p className='form-error'>{error}</p>}
             {success && <p className='form-success'>{success}</p>}
             {!isRejected && (
-                <button
+                <Button
+                    variant='primary'
+                    size='md'
                     onClick={handleSave}
                     disabled={isSubmitting || !formData.title.trim()}
                 >
                     {isSubmitting ? 'Saving...' : 'Save Details'}
-                </button>
+                </Button>
             )}
         </section>
     )

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import useAuthStore from '../../store/authStore'
 import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../ui/Button'
 
 export default function BookChapterList({ chapters, isLoading, error, bookId, book, navigate, onChaptersUpdated }) {
     const accessToken = useAuthStore((state) => state.accessToken)
@@ -101,7 +102,9 @@ export default function BookChapterList({ chapters, isLoading, error, bookId, bo
                             <span className={`project-status ${chapter.status}`}>
                                 {chapter.status}
                             </span>
-                            <button
+                            <Button
+                                variant='primary'
+                                size='sm'
                                 onClick={() => navigate(
                                     `/author/books/${bookId}/chapters/${chapter.id}/edit`,
                                     { state: { chapter, book } }
@@ -109,30 +112,38 @@ export default function BookChapterList({ chapters, isLoading, error, bookId, bo
                                 disabled={working === chapter.id}
                             >
                                 Edit
-                            </button>
+                            </Button>
                             {chapter.status === 'published' && (
-                                <button
+                                <Button
+                                    variant='ghost'
+                                    size='sm'
                                     onClick={() => handleUnpublish(chapter)}
                                     disabled={working === chapter.id}
                                 >
                                     {working === chapter.id ? '...' : 'Unpublish'}
-                                </button>
+                                </Button>
                             )}
                             {chapter.status === 'draft' && (
-                                <button
+                                <Button
+                                    variant='primary'
+                                    size='sm'
                                     onClick={() => handleDelete(chapter)}
                                     disabled={working === chapter.id}
                                 >
                                     {working === chapter.id ? '...' : 'Delete'}
-                                </button>
+                                </Button>
                             )}
                         </div>
                     </div>
                 ))}
             </div>
-            <button onClick={() => navigate(`/author/books/${bookId}/chapters/new`, { state: { book } })}>
+            <Button
+                variant='tertiary'
+                size='md'
+                onClick={() => navigate(`/author/books/${bookId}/chapters/new`, { state: { book } })}
+            >
                 + Add Chapter
-            </button>
+            </Button>
         </div>
     )
 }

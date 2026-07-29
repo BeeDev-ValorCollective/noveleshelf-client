@@ -21,8 +21,7 @@
 }
 
 /* --- VARIANTS --- */
-
-/* Primary Pill Action */
+/* Primary Variant */
 .btn-primary {
     background: transparent;
     color: var(--text-primary);
@@ -37,7 +36,7 @@
     border-color: transparent;
 }
 
-/* Secondary Action */
+/* Secondary Variant */
 .btn-secondary {
     background: var(--bg-secondary);
     color: var(--text-primary);
@@ -52,19 +51,35 @@
     color: var(--text-primary);
 }
 
-/* Outline Filter Toggle */
-.btn-outline {
+/* Tertiary Variant */
+.btn-tertiary {
     background: transparent;
-    color: var(--text-secondary, #ffffffa0);
-    border-color: var(--border-color, rgba(255, 255, 255, 0.2));
-    border-radius: 8px;
+    color: var(--text-primary);
+    border-color: var(--accent-teal);
+    border-radius: 999px;
+    font-family: "Fredericka the Great", serif;
 }
 
-.btn-outline:hover:not(:disabled),
-.btn-outline.active {
-    background: rgba(221, 122, 122, 0.15);
-    color: var(--text-primary, #ffffff);
-    border-color: var(--accent-coral, #dd7a7a);
+.btn-tertiary:hover:not(:disabled) {
+    border-color: var(--accent-teal);
+    background: var(--accent-teal);
+    color: var(--text-primary);
+}
+
+/* Ghost Variant */
+.btn-ghost {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+    border-radius: 999px;
+    font-family: "Fredericka the Great", serif;
+}
+
+.btn-ghost:hover:not(:disabled) {
+    border-color: var(--text-primary);
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    opacity: 70%;
 }
 
 /* --- SIZES --- */
