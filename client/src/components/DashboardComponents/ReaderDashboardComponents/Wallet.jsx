@@ -3,6 +3,7 @@ import blackInkImg from '../../../assets/images/blackink.png'
 import goldInkImg from '../../../assets/images/goldink.png'
 import quillImg from '../../../assets/images/quill.png'
 import '../ReaderDashboardComponents/readerDashboard.css';
+import WalletPurchase from './WalletPurchase';
 
 export default function RenderWalletBar() {
     const wallet = useAuthStore((state) => state.user?.wallet)
@@ -11,7 +12,7 @@ export default function RenderWalletBar() {
         <section className='reader-section'>
             <h3>Your wallet</h3>
             <p className='reader-wallet-subnote'>
-                All three currencies unlock chapters — spent automatically in this order: Black Ink Drops first, then Gold Ink Drops, then Quills.
+                All three currencies unlock chapters — used in the following order: Black Ink Drops first, then Gold Ink Drops, then Quills.
             </p>
             <div className='reader-stats-grid'>
                 <div className='reader-stat-item'>
@@ -32,6 +33,9 @@ export default function RenderWalletBar() {
                     <h2 className='reader-stat-value'>{wallet?.quill_balance ?? 0}</h2>
                     <p className='reader-stat-explainer'>Purchased — never expire, always available.</p>
                 </div>
+            </div>
+            <div className="reader-stats-grid">
+                <WalletPurchase />
             </div>
         </section>
     );

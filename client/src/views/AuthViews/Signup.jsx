@@ -133,11 +133,11 @@ export default function Signup({ onClose, isModal, onSwitchToLogin }) {
         <span onClick={handleLoginClick}> Sign in</span>
       </p>
 
-      <p className="divider">or continue with</p>
+      {/* <p className="divider">or continue with</p>
       <div className="social-buttons">
         <button className="social">Google</button>
         <button className="social">Apple</button>
-      </div>
+      </div> */}
     </AuthCard>
   );
 

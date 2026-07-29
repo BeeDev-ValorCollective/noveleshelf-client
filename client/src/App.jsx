@@ -47,6 +47,7 @@ const Profile = React.lazy(() => import('./views/UserViews/Profile'))
 const UpdateProfile = React.lazy(() => import('./views/UserViews/UpdateProfile'))
 const PurchaseQuills = React.lazy(() => import('./views/UserViews/PurchaseQuills'))
 const PurchaseComplete = React.lazy(() => import('./views/UserViews/PurchaseComplete'))
+const RedeemPromo = React.lazy(() => import('./views/UserViews/RedeemPromo'))
 
 // Library Pages
 const Library = React.lazy(() => import('./views/LibraryViews/Library'))
@@ -151,6 +152,11 @@ function AppContent() {
           <Route path="/purchase-complete" element={
             <ProtectedRoute>
               <PurchaseComplete />
+            </ProtectedRoute>}
+          />
+          <Route path="/redeem-promo" element={
+            <ProtectedRoute>
+              <RedeemPromo />
             </ProtectedRoute>}
           />
 
