@@ -6,7 +6,7 @@ export default function Button({
     children,
     to,
     href,
-    variant = 'primary', // 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
+    variant = 'primary', // 'primary' | 'secondary' | 'tertiary' | 'ghost' |
     size = 'md',         // 'sm' | 'md' | 'lg'
     active = false,
     className = '',

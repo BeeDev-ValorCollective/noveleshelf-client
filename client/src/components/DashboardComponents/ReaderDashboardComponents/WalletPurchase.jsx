@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import useAuthStore from '../../../store/authStore'
 import { DB_API, ENDPOINTS } from '../../../utils/api'
+import Button from '../../ui/Button'
+import './readerDashboard.css'
 
 export default function WalletPurchase() {
     const [code, setCode] = useState('')
@@ -62,32 +64,24 @@ export default function WalletPurchase() {
     return (
         <div className="wallet-purchase">
             <div className="wallet-purchase-quills">
-                <button>
-                    <Link to="/purchase-quills">Purchase Quills</Link>
-                </button>
+                <Button variant='ghost' size='lg' to='/purchase-quills'>Purchase Quills</Button>
             </div>
             <div className="wallet-purchase-promo">
                 <form onSubmit={handleRedeem} className="redeem-promo-form">
-                    <label htmlFor="promo-code" className="redeem-promo-label">
+                    <div className="form-components">
+                        <label htmlFor="promo-code" className="redeem-promo-label">
                         Promo Code
                     </label>
-                    <div className="redeem-promo-row">
                         <input
                             id="promo-code"
                             type="text"
                             value={code}
                             onChange={(e) => setCode(e.target.value.toUpperCase())}
-                            placeholder="Enter code"
+                            placeholder="Enter promo code"
                             disabled={status === 'loading'}
                             className="redeem-promo-input"
                         />
-                        <button
-                            type="submit"
-                            disabled={status === 'loading' || !code.trim()}
-                            className="redeem-promo-btn"
-                        >
-                            {status === 'loading' ? '...' : 'Redeem'}
-                        </button>
+                        <Button type='submit' disabled={status === 'loading' || !code.trim()} variant='ghost' size='lg'>{status === 'loading' ? '...' : 'Redeem'}</Button>
                     </div>
                     {message ? (
                         <p className={status === 'error' ? 'redeem-promo-error' : 'redeem-promo-success'}>
