@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import useAuthStore from '../../store/authStore'
 import TipTapEditor from '../../components/TipTapEditor/TipTapEditor'
+import Button from '../../components/ui/Button'
 import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
@@ -31,7 +32,13 @@ export default function EditChapter() {
         return (
             <div>
                 <p className='form-error'>Chapter data not found.</p>
-                <button onClick={() => navigate(`/author/books/${bookId}/manage`)}>← Back to book</button>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate(`/author/books/${bookId}/manage`)}
+                >
+                    ← Back to book
+                </Button>
             </div>
         )
     }
@@ -115,20 +122,36 @@ export default function EditChapter() {
     return (
         <div className="create-chapter">
             <div className="manage-book-header">
-                <button onClick={() => navigate(`/author/books/${bookId}/manage#chapter-${bookId}`)}>← Back to book</button>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate(`/author/books/${bookId}/manage#chapter-${bookId}`)}
+                >
+                    ← Back to book
+                </Button>
                 <h1>{chapter.display_title}</h1>
                 <span className={`project-status ${chapter.status}`}>{chapter.status}</span>
             </div>
 
             <div className="create-chapter-form">
                 <div className="create-chapter-actions">
-                    <button onClick={handleUpdate} disabled={isSubmitting || isPublishing}>
+                    <Button
+                        variant='secondary'
+                        size='sm'
+                        onClick={handleUpdate}
+                        disabled={isSubmitting || isPublishing}
+                    >
                         {isSubmitting ? 'Saving...' : 'Save Changes'}
-                    </button>
+                    </Button>
                     {bookIsApproved && chapter.status !== 'published' && (
-                        <button onClick={handlePublish} disabled={isSubmitting || isPublishing}>
+                        <Button
+                            variant='secondary'
+                            size='sm'
+                            onClick={handlePublish}
+                            disabled={isSubmitting || isPublishing}
+                        >
                             {isPublishing ? 'Publishing...' : 'Publish Chapter'}
-                        </button>
+                        </Button>
                     )}
                 </div>
 
@@ -189,19 +212,31 @@ export default function EditChapter() {
                 {success && <p className="form-success">{success}</p>}
 
                 <div className="create-chapter-actions">
-                    <button
+                    <Button
+                        variant='primary'
+                        size='sm'
                         onClick={() => navigate(`/author/books/${bookId}/manage#chapter-${bookId}`)}
                         disabled={isSubmitting || isPublishing}
                     >
                         ← Back to book
-                    </button>
-                    <button onClick={handleUpdate} disabled={isSubmitting || isPublishing}>
+                    </Button>
+                    <Button
+                        variant='secondary'
+                        size='sm'
+                        onClick={handleUpdate}
+                        disabled={isSubmitting || isPublishing}
+                    >
                         {isSubmitting ? 'Saving...' : 'Save Changes'}
-                    </button>
+                    </Button>
                     {bookIsApproved && chapter.status !== 'published' && (
-                        <button onClick={handlePublish} disabled={isSubmitting || isPublishing}>
+                        <Button
+                            variant='secondary'
+                            size='sm'
+                            onClick={handlePublish}
+                            disabled={isSubmitting || isPublishing}
+                        >
                             {isPublishing ? 'Publishing...' : 'Publish Chapter'}
-                        </button>
+                        </Button>
                     )}
                 </div>
             </div>
