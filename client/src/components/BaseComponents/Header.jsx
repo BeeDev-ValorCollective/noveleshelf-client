@@ -76,14 +76,20 @@ export default function Header({ onLoginClick, onSignupClick }) {
                     </>
                 )
             default:
-                // reader
-                return (
-                    <>
-                        <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-                        {/* <a href={`${APP_URL}/library`} onClick={() => setMenuOpen(false)}>My Library</a> */}
-                        {/* <a href={`${APP_URL}/shop`} onClick={() => setMenuOpen(false)}>Shop</a> */}
-                    </>
-                )
+            // reader
+            return (
+                <>
+                    <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+                        Dashboard
+                    </Link>
+
+                    <Link to="/purchase-quills" onClick={() => setMenuOpen(false)}>
+                        Purchase Quills
+                    </Link>
+
+                    {/* <a href={`${APP_URL}/library`} onClick={() => setMenuOpen(false)}>My Library</a> */}
+                </>
+            )
         }
     }
 
@@ -244,8 +250,11 @@ export default function Header({ onLoginClick, onSignupClick }) {
                                             </a>
                                     </>
                                 )}
-                                {(currentRole === 'reader' || !currentRole) && (
-                                    <Link to="/dashboard" onClick={() => setMobileNavOpen(false)}>Dashboard</Link>
+                                {currentRole === 'reader' || !currentRole && (
+                                    <>
+                                        <Link to="/dashboard" onClick={() => setMobileNavOpen(false)}>Dashboard</Link>
+                                        <Link to="/purchase-quills" onClick={() => setMobileNavOpen(false)}>Purchase Quills</Link>
+                                    </>
                                 )}
                                 {availableRoles.length > 1 && user?.is_verified && (
                                     <>

@@ -145,7 +145,7 @@ function AppContent() {
 
           {/* Reader */}
           <Route path="/purchase-quills" element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['reader']}>
               <PurchaseQuills />
             </ProtectedRoute>}
           />
