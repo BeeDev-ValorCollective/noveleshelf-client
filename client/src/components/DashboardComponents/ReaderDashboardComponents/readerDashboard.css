@@ -401,3 +401,83 @@
     font-size: 0.75em;
     margin: 0;
 }
+
+.reader-stat-icon {
+    height: 56px;
+    object-fit: contain;
+    margin-bottom: 0.4em;
+}
+
+.reader-stat-icon--ink {
+    width: calc(56px * (148 / 265));
+}
+
+.reader-stat-icon--quill {
+    width: calc(56px * (394 / 881));
+}
+.wallet-purchase {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 1em;
+}
+.wallet-purchase-promo {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+.redeem-promo-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.form-components {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+form input {
+    background-color: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: clamp(0.9rem, 1.5vw, 1em);
+    padding: 0.75em 1em;
+    transition: var(--transition);
+    font-family: "Merienda", cursive;
+    outline: none;
+}
+
+@media screen and (max-width: 780px) {
+    .wallet-purchase {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .wallet-purchase-promo {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .redeem-promo-form {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .form-components {
+        padding: 1em;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+}

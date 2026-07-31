@@ -416,47 +416,6 @@
     padding: 1em 0;
 }
 
-/* CTA Component */
-.authors-cta {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
-    text-align: center;
-    width: 100%;
-    background-color: rgba(255,255,255,0.04);
-    border-top: 1px solid rgba(255,255,255,0.08);
-    margin-top: 2em;
-}
-.authors-cta h2 {
-    font-size: clamp(1.5rem, 3vw, 2em);
-    color: var(--text-primary);
-    margin-bottom: 0.5em;
-    font-family: "Fredericka the Great", serif;
-}
-.authors-cta p {
-    color: var(--text-secondary);
-    margin-bottom: 1.5em;
-    font-size: clamp(0.9rem, 1.5vw, 1em);
-    font-family: "Merienda", cursive;
-}
-.authors-cta-button {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--accent-coral);
-    padding: 0.8em 2em;
-    font-size: clamp(0.9rem, 1.5vw, 1em);
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: "Fredericka the Great", serif;
-    transition: var(--transition);
-}
-.authors-cta-button:hover {
-    background-color: var(--accent-coral);
-    color: var(--text-primary);
-}
-
 /* Tablets */
 @media (max-width: 992px) {
     .dashboard-stats {
@@ -506,9 +465,6 @@
     .upload-box {
         padding: 2em 1.5em;
     }
-    .authors-cta {
-        padding: 3rem clamp(1.5rem, 5vw, 5rem);
-    }
     .upgrade-card {
         padding: 1.5rem;
     }
@@ -524,9 +480,6 @@
     }
     .dashboard-stats {
         grid-template-columns: 1fr;
-    }
-    .authors-cta-button {
-        width: 100%;
     }
     .upgrade-card-btn {
         width: 100%;

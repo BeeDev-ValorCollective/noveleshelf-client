@@ -1,0 +1,100 @@
+/* Purchase Quills Container */
+.purchase-quills-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    gap: 1.5em;
+    padding-bottom: 4em;
+}
+
+.purchase-quills-title {
+    font-size: 1.8em;
+    color: #ffffffe0;
+    text-align: center;
+    margin-bottom: 0.2em;
+    font-family: "Fredericka the Great", serif;
+}
+
+.purchase-quills-subtitle {
+    color: #ffffffa0;
+    text-align: center;
+    font-size: 0.95em;
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 1em;
+}
+
+/* Bundle Grid */
+.quill-bundle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+    width: 100%;
+}
+
+.quill-bundle-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff10;
+    border-radius: 8px;
+    padding: 1.5em;
+    gap: 0.5em;
+}
+
+.quill-bundle-badge {
+    position: absolute;
+    top: 0.8em;
+    right: 0.8em;
+    background-color: #e0555530;
+    color: #e05555;
+    font-size: 0.75em;
+    font-weight: 600;
+    padding: 0.2em 0.7em;
+    border-radius: 20px;
+}
+
+.quill-bundle-name {
+    color: #ffffffe0;
+    font-size: 1.2em;
+    margin: 0.3em 0 0 0;
+}
+
+.quill-bundle-quills {
+    color: #e05555;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin: 0.2em 0;
+}
+
+.quill-bundle-price {
+    color: #ffffffa0;
+    font-size: 1em;
+    margin: 0 0 0.8em 0;
+}
+
+.quill-bundle-btn {
+    background-color: transparent;
+    color: #ffffffe0;
+    border: 1px solid #ffffff40;
+    padding: 0.6em 1.4em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.quill-bundle-btn:hover:not(:disabled) {
+    background-color: #e0555530;
+    border-color: #e05555;
+    color: #e05555;
+}
+
+.quill-bundle-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

@@ -1,0 +1,332 @@
+.ad-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.ad-milestone {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #a0a0a0);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.15rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.ad-bio.ad-empty-bio {
+    font-style: italic;
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+.ad-handle.ad-no-handle {
+    font-style: italic;
+    opacity: 0.5;
+}
+
+.author-tier-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 12px;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.author-tier-badge.tier-free {
+    background: rgba(120, 120, 120, 0.15);
+    color: #b0b0b0;
+    border-color: rgba(120, 120, 120, 0.3);
+}
+
+.author-tier-badge[class*="tier-tier-"] {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--accent-teal, #00ffff);
+    border-color: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.ad-hero-section {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 3rem;
+    background: #ffffff0a;
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.05);
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+.ad-avatar-frame {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 20px rgba(125, 85, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.ad-avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ad-avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-secondary);
+    color: var(--accent-teal);
+    font-size: 3.5rem;
+    font-weight: bold;
+    font-family: "Merienda", cursive;
+}
+
+.ad-profile-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ad-name-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.ad-name-row h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+}
+
+.ad-handle {
+    color: var(--accent-coral);
+    font-weight: 500;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.ad-bio {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+    font-size: 1.05rem;
+    max-width: 800px;
+}
+
+.ad-section-title {
+    font-family: "Merienda", cursive;
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.ad-no-books {
+    text-align: center;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--card-radius);
+    color: var(--text-secondary);
+    border: 1px dashed var(--border-color);
+}
+
+/* ─── Back Button ────────────────────────────────────────────── */
+.bd-back-btn {
+    align-self: flex-start;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.5em 1.2em;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(0.85rem, 1.2vw, 0.95em);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.bd-back-btn:hover {
+    background-color: rgba(255,255,255,0.08);
+    color: var(--text-primary);
+    border-color: rgba(255,255,255,0.4);
+}
+
+/* Detailed Book List Layout */
+
+.ad-book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Individual Interactive Card Rows */
+.ad-book-row-card {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius, 8px);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ad-book-row-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Clean, simple cover dimensions without background decorations */
+.ad-book-cover-frame {
+    width: 110px;
+    height: 165px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.ad-book-cover-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Metadata Text Body Setup */
+.ad-book-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0; /* Prevents long string description blowouts */
+}
+
+.ad-book-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.ad-book-row-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary, #ffffff);
+}
+
+/* Dynamic Content Info Badges */
+.ad-book-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.ad-book-badges span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.ad-badge-new {
+    background: rgba(255, 165, 0, 0.15);
+    color: var(--accent-coral, #ffa500);
+    border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.ad-badge-complete {
+    background: rgba(0, 255, 0, 0.1);
+    color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.ad-badge-rating {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary, #a0a0a0);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Metrics and Descriptions line spacing details */
+.ad-book-stats {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #b0b0b0);
+    margin-bottom: 0.75rem;
+}
+
+.ad-book-row-desc {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-secondary, #cccccc);
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit long text to 3 clean lines gracefully */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (BREAKPOINTS)
+   ========================================================================== */
+
+@media (max-width: 650px) {
+    .ad-book-row-card {
+        flex-direction: column; /* Shifts layouts from wide rows to portrait blocks on phone displays */
+        align-items: center;
+        text-align: center;
+        gap: 1.2rem;
+        padding: 1.25rem;
+    }
+
+    .ad-book-header-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .ad-book-badges {
+        justify-content: center;
+    }
+}
+
+/* RESPONSIVE DESIGN (Media Queries) */
+
+@media (max-width: 800px) {
+    .ad-hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .ad-name-row, 
+    .ad-meta-row {
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .ad-meta-row {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+}

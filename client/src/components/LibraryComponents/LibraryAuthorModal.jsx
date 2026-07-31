@@ -1,10 +1,28 @@
 import { getMediaUrl } from '../../utils/api'
+import { useNavigate } from 'react-router-dom'
+import Button from '../ui/Button'
 
-export default function LibraryAuthorModal({ author, onClose }) {
+export default function LibraryAuthorModal({ author, onClose, backTo = '/library' }) {
+    const navigate = useNavigate()
+
+    const handleViewAuthorDetails = () => {
+        onClose()
+        navigate(`/library/author/${author.username}`, { state: { backTo } })
+    }
+
+    
     return (
         <div className='library-modal-overlay' onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className='library-modal'>
-                <button className='library-modal-close' onClick={onClose}>✕</button>
+                <Button
+                    variant='ghost'
+                    size='sm'
+                    className='library-modal-close'
+                    onClick={onClose}
+                    aria-label='Close modal'
+                >
+                    ✕
+                </Button>
 
                 <div className='library-modal-content'>
                     <div className='library-modal-cover'>
@@ -38,9 +56,26 @@ export default function LibraryAuthorModal({ author, onClose }) {
                             <span>{author.book_count} {author.book_count === 1 ? 'book' : 'books'}</span>
                         </div>
 
-                        <button className='library-modal-details-btn' disabled>
+                        <Button
+                            variant='secondary'
+                            size='sm'
+                            onClick={handleViewAuthorDetails}
+                        >
+                            View full author details →
+                        </Button>
+                        {/* <button className='library-modal-details-btn' onClick={handleViewAuthorDetails}>
+                            View full author details →
+                        </button> */}
+
+                        {/* Added the disabled class here and in the library.css with display: none set to remove this button until it is functional */}
+                        <Button
+                            variant='secondary'
+                            size='sm'
+                            disabled
+                            className='library-modal-details-btn disabled'
+                        >
                             Follow
-                        </button>
+                        </Button>
 
                         <p className='library-modal-coming-soon'>
                             Author pages and following are coming soon.

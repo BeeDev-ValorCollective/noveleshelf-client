@@ -4,6 +4,8 @@ import useAuthStore from '../../store/authStore'
 
 import ProfileHeader from '../../components/DashboardComponents/ProfileHeader'
 import AuthorUpgradeSection from '../../components/DashboardComponents/AuthorUpgradeSection'
+import RenderStatsBar from '../../components/DashboardComponents/ReaderDashboardComponents/StatsBar'
+import RenderWalletBar from '../../components/DashboardComponents/ReaderDashboardComponents/Wallet'
 
 import ComingSoon from '../../components/BaseComponents/ComingSoon'
 
@@ -23,13 +25,13 @@ export default function ReaderDashboard() {
         <div  className="reader-dashboard-container">
             <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
             <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} />
-            {/* <RenderStatsBar /> */}
-            {/* <CurrentlyReading /> */}
+            <RenderStatsBar />
+            <RenderWalletBar />
             {/* <SavedBooks /> */}
             {/* <FinishedBooks /> */}
             {/* <ReadingActivity /> */}
             {/* <ReadingPreferences /> */}
-            <ComingSoon title="We're busy stocking the shelves." description='The reading experience is coming soon — for now, explore your profile.' />
+            {/* <ComingSoon title="We're busy stocking the shelves." description='The reading experience is coming soon — for now, explore your profile.' /> */}
         </div>
 
     )

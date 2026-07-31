@@ -1,0 +1,35 @@
+/* Header alignment with back button */
+.manage-book-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.manage-book-header h1 {
+    margin: 0;
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: var(--text-primary, #ffffff);
+}
+
+/* Actions containers */
+.create-chapter-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Top action bar: align right */
+.create-chapter-actions--top {
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+/* Bottom action bar: space out back button and submit button */
+.create-chapter-actions--bottom {
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+}

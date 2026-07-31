@@ -1,19 +1,28 @@
 import { getMediaUrl } from '../../utils/api'
 import { useNavigate } from 'react-router-dom'
 import { UserStar } from 'lucide-react'
+import Button from '../ui/Button'
 
 export default function LibraryBookModal({ book, onClose, backTo = '/library' }) {
     const navigate = useNavigate()
 
     const handleViewDetails = () => {
         onClose()
-        navigate(`/library/${book.id}`, { state: { backTo } })
+        navigate(`/library/book/${book.id}`, { state: { backTo } })
     }
 
     return (
         <div className='library-modal-overlay' onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className='library-modal'>
-                <button className='library-modal-close' onClick={onClose}>✕</button>
+                <Button
+                    variant='ghost'
+                    size='sm'
+                    className='library-modal-close'
+                    onClick={onClose}
+                    aria-label='Close modal'
+                >
+                    ✕
+                </Button>
 
                 <div className='library-modal-content'>
                     <div className='library-modal-cover'>
@@ -51,18 +60,6 @@ export default function LibraryBookModal({ book, onClose, backTo = '/library' })
                             </div>
                         )}
 
-                        {book.description && (
-                            <p className='library-modal-description'>{book.description}</p>
-                        )}
-                        <button className='library-modal-details-btn' onClick={handleViewDetails}>
-                            View full details →
-                        </button>
-
-                        <div className='library-modal-meta'>
-                            <span>{book.published_chapter_count} chapter{book.published_chapter_count !== 1 ? 's' : ''}</span>
-                            {book.book_tier && <span>Tier {book.book_tier}</span>}
-                        </div>
-
                         {book.relationship_tags?.length > 0 && (
                             <div className='library-modal-tags'>
                                 {book.relationship_tags.map(t => (
@@ -70,6 +67,22 @@ export default function LibraryBookModal({ book, onClose, backTo = '/library' })
                                 ))}
                             </div>
                         )}
+
+                        {book.description && (
+                            <p className='library-modal-description'>{book.description}</p>
+                        )}
+
+                        <div className='library-modal-meta'>
+                            <span>{book.published_chapter_count} chapter{book.published_chapter_count !== 1 ? 's' : ''}</span>{book.book_tier && <span>Tier {book.book_tier}</span>}
+                        </div>
+
+                        <Button
+                            variant='secondary'
+                            size='sm'
+                            onClick={handleViewDetails}
+                        >
+                            View full book details →
+                        </Button>
 
                         <p className='library-modal-coming-soon'>
                             Love what you see? The Novel eShelf app is coming soon — <em>{book.title}</em> will be waiting for you.

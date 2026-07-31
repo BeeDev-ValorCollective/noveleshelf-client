@@ -17,6 +17,8 @@ export const ENDPOINTS = {
     resendVerification: 'auth/resend-verification/',
     forgotPassword: 'auth/forgot-password/',
     resetPassword: 'auth/reset-password/',
+    createHandoffToken: 'auth/create-handoff-token/',
+    exchangeHandoffToken: 'auth/exchange-handoff-token/',
     changePassword: 'user/change-password/',
     changeEmail: 'user/change-email/',
     updateProfile: 'user/profile/update/',
@@ -25,6 +27,9 @@ export const ENDPOINTS = {
     defaultRoleUpdate: 'user/default-role/update/',
     freeAuthorProfileUpdate: 'user/free-author-profile/update/',
     moderatorProfileUpdate: 'user/moderator-profile/update/',
+
+    // ─── Stats ────────────────────────────────────────────────────
+    readerStats: 'books/reader/stats/',
 
     // ─── Author Requests ──────────────────────────────────────────
     upgradeToFreeAuthor: 'user/free-author/upgrade/',
@@ -66,6 +71,11 @@ export const ENDPOINTS = {
     pageUnpublish: 'books/author/pages/unpublish/',
     pageDelete: 'books/author/pages/delete/',
 
+    // ─── Currency ──────────────────────────────────────────────
+    listQuillBundles: 'currency/quills/bundles/',
+    createQuillCheckout: 'currency/quills/checkout/create/',
+    checkQuillPurchaseStatus: 'currency/quills/checkout/status/',
+    redeemPromoCode: 'currency/promo/redeem/',
     // ─── Admin ─────────────────────────────────────────────────
     adminAuthorRequests: 'admin/users/author-requests/',
     adminAuthorReqUpdate: 'admin/users/author-request/update/',

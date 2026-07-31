@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import useAuthStore from "../../store/authStore";
 import { DB_API, ENDPOINTS } from '../../utils/api'
 
@@ -16,6 +17,7 @@ export default function Login({ onClose, isModal, onSwitchToSignup }) {
   const setTokens = useAuthStore((state) => state.setTokens)
   const { closeAndNavigate, safeClose } = useModalAuth(onClose);
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,7 +47,11 @@ export default function Login({ onClose, isModal, onSwitchToSignup }) {
               refresh: data.tokens.refresh
           })
       }
-        closeAndNavigate("/dashboard");
+        // Return to wherever the reader came from (e.g. a book detail
+        // page), if that was passed in via navigate('/login', { state }).
+        // Falls back to the dashboard when there's no such origin.
+        const from = location.state?.from || "/dashboard";
+        closeAndNavigate(from);
       } else {
         setError(data.error || "Login failed");
       }
@@ -100,11 +106,11 @@ export default function Login({ onClose, isModal, onSwitchToSignup }) {
         <span onClick={handleSignupClick}> Sign up</span>
       </p>
 
-      <p className="divider">or continue with</p>
+      {/* <p className="divider">or continue with</p>
       <div className="social-buttons">
         <button className="social">Google</button>
         <button className="social">Apple</button>
-      </div>
+      </div> */}
     </AuthCard>
   );
 

@@ -1,6 +1,7 @@
 import React, { Suspense, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
+import { useAuthHandoffListener } from './hooks/useAuthHandoffListener';
 
 import Header from './components/BaseComponents/Header'
 import Footer from './components/BaseComponents/Footer'
@@ -10,10 +11,25 @@ import MaintenanceNotice from './components/MaintenanceNotice'
 import useUser from './hooks/useUser'
 import ScrollToTop from './components/ScrollToTop'
 
+// Tag every outgoing fetch as coming from Vite, so the backend can tell it
+// apart from Expo web/native in DailyActivity/Event logs. Patched once here
+// at module scope so it applies before any component fetches.
+const originalFetch = window.fetch;
+window.fetch = (url, options = {}) => {
+  return originalFetch(url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      'X-Client-Platform': 'vite',
+    },
+  });
+};
+
 const Home = React.lazy(() => import('./views/Home'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
 const ForReaders = React.lazy(() => import('./views/ForReaders'))
 const Contact = React.lazy(() => import('./views/Contact'))
+const FAQ = React.lazy(() => import('./views/FAQ'))
 const FreeAuthorAgreement = React.lazy(() => import('./views/iFrameViews/FreeAuthorAgreement'))
 const Unsubscribe = React.lazy(() => import('./views/Unsubscribe'))
 const ErrorPage = React.lazy(() => import('./views/ErrorPage'))
@@ -29,10 +45,14 @@ const NewPassword = React.lazy(() => import('./views/AuthViews/NewPassword'))
 const Dashboard = React.lazy(() => import('./views/UserViews/Dashboard'))
 const Profile = React.lazy(() => import('./views/UserViews/Profile'))
 const UpdateProfile = React.lazy(() => import('./views/UserViews/UpdateProfile'))
+const PurchaseQuills = React.lazy(() => import('./views/UserViews/PurchaseQuills'))
+const PurchaseComplete = React.lazy(() => import('./views/UserViews/PurchaseComplete'))
+const RedeemPromo = React.lazy(() => import('./views/UserViews/RedeemPromo'))
 
 // Library Pages
 const Library = React.lazy(() => import('./views/LibraryViews/Library'))
 const BookDetail = React.lazy(() => import('./views/LibraryViews/BookDetail'))
+const AuthorDetail = React.lazy(() => import('./views/LibraryViews/AuthorDetail'))
 
 // Author Pages
 const CreateNewBook = React.lazy(() => import('./views/AuthorViews/CreateNewBook'))
@@ -61,6 +81,7 @@ function App() {
 function AppContent() {
   const [modal, setModal] = useState(null);
   const { user, accessToken } = useUser();
+  useAuthHandoffListener();
 
   // DEV ONLY
   if (import.meta.env.DEV) {
@@ -91,11 +112,13 @@ function AppContent() {
           <Route path="/new-password/:token" element={<NewPassword />} />
           {/* Library */}
           <Route path="/library" element={<Library />} />
-          <Route path="/library/:bookId" element={<BookDetail />} />
+          <Route path="/library/book/:bookId" element={<BookDetail />} />
+          <Route path="/library/author/:authorUsername" element={<AuthorDetail />} />
           {/* Other */}
           <Route path="/for-authors" element={<ForAuthors onLoginClick={() => setModal('login')} />} />
           <Route path="/for-readers" element={<ForReaders />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/agreement/free-author" element={<FreeAuthorAgreement />} />
           <Route path='/unsubscribe' element={<Unsubscribe />} />
           <Route path="/unauthorized" element={<ErrorPage type="unauthorized" />} />
@@ -121,6 +144,21 @@ function AppContent() {
           {/* protected - login + verified */}
 
           {/* Reader */}
+          <Route path="/purchase-quills" element={
+            <ProtectedRoute allowedRoles={['reader']}>
+              <PurchaseQuills />
+            </ProtectedRoute>}
+          />
+          <Route path="/purchase-complete" element={
+            <ProtectedRoute>
+              <PurchaseComplete />
+            </ProtectedRoute>}
+          />
+          <Route path="/redeem-promo" element={
+            <ProtectedRoute>
+              <RedeemPromo />
+            </ProtectedRoute>}
+          />
 
           {/* Author */}
           <Route path='/set-author-username' element={

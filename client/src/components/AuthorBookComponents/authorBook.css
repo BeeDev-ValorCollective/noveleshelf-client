@@ -18,23 +18,6 @@
     gap: 1em;
     flex-wrap: wrap;
 }
-.mb-back-btn {
-    background-color: transparent;
-    color: var(--text-secondary);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 0.5em 1.2em;
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: "Fredericka the Great", serif;
-    font-size: clamp(0.85rem, 1.2vw, 0.95em);
-    transition: var(--transition);
-    white-space: nowrap;
-}
-.mb-back-btn:hover {
-    background-color: rgba(255,255,255,0.08);
-    color: var(--text-primary);
-    border-color: rgba(255,255,255,0.4);
-}
 .manage-book-header h1 {
     font-family: "Fredericka the Great", serif;
     color: var(--text-primary);
@@ -61,23 +44,6 @@
     width: 100%;
     padding-bottom: 0.5em;
     border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.manage-book-section button {
-    margin: 0.3em;
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 0.5em 1.2em;
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: "Fredericka the Great", serif;
-    font-size: clamp(0.85rem, 1.2vw, 0.95em);
-    transition: var(--transition);
-}
-.manage-book-section button:hover {
-    background-color: rgba(255,255,255,0.08);
-    border-color: var(--accent-coral);
-    color: var(--accent-coral);
 }
 .coming-soon-note {
     color: var(--text-secondary);

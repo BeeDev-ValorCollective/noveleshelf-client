@@ -1,8 +1,22 @@
+import { useNavigate, useLocation } from 'react-router-dom'
 import { getMediaUrl } from '../../../utils/api'
-import { UserStar } from 'lucide-react'
+import { UserStar, BookmarkPlus } from 'lucide-react'
+import useAuthStore from '../../../store/authStore'
+import { sendToExpo } from '../../../utils/authHandoff'
 
 export default function BookDetailHero({ book }) {
     const { author } = book
+    const navigate = useNavigate()
+    const location = useLocation()
+    const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+
+    const handleAddToShelf = () => {
+        if (!isAuthenticated) {
+            navigate('/login', { state: { from: location.pathname } })
+            return
+        }
+        sendToExpo(`(protected)/(reader-tabs)/book/${book.id}`)
+    }
 
     return (
         <div className='bd-hero'>
@@ -73,6 +87,12 @@ export default function BookDetailHero({ book }) {
                         <span>{Math.min(book.free_chapters, book.published_chapter_count)} free</span>
                     )}
                 </div>
+            </div>
+            <div className="bd-shelf">
+                <button className='bd-shelf-btn' onClick={handleAddToShelf}>
+                    <BookmarkPlus size={18} />
+                    {isAuthenticated ? 'Go to the Web App' : 'Sign in to Add'}
+                </button>
             </div>
         </div>
     )

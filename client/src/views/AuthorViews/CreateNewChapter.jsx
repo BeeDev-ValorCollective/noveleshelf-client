@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import useAuthStore from '../../store/authStore'
 import TipTapEditor from '../../components/TipTapEditor/TipTapEditor'
+import Button from '../../components/ui/Button'
 import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import './authorViews.css'
 
 export default function CreateNewChapter() {
     const { bookId } = useParams()
@@ -29,7 +31,13 @@ export default function CreateNewChapter() {
         return (
             <div>
                 <p className='form-error'>Book data not found.</p>
-                <button onClick={() => navigate(`/author/books/${bookId}/manage`)}>← Back to book</button>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate(`/author/books/${bookId}/manage`)}
+                >
+                    ← Back to book
+                </Button>
             </div>
         )
     }
@@ -78,15 +86,26 @@ export default function CreateNewChapter() {
     return (
         <div className="create-chapter">
             <div className="manage-book-header">
-                <button onClick={() => navigate(`/author/books/${bookId}/manage#manage-chapters`)}>← Back to book</button>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate(`/author/books/${bookId}/manage#manage-chapters`)}
+                >
+                    ← Back to book
+                </Button>
                 <h1>Add New Chapter</h1>
             </div>
 
             <div className="create-chapter-form">
                 <div className="create-chapter-actions">
-                    <button onClick={handleSubmit} disabled={isSubmitting}>
+                    <Button
+                        variant='secondary'
+                        size='sm'
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                    >
                         {isSubmitting ? 'Saving...' : 'Save Chapter'}
-                    </button>
+                    </Button>
                 </div>
 
                 <div className="bff-field">
@@ -133,12 +152,22 @@ export default function CreateNewChapter() {
                 {error && <p className="form-error">{error}</p>}
 
                 <div className="create-chapter-actions">
-                    <button onClick={() => navigate(`/author/books/${bookId}/manage#manage-chapters`)} disabled={isSubmitting}>
+                    <Button
+                        variant='primary'
+                        size='sm'
+                        onClick={() => navigate(`/author/books/${bookId}/manage#manage-chapters`)}
+                        disabled={isSubmitting}
+                    >
                         ← Back to book
-                    </button>
-                    <button onClick={handleSubmit} disabled={isSubmitting}>
+                    </Button>
+                    <Button
+                        variant='secondary'
+                        size='sm'
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                    >
                         {isSubmitting ? 'Saving...' : 'Save Chapter'}
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>
