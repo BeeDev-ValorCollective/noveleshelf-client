@@ -43,6 +43,7 @@ export const ENDPOINTS = {
     publicBookDetail: (id) => `books/public/books/${id}/`,
     authors: 'public/authors/',
     publicAuthorDetail: (username) => `public/authors/${username}/`,
+    readerBookDetail: (id) => `books/reader/library/book/${id}/`,
 
     // ─── Books — Author ───────────────────────────────────────────
     bookCreate: 'books/author/books/create/',
