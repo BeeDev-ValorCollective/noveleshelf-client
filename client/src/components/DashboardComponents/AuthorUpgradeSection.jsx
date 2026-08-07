@@ -31,14 +31,13 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                             <h3 className='upgrade-card-title'>Share Your Stories for Free</h3>
                             <Button
                                 href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing'
-                                variant='ghost'
+                                variant='tertiary'
                                 size='sm'
-                                className='upgrade-card-learn-more'
                                 style={{ 
                                     width: 'fit-content', 
                                     justifyContent: 'flex-start', 
                                     textAlign: 'left',
-                                    paddingLeft: 0 
+                                    paddingLeft: 10 
                                 }}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -69,14 +68,13 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                             <h3 className='upgrade-card-title'>Become a Paid Author</h3>
                             <Button
                                 href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing'
-                                variant='ghost'
+                                variant='tertiary'
                                 size='sm'
-                                className='upgrade-card-learn-more'
                                 style={{ 
                                     width: 'fit-content', 
                                     justifyContent: 'flex-start', 
                                     textAlign: 'left',
-                                    paddingLeft: 0 
+                                    paddingLeft: 10 
                                 }}
                                 target="_blank"
                                 rel="noopener noreferrer"
