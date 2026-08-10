@@ -1,6 +1,7 @@
 import { getMediaUrl } from '../../utils/api'
 import { toTitleCase } from '../../utils/upperCase'
 import { Link } from 'react-router-dom'
+import Button from '../ui/Button'
 
 import './dashboard.css'
 // import { sendToExpo } from '../../utils/authHandoff'; // adjust path to match Dashboard's location
@@ -63,7 +64,9 @@ export default function ProfileHeader({ user, currentProfile, fullName, currentR
                     </div>
                 </div>
                 <div className='profile-header-right'>
-                    <button className='edit-profile-btn'><Link to="/profile-update">Update Profile</Link></button>
+                    <Button size='md' variant='tertiary' to='/profile-update'>
+                        Update Profile
+                    </Button>
                 </div>
                 {/* <button onClick={() => sendToExpo('settings')}>
                     Open in App

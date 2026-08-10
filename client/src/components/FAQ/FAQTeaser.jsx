@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom' // Or your app's router
 import FaqAccordion from './FAQAccordion'
 import { readerFaq } from '../../data/faq/readerFAQ'
+import Button from '../ui/Button'
 import './faqTeaser.css'
 
 export default function FaqTeaserSection() {
@@ -19,9 +20,9 @@ export default function FaqTeaserSection() {
 
             <div className="faq-teaser-cta">
                 <p>Have more questions?</p>
-                <Link to="/faq" className="faq-cta-btn">
+                <Button size='lg' variant='primary' to='/faq'>
                     View All FAQs →
-                </Link>
+                </Button>
             </div>
         </section>
     )

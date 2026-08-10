@@ -119,28 +119,6 @@
     color: var(--text-secondary);
 }
 
-.faq-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.85rem 2.25rem;
-    border-radius: 999px;
-    border: 1px solid var(--accent-coral);
-    background: transparent;
-    color: white;
-    font-family: "Fredericka the Great", serif;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.faq-cta-btn:hover {
-    background: var(--accent-coral);
-    color: white;
-    text-decoration: none;
-}
-
 /* Page Container */
 .faq-page-container {
     width: 100%;
