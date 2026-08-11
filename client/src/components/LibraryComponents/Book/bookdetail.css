@@ -22,7 +22,7 @@
     align-self: flex-start;
     background-color: transparent;
     color: var(--text-secondary);
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid #ffffff33;
     padding: 0.5em 1.2em;
     border-radius: 999px;
     cursor: pointer;
@@ -33,9 +33,9 @@
 }
 
 .bd-back-btn:hover {
-    background-color: rgba(255,255,255,0.08);
+    background-color: #ffffff14;
     color: var(--text-primary);
-    border-color: rgba(255,255,255,0.4);
+    border-color: #ffffff66;
 }
 
 
@@ -74,7 +74,7 @@
     height: auto;
     border-radius: var(--card-radius);
     object-fit: cover;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid #ffffff1f;
     display: block;
 }
 
@@ -91,17 +91,17 @@
 .bd-badge--complete {
     top: 0.6em;
     left: 0.6em;
-    background-color: rgba(76,175,80,0.2);
+    background-color: #4caf5033;
     color: #4caf50;
-    border: 1px solid rgba(76,175,80,0.3);
+    border: 1px solid #4caf504d;
 }
 
 .bd-badge--new {
     top: 0.6em;
     right: 0.6em;
-    background-color: rgba(104,185,185,0.2);
+    background-color: #68b9b933;
     color: var(--accent-teal);
-    border: 1px solid rgba(104,185,185,0.3);
+    border: 1px solid #68b9b94d;
 }
 
 .bd-hero-info {
@@ -139,9 +139,9 @@
     font-size: clamp(0.75rem, 1.1vw, 0.82em);
     padding: 0.3em 0.8em;
     border-radius: 999px;
-    background-color: rgba(255,255,255,0.08);
+    background-color: #ffffff14;
     color: var(--text-secondary);
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid #ffffff1f;
     font-family: "Fredericka the Great", serif;
     white-space: nowrap;
 }
@@ -150,9 +150,9 @@
     font-size: clamp(0.75rem, 1.1vw, 0.82em);
     padding: 0.3em 0.8em;
     border-radius: 999px;
-    background-color: rgba(221,122,122,0.1);
+    background-color: #dd7a7a1a;
     color: var(--accent-coral);
-    border: 1px solid rgba(221,122,122,0.2);
+    border: 1px solid #dd7a7a33;
     font-family: "Fredericka the Great", serif;
     white-space: nowrap;
 }
@@ -167,17 +167,17 @@
     font-size: clamp(0.75rem, 1.1vw, 0.82em);
     padding: 0.25em 0.7em;
     border-radius: 999px;
-    background-color: rgba(255,255,255,0.06);
+    background-color: #ffffff0f;
     color: var(--text-secondary);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid #ffffff1a;
     font-family: "Merienda", cursive;
     white-space: nowrap;
 }
 
 .bd-tag--rel {
-    background-color: rgba(104,185,185,0.08);
+    background-color: #68b9b914;
     color: var(--accent-teal);
-    border-color: rgba(104,185,185,0.2);
+    border-color: #68b9b933;
 }
 
 .bd-tag--keyword {
@@ -336,17 +336,17 @@
 }
 
 .bd-chapter-badge--free {
-    background-color: rgba(104,185,185,0.15);
+    background-color: #68b9b926;
     color: var(--accent-teal);
 }
 
 .bd-chapter-badge--final {
-    background-color: rgba(221,122,122,0.15);
+    background-color: #dd7a7a26;
     color: var(--accent-coral);
 }
 
 .bd-chapter-badge--new {
-    background-color: rgba(255,193,7,0.12);
+    background-color: #ffc1071f;
     color: #ffc107;
 }
 
@@ -375,8 +375,8 @@
     gap: 0.5em;
     text-align: center;
     padding: clamp(1.5rem, 3vw, 2.5rem);
-    background-color: rgba(104,185,185,0.06);
-    border: 1px solid rgba(104,185,185,0.15);
+    background-color: #68b9b90f;
+    border: 1px solid #68b9b926;
     border-radius: var(--card-radius);
     margin-bottom: 1em;
 }
@@ -466,9 +466,9 @@
     display: flex;
     align-items: center;
     gap: 0.5em;
-    background-color: rgba(104,185,185,0.12);
+    background-color: #68b9b91f;
     color: var(--accent-teal);
-    border: 1px solid rgba(104,185,185,0.3);
+    border: 1px solid #68b9b94d;
     padding: 0.7em 1.4em;
     border-radius: 999px;
     cursor: pointer;
@@ -479,8 +479,8 @@
 }
 
 .bd-shelf-btn:hover {
-    background-color: rgba(104,185,185,0.22);
-    border-color: rgba(104,185,185,0.5);
+    background-color: #68b9b938;
+    border-color: #68b9b980;
 }
 
 .bd-shelf-btn:active {

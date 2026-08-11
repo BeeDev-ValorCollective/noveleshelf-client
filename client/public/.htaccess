@@ -18,9 +18,12 @@
   RewriteCond %{HTTP_HOST} ^(www\.)?noveleshelf\.com$ [NC]
   RewriteRule ^beeshelf(/.*)?$ /index.html [END]
 
-  # MAINTENANCE MODE (uncomment to enable)
-  # RewriteCond %{HTTP_HOST} ^(www\.)?noveleshelf\.com$ [NC]
-  # RewriteRule ^ https://maintenance.beedev-services.com/client/noveleshelf [R=302,L]
+  # MAINTENANCE MODE (uncomment to enable chose scheduled or emergency version)
+#   RewriteCond %{HTTP_HOST} ^(www\.)?noveleshelf\.com$ [NC]
+# Scheduled
+#   RewriteRule ^ https://maintenance.beedev-services.com/client/noveleshelf [R=302,L]
+## Emergency
+#   RewriteRule ^ https://maintenance.beedev-services.com/client/noveleshelf-emergency [R=302,L]
 
   # SPA fallback
   RewriteCond %{HTTP_HOST} ^(www\.)?noveleshelf\.com$ [NC]
