@@ -396,7 +396,7 @@
     margin: 0 0 12px;
 }
 
-.library-modal-details-btn {
+/* .library-modal-details-btn {
     padding: 0.5rem 0.75rem;
     border-radius: 999px;
     border: none;
@@ -412,11 +412,7 @@
 
 .library-modal-details-btn:hover {
     background: var(--accent-coral);
-}
-
-.disabled { 
-    display: none;
-}
+} */
 
 .library-modal-meta {
     display: flex;

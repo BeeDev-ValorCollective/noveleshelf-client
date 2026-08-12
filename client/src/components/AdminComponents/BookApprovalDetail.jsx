@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getMediaUrl, DB_API, ENDPOINTS } from '../../utils/api'
 import { BOOK_STATUS_LABELS } from '../../utils/constants'
+import Button from '../ui/Button'
 
 export default function BookApprovalDetail({ book, accessToken, onUpdated, onActioned, onClose }) {
     const [readerNotes, setReaderNotes] = useState('')
@@ -161,7 +162,13 @@ export default function BookApprovalDetail({ book, accessToken, onUpdated, onAct
 
     return (
         <div className='request-detail'>
-            <button className='admin-detail-close' onClick={onClose}>✕ Close</button>
+            <Button
+                variant='ghost'
+                size='sm'
+                onClick={onClose}
+            >
+                ✕ Close
+            </Button>
 
             <h2 className='request-detail-title'>{book.title}</h2>
             <p className='request-detail-date'>
@@ -259,24 +266,44 @@ export default function BookApprovalDetail({ book, accessToken, onUpdated, onAct
             {success && <p className='form-success'>{success}</p>}
             {error && <p className='form-error'>{error}</p>}
 
-            <button onClick={handleAdminUpdate} disabled={isWorking}>
+            <Button
+                variant='secondary'
+                size='sm'
+                onClick={handleAdminUpdate}
+                disabled={isWorking}
+            >
                 {isUpdating ? 'Saving...' : 'Save Notes & Tier'}
-            </button>
+            </Button>
 
             {isPendingApproval && (
                 <div className='request-approve-section'>
                     <h3>Decision</h3>
                     <p className='section-note'>Reader notes are required for all decisions.</p>
                     <div className='book-approval-actions'>
-                        <button onClick={handleApprove} disabled={isWorking}>
+                        <Button
+                            variant='primary'
+                            size='md'
+                            onClick={handleApprove}
+                            disabled={isWorking}
+                        >
                             {isApproving ? 'Approving...' : '✓ Approve'}
-                        </button>
-                        <button onClick={handleRequestChanges} disabled={isWorking}>
+                        </Button>
+                        <Button
+                            variant='secondary'
+                            size='md'
+                            onClick={handleRequestChanges}
+                            disabled={isWorking}
+                        >
                             {isRequestingChanges ? 'Requesting...' : '↩ Request Changes'}
-                        </button>
-                        <button onClick={handleReject} disabled={isWorking}>
+                        </Button>
+                        <Button
+                            variant='delete'
+                            size='md'
+                            onClick={handleReject}
+                            disabled={isWorking}
+                        >
                             {isRejecting ? 'Rejecting...' : '✕ Reject'}
-                        </button>
+                        </Button>
                     </div>
                 </div>
             )}

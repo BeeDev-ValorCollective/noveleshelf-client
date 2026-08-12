@@ -158,50 +158,6 @@
     flex: 1;
     margin: 0;
 }
-.cancel-upgrade-card-btn {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--accent-purple);
-    padding: 0.8em 1.5em;
-    font-size: clamp(0.85rem, 1.2vw, 0.95em);
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: "Fredericka the Great", serif;
-    transition: var(--transition);
-    width: 100%;
-    margin-top: auto;
-}
-.cancel-upgrade-card-btn:hover {
-    background-color: var(--text-secondary);
-    color: var(--text-primary);
-    border-color: var(--text-secondary);
-    color: var(--bg-primary);
-}
-.upgrade-card-btn {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--accent-coral);
-    padding: 0.8em 1.5em;
-    font-size: clamp(0.85rem, 1.2vw, 0.95em);
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: "Fredericka the Great", serif;
-    transition: var(--transition);
-    width: 100%;
-    margin-top: auto;
-}
-.upgrade-card-btn:hover {
-    background-color: var(--accent-coral);
-    color: var(--text-primary);
-}
-.upgrade-card-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-.upgrade-card-btn:disabled:hover {
-    background-color: transparent;
-    color: var(--text-primary);
-}
 
 /*  Form Feedback  */
 .form-success {
@@ -252,18 +208,6 @@
     margin: 0;
     color: var(--text-primary);
     font-family: "Fredericka the Great", serif;
-}
-.modal-box-close {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: var(--transition);
-    padding: 0.2em;
-}
-.modal-box-close:hover {
-    color: var(--text-primary);
 }
 .modal-box-actions {
     display: flex;

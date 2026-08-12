@@ -1,3 +1,5 @@
+import Button from '../ui/Button'
+
 export default function LibraryFilterPanel({
     view,
     referenceData,
@@ -23,13 +25,14 @@ export default function LibraryFilterPanel({
             <h4>{title}</h4>
             <div className='library-filter-chips'>
                 {items?.map((item) => (
-                    <button
+                    <Button
                         key={item.id}
-                        className={`library-filter-chip ${pendingFilters[filterKey] === item.id ? 'library-filter-chip--active' : ''}`}
+                        variant='secondary'
+                        size='sm'
                         onClick={() => toggleChip(filterKey, item.id)}
                     >
                         {item[labelKey]}
-                    </button>
+                    </Button>
                 ))}
             </div>
         </div>
@@ -51,7 +54,13 @@ export default function LibraryFilterPanel({
             <div className='library-filter-panel'>
                 <div className='library-filter-header'>
                     <h3>{view === 'authors' ? 'Filter authors' : 'Filter the shelf'}</h3>
-                    <button className='library-filter-close' onClick={onClose}>✕</button>
+                    <Button
+                        variant='secondary'
+                        size='md'
+                        onClick={onClose}
+                    >
+                        ✕
+                    </Button>
                 </div>
 
                 <div className='library-filter-body'>
@@ -78,8 +87,22 @@ export default function LibraryFilterPanel({
                 </div>
 
                 <div className='library-filter-footer'>
-                    <button className='library-filter-clear' onClick={onClear}>Clear all</button>
-                    <button className='library-filter-apply' onClick={onApply}>Apply filters</button>
+                    <Button
+                        variant='secondary'
+                        size='lg'
+                        onClick={onClear}
+                    >
+                        Clear All
+                    </Button>
+                    <Button
+                        variant='primary'
+                        size='lg'
+                        onClick={onApply}
+                    >
+                        Apply Filters
+                    </Button>
+                    {/* <button className='library-filter-clear' onClick={onClear}>Clear all</button>
+                    <button className='library-filter-apply' onClick={onApply}>Apply filters</button> */}
                 </div>
             </div>
         </div>
