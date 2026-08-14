@@ -204,7 +204,7 @@ export default function ManageBook() {
                     </p>
                     {deleteError && <p className='form-error'>{deleteError}</p>}
                     <Button
-                        variant='primary'
+                        variant='delete'
                         size='md'
                         onClick={handleDeleteBook}
                         disabled={isDeleting}

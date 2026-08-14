@@ -7,6 +7,7 @@ import AuthCard from "../../components/AuthComponents/AuthCard";
 import AuthPage from "../../components/AuthComponents/AuthPage";
 import InputField from "../../components/AuthComponents/InputField";
 import PrimaryButton from "../../components/AuthComponents/PrimaryButton";
+import Button from "../../components/ui/Button";
 import useModalAuth from "../../hooks/useModalAuth";
 
 import "../../components/AuthComponents/auth.css";
@@ -87,8 +88,15 @@ export default function Signup({ onClose, isModal, onSwitchToLogin }) {
 
   const inner = (
     <AuthCard>
-      <button onClick={safeClose} className="close-btn">×</button>
-
+      <Button
+        variant="secondary"
+        size="sm"
+        onClick={safeClose}
+        className="close-btn"
+      >
+        ×
+      </Button>
+      
       <h1>Create Your Account</h1>
       <p className="subtitle">Join a premium digital reading experience</p>
 

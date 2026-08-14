@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../ui/Button'
 
 export default function UserDetail({ user, accessToken, isSuperAdmin, onUpdated, onClose }) {
     const [isWorking, setIsWorking] = useState(false)
@@ -156,7 +157,13 @@ export default function UserDetail({ user, accessToken, isSuperAdmin, onUpdated,
 
     return (
         <div className='request-detail'>
-            <button className='admin-detail-close' onClick={onClose}>✕ Close</button>
+            <Button
+                variant='ghost'
+                size='sm'
+                onClick={onClose}
+            >
+                ✕ Close
+            </Button>
 
             <h2 className='request-detail-title'>{user.email}</h2>
             <p className='request-detail-date'>
@@ -191,7 +198,9 @@ export default function UserDetail({ user, accessToken, isSuperAdmin, onUpdated,
                                     disabled={isWorking}
                                 />
                             </div>
-                            <button
+                            <Button
+                                variant='secondary'
+                                size='sm'
                                 onClick={() => {
                                     if (!authorForm.first_name || !authorForm.last_name) {
                                         setError('First and last name are required to upgrade to author.')
@@ -206,28 +215,32 @@ export default function UserDetail({ user, accessToken, isSuperAdmin, onUpdated,
                                 disabled={isWorking}
                             >
                                 Upgrade to Paid Author
-                            </button>
+                            </Button>
                         </div>
                     )}
                     {!hasModerator && (
-                        <button
+                        <Button
+                            variant='secondary'
+                            size='sm'
                             onClick={() => handleUpgrade(ENDPOINTS.adminUpgradeToModerator, {
-                                user_id: user.id,
-                            }, `${user.email} upgraded to moderator.`)}
+                                    user_id: user.id,
+                                }, `${user.email} upgraded to moderator.`)}
                             disabled={isWorking}
                         >
                             Upgrade to Moderator
-                        </button>
+                        </Button>
                     )}
                     {!hasAdmin && (
-                        <button
+                        <Button
+                            variant='secondary'
+                            size='sm'
                             onClick={() => handleUpgrade(ENDPOINTS.adminUpgradeToAdmin, {
                                 user_id: user.id,
                             }, `${user.email} upgraded to admin.`)}
                             disabled={isWorking}
                         >
                             Upgrade to Admin
-                        </button>
+                        </Button>
                     )}
                     {hasPaidAuthor && hasModerator && hasAdmin && (
                         <p className='section-note'>User has all available roles.</p>
@@ -331,9 +344,15 @@ export default function UserDetail({ user, accessToken, isSuperAdmin, onUpdated,
                         </label>
                     </div>
 
-                    <button onClick={handleAuthorProfileUpdate} disabled={isWorking}>
+                    <Button
+                        variant='secondary'
+                        size='sm'
+                        onClick={handleAuthorProfileUpdate}
+                        disabled={isWorking}
+                    >
                         {isWorking ? 'Saving...' : 'Save Author Profile'}
-                    </button>
+                    </Button>
+
                 </div>
             )}
 
@@ -381,9 +400,17 @@ export default function UserDetail({ user, accessToken, isSuperAdmin, onUpdated,
                         </label>
                     </div>
 
-                    <button onClick={handleFreeAuthorUpdate} disabled={isWorking}>
+                    <Button
+                        variant='secondary'
+                        size='sm'
+                        onClick={handleFreeAuthorUpdate}
+                        disabled={isWorking}
+                    >
                         {isWorking ? 'Saving...' : 'Save Free Author Profile'}
-                    </button>
+                    </Button>
+                    {/* <button onClick={handleFreeAuthorUpdate} disabled={isWorking}>
+                        {isWorking ? 'Saving...' : 'Save Free Author Profile'}
+                    </button> */}
                 </div>
             )}
         </div>

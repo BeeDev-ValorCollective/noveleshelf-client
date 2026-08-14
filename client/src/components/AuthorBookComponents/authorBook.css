@@ -668,27 +668,6 @@
     flex-wrap: wrap;
     flex-shrink: 0;
 }
-.book-page-card-actions button {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 0.4em 1em;
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: "Fredericka the Great", serif;
-    font-size: clamp(0.78rem, 1.2vw, 0.85em);
-    transition: var(--transition);
-    white-space: nowrap;
-}
-.book-page-card-actions button:hover:not(:disabled) {
-    background-color: rgba(255,255,255,0.08);
-    border-color: var(--accent-coral);
-    color: var(--accent-coral);
-}
-.book-page-card-actions button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
 
 /* ─── Mobile ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../ui/Button'
 
 export default function BookPageCard({ type, label, page, book, authorType, accessToken, onBookUpdated, navigate, bookId }) {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -99,14 +100,16 @@ export default function BookPageCard({ type, label, page, book, authorType, acce
                 <div className='book-page-card-info'>
                     <span className='book-page-card-title'>{label}</span>
                     {page && (
-                        <span className={`project-status ${page.is_published ? 'approved' : 'draft'}`}>
+                        <span className={`project-status ${page.is_published ? 'published' : 'draft'}`}>
                             {page.is_published ? 'Published' : 'Draft'}
                         </span>
                     )}
                 </div>
                 <div className='book-page-card-actions'>
                     {!page && (
-                        <button
+                        <Button
+                            variant='primary'
+                            size='sm'
                             onClick={() => navigate(
                                 `/author/books/${bookId}/pages/${type}`,
                                 { state: { book } }
@@ -114,11 +117,13 @@ export default function BookPageCard({ type, label, page, book, authorType, acce
                             disabled={isSubmitting}
                         >
                             + Add
-                        </button>
+                        </Button>
                     )}
                     {page && (
                         <>
-                            <button
+                            <Button
+                                variant='secondary'
+                                size='sm'
                                 onClick={() => navigate(
                                     `/author/books/${bookId}/pages/${type}`,
                                     { state: { book, page } }
@@ -126,12 +131,33 @@ export default function BookPageCard({ type, label, page, book, authorType, acce
                                 disabled={isSubmitting}
                             >
                                 Edit
-                            </button>
+                            </Button>
                             {page.is_published
-                                ? <button onClick={handleUnpublish} disabled={isSubmitting}>Unpublish</button>
-                                : <button onClick={handlePublish} disabled={isSubmitting}>Publish</button>
+                                ? <Button
+                                    variant='tertiary'
+                                    size='sm'
+                                    onClick={handleUnpublish}
+                                    disabled={isSubmitting}
+                                >
+                                    UnPublish
+                                </Button>
+                                : <Button
+                                    variant='tertiary'
+                                    size='sm'
+                                    onClick={handlePublish}
+                                    disabled={isSubmitting}
+                                >
+                                    Publish
+                                </Button>
                             }
-                            <button onClick={handleDelete} disabled={isSubmitting}>Delete</button>
+                            <Button
+                                variant='delete'
+                                size='sm'
+                                onClick={handleDelete}
+                                disabled={isSubmitting}
+                            >
+                                Delete
+                            </Button>
                         </>
                     )}
                 </div>

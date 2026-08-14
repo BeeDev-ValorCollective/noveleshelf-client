@@ -8,6 +8,7 @@ header {
     width: 100%;
     max-width: var(--max-width);
     margin: 3rem auto 1rem;
+    padding: 3rem 3rem 0;
     position: relative;
     z-index: 100;
     box-sizing: border-box;
@@ -208,16 +209,6 @@ header {
     background-color: rgba(221,122,122,0.15) !important;
     border-color: var(--accent-coral) !important;
     color: var(--accent-coral) !important;
-}
-
-/*  Mobile Nav Overlay  */
-.mobile-nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 149;
-    backdrop-filter: blur(2px);
 }
 
 /*  Mobile Nav Drawer  */
@@ -440,6 +431,17 @@ footer {
     }
 }
 
+@media (min-width: 769px) and (max-width: 992px) {
+    .desktop-nav {
+        display: none;
+    }
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 /*  Mobile  */
 @media (max-width: 768px) {
     header {
@@ -455,9 +457,6 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-    .mobile-nav-overlay {
-        display: block;
     }
     .verification-banner {
         flex-direction: column;

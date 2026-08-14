@@ -15,7 +15,7 @@ export default function LibraryAuthorModal({ author, onClose, backTo = '/library
         <div className='library-modal-overlay' onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className='library-modal'>
                 <Button
-                    variant='ghost'
+                    variant='secondary'
                     size='sm'
                     className='library-modal-close'
                     onClick={onClose}
@@ -63,16 +63,12 @@ export default function LibraryAuthorModal({ author, onClose, backTo = '/library
                         >
                             View full author details →
                         </Button>
-                        {/* <button className='library-modal-details-btn' onClick={handleViewAuthorDetails}>
-                            View full author details →
-                        </button> */}
 
                         {/* Added the disabled class here and in the library.css with display: none set to remove this button until it is functional */}
                         <Button
                             variant='secondary'
                             size='sm'
                             disabled
-                            className='library-modal-details-btn disabled'
                         >
                             Follow
                         </Button>

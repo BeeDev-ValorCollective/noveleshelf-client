@@ -108,7 +108,7 @@ export default function CreateEditBookPage() {
                 <div className='create-chapter-actions'>
                     <Button
                         variant='primary'
-                        size='sm'
+                        size='md'
                         onClick={() => navigate(`/author/books/${bookId}/manage#manage-pages`)}
                         disabled={isSubmitting}
                     >
@@ -116,7 +116,7 @@ export default function CreateEditBookPage() {
                     </Button>
                     <Button
                         variant='secondary'
-                        size='sm'
+                        size='md'
                         onClick={handleSave}
                         disabled={isSubmitting}
                     >

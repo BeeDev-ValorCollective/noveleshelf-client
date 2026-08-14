@@ -1,4 +1,5 @@
 import { Search, X } from 'lucide-react'
+import Button from '../ui/Button'
 
 const BOOK_ORDER_OPTIONS = [
     { value: 'newest', label: 'Newest' },
@@ -28,18 +29,20 @@ export default function LibrarySearchBar({
     return (
         <div className='library-search-row'>
             <div className='library-view-toggle'>
-                <button
+                <Button
+                    variant='secondary'
                     className={`library-view-btn ${view === 'books' ? 'library-view-btn--active' : ''}`}
                     onClick={() => onViewChange('books')}
                 >
                     Books
-                </button>
-                <button
+                </Button>
+                <Button
+                    variant='secondary'
                     className={`library-view-btn ${view === 'authors' ? 'library-view-btn--active' : ''}`}
                     onClick={() => onViewChange('authors')}
                 >
                     Authors
-                </button>
+                </Button>
             </div>
 
             <div className='library-search-bar'>
@@ -53,13 +56,15 @@ export default function LibrarySearchBar({
                     autoCapitalize='none'
                 />
                 {value.length > 0 && (
-                    <button
+                    <Button
+                        variant='secondary'
+                        size='sm'
                         className='library-search-clear'
                         onClick={() => onChange('')}
                         aria-label='Clear search'
                     >
                         <X size={16} />
-                    </button>
+                    </Button>
                 )}
             </div>
 
@@ -74,7 +79,9 @@ export default function LibrarySearchBar({
                 ))}
             </select>
 
-            <button
+            <Button
+                variant='secondary'
+                size='lg'
                 className={`library-filter-btn ${activeFilterCount > 0 ? 'library-filter-btn--active' : ''}`}
                 onClick={onFilterClick}
             >
@@ -82,7 +89,7 @@ export default function LibrarySearchBar({
                 {activeFilterCount > 0 && (
                     <span className='library-filter-count'>{activeFilterCount}</span>
                 )}
-            </button>
+            </Button>
         </div>
     )
 }

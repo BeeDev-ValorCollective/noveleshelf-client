@@ -1,11 +1,10 @@
 import React from 'react';
+import Button from '../ui/Button';
 
 export default function FAQSearch({ 
     searchQuery, 
     setSearchQuery, 
-    activeAudience, 
     setActiveAudience,
-    activeSection, 
     setActiveSection, 
     availableSections 
 }) {
@@ -13,30 +12,34 @@ export default function FAQSearch({
         <div className="faq-search-container">
             {/* Top Audience Tabs */}
             <div className="faq-audience-tabs">
-                <button 
-                    className={`faq-tab ${activeAudience === 'all' ? 'active' : ''}`}
+                <Button
+                    variant='primary'
+                    size='md'
                     onClick={() => { setActiveAudience('all'); setActiveSection('all'); }}
                 >
                     All FAQs
-                </button>
-                <button 
-                    className={`faq-tab ${activeAudience === 'readerFaq' ? 'active' : ''}`}
+                </Button>
+                <Button
+                    variant='primary'
+                    size='md'
                     onClick={() => { setActiveAudience('readerFaq'); setActiveSection('all'); }}
                 >
                     For Readers
-                </button>
-                <button 
-                    className={`faq-tab ${activeAudience === 'authorFaq' ? 'active' : ''}`}
+                </Button>
+                <Button
+                    variant='primary'
+                    size='md'
                     onClick={() => { setActiveAudience('authorFaq'); setActiveSection('all'); }}
                 >
                     For Authors
-                </button>
-                <button 
-                    className={`faq-tab ${activeAudience === 'platformFaq' ? 'active' : ''}`}
+                </Button>
+                <Button
+                    variant='primary'
+                    size='md'
                     onClick={() => { setActiveAudience('platformFaq'); setActiveSection('all'); }}
                 >
                     Platform & Support
-                </button>
+                </Button>
             </div>
 
             {/* Search Bar Input */}
@@ -52,20 +55,22 @@ export default function FAQSearch({
 
             {/* Section Pills (Dynamic based on selected audience tab) */}
             <div className="faq-category-pills">
-                <button
-                    className={`faq-pill ${activeSection === 'all' ? 'active' : ''}`}
+                <Button
+                    variant='secondary'
+                    size='sm'
                     onClick={() => setActiveSection('all')}
                 >
                     All Topics
-                </button>
+                </Button>
                 {availableSections.map((sec) => (
-                    <button
+                    <Button
                         key={sec.sectionId}
-                        className={`faq-pill ${activeSection === sec.sectionId ? 'active' : ''}`}
+                        variant='secondary'
+                        size='sm'
                         onClick={() => setActiveSection(sec.sectionId)}
                     >
                         {sec.sectionTitle}
-                    </button>
+                    </Button>
                 ))}
             </div>
         </div>
