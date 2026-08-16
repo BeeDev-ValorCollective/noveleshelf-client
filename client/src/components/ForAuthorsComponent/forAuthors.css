@@ -364,9 +364,6 @@
     font-family: "Fredericka the Great", serif;
     margin: 0;
 }
-.upgrade-card a {
-    font-family: "Merienda", cursive;
-}
 .upgrade-card-learn-more {
     font-size: clamp(0.8rem, 1.2vw, 0.85em);
     color: var(--accent-teal);

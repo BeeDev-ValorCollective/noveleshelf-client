@@ -16,12 +16,13 @@
     padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
 }
 
+
 /* ─── Back Button ────────────────────────────────────────────── */
 .bd-back-btn {
     align-self: flex-start;
     background-color: transparent;
     color: var(--text-secondary);
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid #ffffff33;
     padding: 0.5em 1.2em;
     border-radius: 999px;
     cursor: pointer;
@@ -30,11 +31,13 @@
     transition: var(--transition);
     white-space: nowrap;
 }
+
 .bd-back-btn:hover {
-    background-color: rgba(255,255,255,0.08);
+    background-color: #ffffff14;
     color: var(--text-primary);
-    border-color: rgba(255,255,255,0.4);
+    border-color: #ffffff66;
 }
+
 
 /* ─── Loading / Error ────────────────────────────────────────── */
 .bd-loading,
@@ -50,6 +53,7 @@
     text-align: center;
     width: 100%;
 }
+
 
 /* ─── Hero ───────────────────────────────────────────────────── */
 .bd-hero {
@@ -70,7 +74,7 @@
     height: auto;
     border-radius: var(--card-radius);
     object-fit: cover;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid #ffffff1f;
     display: block;
 }
 
@@ -83,19 +87,21 @@
     font-weight: 600;
     white-space: nowrap;
 }
+
 .bd-badge--complete {
     top: 0.6em;
     left: 0.6em;
-    background-color: rgba(76,175,80,0.2);
+    background-color: #4caf5033;
     color: #4caf50;
-    border: 1px solid rgba(76,175,80,0.3);
+    border: 1px solid #4caf504d;
 }
+
 .bd-badge--new {
     top: 0.6em;
     right: 0.6em;
-    background-color: rgba(104,185,185,0.2);
+    background-color: #68b9b933;
     color: var(--accent-teal);
-    border: 1px solid rgba(104,185,185,0.3);
+    border: 1px solid #68b9b94d;
 }
 
 .bd-hero-info {
@@ -133,9 +139,9 @@
     font-size: clamp(0.75rem, 1.1vw, 0.82em);
     padding: 0.3em 0.8em;
     border-radius: 999px;
-    background-color: rgba(255,255,255,0.08);
+    background-color: #ffffff14;
     color: var(--text-secondary);
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid #ffffff1f;
     font-family: "Fredericka the Great", serif;
     white-space: nowrap;
 }
@@ -144,9 +150,9 @@
     font-size: clamp(0.75rem, 1.1vw, 0.82em);
     padding: 0.3em 0.8em;
     border-radius: 999px;
-    background-color: rgba(221,122,122,0.1);
+    background-color: #dd7a7a1a;
     color: var(--accent-coral);
-    border: 1px solid rgba(221,122,122,0.2);
+    border: 1px solid #dd7a7a33;
     font-family: "Fredericka the Great", serif;
     white-space: nowrap;
 }
@@ -161,17 +167,19 @@
     font-size: clamp(0.75rem, 1.1vw, 0.82em);
     padding: 0.25em 0.7em;
     border-radius: 999px;
-    background-color: rgba(255,255,255,0.06);
+    background-color: #ffffff0f;
     color: var(--text-secondary);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid #ffffff1a;
     font-family: "Merienda", cursive;
     white-space: nowrap;
 }
+
 .bd-tag--rel {
-    background-color: rgba(104,185,185,0.08);
+    background-color: #68b9b914;
     color: var(--accent-teal);
-    border-color: rgba(104,185,185,0.2);
+    border-color: #68b9b933;
 }
+
 .bd-tag--keyword {
     background-color: rgba(255,255,255,0.04);
     color: rgba(255,255,255,0.4);
@@ -186,6 +194,7 @@
     font-size: clamp(0.82rem, 1.2vw, 0.9em);
     margin-top: 0.2em;
 }
+
 
 /* ─── Sections ───────────────────────────────────────────────── */
 .bd-section {
@@ -210,18 +219,21 @@
     width: 100%;
 }
 
+
 /* ─── Description ────────────────────────────────────────────── */
 .bd-description {
     display: flex;
     flex-direction: column;
     gap: 0.8em;
 }
+
 .bd-description p {
     color: var(--text-primary);
     font-size: clamp(0.92rem, 1.5vw, 1em);
     line-height: 1.8;
     margin: 0;
 }
+
 
 /* ─── Chapter List ───────────────────────────────────────────── */
 .bd-chapter-list {
@@ -237,15 +249,46 @@
     justify-content: space-between;
     align-items: center;
     gap: 1em;
+    width: 100%;
     padding: 0.9em 1.1em;
+
     background-color: rgba(255,255,255,0.03);
+    color: inherit;
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: 8px;
+
+    font: inherit;
+    text-align: left;
+
+    cursor: pointer;
     transition: var(--transition);
 }
-.bd-chapter-item:hover {
+
+.bd-chapter-item:hover:not(:disabled) {
     background-color: rgba(255,255,255,0.06);
     border-color: rgba(255,255,255,0.12);
+    transform: translateY(-1px);
+}
+
+.bd-chapter-item:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.bd-chapter-item:focus-visible {
+    outline: 2px solid var(--accent-teal);
+    outline-offset: 2px;
+}
+
+.bd-chapter-item:disabled {
+    cursor: default;
+}
+
+.bd-chapter-item--inactive {
+    opacity: 1;
+}
+
+.bd-chapter-item--loading {
+    opacity: 0.65;
 }
 
 .bd-chapter-info {
@@ -269,10 +312,18 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.5em;
+    width: 100%;
+    gap: 1rem;
     color: var(--text-secondary);
     font-size: clamp(0.72rem, 1.1vw, 0.8em);
+}
+
+.bd-chapter-meta-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     flex-wrap: wrap;
+    min-width: 0;
 }
 
 .bd-chapter-badge {
@@ -281,17 +332,21 @@
     border-radius: 999px;
     font-weight: 600;
     font-family: "Fredericka the Great", serif;
+    white-space: nowrap;
 }
+
 .bd-chapter-badge--free {
-    background-color: rgba(104,185,185,0.15);
+    background-color: #68b9b926;
     color: var(--accent-teal);
 }
+
 .bd-chapter-badge--final {
-    background-color: rgba(221,122,122,0.15);
+    background-color: #dd7a7a26;
     color: var(--accent-coral);
 }
+
 .bd-chapter-badge--new {
-    background-color: rgba(255,193,7,0.12);
+    background-color: #ffc1071f;
     color: #ffc107;
 }
 
@@ -303,6 +358,15 @@
     font-family: "Fredericka the Great", serif;
 }
 
+.bd-chapter-published-date {
+    margin-left: auto;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+
 /* ─── CTA ────────────────────────────────────────────────────── */
 .bd-cta {
     display: flex;
@@ -311,8 +375,8 @@
     gap: 0.5em;
     text-align: center;
     padding: clamp(1.5rem, 3vw, 2.5rem);
-    background-color: rgba(104,185,185,0.06);
-    border: 1px solid rgba(104,185,185,0.15);
+    background-color: #68b9b90f;
+    border: 1px solid #68b9b926;
     border-radius: var(--card-radius);
     margin-bottom: 1em;
 }
@@ -331,43 +395,66 @@
     font-style: italic;
 }
 
+
 /* ─── Tablet ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .bd-hero {
         flex-direction: column;
         align-items: center;
     }
+
     .bd-cover {
         width: clamp(160px, 50vw, 220px);
     }
+
     .bd-hero-info {
         align-items: center;
         text-align: center;
     }
+
     .bd-meta-row,
     .bd-tags,
     .bd-stats {
         justify-content: center;
     }
+
     .bd-chapter-item {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 0.5em;
     }
+
+    .bd-chapter-meta {
+        align-items: flex-start;
+    }
+
     .bd-chapter-cost {
         align-self: flex-end;
     }
 }
+
 
 /* ─── Small Mobile ───────────────────────────────────────────── */
 @media (max-width: 480px) {
     .bd-section {
         padding: 1.2rem;
     }
+
     .bd-chapter-item {
         padding: 0.8em 0.9em;
     }
+
+    .bd-chapter-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5em;
+    }
+
+    .bd-chapter-published-date {
+        margin-left: 0;
+    }
 }
+
 
 /* ─── Add to Shelf ───────────────────────────────────────────── */
 .bd-shelf {
@@ -379,9 +466,9 @@
     display: flex;
     align-items: center;
     gap: 0.5em;
-    background-color: rgba(104,185,185,0.12);
+    background-color: #68b9b91f;
     color: var(--accent-teal);
-    border: 1px solid rgba(104,185,185,0.3);
+    border: 1px solid #68b9b94d;
     padding: 0.7em 1.4em;
     border-radius: 999px;
     cursor: pointer;
@@ -392,8 +479,8 @@
 }
 
 .bd-shelf-btn:hover {
-    background-color: rgba(104,185,185,0.22);
-    border-color: rgba(104,185,185,0.5);
+    background-color: #68b9b938;
+    border-color: #68b9b980;
 }
 
 .bd-shelf-btn:active {

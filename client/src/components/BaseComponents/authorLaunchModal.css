@@ -3,10 +3,14 @@
     inset: 0;
     background: rgba(8, 6, 18, 0.92);
     display: flex;
-    align-items: center;
+    align-items: flex-start; 
     justify-content: center;
     padding: 2rem;
+    padding-top: max(2rem, env(safe-area-inset-top));
     z-index: 1000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: 100dvh; 
 }
 
 .launch-modal {
