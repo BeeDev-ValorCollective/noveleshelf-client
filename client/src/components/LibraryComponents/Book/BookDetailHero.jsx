@@ -3,6 +3,7 @@ import { getMediaUrl } from '../../../utils/api'
 import { UserStar, BookmarkPlus } from 'lucide-react'
 import useAuthStore from '../../../store/authStore'
 import { sendToExpo } from '../../../utils/authHandoff'
+import Button from '../../ui/Button'
 
 export default function BookDetailHero({ book }) {
     const { author } = book
@@ -89,10 +90,15 @@ export default function BookDetailHero({ book }) {
                 </div>
             </div>
             <div className="bd-shelf">
-                <button className='bd-shelf-btn' onClick={handleAddToShelf}>
+                <Button
+                    variant='tertiary'
+                    size='lg'
+                    className='bd-shelf-btn'
+                    onClick={handleAddToShelf}
+                >
                     <BookmarkPlus size={18} />
                     {isAuthenticated ? 'Go to the Web App' : 'Sign in to Add'}
-                </button>
+                </Button>
             </div>
         </div>
     )
