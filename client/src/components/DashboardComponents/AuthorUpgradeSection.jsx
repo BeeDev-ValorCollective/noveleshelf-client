@@ -48,7 +48,11 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                         <p className='upgrade-card-description'>
                             No approval needed — upgrade instantly and start publishing. Your books will always be free to read.
                         </p>
-                        <Button variant='primary' size='md' onClick={onLoginClick}>
+                        <Button
+                            variant='primary'
+                            size='md'
+                            onClick={onLoginClick}
+                        >
                             Sign In to Get Started
                         </Button>
                     </div>
@@ -85,7 +89,11 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                         <p className='upgrade-card-description'>
                             Apply to join as a paid author. Share your writing sample and genre interests — our team will review your request.
                         </p>
-                        <Button variant='primary' size='md' onClick={onLoginClick}>
+                        <Button
+                            variant='primary'
+                            size='md'
+                            onClick={onLoginClick}
+                        >
                             Sign In to Apply
                         </Button>
                     </div>

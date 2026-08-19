@@ -5,6 +5,7 @@ import useUser from '../../hooks/useUser'
 import useAuthStore from '../../store/authStore'
 import { ROLE_LABELS } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../ui/Button'
 
 export default function UpdateDefaultRole() {
     const { user, accessToken } = useUser()
@@ -74,9 +75,14 @@ export default function UpdateDefaultRole() {
             </select>
             {error && <p className="error">{error}</p>}
             {success && <p className="success">{success}</p>}
-            <button onClick={handleRoleUpdate} disabled={isLoading}>
+            <Button
+                variant='primary'
+                size='md'
+                onClick={handleRoleUpdate}
+                disabled={isLoading}
+            >
                 {isLoading ? 'Saving...' : 'Update Default Role'}
-            </button>
+            </Button>
         </div>
     )
 }

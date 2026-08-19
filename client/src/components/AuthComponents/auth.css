@@ -9,7 +9,7 @@
 
 /* Card */
 .login-card {
-  width: 340px;
+  width: auto;
   background: linear-gradient(180deg, #111827, #0b0f1a);
   padding: 28px;
   border-radius: 18px;
@@ -73,12 +73,8 @@
 .login-btn {
   width: 100%;
   padding: 12px;
-  border-radius: 10px;
-  border: none;
-  color: white;
   font-weight: bold;
   cursor: pointer;
-  background: linear-gradient(45deg, #0d0f1a, #dd7a7a, #ff9f8a);
   margin-top: 6px;
 }
 

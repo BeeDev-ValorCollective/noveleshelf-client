@@ -166,33 +166,6 @@ p {
   color: var(--text-secondary);
 }
 
-/* Buttons */
-.primary_btn,
-.secondary_btn {
-  padding: 1rem 1.75rem;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: var(--transition);
-  font-family: "Fredericka the Great", serif;
-}
-.primary_btn {
-  background: linear-gradient(135 deg, var(--accent-coral), var(--accent-purple));
-  border: 1px solid var(--accent-coral);
-  color: white;
-}
-.secondary_btn {
-  background: transparent;
-  border: 1px solid var(--accent-coral);
-  color: white;
-}
-.primary_btn:hover,
-.secondary_btn:hover {
-  background: var(--accent-coral);
-}
-
 /* RESPONSIVE BEHAVIOR */
 /* Large tablets and below */
 @media (max-width: 1000px) {

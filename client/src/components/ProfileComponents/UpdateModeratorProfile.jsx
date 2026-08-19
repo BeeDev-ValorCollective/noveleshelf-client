@@ -6,6 +6,7 @@ import { getMediaUrl } from '../../utils/api'
 import useFileInput from '../../hooks/useFileInput'
 import UpdateDefaultRole from './UpdateDefaultRole'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../ui/Button'
 
 export default function UpdateModeratorProfile() {
     const navigate = useNavigate()
@@ -100,12 +101,24 @@ export default function UpdateModeratorProfile() {
                 </div>
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? 'Saving...' : 'Save Changes'}
-                </button>
-                <button type="button" onClick={() => navigate('/dashboard')}>
-                    Cancel
-                </button>
+                <div className="form_buttons">
+                    <Button
+                        variant='primary'
+                        size='lg'
+                        type='submit'
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'Saving...' : 'Save Changes'}
+                    </Button>
+                    <Button
+                        variant='secondary'
+                        size='lg'
+                        type='button'
+                        onClick={() => navigate('/dashboard')}
+                    >
+                        Cancel
+                    </Button>
+                </div>
             </form>
             <UpdateDefaultRole />
         </>

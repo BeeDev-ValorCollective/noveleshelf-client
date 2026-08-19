@@ -28,6 +28,17 @@ export const ENDPOINTS = {
     freeAuthorProfileUpdate: 'user/free-author-profile/update/',
     moderatorProfileUpdate: 'user/moderator-profile/update/',
 
+    // ─── Follow ───────────────────────────────────────────────────
+    follow: {
+        list: 'follow/reader/following/',
+
+        status: (profileType, profileId) =>
+            `follow/reader/following/status/${profileType}/${profileId}/`,
+
+        unfollow: (followId) =>
+            `follow/reader/following/${followId}/`,
+    },
+
     // ─── Stats ────────────────────────────────────────────────────
     readerStats: 'books/reader/stats/',
 
@@ -78,6 +89,7 @@ export const ENDPOINTS = {
     checkQuillPurchaseStatus: 'currency/quills/checkout/status/',
     redeemPromoCode: 'currency/promo/redeem/',
     // ─── Admin ─────────────────────────────────────────────────
+    adminGiftCurrency: 'currency/admin/gift/',
     adminAuthorRequests: 'admin/users/author-requests/',
     adminAuthorReqUpdate: 'admin/users/author-request/update/',
     adminAuthorReqApprove: 'admin/users/author-request/approve/',
@@ -92,4 +104,8 @@ export const ENDPOINTS = {
     adminUpgradeToModerator: 'admin/users/moderator-upgrade/',
     adminAuthorUpdate: 'admin/users/author-update/',
     adminFreeAuthorUpdate: 'admin/users/free-author/update/',
+    adminCreatePromoCode: 'currency/promo/admin/create/',
+    adminListPromoCodes: 'currency/promo/admin/list/',
+    adminUpdatePromoCode: (code) =>
+        `currency/promo/admin/${code}/update/`,
 }

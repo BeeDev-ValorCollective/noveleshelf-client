@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../ui/Button'
 
 export default function BookApprovalStatus({ book, authorType, accessToken, onBookUpdated }) {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -50,9 +51,14 @@ export default function BookApprovalStatus({ book, authorType, accessToken, onBo
             <div>
                 <p className='section-note'>Once you're happy with your book details, submit it for admin review.</p>
                 {error && <p className='form-error'>{error}</p>}
-                <button onClick={handleSubmit} disabled={isSubmitting}>
+                <Button
+                    variant='primary'
+                    size='md'
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                >
                     {isSubmitting ? 'Submitting...' : 'Submit for Approval'}
-                </button>
+                </Button>
             </div>
         )
     }
@@ -62,9 +68,14 @@ export default function BookApprovalStatus({ book, authorType, accessToken, onBo
             <div>
                 <p className='section-note'>Admin has requested changes to your book. Make the necessary updates and resubmit when ready.</p>
                 {error && <p className='form-error'>{error}</p>}
-                <button onClick={handleSubmit} disabled={isSubmitting}>
+                <Button
+                    variant='secondary'
+                    size='md'
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                >
                     {isSubmitting ? 'Submitting...' : 'Resubmit for Approval'}
-                </button>
+                </Button>
             </div>
         )
     }

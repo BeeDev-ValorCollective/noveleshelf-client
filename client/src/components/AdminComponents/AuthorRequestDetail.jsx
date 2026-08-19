@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import { REQUEST_STATUS_LABELS, REQUEST_TYPE_LABELS } from '../../utils/constants'
+import Button from '../ui/Button'
 
 const STATUS_OPTIONS = ['pending', 'in_progress', 'not_at_this_time', 'cleared']
 
@@ -106,7 +107,13 @@ export default function AuthorRequestDetail({ request, accessToken, onUpdated, o
 
     return (
         <div className='request-detail'>
-            <button className='admin-detail-close' onClick={onClose}>✕ Close</button>
+            <Button
+                variant='secondary'
+                size='sm'
+                onClick={onClose}
+            >
+                ✕ Close
+            </Button>
 
             <h2 className='request-detail-title'>
                 {REQUEST_TYPE_LABELS[request.request_type] || request.request_type} — {request.user?.email || `User #${request.user?.id}`}
@@ -195,9 +202,14 @@ export default function AuthorRequestDetail({ request, accessToken, onUpdated, o
             </div>
 
             {!isApproved && (
-                <button onClick={handleUpdate} disabled={isUpdating}>
+                <Button
+                    variant='secondary'
+                    size='md'
+                    onClick={handleUpdate}
+                    disabled={isUpdating}
+                >
                     {isUpdating ? 'Saving...' : 'Save Changes'}
-                </button>
+                </Button>
             )}
 
             {!isApproved && (
@@ -231,9 +243,14 @@ export default function AuthorRequestDetail({ request, accessToken, onUpdated, o
                             </div>
                         </>
                     )}
-                    <button onClick={handleApprove} disabled={isApproving}>
+                    <Button
+                        variant='primary'
+                        size='lg'
+                        onClick={handleApprove}
+                        disabled={isApproving}
+                    >
                         {isApproving ? 'Approving...' : 'Approve Request'}
-                    </button>
+                    </Button>
                 </div>
             )}
 

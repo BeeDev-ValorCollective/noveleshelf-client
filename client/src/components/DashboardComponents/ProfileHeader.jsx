@@ -2,13 +2,14 @@ import { getMediaUrl } from '../../utils/api'
 import { toTitleCase } from '../../utils/upperCase'
 import { Link } from 'react-router-dom'
 import Button from '../ui/Button'
+import { Flame } from 'lucide-react';
 
 import './dashboard.css'
 // import { sendToExpo } from '../../utils/authHandoff'; // adjust path to match Dashboard's location
 
 
 
-export default function ProfileHeader({ user, currentProfile, fullName, currentRole }) {
+export default function ProfileHeader({ user, currentProfile, fullName, currentRole, loginBonusBadge }) {
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
 
     const displayRole = currentRole || localStorage.getItem('current_role')
@@ -49,6 +50,25 @@ export default function ProfileHeader({ user, currentProfile, fullName, currentR
                                 <span className='badge badge-founding'>⭐ Founding Author</span>
                             )}
                         </div>
+
+                        {loginBonusBadge && (
+                                <div className="profile-login-bonus-badge">
+                                    <Flame
+                                        className="profile-login-bonus-icon"
+                                        size={22}
+                                    />
+
+                                    <div className="profile-login-bonus-content">
+                                        <span className="profile-login-bonus-title">
+                                            {loginBonusBadge.title}
+                                        </span>
+
+                                        <span className="profile-login-bonus-reward">
+                                            +{loginBonusBadge.reward} Black Ink Today
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
 
                         {currentProfile?.bio !== undefined && (
                             <p className='profile-bio'>{currentProfile.bio || <em>No Bio Written</em>}</p>

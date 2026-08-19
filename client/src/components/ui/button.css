@@ -21,6 +21,7 @@
 }
 
 /* --- VARIANTS --- */
+/* Primary | Secondary | Tertiary | Ghost | Delete */
 /* Primary Variant */
 .btn-primary {
     background: transparent;
@@ -80,6 +81,30 @@
     background: var(--text-primary);
     color: var(--bg-primary);
     opacity: 70%;
+}
+
+/* Delete Variant */
+.btn-delete {
+    background: var(--accent-coral);
+    color: var(--text-primary);
+    border-color: var(--accent-coral);
+    border-radius: 999px;
+    font-family: "Fredericka the Great", serif;
+}
+
+.btn-delete:hover:not(:disabled) {
+    border-color: var(--accent-coral);
+    background: transparent;
+    color: var(--text-primary);
+}
+
+/* Bare Variant */
+.btn-bare {
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    font-family: inherit;
 }
 
 /* --- SIZES --- */
