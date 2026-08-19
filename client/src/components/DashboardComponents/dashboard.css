@@ -317,3 +317,63 @@
     border-radius: var(--card-radius);
     background: transparent;
 }
+
+/* ─── Login Milestone Badge ─────────────────────────────────── */
+
+.profile-login-bonus-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+
+    width: fit-content;
+    margin-top: 0.75rem;
+    padding: 0.55rem 0.9rem;
+
+    background-color: rgba(255, 193, 7, 0.12);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 999px;
+}
+
+.profile-login-bonus-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+
+    min-width: 30px;
+
+    color: #ffc107;
+}
+
+.profile-login-bonus-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.profile-login-bonus-title {
+    color: #ffc107;
+    font-family: "Merienda", cursive;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.profile-login-bonus-reward {
+    color: var(--text-secondary);
+    font-family: "Merienda", cursive;
+    font-size: 0.7rem;
+}
+
+@media (max-width: 480px) {
+    .profile-login-bonus-badge {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .profile-login-bonus-title {
+        font-size: 0.75rem;
+    }
+
+    .profile-login-bonus-reward {
+        font-size: 0.65rem;
+    }
+}
