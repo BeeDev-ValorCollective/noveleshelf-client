@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import AuthorRequestModal from './AuthorRequestModal'
 import TermsModal from './TermsModal'
+import Button from '../ui/Button'
 
 export default function PaidAuthorRequest({ accessToken, user }) {
     const [showTerms, setShowTerms] = useState(false)
@@ -30,16 +31,25 @@ export default function PaidAuthorRequest({ accessToken, user }) {
         <div className='upgrade-card'>
             <div className='upgrade-card-header'>
                 <h3 className='upgrade-card-title'>Become a Paid Author</h3>
-                <a href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing' className='upgrade-card-learn-more' target="_blank" rel="noopener noreferrer">
+                <Button
+                    href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing'
+                    variant='bare'
+                    className='upgrade-card-learn-more'
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     Learn more about paid authorship →
-                </a>
+                </Button>
             </div>
             <p className='upgrade-card-description'>
                 Apply to join as a paid author. Share your writing sample and genre interests — our team will review your request.
             </p>
-            <button className='upgrade-card-btn' onClick={() => setShowTerms(true)}>
+            <Button
+                variant='primary'
+                onClick={() => setShowTerms(true)}
+            >
                 Apply to Become an Author
-            </button>
+            </Button>
 
             {showTerms && (
                 <TermsModal

@@ -142,8 +142,24 @@
     flex-direction: column;
     gap: 0.4em;
 }
-.upgrade-card-header a {
+.upgrade-card-header a,
+.upgrade-card-learn-more {
     font-family: "Merienda", cursive;
+    color: var(--accent-teal);
+    font-size: clamp(0.8rem, 1.2vw, 0.9em);
+    text-decoration: none;
+    transition: var(--transition);
+    align-self: flex-start;
+    width: fit-content;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    justify-content: flex-start;
+    text-align: left;
+}
+.upgrade-card-header a:hover,
+.upgrade-card-learn-more:hover {
+    color: var(--accent-coral);
 }
 .upgrade-card-title {
     font-size: clamp(1rem, 2vw, 1.25rem);
