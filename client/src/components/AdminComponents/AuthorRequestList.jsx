@@ -1,4 +1,5 @@
 import { REQUEST_STATUS_LABELS, REQUEST_TYPE_LABELS } from '../../utils/constants'
+import Button from '../ui/Button'
 
 const STATUS_OPTIONS = ['pending', 'in_progress', 'not_at_this_time', 'cleared']
 const REQUEST_TYPES = ['new_author', 'new_genre', 'tier_review', 'contract_addendum', 'leave_platform', 'rejoin_platform']
@@ -70,9 +71,23 @@ export default function AuthorRequestList({ requests, selectedRequest, onSelect,
 
             {totalPages > 1 && (
                 <div className='admin-pagination'>
-                    <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>← Prev</button>
+                    <Button
+                        variant='secondary'
+                        size='md'
+                        onClick={() => onPageChange(page - 1)}
+                        disabled={page === 1}
+                    >
+                        ← Prev
+                    </Button>
                     <span>Page {page} of {totalPages}</span>
-                    <button onClick={() => onPageChange(page + 1)} disabled={page === totalPages}>Next →</button>
+                    <Button
+                        variant='secondary'
+                        size='md'
+                        onClick={() => onPageChange(page + 1)}
+                        disabled={page === totalPages}
+                    >
+                        Next →
+                    </Button>
                 </div>
             )}
         </div>

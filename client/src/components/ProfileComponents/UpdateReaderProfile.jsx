@@ -6,6 +6,7 @@ import { getMediaUrl } from '../../utils/api'
 import useFileInput from '../../hooks/useFileInput'
 import UpdateDefaultRole from './UpdateDefaultRole'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../ui/Button'
 
 import './updateProfile.css'
 
@@ -142,13 +143,23 @@ export default function UpdateReaderProfile() {
 
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}
-                <div className="form_buttons">
-                    <button type="submit" disabled={isLoading}>
+                <div className='form_buttons'>
+                    <Button
+                        variant='primary'
+                        size='lg'
+                        type='submit'
+                        disabled={isLoading}
+                    >
                         {isLoading ? 'Saving...' : 'Save Changes'}
-                    </button>
-                    <button type="button" onClick={() => navigate('/dashboard')}>
+                    </Button>
+                    <Button
+                        variant='secondary'
+                        size='lg'
+                        type='button'
+                        onClick={() => navigate('/dashboard')}
+                    >
                         Cancel
-                    </button>
+                    </Button>
                 </div>
             </form>
             <UpdateDefaultRole />

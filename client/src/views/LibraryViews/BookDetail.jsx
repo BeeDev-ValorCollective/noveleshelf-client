@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import Button from '../../components/ui/Button'
+
 import {
     useParams,
     useNavigate,
@@ -216,14 +218,14 @@ export default function BookDetail() {
                             : 'Something went wrong loading this book. Please try again.'}
                     </p>
 
-                    <button
+                    <Button
+                        variant='primary'
+                        size='sm'
                         className='bd-back-btn'
-                        onClick={() =>
-                            navigate(backTo)
-                        }
+                        onClick={() => navigate(backTo)}
                     >
                         {backLabel}
-                    </button>
+                    </Button>
                 </div>
             </div>
         )
@@ -232,14 +234,14 @@ export default function BookDetail() {
     return (
         <div className='bd-page'>
             <div className='bd-inner'>
-                <button
+                <Button
+                    variant='primary'
+                    size='sm'
                     className='bd-back-btn'
-                    onClick={() =>
-                        navigate(backTo)
-                    }
+                    onClick={() => navigate(backTo)}
                 >
                     {backLabel}
-                </button>
+                </Button>
 
                 <BookDetailHero book={book} />
 

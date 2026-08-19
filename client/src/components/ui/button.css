@@ -98,6 +98,15 @@
     color: var(--text-primary);
 }
 
+/* Bare Variant */
+.btn-bare {
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    font-family: inherit;
+}
+
 /* --- SIZES --- */
 .btn-sm {
     padding: 0.35rem 0.8rem;

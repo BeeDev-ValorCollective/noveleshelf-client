@@ -1,3 +1,5 @@
+import Button from "../../ui/Button"
+
 function formatPublishedDate(publishedAt) {
     if (!publishedAt) return null
 
@@ -35,7 +37,9 @@ export default function BookDetailChapters({
 
             <div className='bd-chapter-list'>
                 {chapters.map((chapter) => (
-                    <button
+                    <Button
+                        variant="tertiary"
+                        size="sm"
                         key={chapter.id}
                         type='button'
                         className={[
@@ -110,7 +114,7 @@ export default function BookDetailChapters({
                                     {chapter.unlock_cost} 🪶
                                 </span>
                             )}
-                    </button>
+                    </Button>
                 ))}
             </div>
         </div>

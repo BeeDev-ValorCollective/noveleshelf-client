@@ -1,5 +1,6 @@
 import { BOOK_STATUS_LABELS } from '../../utils/constants'
 import { resolveApiAuthorDisplay } from '../../utils/display'
+import Button from '../ui/Button'
 
 const STATUS_OPTIONS = [
     'pending_approval',
@@ -77,9 +78,23 @@ export default function BookApprovalList({ books, selectedBook, onSelect, page, 
 
             {totalPages > 1 && (
                 <div className='admin-pagination'>
-                    <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>← Prev</button>
+                    <Button
+                        variant='secondary'
+                        size='md'
+                        onClick={() => onPageChange(page - 1)}
+                        disabled={page === 1}
+                    >
+                        ← Prev
+                    </Button>
                     <span>Page {page} of {totalPages}</span>
-                    <button onClick={() => onPageChange(page + 1)} disabled={page === totalPages}>Next →</button>
+                    <Button
+                        variant='secondary'
+                        size='md'
+                        onClick={() => onPageChange(page + 1)}
+                        disabled={page === totalPages}
+                    >
+                        Next →
+                    </Button>
                 </div>
             )}
         </div>
