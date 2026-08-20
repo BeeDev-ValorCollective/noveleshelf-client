@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Button from '../ui/Button'
 
 import useFormValidation from '../../hooks/useFormValidation'
 import useMailSubmission from '../../hooks/useMailSubmission'
@@ -204,9 +205,15 @@ export default function ContactUs() {
                 ) : null}
                 {!isSubmitting && (
                     <div className="form_button_box">
-                        <button hidden={!isButtonVisible} type="submit" disabled={!isFormValid}>
+                        <Button
+                            variant='primary'
+                            size='lg'
+                            hidden={!isButtonVisible}
+                            type="submit"
+                            disabled={!isFormValid}
+                        >
                             SUBMIT
-                        </button>
+                        </Button>
                     </div>
                 )}
 
@@ -222,9 +229,13 @@ export default function ContactUs() {
                         <div className="mailer_messages failure">
                             <h3>We are experiencing technical problems</h3>
                             <p>Please contact us directly at —</p>
-                            <a href={`mailto:${SupportEmail}?subject=Customer%20Contact%20Support&body=Hello,%0A%0AI%20would%20like%20to%20inquire%20about`}>
+                            <Button
+                                variant='primary'
+                                size='md'
+                                href={`mailto:${SupportEmail}?subject=Customer%20Contact%20Support&body=Hello,%0A%0AI%20would%20like%20to%20inquire%20about`}
+                            >
                                 <b>{SupportEmail}</b>
-                            </a>
+                            </Button>
                         </div>
                     )}
                     {success && (

@@ -200,21 +200,6 @@
     margin-bottom: 1em;
     font-size: clamp(0.9rem, 1.5vw, 1em);
 }
-.upload-button {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--accent-coral);
-    padding: 0.6em 1.5em;
-    font-size: clamp(0.85rem, 1.2vw, 0.9em);
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: "Fredericka the Great", serif;
-    transition: var(--transition);
-}
-.upload-button:hover {
-    background-color: var(--accent-coral);
-    color: var(--text-primary);
-}
 .upload-file-list {
     display: flex;
     flex-direction: column;

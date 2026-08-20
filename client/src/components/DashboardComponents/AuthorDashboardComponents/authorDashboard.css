@@ -462,57 +462,6 @@
    SHARED BUTTON STYLES
    ========================================================================== */
 
-/* Primary Action Link/Button (View All) */
-.view-all-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.6rem 1.8rem;
-    border-radius: 999px;
-    border: 1px solid var(--accent-coral, #dd7a7a);
-    background: transparent;
-    color: var(--text-primary, #ffffff);
-    font-family: "Fredericka the Great", serif;
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
-    text-decoration: none;
-    cursor: pointer;
-    transition: var(--transition, all 0.3s ease);
-    box-shadow: 0 4px 12px rgba(221, 122, 122, 0.2);
-}
-
-.view-all-btn:hover {
-    background: var(--accent-coral);
-    color: #ffffff;
-    border-color: transparent;
-}
-
-/* Secondary/Card Action Buttons (Manage Book / Save) */
-.continue-editing-btn,
-.settings-save-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1.2rem;
-    border-radius: 8px;
-    background: var(--bg-secondary, rgba(255, 255, 255, 0.08));
-    color: var(--text-primary, #ffffff);
-    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.2));
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: var(--transition, all 0.3s ease);
-}
-
-.continue-editing-btn:hover,
-.settings-save-btn:hover {
-    border-color: var(--accent-purple, #7d55ff);
-    background: rgba(125, 85, 255, 0.15);
-    color: #ffffff;
-    box-shadow: 0 0 15px rgba(125, 85, 255, 0.25);
-}
-
 /* Time Filter Toggle Buttons */
 .time-btn {
     background-color: transparent;

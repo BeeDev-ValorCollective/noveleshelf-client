@@ -4,6 +4,7 @@ import useBookReferenceData from '../../hooks/useBookReferenceData'
 import BookFormFields from '../../components/AuthorBookComponents/BookFormFields'
 import { ROLE_TO_AUTHOR_TYPE } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../../components/ui/Button'
 
 import '../../components/AuthorBookComponents/authorBook.css'
 
@@ -126,16 +127,24 @@ export default function CreateNewBook() {
                 {error && <p className="cb-alert cb-alert--error">{error}</p>}
 
                 <div className="cb-actions">
-                    <a href="/author/dashboard" className="cb-btn cb-btn--secondary">
+                    <Button
+                        variant='secondary'
+                        size='md'
+                        href="/author/dashboard"
+                        className="cb-btn cb-btn--secondary"
+                    >
                         Cancel
-                    </a>
-                    <button
+                    </Button>
+                    <Button
+                        variant='primary'
+                        size='md'
                         className="cb-btn cb-btn--primary"
                         onClick={handleSubmit}
                         disabled={isSubmitting || !formData.title.trim()}
                     >
                         {isSubmitting ? 'Creating...' : 'Create book'}
-                    </button>
+                    </Button>
+
                 </div>
             </div>
         </div>

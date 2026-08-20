@@ -52,20 +52,6 @@
     background-color: #ffffff20;
     color: #ffffffa0;
 }
-.free-author-continue-btn {
-    background-color: transparent;
-    color: #ffffffe0;
-    border: 1px solid #ffffff40;
-    padding: 0.5em 1.2em;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-.free-author-contune-btn:hover {
-    background-color: #ffffff10;
-}
 
 /* Stats Bar */
 .dashboard-section {

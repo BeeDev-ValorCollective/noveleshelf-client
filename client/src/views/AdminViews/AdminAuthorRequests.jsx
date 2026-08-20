@@ -4,6 +4,7 @@ import useAuthStore from '../../store/authStore'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import AuthorRequestList from '../../components/AdminComponents/AuthorRequestList'
 import AuthorRequestDetail from '../../components/AdminComponents/AuthorRequestDetail'
+import Button from '../../components/ui/Button'
 import '../../components/AdminComponents/adminComponents.css'
 
 export default function AdminAuthorRequests() {
@@ -60,7 +61,13 @@ export default function AdminAuthorRequests() {
     return (
         <div className='admin-page'>
             <div className='admin-page-header'>
-                <button onClick={() => navigate('/dashboard')}>← Back to dashboard</button>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate('/dashboard')}
+                >
+                    ← Back to dashboard
+                </Button>
                 <h1>Author Requests</h1>
             </div>
 

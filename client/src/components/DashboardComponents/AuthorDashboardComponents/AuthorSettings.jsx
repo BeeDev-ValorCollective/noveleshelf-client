@@ -1,3 +1,4 @@
+import Button from '../../ui/Button'
 import './authorDashboard.css'
 
 export default function AuthorSettings() {
@@ -29,7 +30,12 @@ export default function AuthorSettings() {
                         </div>
                         <div className='toggle active'></div>
                     </div>
-                    <button className='settings-save-btn'>Change your preferences</button>
+                    <Button
+                        variant='ghost'
+                        size='md'
+                    >
+                        Change your preferences
+                    </Button>
                 </div>
                 <div className='settings-column dashboard-card'>
                     <h3 className='settings-column-title'>Revenue & Payout</h3>
