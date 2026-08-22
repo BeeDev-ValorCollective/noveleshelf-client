@@ -12,7 +12,7 @@ export default function AuthorRequestList({ requests, selectedRequest, onSelect,
                 <Select
                     value={statusFilter}
                     onChange={(e) => { onStatusFilter(e.target.value); onPageChange(1) }}
-                    variant='default'
+                    variant='status'
                     size='md'
                 >
                     <option value=''>All statuses</option>
@@ -23,7 +23,7 @@ export default function AuthorRequestList({ requests, selectedRequest, onSelect,
                 <Select
                     value={typeFilter}
                     onChange={(e) => { onTypeFilter(e.target.value); onPageChange(1) }}
-                    variant='default'
+                    variant='status'
                     size='md'
                 >
                     <option value=''>All types</option>

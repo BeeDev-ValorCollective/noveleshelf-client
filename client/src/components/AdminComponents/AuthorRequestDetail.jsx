@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import { REQUEST_STATUS_LABELS, REQUEST_TYPE_LABELS } from '../../utils/constants'
 import Button from '../ui/Button'
+import Select from '../ui/Select'
 
 const STATUS_OPTIONS = ['pending', 'in_progress', 'not_at_this_time', 'cleared']
 
@@ -147,9 +148,9 @@ export default function AuthorRequestDetail({ request, accessToken, onUpdated, o
 
             <div className='request-detail-section'>
                 <label className='bff-label' htmlFor='req-status'>Status</label>
-                <select
-                    id='req-status'
-                    className='bff-select'
+                <Select
+                    variant='form'
+                    size='sm'
                     value={formData.status}
                     onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value }))}
                     disabled={isApproved}
@@ -157,7 +158,8 @@ export default function AuthorRequestDetail({ request, accessToken, onUpdated, o
                     {STATUS_OPTIONS.map(s => (
                         <option key={s} value={s}>{REQUEST_STATUS_LABELS[s] || s}</option>
                     ))}
-                </select>
+                </Select>
+
             </div>
 
             <div className='request-detail-section'>

@@ -8,7 +8,7 @@ export default function Select({
     children,
     disabled= false,
     size = 'md', // 'sm' | 'md' | 'lg'
-    variant = 'default', // 'default', | 'inline'
+    variant = 'default', // 'default', | 'form' | 'filter' | 'status' | 'inline' | 'bare'
     className = '',
     'aria-label': ariaLabel,
     ...props

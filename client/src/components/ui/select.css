@@ -1,9 +1,10 @@
+/* BASE SELECT STYLES */
 .nes-select {
     appearance: none;
     -webkit-appearance: none;
     background-color: var(--bg-secondary);
     color: var(--text-primary);
-    border: 1px solid var(--accent-purple);
+    border: 1px solid var(--border-color);
     border-radius: 999px;
     font-family: inherit;
     font-weight: 500;
@@ -17,14 +18,13 @@
 }
 
 .nes-select:hover:not(:disabled) {
-    background-color: var(--accent-purple);
-    color: var(--text-primary);
+    border-color: var(--accent-teal);
 }
 
 .nes-select:focus {
     outline: none;
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 0 2px var(--accent-purple);
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 0 2px var(--accent-teal);
 }
 
 .nes-select:disabled {
@@ -38,13 +38,71 @@
 }
 
 /* VARIANTS */
-/* Defaule */
+
+/* Default (General Use) */
 .nes-select--default {
     background-color: var(--bg-secondary);
     border-color: var(--border-color);
 }
 
-/* Inline */
+/* Form Field (Inputs inside forms / modals) */
+.nes-select--form {
+    background-color: var(--bg-secondary);
+    border-color: var(--accent-purple);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.nes-select--form:hover:not(:disabled) {
+    border-color: var(--text-primary);
+    background-color: var(--bg-secondary);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 2l5 5 5-5' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.nes-select--form:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    box-shadow: none;
+}
+
+
+/* Filter / Sort Control (Pill-shaped toolbars) */
+.nes-select--filter {
+    background-color: rgba(104, 185, 185, 0.1);
+    border-color: var(--accent-teal);
+    color: var(--accent-teal);
+    border-radius: 999px;
+    font-size: 0.9rem;
+}
+
+.nes-select--filter:hover:not(:disabled) {
+    background-color: rgba(104, 185, 185, 0.2);
+}
+
+/* Inline Status Editor (Compact table/list item dropdowns) */
+.nes-select--status {
+    background-color: transparent;
+    border: 1px solid var(--accent-purple);
+    border-radius: 6px;
+    padding-right: 1.8rem;
+    background-position: right 0.5rem center;
+}
+
+.nes-select--status:hover:not(:disabled) {
+    background-color: var(--bg-secondary);
+    border-color: var(--text-primary);
+    border-style: solid;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 2l5 5 5-5' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.nes-select--status:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    box-shadow: none;
+}
+
+
+/* Inline (Legacy subtle dropdown) */
 .nes-select--inline {
     background-color: transparent;
     border-color: var(--accent-purple);
@@ -55,18 +113,43 @@
     background-color: var(--bg-secondary);
 }
 
+/* Bare (Strips base styling so parent/legacy CSS handles it completely) */
+.nes-select--bare {
+    appearance: auto;
+    -webkit-appearance: auto;
+    background-image: none;
+    background-color: inherit;
+    border: inherit;
+    border-radius: inherit;
+    padding: inherit;
+    color: inherit;
+    font-size: inherit;
+    box-shadow: none;
+}
+
+.nes-select--bare:focus {
+    box-shadow: none;
+}
+
+
 /* SIZES */
 .nes-select--sm {
-    padding: 0.35rem 2rem 0.35rem 0.8rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    padding-left: 1rem;
     font-size: 0.85rem;
 }
 
 .nes-select--md {
-    padding: 0.55rem 2.25rem 0.75rem 1.4rem;
-    font-size: 1.05rem;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    padding-left: 1.2rem;
+    font-size: 1rem;
 }
 
 .nes-select--lg {
-    padding: 0.75rem 2.5rem 0.75rem 1.4rem;
-    font-size: 1.05rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.4rem;
+    font-size: 1.1rem;
 }
