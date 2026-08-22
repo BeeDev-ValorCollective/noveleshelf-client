@@ -1,0 +1,72 @@
+.nes-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-purple);
+    border-radius: 999px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition, all 0.3s ease);
+    box-sizing: border-box;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 2l5 5 5-5' stroke='%237474cc' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    padding-right: 2.25rem;
+}
+
+.nes-select:hover:not(:disabled) {
+    background-color: var(--accent-purple);
+    color: var(--text-primary);
+}
+
+.nes-select:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 2px var(--accent-purple);
+}
+
+.nes-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.nes-select option {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* VARIANTS */
+/* Defaule */
+.nes-select--default {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+/* Inline */
+.nes-select--inline {
+    background-color: transparent;
+    border-color: var(--accent-purple);
+    border-radius: 8px;
+}
+
+.nes-select--inline:hover:not(:disabled) {
+    background-color: var(--bg-secondary);
+}
+
+/* SIZES */
+.nes-select--sm {
+    padding: 0.35rem 2rem 0.35rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+.nes-select--md {
+    padding: 0.55rem 2.25rem 0.75rem 1.4rem;
+    font-size: 1.05rem;
+}
+
+.nes-select--lg {
+    padding: 0.75rem 2.5rem 0.75rem 1.4rem;
+    font-size: 1.05rem;
+}

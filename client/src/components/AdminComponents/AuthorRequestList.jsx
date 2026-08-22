@@ -1,5 +1,6 @@
 import { REQUEST_STATUS_LABELS, REQUEST_TYPE_LABELS } from '../../utils/constants'
 import Button from '../ui/Button'
+import Select from '../ui/Select'
 
 const STATUS_OPTIONS = ['pending', 'in_progress', 'not_at_this_time', 'cleared']
 const REQUEST_TYPES = ['new_author', 'new_genre', 'tier_review', 'contract_addendum', 'leave_platform', 'rejoin_platform']
@@ -8,26 +9,28 @@ export default function AuthorRequestList({ requests, selectedRequest, onSelect,
     return (
         <div className='admin-list'>
             <div className='admin-filters'>
-                <select
+                <Select
                     value={statusFilter}
                     onChange={(e) => { onStatusFilter(e.target.value); onPageChange(1) }}
-                    className='bff-select'
+                    variant='default'
+                    size='md'
                 >
                     <option value=''>All statuses</option>
                     {STATUS_OPTIONS.map(s => (
                         <option key={s} value={s}>{REQUEST_STATUS_LABELS[s] || s}</option>
                     ))}
-                </select>
-                <select
+                </Select>
+                <Select
                     value={typeFilter}
                     onChange={(e) => { onTypeFilter(e.target.value); onPageChange(1) }}
-                    className='bff-select'
+                    variant='default'
+                    size='md'
                 >
                     <option value=''>All types</option>
                     {REQUEST_TYPES.map(t => (
                         <option key={t} value={t}>{REQUEST_TYPE_LABELS[t] || t}</option>
                     ))}
-                </select>
+                </Select>
             </div>
 
             {requests.length === 0 && (
