@@ -13,7 +13,7 @@ export default function Select({
     'aria-label': ariaLabel,
     ...props
 }) {
-    const combinedClasses = `nes-select nes-select--${variant} nes-select--${size}${className}`.trim();
+    const combinedClasses = `nes-select nes-select--${variant} nes-select--${size} ${className}`.trim();
 
     return (
         <select

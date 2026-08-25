@@ -6,6 +6,7 @@ import useAuthStore from '../../store/authStore'
 import { ROLE_LABELS } from '../../utils/auth'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import Button from '../ui/Button'
+import Select from '../ui/Select'
 
 export default function UpdateDefaultRole() {
     const { user, accessToken } = useUser()
@@ -63,7 +64,8 @@ export default function UpdateDefaultRole() {
         <div className="default_role_section">
             <h3>Default Login Role</h3>
             <p>Choose which dashboard loads when you log in.</p>
-            <select
+            <Select
+                variant='inline'
                 value={defaultRole}
                 onChange={(e) => setDefaultRole(e.target.value)}
             >
@@ -72,7 +74,7 @@ export default function UpdateDefaultRole() {
                         {ROLE_LABELS[role]}
                     </option>
                 ))}
-            </select>
+            </Select>
             {error && <p className="error">{error}</p>}
             {success && <p className="success">{success}</p>}
             <Button

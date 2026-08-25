@@ -1,5 +1,6 @@
 import { Search, X } from 'lucide-react'
 import Button from '../ui/Button'
+import Select from '../ui/Select'
 
 const BOOK_ORDER_OPTIONS = [
     { value: 'newest', label: 'Newest' },
@@ -68,8 +69,8 @@ export default function LibrarySearchBar({
                 )}
             </div>
 
-            <select
-                className='library-order-select'
+            <Select
+                variant='inline'
                 value={order}
                 onChange={(e) => onOrderChange(e.target.value)}
                 aria-label='Sort order'
@@ -77,7 +78,7 @@ export default function LibrarySearchBar({
                 {orderOptions.map((opt) => (
                     <option key={opt.value} value={opt.value}>{opt.label}</option>
                 ))}
-            </select>
+            </Select>
 
             <Button
                 variant='secondary'

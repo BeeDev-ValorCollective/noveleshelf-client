@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { DB_API, ENDPOINTS } from '../../../utils/api'
+import Button from '../../ui/Button'
+import Select from '../../ui/Select'
 import './adminDash.css'
 
 export default function GiftInkPanel({ accessToken }) {
@@ -185,7 +187,8 @@ export default function GiftInkPanel({ accessToken }) {
                         Recipient
                     </label>
 
-                    <select
+                    <Select
+                        variant='form'
                         id='gift-user'
                         className='bff-select admin-gift-user-select'
                         value={selectedUserId}
@@ -208,7 +211,8 @@ export default function GiftInkPanel({ accessToken }) {
                                 {user.email}
                             </option>
                         ))}
-                    </select>
+                    </Select>
+
                 </div>
 
                 <div className='admin-gift-field'>
@@ -256,7 +260,8 @@ export default function GiftInkPanel({ accessToken }) {
                     </div>
                 )}
 
-                <button
+                <Button
+                    variant='tertiary'
                     type='submit'
                     className='admin-gift-button'
                     disabled={
@@ -267,8 +272,10 @@ export default function GiftInkPanel({ accessToken }) {
                 >
                     {isWorking
                         ? 'Gifting...'
-                        : 'Gift Black Ink'}
-                </button>
+                        : 'Gift Black Ink'
+                    }
+                </Button>
+
             </form>
         </section>
     )

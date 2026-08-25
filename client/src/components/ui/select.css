@@ -11,7 +11,7 @@
     cursor: pointer;
     transition: var(--transition, all 0.3s ease);
     box-sizing: border-box;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 2l5 5 5-5' stroke='%237474cc' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 2l5 5 5-5' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.9rem center;
     padding-right: 2.25rem;
@@ -19,12 +19,6 @@
 
 .nes-select:hover:not(:disabled) {
     border-color: var(--accent-teal);
-}
-
-.nes-select:focus {
-    outline: none;
-    border-color: var(--accent-teal);
-    box-shadow: 0 0 0 2px var(--accent-teal);
 }
 
 .nes-select:disabled {
@@ -48,15 +42,15 @@
 /* Form Field (Inputs inside forms / modals) */
 .nes-select--form {
     background-color: var(--bg-secondary);
-    border-color: var(--accent-purple);
+    border-color: var(--border-color);
     border-radius: 8px;
     width: 100%;
 }
 
 .nes-select--form:hover:not(:disabled) {
-    border-color: var(--text-primary);
+    border-color: var(--accent-purple);
     background-color: var(--bg-secondary);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 2l5 5 5-5' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 2l5 5 5-5' stroke='%237474cc' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 .nes-select--form:focus {
@@ -102,15 +96,21 @@
 }
 
 
-/* Inline (Legacy subtle dropdown) */
+/* Inline */
 .nes-select--inline {
     background-color: transparent;
     border-color: var(--accent-purple);
-    border-radius: 8px;
+    border-radius: 9999px;
 }
 
 .nes-select--inline:hover:not(:disabled) {
-    background-color: var(--bg-secondary);
+    background-color: var(--accent-purple);
+    border-color: var(--accent-purple);
+}
+
+.nes-select--inline:focus {
+    outline: none;
+    border-color: var(--accent-purple);
 }
 
 /* Bare (Strips base styling so parent/legacy CSS handles it completely) */
@@ -151,5 +151,5 @@
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     padding-left: 1.4rem;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
 }

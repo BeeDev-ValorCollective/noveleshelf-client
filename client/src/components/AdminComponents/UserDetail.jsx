@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import Button from '../ui/Button'
+import Select from '../ui/Select'
 
 export default function UserDetail({ user, accessToken, isSuperAdmin, onUpdated, onClose }) {
     const [isWorking, setIsWorking] = useState(false)
@@ -408,9 +409,6 @@ export default function UserDetail({ user, accessToken, isSuperAdmin, onUpdated,
                     >
                         {isWorking ? 'Saving...' : 'Save Free Author Profile'}
                     </Button>
-                    {/* <button onClick={handleFreeAuthorUpdate} disabled={isWorking}>
-                        {isWorking ? 'Saving...' : 'Save Free Author Profile'}
-                    </button> */}
                 </div>
             )}
         </div>

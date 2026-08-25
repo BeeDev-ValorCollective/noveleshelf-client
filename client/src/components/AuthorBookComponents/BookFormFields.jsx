@@ -1,3 +1,4 @@
+import Select from '../ui/Select';
 import './authorBook.css';
 
 export default function BookFormFields({ formData, onChange, contentRatings, isLoading, disabled, coverPreview, onCoverChange, coverError }) {
@@ -57,9 +58,9 @@ export default function BookFormFields({ formData, onChange, contentRatings, isL
                 {isLoading ? (
                     <p className="bff-loading">Loading ratings...</p>
                 ) : (
-                    <select
-                        id="content_rating"
-                        className="bff-select"
+                    <Select
+                        variant='form'
+                        size='md'
                         value={formData.content_rating_id}
                         onChange={(e) => onChange('content_rating_id', e.target.value)}
                         disabled={disabled}
@@ -70,7 +71,7 @@ export default function BookFormFields({ formData, onChange, contentRatings, isL
                                 {rating.code} — {rating.name}
                             </option>
                         ))}
-                    </select>
+                    </Select>
                 )}
                 {formData.content_rating_id && contentRatings.length > 0 && (
                     <p className="bff-hint">
