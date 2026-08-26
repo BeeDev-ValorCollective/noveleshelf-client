@@ -17,10 +17,6 @@
     padding-right: 2.25rem;
 }
 
-.nes-select:hover:not(:disabled) {
-    border-color: var(--accent-teal);
-}
-
 .nes-select:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -124,10 +120,6 @@
     padding: inherit;
     color: inherit;
     font-size: inherit;
-    box-shadow: none;
-}
-
-.nes-select--bare:focus {
     box-shadow: none;
 }
 

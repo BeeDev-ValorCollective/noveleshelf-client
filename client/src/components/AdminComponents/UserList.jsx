@@ -1,4 +1,5 @@
 import Button from "../ui/Button";
+import Select from "../ui/Select";
 
 const ROLE_OPTIONS = [
     { value: '', label: 'All users' },
@@ -21,7 +22,8 @@ export default function UserList({ users, selectedUser, onSelect, search, onSear
                     value={search}
                     onChange={(e) => onSearch(e.target.value)}
                 />
-                <select
+                <Select
+                    variant="status"
                     className='bff-select'
                     value={roleFilter}
                     onChange={(e) => { onRoleFilter(e.target.value); onPageChange(1) }}
@@ -29,7 +31,8 @@ export default function UserList({ users, selectedUser, onSelect, search, onSear
                     {ROLE_OPTIONS.map(r => (
                         <option key={r.value} value={r.value}>{r.label}</option>
                     ))}
-                </select>
+                </Select>
+
             </div>
 
             {users.length === 0 && (

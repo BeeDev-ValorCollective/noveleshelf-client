@@ -1,6 +1,7 @@
 import { BOOK_STATUS_LABELS } from '../../utils/constants'
 import { resolveApiAuthorDisplay } from '../../utils/display'
 import Button from '../ui/Button'
+import Select from '../ui/Select'
 
 const STATUS_OPTIONS = [
     'pending_approval',
@@ -14,7 +15,8 @@ export default function BookApprovalList({ books, selectedBook, onSelect, page, 
     return (
         <div className='admin-list'>
             <div className='admin-filters'>
-                <select
+                <Select
+                    variant='status'
                     value={statusFilter}
                     onChange={(e) => { onStatusFilter(e.target.value); onPageChange(1) }}
                     className='bff-select'
@@ -23,7 +25,8 @@ export default function BookApprovalList({ books, selectedBook, onSelect, page, 
                     {STATUS_OPTIONS.map(s => (
                         <option key={s} value={s}>{BOOK_STATUS_LABELS[s] || s}</option>
                     ))}
-                </select>
+
+                </Select>
             </div>
 
             {books.length === 0 && (

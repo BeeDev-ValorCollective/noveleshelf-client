@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Button from '../ui/Button'
+import Select from '../ui/Select';
 
 import useFormValidation from '../../hooks/useFormValidation'
 import useMailSubmission from '../../hooks/useMailSubmission'
@@ -123,7 +124,8 @@ export default function ContactUs() {
 
                         {/* CONTACT TYPE */}
                         <div className="entry_area">
-                            <select
+                            <Select
+                                variant='bare'
                                 name="contactType"
                                 id="contactType"
                                 required
@@ -133,7 +135,7 @@ export default function ContactUs() {
                                 {CONTACT_TYPES.map(({ value, label }) => (
                                     <option key={value} value={value}>{label}</option>
                                 ))}
-                            </select>
+                            </Select>
                         </div>
                         
                     </div>

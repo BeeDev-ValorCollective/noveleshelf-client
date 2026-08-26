@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Button from '../ui/Button';
+import Select from '../ui/Select';
 
 import useUnsubValidation from '../../hooks/useUnsubValidation'
 import useUnsubSubmission from '../../hooks/useUnsubSubmission'
@@ -108,7 +109,8 @@ export default function UnsubscribeForm() {
 
                 {/* REASON */}
                 <div className="entry_area">
-                    <select
+                    <Select
+                        variant='bare'
                         name="reason"
                         id="reason"
                         required
@@ -118,7 +120,8 @@ export default function UnsubscribeForm() {
                         {UNSUB_REASONS.map(({ value, label }) => (
                             <option key={value} value={value}>{label}</option>
                         ))}
-                    </select>
+                    </Select>
+
                 </div>
 
                 {/* SUBMIT */}

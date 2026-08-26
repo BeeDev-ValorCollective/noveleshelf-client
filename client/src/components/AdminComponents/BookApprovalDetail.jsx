@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { getMediaUrl, DB_API, ENDPOINTS } from '../../utils/api'
 import { BOOK_STATUS_LABELS } from '../../utils/constants'
 import Button from '../ui/Button'
+import Select from '../ui/Select'
 
 export default function BookApprovalDetail({ book, accessToken, onUpdated, onActioned, onClose }) {
     const [readerNotes, setReaderNotes] = useState('')
@@ -218,7 +219,8 @@ export default function BookApprovalDetail({ book, accessToken, onUpdated, onAct
 
             <div className='request-detail-section'>
                 <label className='bff-label' htmlFor='book-tier'>Book Tier</label>
-                <select
+                <Select
+                    variant='form'
                     id='book-tier'
                     className='bff-select'
                     value={bookTier}
@@ -229,7 +231,8 @@ export default function BookApprovalDetail({ book, accessToken, onUpdated, onAct
                     {[1, 2, 3, 4, 5].map(t => (
                         <option key={t} value={t}>Tier {t}</option>
                     ))}
-                </select>
+                </Select>
+
             </div>
 
             <div className='request-detail-section'>

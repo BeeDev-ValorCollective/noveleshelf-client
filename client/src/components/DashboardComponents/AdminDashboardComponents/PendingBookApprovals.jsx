@@ -1,9 +1,18 @@
+import Button from "../../ui/Button"
+
 export default function PendingBookApprovals({ books, isLoading, error }) {
     return (
         <div className='pending-panel'>
             <div className='pending-panel-header'>
                 <h2 className='pending-panel-title'>Book Approvals</h2>
-                <a href='/admin/book-approvals' className='view-all-link'>View All</a>
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    href='/admin/book-approvals'
+                    className='view-all-link'
+                >
+                    View All
+                </Button>
             </div>
             {isLoading && <p className='section-note'>Loading...</p>}
             {error && <p className='form-error'>{error}</p>}
