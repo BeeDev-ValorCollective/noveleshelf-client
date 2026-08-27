@@ -1,350 +1,146 @@
-/*  Profile Header  */
+/*  Profile Header Section  */
+.dashboard-section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .profile-header {
-    background-color: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: var(--card-radius);
-    padding: clamp(1.5rem, 3vw, 2rem);
+    background-color: var(--bg-secondary, rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    border-radius: var(--card-radius, 12px);
+    padding: clamp(1.2rem, 3vw, 2rem);
     width: 100%;
     backdrop-filter: blur(14px);
+    box-sizing: border-box;
 }
+
 .profile-header-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    gap: 1.5em;
+    gap: 1.5rem;
 }
+
 .profile-header-left {
     display: flex;
     flex-direction: row;
-    gap: 1.5em;
+    gap: 1.5rem;
     align-items: flex-start;
     flex: 1;
 }
-.profile-avatar {
-    width: clamp(80px, 10vw, 150px);
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255,255,255,0.2);
+
+.profile-avatar-container {
     flex-shrink: 0;
 }
+
+.profile-avatar {
+    width: clamp(80px, 10vw, 130px);
+    height: clamp(80px, 10vw, 130px);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-color, rgba(255, 255, 255, 0.2));
+    flex-shrink: 0;
+}
+
 .profile-info {
     display: flex;
     flex-direction: column;
-    gap: 0.3em;
+    gap: 0.35rem;
+    flex: 1;
 }
+
 .profile-name {
-    font-size: clamp(1.3rem, 3vw, 1.8em);
-    color: var(--text-primary);
+    font-size: clamp(1.75rem, 4vw, 2.2rem);
+    color: var(--text-primary, #ffffff);
     margin: 0;
     font-family: "Fredericka the Great", serif;
+    letter-spacing: 0.5px;
+    line-height: 1.25;
 }
+
 .profile-username {
-    color: var(--text-secondary);
-    margin: 0.2em 0;
-    font-size: clamp(0.85rem, 1.5vw, 1em);
+    color: var(--text-secondary, rgba(255, 255, 255, 0.85));
+    margin: 0.15rem 0;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-weight: 500;
 }
+
 .profile-badges {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5em;
-    margin: 0.5em 0;
+    gap: 0.6rem;
+    margin: 0.6rem 0;
 }
+
 .badge {
-    padding: 0.2em 0.8em;
+    padding: 0.4rem 1rem;
     border-radius: 20px;
-    font-size: clamp(0.7rem, 1.2vw, 0.8em);
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
     font-weight: 600;
+    letter-spacing: 0.3px;
 }
+
 .badge-author {
-    background-color: rgba(255,255,255,0.12);
-    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
 }
+
 .badge-pro {
-    background-color: rgba(221,122,122,0.2);
-    color: var(--accent-coral);
+    background-color: rgba(221, 122, 122, 0.2);
+    color: var(--accent-coral, #e05555);
 }
+
+.badge-founding {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
 .badge-free-author {
-    background-color: rgba(104,185,185,0.2);
-    color: var(--accent-teal);
+    background-color: rgba(104, 185, 185, 0.2);
+    color: var(--accent-teal, #68b9b9);
 }
+
 .profile-bio {
-    color: var(--text-secondary);
-    font-size: clamp(0.85rem, 1.2vw, 0.9em);
-    max-width: 600px;
-    line-height: 1.6;
-    margin: 0;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.9));
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    max-width: 650px;
+    line-height: 1.65;
+    margin: 0.4rem 0 0 0;
 }
+
+.profile-contract {
+    font-size: 0.95rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.85));
+    margin-top: 0.5rem;
+}
+
+.profile-contract a {
+    color: var(--accent-teal, #68b9b9);
+    text-decoration: none;
+}
+
+.profile-contract a:hover {
+    text-decoration: underline;
+}
+
 .profile-header-right {
     display: flex;
     flex-direction: row;
-    gap: 0.8em;
+    gap: 0.8rem;
     align-items: center;
     flex-shrink: 0;
 }
-.edit-profile-btn {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 1px solid var(--accent-teal);
-    padding: 0.5em 1.2em;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: clamp(0.8rem, 1.2vw, 0.9em);
-    font-family: "Fredericka the Great", serif;
-    transition: var(--transition);
-}
-.edit-profile-btn a {
-    color: var(--text-primary);
-    text-decoration: none;
-}
-.edit-profile-btn:hover {
-    background-color: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.4);
-}
-.settings-btn {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: var(--transition);
-    padding: 0.3em;
-}
-.settings-btn:hover {
-    color: var(--text-primary);
-}
 
-/*  Author Upgrade Section  */
-.author-upgrade-section {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2em;
-    width: 100%;
-}
-.upgrade-card {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2em;
-    padding: 2em;
-    background-color: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: var(--card-radius);
-    backdrop-filter: blur(14px);
-    transition: var(--transition);
-    text-align: left;
-}
-.upgrade-card:hover {
-    border-color: rgba(255,255,255,0.15);
-}
-.upgrade-card-header {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4em;
-}
-.upgrade-card-header a,
-.upgrade-card-learn-more {
-    font-family: "Merienda", cursive;
-    color: var(--accent-teal);
-    font-size: clamp(0.8rem, 1.2vw, 0.9em);
-    text-decoration: none;
-    transition: var(--transition);
-    align-self: flex-start;
-    width: fit-content;
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: 0;
-    justify-content: flex-start;
-    text-align: left;
-}
-.upgrade-card-header a:hover,
-.upgrade-card-learn-more:hover {
-    color: var(--accent-coral);
-}
-.upgrade-card-title {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--text-primary);
-    font-family: "Fredericka the Great", serif;
-    margin: 0;
-}
-.upgrade-card-description {
-    color: var(--text-secondary);
-    font-size: clamp(0.85rem, 1.2vw, 0.95em);
-    line-height: 1.7;
-    flex: 1;
-    margin: 0;
-}
-
-/*  Form Feedback  */
-.form-success {
-    color: #4caf50;
-    font-size: clamp(0.85rem, 1.2vw, 0.95em);
-    line-height: 1.7;
-    padding: 0.8em 0;
-}
-.form-error {
-    color: var(--accent-coral);
-    font-size: clamp(0.85rem, 1.2vw, 0.95em);
-    line-height: 1.7;
-    padding: 0.4em 0;
-}
-
-/*  Modal  */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(1rem, 3vw, 2rem);
-    z-index: 1000;
-}
-.modal-box {
-    background: #1a1a2e;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: var(--card-radius);
-    padding: clamp(1.5rem, 3vw, 2rem);
-    max-width: 520px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-.modal-box-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.modal-box-title {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    font-weight: 600;
-    margin: 0;
-    color: var(--text-primary);
-    font-family: "Fredericka the Great", serif;
-}
-.modal-box-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.8em;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
-}
-.modal-box a {
-    font-family: "Merienda", cursive;
-    color: var(--accent-teal);
-}
-.modal-box a:hover {
-    color: var(--accent-coral);
-}
-
-/*  Tablets  */
-@media (max-width: 992px) {
-    .profile-header-content {
-        flex-direction: column;
-    }
-    .profile-header-right {
-        width: 100%;
-        justify-content: flex-start;
-    }
-    .author-upgrade-section {
-        grid-template-columns: 1fr;
-    }
-}
-
-/*  Mobile  */
-@media (max-width: 768px) {
-    .profile-header-left {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        width: 100%;
-    }
-    .profile-info {
-        align-items: center;
-    }
-    .profile-bio {
-        max-width: 100%;
-        text-align: center;
-    }
-    .profile-badges {
-        justify-content: center;
-    }
-    .profile-header-right {
-        justify-content: center;
-    }
-    .upgrade-card {
-        padding: 1.5rem;
-    }
-    .modal-box {
-        max-height: 85vh;
-    }
-}
-
-/*  Small Mobile  */
-@media (max-width: 480px) {
-    .profile-name {
-        font-size: 1.3rem;
-    }
-    .edit-profile-btn {
-        width: 100%;
-        text-align: center;
-    }
-    .upgrade-card-btn {
-        width: 100%;
-    }
-    .modal-box-actions {
-        flex-direction: column-reverse;
-    }
-}
-
-.terms-list {
-    margin: 1rem 0 1.5rem 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.terms-item {
-    font-size: 0.9rem;
-    color: #FFFFFFAD;
-    line-height: 1.5;
-}
-
-.terms-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 1rem;
-}
-
-.agreement-scroll-box {
-    height: 360px;
-    overflow-y: auto;
-}
-
-.agreement-frame {
-    width: 100%;
-    height: 500px;
-    border: none;
-    border-radius: var(--card-radius);
-    background: transparent;
-}
-
-/* ─── Login Milestone Badge ─────────────────────────────────── */
-
+/* Login Milestone Badge */
 .profile-login-bonus-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.65rem;
-
     width: fit-content;
-    margin-top: 0.75rem;
-    padding: 0.55rem 0.9rem;
-
+    margin: 0.5rem 0;
+    padding: 0.6rem 1rem;
     background-color: rgba(255, 193, 7, 0.12);
     border: 1px solid rgba(255, 193, 7, 0.3);
     border-radius: 999px;
@@ -354,11 +150,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 1px;
-
-    min-width: 30px;
-
     color: #ffc107;
+    flex-shrink: 0;
 }
 
 .profile-login-bonus-content {
@@ -370,26 +163,226 @@
 .profile-login-bonus-title {
     color: #ffc107;
     font-family: "Merienda", cursive;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
 .profile-login-bonus-reward {
-    color: var(--text-secondary);
+    color: var(--text-secondary, rgba(255, 255, 255, 0.85));
     font-family: "Merienda", cursive;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
-@media (max-width: 480px) {
-    .profile-login-bonus-badge {
-        padding: 0.5rem 0.75rem;
+/* Author Upgrade Section */
+.author-upgrade-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.upgrade-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    background-color: var(--bg-secondary, rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    border-radius: var(--card-radius, 12px);
+    backdrop-filter: blur(14px);
+    transition: var(--transition, all 0.3s ease);
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.upgrade-card:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.upgrade-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.upgrade-card-title {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: var(--text-primary, #ffffff);
+    font-family: "Fredericka the Great", serif;
+    margin: 0;
+}
+
+.upgrade-card-description {
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    line-height: 1.6;
+    flex: 1;
+    margin: 0;
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: #1a1a2e;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--card-radius, 12px);
+    padding: clamp(1.2rem, 3vw, 2rem);
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.modal-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-box-title {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary, #ffffff);
+    font-family: "Fredericka the Great", serif;
+}
+
+.modal-box-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+    RESPONISVE MEDIA QUERIES
+   ========================================================================== */
+
+/* Tablet & Below (<= 992px) */
+@media screen and (max-width: 992px) {
+    .author-upgrade-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile Breakpoint (<= 768px) */
+@media screen and (max-width: 768px) {
+    .profile-name {
+        font-size: 1.85rem;
+    }
+
+    .profile-username {
+        font-size: 1.25rem;
+    }
+
+    .profile-bio {
+        font-size: 1.25rem;
+        line-height: 1.6;
+    }
+
+    .badge {
+        font-size: 0.9rem;
+        padding: 0.35rem 0.9rem;
     }
 
     .profile-login-bonus-title {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
     }
 
     .profile-login-bonus-reward {
-        font-size: 0.65rem;
+        font-size: 0.8rem;
+    }
+
+    .upgrade-card-title {
+        font-size: 1.3rem;
+    }
+
+    .upgrade-card-description {
+        font-size: 1rem;
+    }
+
+    .profile-header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-header-left {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .profile-info {
+        align-items: center;
+    }
+
+    .profile-badges {
+        justify-content: center;
+    }
+
+    .profile-login-bonus-badge {
+        align-self: center;
+    }
+
+    .profile-bio {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .profile-header-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Small Mobile Breakpoint (<= 480px) */
+@media screen and (max-width: 480px) {
+    .profile-header {
+        padding: 1.25rem 1rem;
+    }
+
+    .profile-name {
+        font-size: 1.75rem;
+    }
+
+    .profile-badges {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .badge {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+        font-size: 0.9rem;
+        padding: 0.45rem 0.8rem;
+    }
+
+    .modal-box-actions {
+        flex-direction: column-reverse;
+        gap: 0.5rem;
+    }
+
+    .modal-box-actions button {
+        width: 100%;
     }
 }

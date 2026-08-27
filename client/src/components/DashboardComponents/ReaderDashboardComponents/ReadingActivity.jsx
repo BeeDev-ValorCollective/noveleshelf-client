@@ -26,7 +26,7 @@ export default function ReadingActivity() {
                             </span>
                             <p className='activity-text'>{activity.text}</p>
                         </div>
-                        <span className='activity-item'>{activity.time}</span>
+                        <span className='activity-time'>{activity.time}</span>
                     </div>
                 ))}
             </div>

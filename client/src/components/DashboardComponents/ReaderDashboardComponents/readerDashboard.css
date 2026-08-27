@@ -3,9 +3,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 95%;
-    gap: 3em;
-    padding-bottom: 4em;
+    width: 100%;
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+    gap: 2.5rem;
+    padding: 1rem 1.5rem 4rem;
+    box-sizing: border-box;
 }
 
 /* Shared Section Styles */
@@ -15,141 +18,198 @@
     flex-direction: column;
     align-items: center;
 }
+
 .reader-section-heading {
-    font-size: 1em;
-    color: #ffffffe0;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: var(--text-primary, #ffffffe0);
     text-align: center;
     margin-bottom: 0.3em;
     font-family: "Fredericka the Great", serif;
 }
+
 .reader-section-subheading {
-    font-size: 1em;
-    color: #ffffffa0;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--text-secondary, #ffffffa0);
     text-align: center;
     margin-bottom: 1.5em;
 }
+
 .reader-card {
-    background-color: #ffffff10;
-    border-radius: 8px;
+    background-color: var(--bg-secondary, #ffffff10);
+    border-radius: var(--card-radius, 8px);
     padding: 1.5em;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Profile Header */
 .reader-profile-header {
-    background-color: #ffffff10;
-    border-radius: 8px;
-    padding: 2em;
+    background-color: var(--bg-secondary, #ffffff10);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    border-radius: var(--card-radius, 12px);
+    padding: clamp(1.2rem, 3vw, 2rem);
     width: 100%;
+    box-sizing: border-box;
 }
+
 .reader-profile-header-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    gap: 1.5rem;
 }
+
 .reader-profile-left {
     display: flex;
     flex-direction: row;
-    gap: 1.5em;
+    gap: 1.25rem;
     align-items: flex-start;
 }
+
 .reader-profile-avatar {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ffffff30;
+    border: 2px solid var(--border-color, #ffffff30);
+    flex-shrink: 0;
 }
+
 .reader-profile-name {
-    font-size: 1.8em;
-    color: #ffffffe0;
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    color: var(--text-primary, #ffffffe0);
     margin: 0;
     font-family: "Fredericka the Great", serif;
 }
+
 .reader-profile-username {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     margin: 0.2em 0;
 }
+
 .reader-profile-badges {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5em;
     margin: 0.5em 0;
 }
+
 .reader-badge {
     padding: 0.2em 0.8em;
     border-radius: 20px;
     font-size: 0.8em;
     font-weight: 600;
 }
+
 .reader-badge.reader {
-    background-color: #ffffff20;
-    color: #ffffffe0;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary, #ffffffe0);
 }
+
 .reader-badge-premium {
-    background-color: #e0555530;
-    color: #e05555;
+    background-color: rgba(224, 85, 85, 0.2);
+    color: var(--accent-coral, #e05555);
 }
+
 .reader-profile-bio {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 0.9em;
     max-width: 600px;
     line-height: 1.6;
     margin: 0.5em 0 0 0;
 }
+
 .reader-profile-right {
     display: flex;
     flex-direction: row;
     gap: 0.8em;
     align-items: center;
 }
+
 .reader-edit-profile-btn {
     background-color: transparent;
-    color: #ffffffe0;
-    border: 1px solid #ffffff40;
+    color: var(--text-primary, #ffffffe0);
+    border: 1px solid var(--border-color, #ffffff40);
     padding: 0.5em 1.2em;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 0.9em;
-    transition: all 0.3s ease;
+    transition: var(--transition, all 0.3s ease);
 }
+
 .reader-edit-profile-btn:hover {
-    background-color: #ffffff10;
+    background-color: rgba(255, 255, 255, 0.1);
 }
+
 .reader-settings-btn {
     background: none;
     border: none;
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 1.2em;
     cursor: pointer;
 }
 
 /* Stats Bar */
 .reader-stats-grid {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
     width: 100%;
 }
+
 .reader-stat-item {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #ffffff10;
-    border-radius: 8px;
-    padding: 1.5em;
+    background-color: var(--bg-secondary, #ffffff10);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    border-radius: var(--card-radius, 8px);
+    padding: 1.25em 1em;
+    box-sizing: border-box;
 }
+
 .reader-stat-label {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 0.9em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.4em;
 }
+
 .reader-stat-value {
-    color: #e05555;
+    color: var(--accent-coral, #e05555);
     font-size: 1.8em;
     margin: 0;
+}
+
+.reader-stat-explainer {
+    color: var(--text-secondary, #ffffff80);
+    font-size: 0.8em;
+    margin-top: 0.4em;
+}
+
+.reader-stat-icon {
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 0.4em;
+}
+
+.reader-stat-icon--ink {
+    width: calc(48px * (148 / 265));
+}
+
+.reader-stat-icon--quill {
+    width: calc(48px * (394 / 881));
+}
+
+.reader-wallet-subnote {
+    color: var(--text-secondary, #ffffffa0);
+    font-size: 0.9em;
+    text-align: center;
+    max-width: 650px;
+    margin-bottom: 1.5em;
+    line-height: 1.5;
 }
 
 /* Currently Reading */
@@ -159,48 +219,56 @@
     align-items: center;
     gap: 1.5em;
     width: 100%;
-    background-color: #ffffff10;
-    border-radius: 8px;
+    background-color: var(--bg-secondary, #ffffff10);
+    border-radius: var(--card-radius, 8px);
     padding: 1.5em;
+    box-sizing: border-box;
 }
+
 .currently-reading-cover-placeholder {
     width: 100px;
     height: 140px;
-    background-color: #ffffff20;
-    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffffa0;
-    font-size: 0.7em;
+    color: var(--text-secondary, #ffffffa0);
+    font-size: 0.75em;
     text-align: center;
     padding: 0.5em;
 }
+
 .currently-reading-info {
     flex: 1;
 }
+
 .currently-reading-title {
-    color: #ffffffe0;
+    color: var(--text-primary, #ffffffe0);
     font-size: 1.3em;
     margin: 0 0 0.2em 0;
 }
+
 .currently-reading-author {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 0.9em;
     margin: 0 0 0.5em 0;
 }
+
 .currently-reading-desc {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 0.85em;
     line-height: 1.6;
     margin-bottom: 0.8em;
 }
+
 .currently-reading-chapter {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 0.8em;
     margin: 0.3em 0 0 0;
 }
+
 .currently-reading-right {
     display: flex;
     flex-direction: column;
@@ -208,276 +276,388 @@
     gap: 1em;
     flex-shrink: 0;
 }
+
 .reading-progress {
-    color: #e05555;
+    color: var(--accent-coral, #e05555);
     font-size: 1.8em;
     font-weight: 700;
     margin: 0;
 }
+
 .continue-reading-btn {
     background-color: transparent;
-    color: #ffffffe0;
-    border: 1px solid #ffffff40;
+    color: var(--text-primary, #ffffffe0);
+    border: 1px solid var(--border-color, #ffffff40);
     padding: 0.6em 1.2em;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 0.9em;
-    transition: all 0.3s ease;
+    transition: var(--transition, all 0.3s ease);
     white-space: nowrap;
 }
+
 .continue-reading-btn:hover {
-    background-color: #ffffff10;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Books Grid (Saved and Finished) */
+/* Books Grid (Saved & Finished) - Dynamic Responsive Grid */
 .reader-books-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5em;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25em;
     width: 100%;
 }
+
 .reader-book-card {
     display: flex;
     flex-direction: column;
-    background-color: #ffffff10;
-    border-radius: 8px;
+    background-color: var(--bg-secondary, #ffffff10);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    border-radius: var(--card-radius, 8px);
     overflow: hidden;
+    transition: var(--transition, transform 0.2s ease);
 }
+
+.reader-book-card:hover {
+    transform: translateY(-2px);
+}
+
 .reader-book-cover-placeholder {
     width: 100%;
     height: 180px;
-    background-color: #ffffff20;
+    background-color: rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffffa0;
-    font-size: 0.8em;
+    color: var(--text-secondary, #ffffffa0);
+    font-size: 0.85em;
     text-align: center;
     padding: 1em;
+    box-sizing: border-box;
 }
+
 .reader-book-info {
-    padding: 0.8em;
+    padding: 0.8em 1em;
 }
+
 .reader-book-title {
-    color: #ffffffe0;
+    color: var(--text-primary, #ffffffe0);
     font-size: 0.95em;
     margin: 0 0 0.2em 0;
 }
+
 .reader-book-author {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 0.8em;
     margin: 0 0 0.5em 0;
 }
+
 .reader-book-footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
+
 .reader-book-rating {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 0.8em;
 }
+
 .reader-genre-badge {
     font-size: 0.7em;
     padding: 0.2em 0.6em;
     border-radius: 20px;
-    background-color: #ffffff20;
-    color: #ffffffa0;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--text-secondary, #ffffffa0);
 }
-.reader.genre.badge.fiction { background-color: #5555e020; color: #8888ff; }
-.reader.genre.badge.mystery { background-color: #5555e020; color: #e05555; }
-.reader.genre.badge.drama { background-color: #55e09020; color: #55e090; }
-.reader.genre.badge.romance { background-color: #5555a020; color: #e055a0; }
-.reader.genre.badge.thriller { background-color: #e0a05520; color: #e0a055; }
-.reader.genre.badge.library { background-color: #55a0e020; color: #55a0e0; }
-.reader.genre.badge.adventure { background-color: #a055e020; color: #a055e0; }
+
+.reader-genre-badge.fiction { background-color: rgba(85, 85, 224, 0.2); color: #8888ff; }
+.reader-genre-badge.mystery { background-color: rgba(85, 85, 224, 0.2); color: var(--accent-coral, #e05555); }
+.reader-genre-badge.drama { background-color: rgba(85, 224, 144, 0.2); color: #55e090; }
+.reader-genre-badge.romance { background-color: rgba(85, 85, 160, 0.2); color: #e055a0; }
+.reader-genre-badge.thriller { background-color: rgba(224, 160, 85, 0.2); color: #e0a055; }
+.reader-genre-badge.library { background-color: rgba(85, 160, 224, 0.2); color: #55a0e0; }
+.reader-genre-badge.adventure { background-color: rgba(160, 85, 224, 0.2); color: #a055e0; }
 
 /* Reading Activity */
 .activity-list {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 0em;
+    gap: 0.5rem;
 }
+
 .activity-item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1em 1.5em;
-    background-color: #ffffff10;
-    border-radius: 8px;
-    margin-bottom: 0.5em;
+    padding: 1em 1.25em;
+    background-color: var(--bg-secondary, #ffffff10);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    border-radius: var(--card-radius, 8px);
+    gap: 1rem;
+    box-sizing: border-box;
 }
+
 .activity-left {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1em;
 }
+
 .activity-icon {
-    color: #e05555;
+    color: var(--accent-coral, #e05555);
     font-size: 1em;
-    width: 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .activity-text {
-    color: #ffffffe0;
+    color: var(--text-primary, #ffffffe0);
     font-size: 0.9em;
     margin: 0;
 }
+
 .activity-time {
-    color: #ffffff60;
+    color: var(--text-secondary, #ffffff60);
     font-size: 0.8em;
+    white-space: nowrap;
 }
 
 /* Reading Preferences */
 .preferences-grid {
-    display: flex;
-    flex-direction: row;
-    gap: 3em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
     width: 100%;
 }
+
 .preferences-column {
-    flex: 1;
-    background-color: #ffffff10;
-    border-radius: 8px;
+    background-color: var(--bg-secondary, #ffffff10);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    border-radius: var(--card-radius, 8px);
     padding: 1.5em;
+    box-sizing: border-box;
 }
+
 .preferences-column-title {
-    color: #ffffffe0;
+    color: var(--text-primary, #ffffffe0);
     font-size: 1.1em;
     margin-bottom: 1em;
 }
+
 .genre-tags {
     display: flex;
     flex-wrap: wrap;
-    padding: 1em 0;
-    gap: 1em;
+    gap: 0.75em;
 }
+
 .genre-tag {
     padding: 0.4em 1em;
     border-radius: 20px;
     font-size: 0.85em;
-    background-color: #ffffff15;
-    color: #ffffffe0;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary, #ffffffe0);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition, all 0.3s ease);
 }
+
 .genre-tag:hover {
-    background-color: #e0555530;
-    color: #e05555;
+    background-color: rgba(224, 85, 85, 0.25);
+    color: var(--accent-coral, #e05555);
 }
+
 .reading-goals {
     display: flex;
     flex-direction: column;
     gap: 1.2em;
 }
+
 .goal-item {
     display: flex;
     flex-direction: column;
     gap: 0.4em;
 }
+
 .goal-label {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 0.85em;
     margin: 0;
 }
+
 .goal-progress-bar {
     width: 100%;
     height: 6px;
-    background-color: #ffffff20;
+    background-color: rgba(255, 255, 255, 0.15);
     border-radius: 3px;
     overflow: hidden;
 }
+
 .goal-progress-fill {
     height: 100%;
-    background-color: #e05555;
+    background-color: var(--accent-coral, #e05555);
     border-radius: 3px;
 }
+
 .goal-progress-text {
-    color: #ffffffa0;
+    color: var(--text-secondary, #ffffffa0);
     font-size: 0.75em;
     margin: 0;
 }
 
-.reader-stat-icon {
-    height: 56px;
-    object-fit: contain;
-    margin-bottom: 0.4em;
-}
-
-.reader-stat-icon--ink {
-    width: calc(56px * (148 / 265));
-}
-
-.reader-stat-icon--quill {
-    width: calc(56px * (394 / 881));
-}
+/* Wallet & Promo Section */
 .wallet-purchase {
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 1em;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
+
 .wallet-purchase-promo {
     display: flex;
-    width: 50%;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: 1;
+    max-width: 500px;
 }
+
 .redeem-promo-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.form-components {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
     align-items: center;
     width: 100%;
 }
-.form-components {
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    align-items: center;
+
+.redeem-promo-label {
+    white-space: nowrap;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #ffffffa0);
+}
+
+.redeem-promo-input {
+    flex: 1;
+    min-width: 0;
 }
 
 form input {
-    background-color: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 8px;
-    color: var(--text-primary);
-    font-size: clamp(0.9rem, 1.5vw, 1em);
-    padding: 0.75em 1em;
-    transition: var(--transition);
-    font-family: "Merienda", cursive;
+    color: var(--text-primary, #ffffff);
+    font-size: 0.95rem;
+    padding: 0.6em 0.8em;
+    transition: var(--transition, all 0.3s ease);
+    font-family: inherit;
     outline: none;
 }
 
-@media screen and (max-width: 780px) {
+.redeem-promo-error {
+    color: var(--accent-coral, #e05555);
+    font-size: 0.85rem;
+    margin: 0.2rem 0 0 0;
+}
+
+.redeem-promo-success {
+    color: #55e090;
+    font-size: 0.85rem;
+    margin: 0.2rem 0 0 0;
+}
+
+/* ==========================================================================
+    RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+/* Tablet Breakpoint (<= 768px) */
+@media screen and (max-width: 768px) {
+    .reader-profile-header-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .reader-profile-left {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .reader-profile-right {
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .currently-reading-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .currently-reading-right {
+        align-items: center;
+        width: 100%;
+    }
+
+    .preferences-grid {
+        grid-template-columns: 1fr;
+    }
+
     .wallet-purchase {
-        display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        width: 100%;
     }
+
     .wallet-purchase-promo {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         width: 100%;
-    }
-    .redeem-promo-form {
-        flex-direction: column;
-        justify-content: center;
+        max-width: 100%;
         align-items: center;
-        width: 100%;
     }
+
     .form-components {
-        padding: 1em;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
         width: 100%;
+    }
+
+    .redeem-promo-input {
+        width: 100%;
+    }
+}
+
+/* Small Mobile Breakpoint (<= 480px) */
+@media screen and (max-width: 480px) {
+    .reader-dashboard-container {
+        padding: 1rem 0.75rem 3rem;
+    }
+
+    .activity-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+    }
+
+    .activity-time {
+        align-self: flex-end;
+    }
+
+    .reader-books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .reader-book-cover-placeholder {
+        height: 140px;
     }
 }

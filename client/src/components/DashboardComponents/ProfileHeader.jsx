@@ -1,23 +1,17 @@
 import { getMediaUrl } from '../../utils/api'
 import { toTitleCase } from '../../utils/upperCase'
-import { Link } from 'react-router-dom'
 import Button from '../ui/Button'
-import { Flame } from 'lucide-react';
+import { Flame } from 'lucide-react'
 
 import './dashboard.css'
-// import { sendToExpo } from '../../utils/authHandoff'; // adjust path to match Dashboard's location
-
-
 
 export default function ProfileHeader({ user, currentProfile, fullName, currentRole, loginBonusBadge }) {
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
-
     const displayRole = currentRole || localStorage.getItem('current_role')
 
     if (import.meta.env.DEV) {
         console.log('ProfileHeader props:', { currentRole, currentProfile, user }, 'DisplayRole:', displayRole)
     }
-
 
     return (
         <section className='dashboard-section profile-header'>
@@ -39,8 +33,12 @@ export default function ProfileHeader({ user, currentProfile, fullName, currentR
                         )}
 
                         <div className='profile-badges'>
-                            <span className='badge badge-author'>Default Login Role: {toTitleCase(user.default_login_role)}</span>
-                            <span className='badge badge-author'>Current Role: {toTitleCase(currentRole)}</span>
+                            {user?.default_login_role && (
+                                <span className='badge badge-author'>Default Login Role: {toTitleCase(user.default_login_role)}</span>
+                            )}
+                            {currentRole && (
+                                <span className='badge badge-author'>Current Role: {toTitleCase(currentRole)}</span>
+                            )}
                             {['author', 'free_author'].includes(currentRole) && (
                                 <span className='badge badge-pro'>
                                     {currentRole === 'author' ? 'Paid Author' : 'Free Author'}
@@ -52,23 +50,21 @@ export default function ProfileHeader({ user, currentProfile, fullName, currentR
                         </div>
 
                         {loginBonusBadge && (
-                                <div className="profile-login-bonus-badge">
-                                    <Flame
-                                        className="profile-login-bonus-icon"
-                                        size={22}
-                                    />
-
-                                    <div className="profile-login-bonus-content">
-                                        <span className="profile-login-bonus-title">
-                                            {loginBonusBadge.title}
-                                        </span>
-
-                                        <span className="profile-login-bonus-reward">
-                                            +{loginBonusBadge.reward} Black Ink Today
-                                        </span>
-                                    </div>
+                            <div className="profile-login-bonus-badge">
+                                <Flame
+                                    className="profile-login-bonus-icon"
+                                    size={20}
+                                />
+                                <div className="profile-login-bonus-content">
+                                    <span className="profile-login-bonus-title">
+                                        {loginBonusBadge.title}
+                                    </span>
+                                    <span className="profile-login-bonus-reward">
+                                        +{loginBonusBadge.reward} Black Ink Today
+                                    </span>
                                 </div>
-                            )}
+                            </div>
+                        )}
 
                         {currentProfile?.bio !== undefined && (
                             <p className='profile-bio'>{currentProfile.bio || <em>No Bio Written</em>}</p>
@@ -88,9 +84,6 @@ export default function ProfileHeader({ user, currentProfile, fullName, currentR
                         Update Profile
                     </Button>
                 </div>
-                {/* <button onClick={() => sendToExpo('settings')}>
-                    Open in App
-                </button> */}
             </div>
         </section>
     )
