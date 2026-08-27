@@ -4,8 +4,11 @@
     flex-direction: column;
     align-items: center;
     width: 95%;
-    gap: 3em;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 2.5em;
     padding-bottom: 4em;
+    box-sizing: border-box;
 }
 
 /* Shared Section Styles */
@@ -14,59 +17,76 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
 }
+
 .section-heading {
-    font-size: 2em;
+    font-size: clamp(1.4rem, 3vw, 2rem);
     color: #ffffffe0;
     text-align: center;
-    margin-bottom: 0.3em;
+    margin: 0 0 0.3em 0;
 }
+
 .section-heading-row {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.section-subheading {
-    font-size: 1em;
-    color: #ffffffa0;
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1em;
     margin-bottom: 1.5em;
+    flex-wrap: wrap;
 }
+
+.section-subheading {
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: #ffffffa0;
+    text-align: left;
+    margin-bottom: 0;
+}
+
 .dashboard-card {
     background-color: #ffffff10;
     border-radius: 8px;
-    padding: 1.5em;
+    padding: clamp(1em, 2.5vw, 1.5em);
+    box-sizing: border-box;
 }
 
 /* Stats Bar */
 .stats-grid {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5em;
     width: 100%;
 }
+
 .stat-item {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
+
 .stat-label {
     color: #ffffffa0;
     font-size: 0.9em;
     margin-bottom: 0.5em;
 }
+
 .stat-value {
     color: #e05555;
-    font-size: 1.8em;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
     margin: 0;
 }
 
-/* Current Projects */
+/* Current Projects & Published Works Lists */
 .projects-list {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
+
 .project-card {
     display: flex;
     flex-direction: row;
@@ -74,6 +94,7 @@
     gap: 1.5em;
     width: 100%;
 }
+
 .project-cover-placeholder {
     width: 80px;
     height: 110px;
@@ -87,23 +108,34 @@
     text-align: center;
     padding: 0.5em;
     flex-shrink: 0;
+    object-fit: cover;
 }
+
 .project-info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
 }
+
 .project-title {
     color: #ffffffe0;
-    margin: 0 0 0.5em 0;
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.2rem);
 }
+
 .project-status {
     font-size: 0.8em;
     padding: 0.2em 0.8em;
     border-radius: 20px;
+    width: fit-content;
 }
+
 .project-status.draft {
     background-color: #ffffff20;
     color: #ffffffa0;
 }
+
 .continue-editing-btn {
     background-color: transparent;
     color: #ffffffe0;
@@ -114,44 +146,52 @@
     transition: all 0.3s ease;
     white-space: nowrap;
 }
+
 .continue-editing-btn:hover {
     background-color: #ffffff10;
 }
 
-/* Published Works */
+/* Published Works Grid */
 .books-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 1.5em;
     width: 100%;
 }
+
 .book-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
+
 .published-book {
-    width: 75%;
+    width: 100%;
 }
+
 .book-cover-placeholder {
-    /* width: 100px; */
-    height: 150px;
+    width: 100%;
+    max-width: 140px;
+    height: 180px;
     background-color: #ffffff20;
     border-radius: 4px;
     margin-bottom: 0.8em;
-
+    object-fit: cover;
 }
+
 .book-title {
     color: #ffffffe0;
     font-size: 0.95em;
     margin: 0 0 0.3em 0;
 }
+
 .book-rating {
     color: #ffffffe0;
     font-size: 0.8em;
     margin: 0 0 0.2em 0;
 }
+
 .book-earnings {
     display: flex;
     gap: 0.5em;
@@ -165,80 +205,80 @@
     align-items: center;
     width: 100%;
     margin-bottom: 1.5em;
+    flex-wrap: wrap;
+    gap: 1em;
 }
+
 .time-toggle {
     display: flex;
     gap: 0.5em;
+    flex-wrap: wrap;
 }
-.time-btn {
-    background-color: transparent;
-    color: #ffffffa0;
-    border: 1px solid #ffffff30;
-    padding: 0.3em 0.8em;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: all 0.3s ease;
-}
-.time-btn:active, .time-btn:hover {
-    background-color: #e05555;
-    color: #ffffffe0;
-    border-color: #e05555;
-}
+
 .analytics-large-stats {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5em;
     width: 100%;
     margin-bottom: 1.5em;
 }
+
 .large-stat-card {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
+
 .large-stat-value {
     color: #e05555;
-    font-size: 2.5em;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin: 0.2em 0 0 0;
 }
+
 .analytics-small-stats {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1.5em;
     width: 100%;
     margin-bottom: 1.5em;
 }
+
 .small-stat-card {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
+
 .small-stat-value {
     color: #ffffffe0;
-    font-size: 1.5em;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     margin: 0.2em 0 0 0;
 }
+
 .analytics-bottom {
     display: flex;
     flex-direction: row;
     gap: 1.5em;
     width: 100%;
 }
-.reading-activity {
+
+.reading-activity,
+.performance-insights {
     flex: 1;
 }
-.reading-activity h3, .performance-insights h3 {
+
+.reading-activity h3, 
+.performance-insights h3 {
     color: #ffffffe0;
     margin: 0 0 0.3em 0;
 }
+
 .chart-subtitle {
     color: #ffffffa0;
     font-size: 0.8em;
     margin-bottom: 1em;
 }
+
 .bar-chart-placeholder {
     display: flex;
     flex-direction: row;
@@ -247,15 +287,14 @@
     height: 150px;
     padding: 1em 0;
 }
+
 .bar {
     flex: 1;
     background-color: #e05555;
     border-radius: 4px 4px 0 0;
     opacity: 0.7;
 }
-.performance-insights {
-    flex: 1;
-}
+
 .insight-item {
     display: flex;
     flex-direction: row;
@@ -263,16 +302,20 @@
     align-items: center;
     padding: 0.8em 0;
     border-bottom: 1px solid #ffffff10;
+    gap: 0.5em;
 }
+
 .insight-label {
     color: #ffffffa0;
     font-size: 0.85em;
     margin: 0;
 }
+
 .insight-value {
     color: #ffffffe0;
     font-size: 0.85em;
     margin: 0;
+    text-align: right;
 }
 
 /* Reader Feedback */
@@ -282,12 +325,14 @@
     gap: 1em;
     width: 100%;
 }
+
 .review-card {
     display: flex;
     flex-direction: row;
     gap: 1.5em;
     align-items: flex-start;
 }
+
 .review-book-cover-placeholder {
     width: 60px;
     height: 80px;
@@ -295,29 +340,35 @@
     border-radius: 4px;
     flex-shrink: 0;
 }
+
 .review-content {
     flex: 1;
 }
+
 .review-book-title {
     color: #ffffffe0;
     margin: 0 0 0.3em 0;
     font-size: 1em;
 }
+
 .review-text {
     color: #ffffffa0;
     font-size: 0.9em;
     line-height: 1.6;
     margin-bottom: 0.5em;
 }
+
 .review-footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
+
 .review-rating {
     font-size: 0.8em;
 }
+
 .review-time {
     color: #ffffff60;
     font-size: 0.8em;
@@ -330,16 +381,19 @@
     gap: 1.5em;
     width: 100%;
 }
+
 .settings-column {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
+
 .settings-column-title {
     color: #ffffffe0;
     margin: 0 0 0.5em 0;
 }
+
 .setting-item {
     display: flex;
     flex-direction: row;
@@ -347,17 +401,21 @@
     align-items: center;
     padding: 0.8em 0;
     border-bottom: 1px solid #ffffff10;
+    gap: 1em;
 }
+
 .setting-name {
     color: #ffffffe0;
     font-size: 0.9em;
     margin: 0 0 0.2em 0;
 }
+
 .setting-desc {
     color: #ffffffa0;
     font-size: 0.8em;
     margin: 0;
 }
+
 .toggle {
     width: 40px;
     height: 22px;
@@ -368,9 +426,11 @@
     flex-shrink: 0;
     transition: background-color 0.3s ease;
 }
+
 .toggle.active {
     background-color: #e05555;
 }
+
 .toggle::after {
     content: '';
     position: absolute;
@@ -382,9 +442,11 @@
     left: 3px;
     transition: left 0.3s ease;
 }
+
 .toggle.active::after {
     left: 21px;
 }
+
 .settings-save-btn {
     background-color: transparent;
     color: #ffffffe0;
@@ -397,28 +459,34 @@
     align-self: flex-start;
     margin-top: 0.5em;
 }
+
 .settings-save-btn:hover {
     background-color: #ffffff10;
 }
+
 .balance-card {
     background-color: #e0555520;
     border: 1px solid #e0555540;
 }
-.balace-label {
+
+.balace-label, .balance-label {
     color: #ffffffa0;
     font-size: 0.85em;
     margin: 0 0 0.3em 0;
 }
+
 .balance-value {
     color: #e05555;
-    font-size: 2em;
+    font-size: clamp(1.5rem, 3vw, 2em);
     margin: 0 0 0.2em 0;
 }
+
 .balance-sub {
     color: #ffffffa0;
     font-size: 0.8em;
     margin: 0;
 }
+
 .payout-item {
     display: flex;
     flex-direction: row;
@@ -426,23 +494,29 @@
     align-items: center;
     padding: 0.6em 0;
     border-bottom: 1px solid #ffffff10;
+    gap: 0.5em;
 }
+
 .payout-label {
     color: #ffffffa0;
     font-size: 0.85em;
     margin: 0;
 }
+
 .payout-value {
     color: #ffffffe0;
     font-size: 0.85em;
     margin: 0;
+    text-align: right;
 }
+
 .payout-actions {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
     margin-top: 0.5em;
 }
+
 .payout-btn {
     background-color: transparent;
     color: #ffffffa0;
@@ -454,15 +528,12 @@
     text-decoration: underline;
     transition: color 0.3s ease;
 }
+
 .payout-btn:hover {
     color: #ffffffe0;
 }
 
-/* ==========================================================================
-   SHARED BUTTON STYLES
-   ========================================================================== */
-
-/* Time Filter Toggle Buttons */
+/* Time Filter Buttons */
 .time-btn {
     background-color: transparent;
     color: var(--text-secondary, #ffffffa0);
@@ -479,4 +550,98 @@
     background: rgba(221, 122, 122, 0.15);
     color: var(--text-primary, #ffffff);
     border-color: var(--accent-coral, #dd7a7a);
+}
+
+/* ==========================================================================
+    RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+/* Tablet Breakpoint (<= 992px) */
+@media screen and (max-width: 992px) {
+    .analytics-bottom,
+    .settings-grid {
+        flex-direction: column;
+    }
+}
+
+/* Mobile Breakpoint (<= 768px) */
+@media screen and (max-width: 768px) {
+    .author-dashboard-container {
+        width: 100%;
+        padding: 0 1rem 3rem 1rem;
+        gap: 2rem;
+    }
+
+    .section-heading-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+
+    .section-heading-row div {
+        text-align: center;
+    }
+
+    .section-subheading {
+        text-align: center;
+    }
+
+    .analytics-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .time-toggle {
+        justify-content: center;
+    }
+
+    .analytics-small-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small Mobile Breakpoint (<= 600px) */
+@media screen and (max-width: 600px) {
+    .project-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .project-info {
+        align-items: center;
+    }
+
+    .project-card button,
+    .project-card a {
+        width: 100%;
+    }
+
+    .review-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .review-footer {
+        justify-content: space-around;
+        margin-top: 0.5rem;
+    }
+
+    .insight-item,
+    .payout-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+
+    .insight-value,
+    .payout-value {
+        text-align: left;
+    }
+
+    .analytics-small-stats {
+        grid-template-columns: 1fr;
+    }
 }

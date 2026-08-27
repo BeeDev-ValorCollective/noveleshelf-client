@@ -11,9 +11,12 @@ import StatsBar from '../../components/DashboardComponents/AuthorDashboardCompon
 import CurrentProjects from '../../components/DashboardComponents/AuthorDashboardComponents/CurrentProjects'
 import PublishedWorks from '../../components/DashboardComponents/AuthorDashboardComponents/PublishedWorks'
 import FinishedBooks from '../../components/DashboardComponents/AuthorDashboardComponents/FinishedBooks'
+import ReaderFeedback from '../../components/DashboardComponents/AuthorDashboardComponents/ReaderFeedback'
+import AnalyticsOverview from '../../components/DashboardComponents/AuthorDashboardComponents/AnalyticsOverview'
+import AuthorSettings from '../../components/DashboardComponents/AuthorDashboardComponents/AuthorSettings'
 import ComingSoon from '../../components/BaseComponents/ComingSoon'
-import '../../components/DashboardComponents/AuthorDashboardComponents/authorDashboard.css'
 
+import '../../components/DashboardComponents/AuthorDashboardComponents/authorDashboard.css'
 
 export default function AuthorDashboard() {
     const { user } = useUser()
@@ -43,9 +46,14 @@ export default function AuthorDashboard() {
             <CurrentProjects books={currentProjects.slice(0, 5)} />
             <PublishedWorks books={publishedBooks.slice(0, 5)} />
             <FinishedBooks books={finishedBooks.slice(0, 5)} />
+
+            {/* **** */}
+            {/* The following components are commented out as they are hard-coded - NEED TO BE UPDATED TO PULL DATA FROM SERVER */}
             {/* <ReaderFeedback /> */}
             {/* <AnalyticsOverview /> */}
             {/* <AuthorSettings /> */}
+            {/* **** */}
+
             <ComingSoon title="More tools are on the way." description="We're building out your author toolkit — check back soon." />
         </div>
     )
