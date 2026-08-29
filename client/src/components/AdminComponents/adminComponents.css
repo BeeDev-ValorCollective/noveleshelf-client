@@ -1,141 +1,361 @@
+/* ==========================================================================
+    ADMIN CONTAINER & ROOT SAFETY
+   ========================================================================== */
+
 .admin-page {
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: clamp(1rem, 3vw, 2rem);
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevents child elements from spilling past root */
 }
 
 .admin-page-header {
     display: flex;
     align-items: center;
-    gap: 16px;
+    justify-content: space-between;
+    gap: 1rem;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .admin-page-header h1 {
     margin: 0;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    color: var(--text-primary, #ffffff);
 }
 
 .admin-filters {
     display: flex;
     gap: 12px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
+
+.admin-filters .bff-input,
+.admin-filters .bff-select {
+    flex: 1;
+    min-width: 160px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+    MAIN TWO-COLUMN GRID LAYOUT
+   ========================================================================== */
 
 .admin-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 1.5rem;
     align-items: start;
-}
-
-.pending-reviews-panel {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff10;
-    border-radius: 8px;
-    padding: 2em;
-}
-.pending-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 50%;
-}
-.pending-table {
-    width: 85%;
-}
-th, td {
-    border-bottom: 1px solid var(--accent-coral);
-    border-right: 1px solid var(--accent-coral);
-}
-th:last-child, td:last-child {
-    border-right: none;
-}
-tr:last-child td {
-    border-bottom: none;
-}
-
-@media (max-width: 900px) {
-    .admin-layout {
-        grid-template-columns: 1fr;
-    }
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .admin-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0; /* Critical CSS fix to allow grid child to shrink */
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+    RESPONSIVE TABLE CONTAINERS & STYLING
+   ========================================================================== */
+
+.pending-reviews-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--card-bg, rgba(255, 255, 255, 0.06));
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    border-radius: 8px;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    box-sizing: border-box;
+}
+
+.pending-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Table scroll wrapper to stop layout breaking */
+.table-responsive {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Scrollbar styling for desktop/tablet inspection */
+.table-responsive::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.pending-table {
+    width: 100%;
+    min-width: 550px; /* Ensures table stays readable on mobile while outer container scrolls */
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+}
+
+.pending-table th, 
+.pending-table td {
+    padding: 0.75rem 0.85rem;
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    color: var(--text-primary, rgba(255, 255, 255, 0.9));
+    white-space: nowrap;
+}
+
+.pending-table th {
+    font-weight: 600;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .admin-list-row {
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-/* .admin-list-row.active td {
-    background: #f0f4ff;
-} */
+.admin-list-row:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.admin-list-row.active {
+    background-color: rgba(224, 85, 85, 0.18);
+}
+
+.pending-item-badge {
+    display: inline-block;
+    font-size: 0.725rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 12px;
+    background-color: var(--accent-coral, #e05555);
+    color: #ffffff;
+    font-weight: 500;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+}
+
+.admin-subtext {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+}
 
 .admin-pagination {
     display: flex;
     align-items: center;
     gap: 12px;
     justify-content: center;
-    margin-top: 12px;
+    margin-top: 1rem;
     font-size: 0.875rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    flex-wrap: wrap;
 }
 
-.admin-detail {
-    border: 1px solid #e0e0e0;
+/* ==========================================================================
+    DETAIL PANEL & INSPECTOR FIXES
+   ========================================================================== */
+
+.admin-detail,
+.request-detail {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0; /* Prevents panel overflow in flex/grid contexts */
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
     border-radius: 8px;
-    padding: 20px;
-    /* background: #fafafa; */
-    background-color: #ffffff10;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    background-color: var(--card-bg, rgba(255, 255, 255, 0.05));
     position: sticky;
     top: 20px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .request-detail-title {
-    font-size: 1.1rem;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
     font-weight: 600;
-    margin: 0 0 4px;
-    text-transform: capitalize;
-    color: #444;
+    margin: 0.75rem 0 0.25rem;
+    color: var(--text-primary, rgba(255, 255, 255, 0.95));
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .request-detail-date {
     font-size: 0.82rem;
-    color: #888;
-    margin: 0 0 1rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+    margin: 0 0 1.25rem;
+    word-break: break-word;
 }
 
 .request-detail-section {
-    margin-bottom: 1rem;
-    color: #444;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .request-detail-text {
-    margin: 4px 0 0;
+    margin: 0;
     font-size: 0.9rem;
-    color: #444;
+    color: var(--text-primary, rgba(255, 255, 255, 0.85));
     line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .request-detail-link {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--accent-coral, #e05555);
+    text-decoration: underline;
+    word-break: break-all;
 }
 
 .request-approve-section {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #e0e0e0;
-    color: #444;
+    border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .request-approve-section h3 {
-    margin: 0 0 1rem;
+    margin: 0;
     font-size: 1rem;
+    color: var(--text-primary, rgba(255, 255, 255, 0.9));
+}
+
+.book-approval-cover {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
+.book-approval-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.book-approval-actions button,
+.admin-detail-actions button {
+    flex: 1 1 0;
+    min-width: 0;
+    white-space: normal;
+    line-height: 1.2;
+    padding: 0.6rem 0.75rem;
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+    BREAKPOINTS & MEDIA QUERIES
+   ========================================================================== */
+
+/* Large Desktop Adjustments (<= 1200px) */
+@media screen and (max-width: 1200px) {
+    .admin-layout {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Tablet Layout (<= 992px) - Switch to vertical stack */
+@media screen and (max-width: 992px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-detail,
+    .request-detail {
+        position: static;
+        max-height: none;
+        margin-top: 1rem;
+    }
+}
+
+/* Standard Mobile Layout (<= 768px) */
+@media screen and (max-width: 768px) {
+    .admin-page {
+        padding: 1rem 0.75rem;
+    }
+
+    .admin-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-filters .bff-input,
+    .admin-filters .bff-select {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .book-approval-actions {
+        flex-direction: column;
+    }
+
+    .book-approval-actions button {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+}
+
+/* Small Mobile Breakpoint (<= 480px) */
+@media screen and (max-width: 480px) {
+    .admin-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-detail,
+    .request-detail {
+        padding: 0.85rem;
+    }
+
+    .pending-table {
+        font-size: 0.8rem;
+    }
 }

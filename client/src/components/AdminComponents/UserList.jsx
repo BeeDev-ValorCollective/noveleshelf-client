@@ -40,38 +40,40 @@ export default function UserList({ users, selectedUser, onSelect, search, onSear
             )}
 
             {users.length > 0 && (
-                <table className='pending-table'>
-                    <thead>
-                        <tr>
-                            <th>Email</th>
-                            <th>Roles</th>
-                            <th>Verified</th>
-                            <th>Joined</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user) => (
-                            <tr
-                                key={user.id}
-                                onClick={() => onSelect(user)}
-                                className={`admin-list-row ${selectedUser?.id === user.id ? 'active' : ''}`}
-                            >
-                                <td>{user.email}</td>
-                                <td>
-                                    <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-                                        {user.profile && <span className='pending-item-badge'>Reader</span>}
-                                        {user.author_profile && <span className='pending-item-badge'>Author</span>}
-                                        {user.free_author_profile && <span className='pending-item-badge'>Free Author</span>}
-                                        {user.moderator_profile && <span className='pending-item-badge'>Moderator</span>}
-                                        {user.admin_profile && <span className='pending-item-badge'>Admin</span>}
-                                    </div>
-                                </td>
-                                <td>{user.is_verified ? '✓' : '—'}</td>
-                                <td>{new Date(user.profile?.created_at || '').toLocaleDateString()}</td>
+                <div className='table-responsive'>
+                    <table className='pending-table'>
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Roles</th>
+                                <th>Verified</th>
+                                <th>Joined</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {users.map((user) => (
+                                <tr
+                                    key={user.id}
+                                    onClick={() => onSelect(user)}
+                                    className={`admin-list-row ${selectedUser?.id === user.id ? 'active' : ''}`}
+                                >
+                                    <td>{user.email}</td>
+                                    <td>
+                                        <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                                            {user.profile && <span className='pending-item-badge'>Reader</span>}
+                                            {user.author_profile && <span className='pending-item-badge'>Author</span>}
+                                            {user.free_author_profile && <span className='pending-item-badge'>Free Author</span>}
+                                            {user.moderator_profile && <span className='pending-item-badge'>Moderator</span>}
+                                            {user.admin_profile && <span className='pending-item-badge'>Admin</span>}
+                                        </div>
+                                    </td>
+                                    <td>{user.is_verified ? '✓' : '—'}</td>
+                                    <td>{new Date(user.profile?.created_at || '').toLocaleDateString()}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
 
             {totalPages > 1 && (

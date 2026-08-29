@@ -38,38 +38,40 @@ export default function AuthorRequestList({ requests, selectedRequest, onSelect,
             )}
 
             {requests.length > 0 && (
-                <table className='pending-table'>
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>User</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Contact</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {requests.map((req) => (
-                            <tr
-                                key={req.id}
-                                onClick={() => onSelect(req)}
-                                className={`admin-list-row ${selectedRequest?.id === req.id ? 'active' : ''}`}
-                            >
-                                <td>{REQUEST_TYPE_LABELS[req.request_type] || req.request_type}</td>
-                                <td>
-                                    <span>{req.user?.email || '—'}</span>
-                                </td>
-                                <td>{new Date(req.created_at).toLocaleDateString()}</td>
-                                <td>
-                                    <span className={`project-status ${req.status}`}>
-                                        {REQUEST_STATUS_LABELS[req.status] || req.status}
-                                    </span>
-                                </td>
-                                <td>{req.contact_attempted ? '✓' : '—'}</td>
+                <div className='table-responsive'>
+                    <table className='pending-table'>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>User</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Contact</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {requests.map((req) => (
+                                <tr
+                                    key={req.id}
+                                    onClick={() => onSelect(req)}
+                                    className={`admin-list-row ${selectedRequest?.id === req.id ? 'active' : ''}`}
+                                >
+                                    <td>{REQUEST_TYPE_LABELS[req.request_type] || req.request_type}</td>
+                                    <td>
+                                        <span>{req.user?.email || '—'}</span>
+                                    </td>
+                                    <td>{new Date(req.created_at).toLocaleDateString()}</td>
+                                    <td>
+                                        <span className={`project-status ${req.status}`}>
+                                            {REQUEST_STATUS_LABELS[req.status] || req.status}
+                                        </span>
+                                    </td>
+                                    <td>{req.contact_attempted ? '✓' : '—'}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
 
             {totalPages > 1 && (
