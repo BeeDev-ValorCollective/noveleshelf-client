@@ -7,6 +7,10 @@ export default function Footer() {
 
     return(
         <footer>
+          <nav>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms and Conditions</a>
+          </nav>
           <img
             src={BeeDevLogo}
             alt="BeeDev Services Logo"
