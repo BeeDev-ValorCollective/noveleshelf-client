@@ -42,6 +42,7 @@
     color: var(--accent-coral);
     width: 28px;
     height: 28px;
+    flex-shrink: 0;
 }
 
 .contact_card h4 {
@@ -51,12 +52,18 @@
     color: var(--text-secondary);
 }
 
+.contact {
+    min-width: 0; /* Prevents flex items from overflowing container */
+}
+
 .contact a {
     font-size: 1.1rem;
     font-weight: 500;
     color: var(--text-secondary);
     font-family: Merienda, cursive;
     text-decoration: none;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Contact Form Component */
@@ -300,7 +307,7 @@
 /* Mobile phones and below */
 @media (max-width: 600px) {
     .contact_header {
-        padding: 4rem 2rem 0;
+        padding: 4rem 1rem 0;
     }
 
     .contact_container {
@@ -308,7 +315,7 @@
     }
 
     .contact_card {
-        padding: 1.25rem 1.5rem;
+        padding: 1rem 1.25rem;
     }
 
     .contact_form {

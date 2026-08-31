@@ -1,5 +1,4 @@
 
-
 const Owner = import.meta.env.VITE_OWNER_NAME;
 const OwnerEmail = import.meta.env.VITE_OWNEREMAIL;
 const AddressLine1 = import.meta.env.VITE_ADDRESS_LINE1;
@@ -11,9 +10,10 @@ const RefundDays = import.meta.env.VITE_REFUND_DAYS
 const ContactEmail = import.meta.env.VITE_CONTACT_EMAIL
 const State = import.meta.env.VITE_STATE
 
+import './privacyTermsCookies.css'
+
+
 export default function TermsConditions() {
-
-
 
     return(
         <>

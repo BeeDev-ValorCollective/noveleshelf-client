@@ -15,9 +15,9 @@ const PCO_AddressLine3 = import.meta.env.VITE_ADDRESS_PCO_LINE3;
 const PCO_PhoneLink = import.meta.env.VITE_LINK_PCO_PHONE;
 const PCO_PhoneDisplay = import.meta.env.VITE_DISPLAY_PCO_PHONE;
 
+import './privacyTermsCookies.css'
 
 export default function PrivacyPolicy() {
-
 
     return(
         <>

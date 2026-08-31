@@ -312,6 +312,27 @@ header {
 }
 
 /*  Footer  */
+footer nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+footer nav button,
+footer nav a {
+    color: var(--text-secondary);
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
+}
+
+footer nav button:hover,
+footer nav a:hover {
+    color: var(--accent-coral);
+}
 footer {
     margin-top: 2em;
     display: flex;
@@ -486,6 +507,11 @@ footer {
     }
     footer {
         padding: 1.5rem 1rem;
+    }
+    footer nav {
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-bottom: 1rem;
     }
     .verification-banner p {
         font-size: 0.8rem;

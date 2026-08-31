@@ -1,0 +1,222 @@
+/* Privacy Policy and Terms & Conditions Pages Stylesheet */
+
+.title {
+    padding: 2rem;
+}
+
+.privacy_header,
+.terms_header {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto 1.5rem;
+    padding: 2.5rem 3rem;
+    background: #1a1a2e;
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    box-shadow: 0 0 30px rgba(125, 85, 255, 0.1);
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.privacy_header p,
+.terms_header p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+    font-family: "Merienda", cursive;
+}
+
+.privacy_header p:first-child,
+.terms_header p:first-child {
+    font-family: "Fredericka the Great", serif;
+    color: var(--accent-coral);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.privacy_header p:last-child,
+.terms_header p:last-child {
+    margin-bottom: 0;
+}
+
+.general {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    padding: 2rem 3rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    box-sizing: border-box;
+}
+
+.general p {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.privacy_content,
+.terms_content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    box-sizing: border-box;
+    padding: 0 1rem;
+}
+
+.privacy_content .section,
+.terms_content .section {
+    background: #1a1a2e;
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 2.5rem 3rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    transition: var(--transition);
+}
+
+.privacy_content .section:hover,
+.terms_content .section:hover {
+    border-color: rgba(221, 122, 122, 0.3);
+    box-shadow: 0 0 25px rgba(221, 122, 122, 0.1);
+}
+
+.privacy_content h3,
+.terms_content h3 {
+    font-family: "Fredericka the Great", serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    color: var(--accent-coral);
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.6rem;
+}
+
+.privacy_content p,
+.terms_content p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.privacy_content ol,
+.terms_content ol,
+.privacy_content ul,
+.terms_content ul {
+    margin: 1rem 0 1.2rem 1.5rem;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.privacy_content li,
+.terms_content li {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.privacy_content span,
+.terms_content span {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.privacy_content span.italic,
+.terms_content span.italic {
+    font-style: italic;
+    font-family: "Merienda", cursive;
+    color: var(--accent-teal);
+}
+
+address {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(9, 4, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+address a {
+    color: var(--accent-teal);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    word-break: break-word;
+}
+
+address a:hover {
+    color: var(--accent-coral);
+    text-decoration: underline;
+}
+
+address p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+
+@media (max-width: 900px) {
+    .privacy_header,
+    .terms_header,
+    .general,
+    .privacy_content,
+    .terms_content {
+        max-width: 100%;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .privacy_header,
+    .terms_header,
+    .general {
+        padding: 1.8rem 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .privacy_content .section,
+    .terms_content .section {
+        padding: 1.8rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .privacy_header,
+    .terms_header,
+    .general {
+        padding: 1.2rem 1rem;
+        border-radius: 12px;
+    }
+
+    .privacy_content .section,
+    .terms_content .section {
+        padding: 1.2rem 1rem;
+        border-radius: 12px;
+    }
+
+    .privacy_content ol,
+    .terms_content ol,
+    .privacy_content ul,
+    .terms_content ul {
+        margin-left: 1.1rem;
+    }
+
+    address {
+        padding: 1rem;
+    }
+}
