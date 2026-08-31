@@ -33,6 +33,8 @@ const FAQ = React.lazy(() => import('./views/FAQ'))
 const FreeAuthorAgreement = React.lazy(() => import('./views/iFrameViews/FreeAuthorAgreement'))
 const Unsubscribe = React.lazy(() => import('./views/Unsubscribe'))
 const ErrorPage = React.lazy(() => import('./views/ErrorPage'))
+const Privacy = React.lazy(() => import('./views/Privacy'))
+const Terms = React.lazy(() => import('./views/Terms'))
 
 // Auth Pages
 const Login = React.lazy(() => import('./views/AuthViews/Login'))
@@ -120,6 +122,8 @@ function AppContent() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/agreement/free-author" element={<FreeAuthorAgreement />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path='/unsubscribe' element={<Unsubscribe />} />
           <Route path="/unauthorized" element={<ErrorPage type="unauthorized" />} />
           <Route path="*" element={<ErrorPage type="notFound" />} />
