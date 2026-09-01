@@ -101,8 +101,6 @@ export default function LibraryFilterPanel({
                     >
                         Apply Filters
                     </Button>
-                    {/* <button className='library-filter-clear' onClick={onClear}>Clear all</button>
-                    <button className='library-filter-apply' onClick={onApply}>Apply filters</button> */}
                 </div>
             </div>
         </div>
