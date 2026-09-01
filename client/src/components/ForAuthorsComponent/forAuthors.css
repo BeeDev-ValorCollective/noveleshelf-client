@@ -436,6 +436,10 @@
     .upgrade-card-header {
         align-items: center;
     }
+    .upgrade-card-header a,
+    .upgrade-card-learn-more {
+        align-self: center;
+    }
 }
 
 /* Mobile */
