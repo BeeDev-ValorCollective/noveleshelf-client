@@ -6,11 +6,12 @@
     align-items: center;
     width: 100%;
     max-width: var(--max-width);
-    padding: var(--section-padding) clamp(1.5rem, 5vw, 5rem);
+    padding: var(--section-padding) clamp(1rem, 4vw, 5rem);
     margin: 0 auto;
     gap: 2em;
     position: relative;
     z-index: 0;
+    box-sizing: border-box;
 }
 
 /*  Form Layout  */
@@ -23,10 +24,11 @@
     background-color: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: var(--card-radius);
-    padding: clamp(1.5rem, 3vw, 2.5rem);
+    padding: clamp(1.25rem, 3vw, 2.5rem);
     backdrop-filter: blur(14px);
     position: relative;
     z-index: 0;
+    box-sizing: border-box;
 }
 
 /*  Left Column — Avatar  */
@@ -97,6 +99,16 @@
     font-size: clamp(0.85rem, 1.2vw, 0.95em);
     font-family: "Fredericka the Great", serif;
 }
+
+/* Checkbox alignment */
+.form_right label:has(input[type="checkbox"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+    font-family: var(--font-body, inherit);
+}
+
 .form_right input[type="text"],
 .form_right input[type="email"],
 .form_right textarea {
@@ -107,6 +119,7 @@
     font-size: clamp(0.9rem, 1.5vw, 1em);
     padding: 0.75em 1em;
     width: 100%;
+    box-sizing: border-box;
     transition: var(--transition);
     font-family: "Merienda", cursive;
     outline: none;
@@ -152,6 +165,40 @@
     width: 100%;
 }
 
+/*  Default Role Section  */
+.default_role_card {
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 0 clamp(1rem, 4vw, 5rem) var(--section-padding);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.default_role_section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    backdrop-filter: blur(14px);
+    box-sizing: border-box;
+}
+
+.default_role_section h3 {
+    margin: 0;
+    font-family: "Fredericka the Great", serif;
+    color: var(--text-primary);
+}
+
+.default_role_section p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+}
+
 /*  Tablets  */
 @media (max-width: 992px) {
     .form {
@@ -179,16 +226,19 @@
         flex-direction: column-reverse;
         width: 100%;
     }
-    .update_form button[type="submit"],
-    .update_form button[type="button"] {
+    .form_buttons button {
+        width: 100%;
+    }
+    .default_role_section button {
         width: 100%;
     }
 }
 
 /*  Small Mobile  */
 @media (max-width: 480px) {
-    .form {
-        padding: 1.5rem;
+    .form,
+    .default_role_section {
+        padding: 1.25rem;
     }
     .form_right textarea {
         min-height: 100px;

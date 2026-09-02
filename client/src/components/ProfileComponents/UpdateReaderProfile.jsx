@@ -10,7 +10,6 @@ import Button from '../ui/Button'
 
 import './updateProfile.css'
 
-
 export default function UpdateReaderProfile() {
     const navigate = useNavigate()
     const { user, accessToken } = useUser();
