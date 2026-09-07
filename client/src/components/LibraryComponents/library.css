@@ -274,9 +274,13 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 11;
-    white-space: nowrap;
     max-width: 80%;
     overflow: hidden;
+}
+
+.book-complete-badge,
+.book-new-badge {
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 
@@ -288,6 +292,14 @@
     font-weight: 600;
     padding: 2px 8px;
     border-radius: 999px;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    text-align: center;
+    line-height: 1.3;
+    word-break: break-word;
 }
 
 .book-complete-badge {

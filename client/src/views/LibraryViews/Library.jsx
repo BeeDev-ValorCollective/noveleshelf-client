@@ -194,7 +194,7 @@ export default function Library() {
                             {results.map((book) => (
                                 <li key={book.id} onClick={() => setSelectedBook(book)}>
                                     <img src={getMediaUrl(book.cover_image)} alt={book.title} />
-                                    <span className='bookTitle'>{book.title}</span>
+                                    <span className='bookTitle' title={book.title}>{book.title}</span>
                                     {book.is_complete && (
                                         <span className='book-complete-badge'>✓ Complete</span>
                                     )}
