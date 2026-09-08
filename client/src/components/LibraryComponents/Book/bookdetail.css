@@ -486,3 +486,51 @@
 .bd-shelf-btn:active {
     transform: scale(0.97);
 }
+
+
+
+.bd-author-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.bd-author-row .bd-author {
+    margin: 0;
+}
+
+.bd-follow-btn {
+    padding: 0.3rem 0.75rem;
+
+    border: 1px solid var(--accent-teal);
+    border-radius: 999px;
+
+    background: transparent;
+    color: var(--accent-teal);
+
+    font: inherit;
+    font-size: 0.8rem;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.bd-follow-btn:hover:not(:disabled) {
+    background: var(--accent-teal);
+    color: var(--text-primary);
+}
+
+.bd-follow-btn--following {
+    background: var(--accent-teal);
+    color: var(--text-primary);
+}
+
+.bd-follow-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+}

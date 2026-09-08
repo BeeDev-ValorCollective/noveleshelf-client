@@ -36,6 +36,10 @@ export default function BookDetail() {
         (state) => state.accessToken
     )
 
+    const user = useAuthStore(
+        (state) => state.user
+    )
+    
     const currentRole = useAuthStore(
         (state) => state.currentRole
     )
@@ -52,6 +56,10 @@ export default function BookDetail() {
      * null means the shelf status has not been checked yet.
      */
     const [isInShelf, setIsInShelf] = useState(null)
+
+    const [isFollowingAuthor, setIsFollowingAuthor] = useState(false)
+    const [authorFollowId, setAuthorFollowId] = useState(null)
+    const [isFollowLoading, setIsFollowLoading] = useState(false)
 
     const backTo =
         location.state?.backTo || '/library'
@@ -151,6 +159,71 @@ export default function BookDetail() {
         accessToken,
     ])
 
+    useEffect(() => {
+        const checkFollowStatus = async () => {
+            if (
+                !isAuthenticated ||
+                !accessToken ||
+                !book?.author?.profile_type ||
+                !book?.author?.profile_id
+            ) {
+                setIsFollowingAuthor(false)
+                setAuthorFollowId(null)
+                return
+            }
+
+            try {
+                const response = await fetch(
+                    `${DB_API}${ENDPOINTS.follow.status(
+                        book.author.profile_type,
+                        book.author.profile_id
+                    )}`,
+                    {
+                        headers: {
+                            Authorization:
+                                `Bearer ${accessToken}`,
+                        },
+                    }
+                )
+
+                if (!response.ok) {
+                    console.error(
+                        'Unable to check author follow status:',
+                        response.status
+                    )
+
+                    setIsFollowingAuthor(false)
+                    setAuthorFollowId(null)
+                    return
+                }
+
+                const data = await response.json()
+
+                setIsFollowingAuthor(
+                    Boolean(data.following)
+                )
+
+                setAuthorFollowId(
+                    data.follow_id ?? null
+                )
+            } catch (error) {
+                console.error(
+                    'Author follow status request failed:',
+                    error
+                )
+
+                setIsFollowingAuthor(false)
+                setAuthorFollowId(null)
+            }
+        }
+
+        checkFollowStatus()
+    }, [
+        book,
+        isAuthenticated,
+        accessToken,
+    ])
+
     const switchToReaderRole = () => {
         if (currentRole !== 'reader') {
             setCurrentRole('reader')
@@ -182,8 +255,8 @@ export default function BookDetail() {
              */
             await sendToExpo(
                 `(protected)/(reader-tabs)/reading` +
-                    `?bookId=${book.id}` +
-                    `&chapterId=${chapter.id}`
+                `?bookId=${book.id}` +
+                `&chapterId=${chapter.id}`
             )
 
             return
@@ -231,6 +304,113 @@ export default function BookDetail() {
         )
     }
 
+    const handleAuthorFollow = async () => {
+        if (
+            !isAuthenticated ||
+            !accessToken ||
+            !book?.author?.profile_type ||
+            !book?.author?.profile_id ||
+            isFollowLoading
+        ) {
+            return
+        }
+
+        setIsFollowLoading(true)
+
+        try {
+            if (isFollowingAuthor) {
+                if (!authorFollowId) {
+                    console.error(
+                        'Cannot unfollow author: missing follow ID.'
+                    )
+                    return
+                }
+
+                const response = await fetch(
+                    `${DB_API}${ENDPOINTS.follow.unfollow(
+                        authorFollowId
+                    )}`,
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                    }
+                )
+
+                if (!response.ok) {
+                    const data = await response
+                        .json()
+                        .catch(() => ({}))
+
+                    console.error(
+                        'Unable to unfollow author:',
+                        data
+                    )
+
+                    return
+                }
+
+                setIsFollowingAuthor(false)
+                setAuthorFollowId(null)
+
+                return
+            }
+
+            const payload =
+                book.author.profile_type === 'author'
+                    ? {
+                        author_profile_id:
+                            book.author.profile_id,
+                    }
+                    : {
+                        free_author_profile_id:
+                            book.author.profile_id,
+                    }
+
+            const response = await fetch(
+                `${DB_API}${ENDPOINTS.follow.list}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                }
+            )
+
+            const data = await response
+                .json()
+                .catch(() => ({}))
+
+            if (!response.ok) {
+                console.error(
+                    'Unable to follow author:',
+                    data
+                )
+
+                return
+            }
+
+            setIsFollowingAuthor(true)
+            setAuthorFollowId(data.follow_id ?? null)
+        } catch (error) {
+            console.error(
+                'Author follow request failed:',
+                error
+            )
+        } finally {
+            setIsFollowLoading(false)
+        }
+    }
+
+    const isOwnBook =
+        isAuthenticated &&
+        user?.id &&
+        book?.author?.user_id &&
+        Number(user.id) === Number(book.author.user_id)
+
     return (
         <div className='bd-page'>
             <div className='bd-inner'>
@@ -243,7 +423,7 @@ export default function BookDetail() {
                     {backLabel}
                 </Button>
 
-                <BookDetailHero book={book} />
+                <BookDetailHero book={book} isFollowingAuthor={isFollowingAuthor} isFollowLoading={isFollowLoading} onAuthorFollow={handleAuthorFollow} isOwnBook={isOwnBook} />
 
                 <BookDetailDescription
                     description={book.description}

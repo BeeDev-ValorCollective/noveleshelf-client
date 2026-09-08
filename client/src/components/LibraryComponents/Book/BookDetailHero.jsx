@@ -5,7 +5,7 @@ import useAuthStore from '../../../store/authStore'
 import { sendToExpo } from '../../../utils/authHandoff'
 import Button from '../../ui/Button'
 
-export default function BookDetailHero({ book }) {
+export default function BookDetailHero({ book, isFollowingAuthor, isFollowLoading, onAuthorFollow, isOwnBook }) {
     const { author } = book
     const navigate = useNavigate()
     const location = useLocation()
@@ -39,9 +39,32 @@ export default function BookDetailHero({ book }) {
                 <h1 className='bd-title'>{book.title}</h1>
 
                 {author && (
-                    <p className='bd-author'>by {author.display_name}</p>
+                    <div className='bd-author-row'>
+                        <p className='bd-author'>
+                            by {author.display_name}
+                        </p>
 
-                )}{book.is_founding_eligible && (
+                        {isAuthenticated && !isOwnBook && (
+                            <button
+                                type='button'
+                                className={
+                                    isFollowingAuthor
+                                        ? 'bd-follow-btn bd-follow-btn--following'
+                                        : 'bd-follow-btn'
+                                }
+                                onClick={onAuthorFollow}
+                                disabled={isFollowLoading}
+                            >
+                                {isFollowLoading
+                                    ? '...'
+                                    : isFollowingAuthor
+                                        ? 'Following'
+                                        : 'Follow'}
+                            </button>
+                        )}
+                    </div>
+                )}
+                {book.is_founding_eligible && (
                     <span className='bd-founding-badge'><UserStar color="#ffd900" /> Founding Author Book</span>
                 )}
 
