@@ -7,11 +7,12 @@
 .privacy_header,
 .terms_header {
     width: 100%;
-    max-width: 900px;
+    max-width: var(--max-width);
     margin: 2rem auto 1.5rem;
     padding: 2.5rem 3rem;
     background: #1a1a2e;
     border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-coral);
     border-radius: var(--card-radius);
     box-shadow: 0 0 30px rgba(125, 85, 255, 0.1);
     box-sizing: border-box;
@@ -42,11 +43,12 @@
 
 .general {
     width: 100%;
-    max-width: 900px;
+    max-width: var(--max-width);
     margin: 0 auto 2rem;
     padding: 2rem 3rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-teal);
     border-radius: var(--card-radius);
     box-sizing: border-box;
 }
@@ -170,11 +172,16 @@ address p {
 /* RESPONSIVE MEDIA QUERIES */
 
 @media (max-width: 900px) {
-    .privacy_header,
-    .terms_header,
-    .general,
     .privacy_content,
     .terms_content {
+        max-width: 100%;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .privacy_header,
+    .terms_header,
+    .general {
         max-width: 100%;
         padding-left: 1.5rem;
         padding-right: 1.5rem;
