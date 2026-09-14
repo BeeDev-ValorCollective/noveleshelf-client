@@ -50,6 +50,7 @@ const UpdateProfile = React.lazy(() => import('./views/UserViews/UpdateProfile')
 const PurchaseQuills = React.lazy(() => import('./views/UserViews/PurchaseQuills'))
 const PurchaseComplete = React.lazy(() => import('./views/UserViews/PurchaseComplete'))
 const RedeemPromo = React.lazy(() => import('./views/UserViews/RedeemPromo'))
+const Following = React.lazy(() => import('./views/UserViews/Following'))
 
 // Library Pages
 const Library = React.lazy(() => import('./views/LibraryViews/Library'))
@@ -163,6 +164,11 @@ function AppContent() {
               <RedeemPromo />
             </ProtectedRoute>}
           />
+          <Route path="/following" element={
+            <ProtectedRoute>
+              <Following />
+            </ProtectedRoute>
+          } />
 
           {/* Author */}
           <Route path='/set-author-username' element={
