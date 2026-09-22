@@ -11,6 +11,7 @@ import FinishedBooks from '../../components/DashboardComponents/ReaderDashboardC
 import ReadingActivity from '../../components/DashboardComponents/ReaderDashboardComponents/ReadingActivity';
 import ReadingPreferences from '../../components/DashboardComponents/ReaderDashboardComponents/ReadingPreferences';
 import RenderWalletBar from '../../components/DashboardComponents/ReaderDashboardComponents/Wallet'
+import FollowingSection from '../../components/DashboardComponents/ReaderDashboardComponents/FollowingSection'
 
 import ComingSoon from '../../components/BaseComponents/ComingSoon'
 
@@ -33,6 +34,7 @@ export default function ReaderDashboard() {
             <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} loginBonusBadge={loginBonusBadge}/>
             <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} />
             <RenderStatsBar onBonusBadgeChange={setLoginBonusBadge}/>
+            <FollowingSection />
             <RenderWalletBar />
 
             {/* **** */}

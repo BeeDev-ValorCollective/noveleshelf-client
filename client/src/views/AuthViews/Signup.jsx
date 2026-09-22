@@ -116,6 +116,7 @@ export default function Signup({ onClose, isModal, onSwitchToLogin }) {
           placeholder="••••••••"
           value={form.password}
           onChange={handleChange}
+          autoComplete="new-password"
         />
         <InputField
           label="Confirm Password"
@@ -124,6 +125,7 @@ export default function Signup({ onClose, isModal, onSwitchToLogin }) {
           placeholder="••••••••"
           value={form.confirm_password}
           onChange={handleChange}
+          autoComplete="new-password"
         />
         <InputField
           label="Birthdate"

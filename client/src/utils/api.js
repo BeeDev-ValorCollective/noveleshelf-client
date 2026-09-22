@@ -83,6 +83,13 @@ export const ENDPOINTS = {
     pageUnpublish: 'books/author/pages/unpublish/',
     pageDelete: 'books/author/pages/delete/',
 
+        // ─── Author ───────────────────────────────────────────
+
+    author: {
+        stats: (profileType) =>
+            `follow/author/stats/?profile_type=${profileType}`,
+    },
+
     // ─── Currency ──────────────────────────────────────────────
     listQuillBundles: 'currency/quills/bundles/',
     createQuillCheckout: 'currency/quills/checkout/create/',

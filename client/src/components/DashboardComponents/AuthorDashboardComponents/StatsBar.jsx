@@ -1,6 +1,7 @@
 import './authorDashboard.css'
+import FollowerCount from './FollowerCount';
 
-export default function StatsBar({ booksPublished, booksInProgress }) {
+export default function StatsBar({ booksPublished, booksInProgress, profileType }) {
 
 
     return (
@@ -10,6 +11,7 @@ export default function StatsBar({ booksPublished, booksInProgress }) {
                     <p className='stat-label'>Total Readers</p>
                     <h2 className='stat-value'>-</h2>
                 </div> */}
+                <FollowerCount profileType={profileType} />
                 <div className='stat-item dashboard-card'>
                     <p className='stat-label'>Books Published</p>
                     <h2 className='stat-value'>{booksPublished}</h2>
