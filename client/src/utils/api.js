@@ -95,6 +95,7 @@ export const ENDPOINTS = {
     createQuillCheckout: 'currency/quills/checkout/create/',
     checkQuillPurchaseStatus: 'currency/quills/checkout/status/',
     redeemPromoCode: 'currency/promo/redeem/',
+    redeemReferralCode: 'currency/referral/redeem/',
     // ─── Admin ─────────────────────────────────────────────────
     adminGiftCurrency: 'currency/admin/gift/',
     adminAuthorRequests: 'admin/users/author-requests/',

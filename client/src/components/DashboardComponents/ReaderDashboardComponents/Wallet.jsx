@@ -4,6 +4,7 @@ import goldInkImg from '../../../assets/images/goldink.png'
 import quillImg from '../../../assets/images/quill.png'
 import '../ReaderDashboardComponents/readerDashboard.css';
 import WalletPurchase from './WalletPurchase';
+import ReferralCode from './ReferralCode';
 
 export default function RenderWalletBar() {
     const wallet = useAuthStore((state) => state.user?.wallet)
@@ -15,6 +16,7 @@ export default function RenderWalletBar() {
                 All three currencies unlock chapters — used in the following order: Black Ink Drops first, then Gold Ink Drops, then Quills.
             </p>
             <WalletPurchase />
+            <ReferralCode />
             <div className='reader-stats-grid'>
                 <div className='reader-stat-item'>
                     <img src={blackInkImg} alt='' className='reader-stat-icon reader-stat-icon--ink' />
