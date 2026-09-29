@@ -34,6 +34,8 @@ export default function AuthorDashboard() {
 
     const fullName = useFullName()
 
+    console.log('books', finishedBooks, publishedBooks)
+
     if (!user) return <p>Loading...</p>
     if (!currentProfile?.author_username) return <Navigate to='/set-author-username' replace />
 
@@ -42,7 +44,7 @@ export default function AuthorDashboard() {
         <div className='author-dashboard-container'>
             <ProfileHeader user={user} currentProfile={currentProfile} fullName={fullName} currentRole={currentRole} />
             <AuthorUpgradeSection user={user} currentRole={currentRole} onUpgradeSuccess={() => window.location.reload()} />
-            <StatsBar booksPublished={publishedBooks.length} booksInProgress={draftBooks.length + pendingBooks.length + changesRequestedBooks.length} profileType="author" />
+            <StatsBar booksPublished={publishedBooks.length + finishedBooks.length} booksInProgress={draftBooks.length + pendingBooks.length + changesRequestedBooks.length} profileType="author" />
             <CurrentProjects books={currentProjects.slice(0, 5)} />
             <PublishedWorks books={publishedBooks.slice(0, 5)} />
             <FinishedBooks books={finishedBooks.slice(0, 5)} />
