@@ -79,7 +79,7 @@ export default function ReferralCode() {
     return (
         <div className="wallet-referral">
             <div className="referral-code-card">
-                <div className="form-components">
+                <div className="referral-form-components">
                     <label htmlFor="own-referral-code" className="redeem-promo-label">
                         Your Referral Code
                     </label>
@@ -99,7 +99,7 @@ export default function ReferralCode() {
 
             {!hasRedeemed && status !== 'success' ? (
                 <form onSubmit={handleRedeem} className="redeem-promo-form">
-                    <div className="form-components">
+                    <div className="referral-form-components">
                         <label htmlFor="referral-code" className="redeem-promo-label">
                             Have a Friend's Code?
                         </label>
@@ -108,7 +108,7 @@ export default function ReferralCode() {
                             type="text"
                             value={enteredCode}
                             onChange={(e) => setEnteredCode(e.target.value.toUpperCase())}
-                            placeholder="Enter code"
+                            placeholder="Enter referral code"
                             disabled={status === 'loading'}
                             className="redeem-promo-input"
                         />

@@ -64,7 +64,11 @@ export default function WalletPurchase() {
     return (
         <div className="wallet-purchase">
             <div className="wallet-purchase-quills">
-                <Button variant='ghost' size='lg' to='/purchase-quills'>Purchase Quills</Button>
+                <h3>Refill your wallet</h3>
+                <p>Need more Quills to unlock upcoming chapters? Increase your balance anytime, purchased Quills never expire.</p>
+            </div>
+            <div className='wallet-purchase-quills'>
+                <Button variant='primary' size='lg' to='/purchase-quills'>Purchase Quills</Button>
             </div>
             <div className="wallet-purchase-promo">
                 <form onSubmit={handleRedeem} className="redeem-promo-form">

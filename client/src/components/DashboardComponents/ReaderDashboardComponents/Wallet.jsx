@@ -15,8 +15,6 @@ export default function RenderWalletBar() {
             <p className='reader-wallet-subnote'>
                 All three currencies unlock chapters — used in the following order: Black Ink Drops first, then Gold Ink Drops, then Quills.
             </p>
-            <WalletPurchase />
-            <ReferralCode />
             <div className='reader-stats-grid'>
                 <div className='reader-stat-item'>
                     <img src={blackInkImg} alt='' className='reader-stat-icon reader-stat-icon--ink' />
@@ -36,7 +34,11 @@ export default function RenderWalletBar() {
                     <h2 className='reader-stat-value'>{wallet?.quill_balance ?? 0}</h2>
                     <p className='reader-stat-explainer'>Purchased — never expire, always available.</p>
                 </div>
+                
             </div>
+
+            <WalletPurchase />
+            <ReferralCode />
 
         </section>
     );
