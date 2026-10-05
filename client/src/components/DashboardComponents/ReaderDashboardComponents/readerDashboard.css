@@ -510,6 +510,10 @@
 }
 
 /* Wallet & Promo Section */
+.wallet {
+        width: 100%;
+}
+
 .wallet-purchase {
     display: flex;
     flex-direction: row;
@@ -521,12 +525,15 @@
     margin-bottom: 1.5rem;
 }
 
+.wallet-referral {
+    width: 100%;
+}
+
 .wallet-purchase-promo {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     flex: 1;
-    max-width: 500px;
 }
 
 .redeem-promo-form {
@@ -551,6 +558,7 @@
     align-items: center;
     justify-content: right;
     width: 100%;
+    padding: 1rem 0;
 }
 
 .redeem-promo-label {

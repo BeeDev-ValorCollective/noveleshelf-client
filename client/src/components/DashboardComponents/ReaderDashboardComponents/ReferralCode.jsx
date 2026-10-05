@@ -78,7 +78,11 @@ export default function ReferralCode() {
 
     return (
         <div className="wallet-referral">
+            <div className="wallet-purchase">
+                <h3>Redeem Rewards with Referral Codes</h3>
+            </div>
             <div className="referral-code-card">
+                <h5>Share your referral code with friends to receive bonus ink drops and rewards.</h5>
                 <div className="referral-form-components">
                     <label htmlFor="own-referral-code" className="redeem-promo-label">
                         Your Referral Code
@@ -99,6 +103,7 @@ export default function ReferralCode() {
 
             {!hasRedeemed && status !== 'success' ? (
                 <form onSubmit={handleRedeem} className="redeem-promo-form">
+                    <h5>Claim rewards by entering a referral code below.</h5>
                     <div className="referral-form-components">
                         <label htmlFor="referral-code" className="redeem-promo-label">
                             Have a Friend's Code?
