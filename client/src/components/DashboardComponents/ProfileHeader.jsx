@@ -1,4 +1,7 @@
 import { getMediaUrl } from '../../utils/api'
+import { useNavigate, useLocation } from 'react-router-dom'
+import useAuthStore from '../../store/authStore'
+import { sendToExpo } from '../../utils/authHandoff'
 import { toTitleCase } from '../../utils/upperCase'
 import Button from '../ui/Button'
 import { Flame } from 'lucide-react'
@@ -6,6 +9,17 @@ import { Flame } from 'lucide-react'
 import './dashboard.css'
 
 export default function ProfileHeader({ user, currentProfile, fullName, currentRole, loginBonusBadge }) {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+
+    const handleGoToApp = () => {
+        if (!isAuthenticated) {
+            navigate('/login', { state: { from: location.pathname } })
+            return
+        }
+        sendToExpo(`(protected)/(reader-tabs)/shelf`)
+    }
     const avatarUrl = getMediaUrl(currentProfile?.avatar_url)
     const displayRole = currentRole || localStorage.getItem('current_role')
 
@@ -82,6 +96,9 @@ export default function ProfileHeader({ user, currentProfile, fullName, currentR
                 <div className='profile-header-right'>
                     <Button size='md' variant='tertiary' to='/profile-update'>
                         Update Profile
+                    </Button>
+                    <Button variant='primary' size='lg' className='cta-button' onClick={handleGoToApp}>
+                        {isAuthenticated ? 'Go to the Web App' : 'Sign in'}
                     </Button>
                 </div>
             </div>
