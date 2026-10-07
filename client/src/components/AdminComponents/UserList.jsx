@@ -1,3 +1,6 @@
+import Button from "../ui/Button";
+import Select from "../ui/Select";
+
 const ROLE_OPTIONS = [
     { value: '', label: 'All users' },
     { value: 'reader', label: 'Readers' },
@@ -19,7 +22,8 @@ export default function UserList({ users, selectedUser, onSelect, search, onSear
                     value={search}
                     onChange={(e) => onSearch(e.target.value)}
                 />
-                <select
+                <Select
+                    variant="status"
                     className='bff-select'
                     value={roleFilter}
                     onChange={(e) => { onRoleFilter(e.target.value); onPageChange(1) }}
@@ -27,7 +31,8 @@ export default function UserList({ users, selectedUser, onSelect, search, onSear
                     {ROLE_OPTIONS.map(r => (
                         <option key={r.value} value={r.value}>{r.label}</option>
                     ))}
-                </select>
+                </Select>
+
             </div>
 
             {users.length === 0 && (
@@ -35,45 +40,61 @@ export default function UserList({ users, selectedUser, onSelect, search, onSear
             )}
 
             {users.length > 0 && (
-                <table className='pending-table'>
-                    <thead>
-                        <tr>
-                            <th>Email</th>
-                            <th>Roles</th>
-                            <th>Verified</th>
-                            <th>Joined</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user) => (
-                            <tr
-                                key={user.id}
-                                onClick={() => onSelect(user)}
-                                className={`admin-list-row ${selectedUser?.id === user.id ? 'active' : ''}`}
-                            >
-                                <td>{user.email}</td>
-                                <td>
-                                    <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-                                        {user.profile && <span className='pending-item-badge'>Reader</span>}
-                                        {user.author_profile && <span className='pending-item-badge'>Author</span>}
-                                        {user.free_author_profile && <span className='pending-item-badge'>Free Author</span>}
-                                        {user.moderator_profile && <span className='pending-item-badge'>Moderator</span>}
-                                        {user.admin_profile && <span className='pending-item-badge'>Admin</span>}
-                                    </div>
-                                </td>
-                                <td>{user.is_verified ? '✓' : '—'}</td>
-                                <td>{new Date(user.profile?.created_at || '').toLocaleDateString()}</td>
+                <div className='table-responsive'>
+                    <table className='pending-table'>
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Roles</th>
+                                <th>Verified</th>
+                                <th>Joined</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {users.map((user) => (
+                                <tr
+                                    key={user.id}
+                                    onClick={() => onSelect(user)}
+                                    className={`admin-list-row ${selectedUser?.id === user.id ? 'active' : ''}`}
+                                >
+                                    <td>{user.email}</td>
+                                    <td>
+                                        <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                                            {user.profile && <span className='pending-item-badge'>Reader</span>}
+                                            {user.author_profile && <span className='pending-item-badge'>Author</span>}
+                                            {user.free_author_profile && <span className='pending-item-badge'>Free Author</span>}
+                                            {user.moderator_profile && <span className='pending-item-badge'>Moderator</span>}
+                                            {user.admin_profile && <span className='pending-item-badge'>Admin</span>}
+                                        </div>
+                                    </td>
+                                    <td>{user.is_verified ? '✓' : '—'}</td>
+                                    <td>{new Date(user.profile?.created_at || '').toLocaleDateString()}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
 
             {totalPages > 1 && (
                 <div className='admin-pagination'>
-                    <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>← Prev</button>
+                    <Button
+                        variant="secondary"
+                        size="md"
+                        onClick={() => onPageChange(page - 1)}
+                        disabled={page === 1}
+                    >
+                        ← Prev
+                    </Button>
                     <span>Page {page} of {totalPages}</span>
-                    <button onClick={() => onPageChange(page + 1)} disabled={page === totalPages}>Next →</button>
+                    <Button
+                        variant="secondary"
+                        size="md"
+                        onClick={() => onPageChange(page + 1)}
+                        disabled={page === totalPages}
+                    >
+                        Next →
+                    </Button>
                 </div>
             )}
         </div>

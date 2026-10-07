@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../ui/Button'
 
 export default function AuthorRequestModal({ accessToken, onClose, onSuccess }) {
     const [formData, setFormData] = useState({
@@ -50,7 +51,14 @@ export default function AuthorRequestModal({ accessToken, onClose, onSuccess }) 
             <div className='modal-box'>
                 <div className='modal-box-header'>
                     <h2 className='modal-box-title'>Apply to Become an Author</h2>
-                    <button className='modal-box-close' onClick={onClose} aria-label='Close'>✕</button>
+                    <Button
+                        variant='secondary'
+                        size='sm'
+                        onClick={onClose}
+                        aria-label='Close'
+                    >
+                        ✕
+                    </Button>
                 </div>
 
                 <p className='section-note'>
@@ -100,10 +108,22 @@ export default function AuthorRequestModal({ accessToken, onClose, onSuccess }) 
                 {error && <p className='form-error'>{error}</p>}
 
                 <div className='modal-box-actions'>
-                    <button onClick={onClose} disabled={isSubmitting}>Cancel</button>
-                    <button onClick={handleSubmit} disabled={isSubmitting}>
+                    <Button
+                        variant='delete'
+                        size='lg'
+                        onClick={onClose}
+                        disabled={isSubmitting}
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        variant='primary'
+                        size='lg'
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                    >
                         {isSubmitting ? 'Submitting...' : 'Submit Request'}
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

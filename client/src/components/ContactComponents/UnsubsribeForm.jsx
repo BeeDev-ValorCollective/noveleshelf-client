@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import Button from '../ui/Button';
+import Select from '../ui/Select';
 
 import useUnsubValidation from '../../hooks/useUnsubValidation'
 import useUnsubSubmission from '../../hooks/useUnsubSubmission'
@@ -107,7 +109,8 @@ export default function UnsubscribeForm() {
 
                 {/* REASON */}
                 <div className="entry_area">
-                    <select
+                    <Select
+                        variant='bare'
                         name="reason"
                         id="reason"
                         required
@@ -117,7 +120,8 @@ export default function UnsubscribeForm() {
                         {UNSUB_REASONS.map(({ value, label }) => (
                             <option key={value} value={value}>{label}</option>
                         ))}
-                    </select>
+                    </Select>
+
                 </div>
 
                 {/* SUBMIT */}
@@ -132,9 +136,15 @@ export default function UnsubscribeForm() {
                 ) : null}
                 {!isSubmitting && (
                     <div className="form_button_box">
-                        <button hidden={!isButtonVisible} type="submit" disabled={!isFormValid}>
+                        <Button
+                            variant='primary'
+                            size='lg'
+                            hidden={!isButtonVisible}
+                            type="submit"
+                            disabled={!isFormValid}
+                        >
                             UNSUBSCRIBE
-                        </button>
+                        </Button>
                     </div>
                 )}
 
@@ -150,9 +160,13 @@ export default function UnsubscribeForm() {
                         <div className="mailer_messages failure">
                             <h3>We are experiencing technical problems</h3>
                             <p>Please contact us directly at —</p>
-                            <a href={`mailto:${SupportEmail}?subject=Unsubscribe%20Request&body=Hello,%0A%0AI%20would%20like%20to%20unsubscribe%20from%20future%20emails.`}>
+                            <Button
+                                variant='primary'
+                                size='md'
+                                href={`mailto:${SupportEmail}?subject=Unsubscribe%20Request&body=Hello,%0A%0AI%20would%20like%20to%20unsubscribe%20from%20future%20emails.`}
+                            >
                                 <b>{SupportEmail}</b>
-                            </a>
+                            </Button>
                         </div>
                     )}
                     {success && (

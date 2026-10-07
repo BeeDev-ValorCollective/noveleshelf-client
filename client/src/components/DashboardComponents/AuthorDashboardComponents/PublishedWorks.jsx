@@ -1,4 +1,5 @@
 import { getMediaUrl } from '../../../utils/api'
+import Button from '../../ui/Button'
 import './authorDashboard.css'
 
 export default function PublishedWorks({ books }) {
@@ -10,7 +11,13 @@ export default function PublishedWorks({ books }) {
                         <h2 className='section-heading'>On the Shelf</h2>
                         <p className='section-subheading'>Live and still in progress</p>
                     </div>
-                    <a href='/author/books' className='view-all-link'>View All</a>
+                    <Button
+                        variant='ghost'
+                        size='md'
+                        href='/author/books'
+                    >
+                        View All
+                    </Button>
                 </div>
                 <p style={{ color: '#ffffffa0', textAlign: 'center' }}>No published works yet</p>
             </section>
@@ -24,7 +31,13 @@ export default function PublishedWorks({ books }) {
                     <h2 className='section-heading'>On the Shelf</h2>
                     <p className='section-subheading'>Live and still in progress</p>
                 </div>
-                <a href='/author/books' className='view-all-link'>View All</a>
+                <Button
+                    variant='ghost'
+                    size='md'
+                    href='/author/books'
+                >
+                    View All
+                </Button>
             </div>
             <div className='projects-list'>
                 {books.map((book) => (
@@ -43,9 +56,13 @@ export default function PublishedWorks({ books }) {
                                 ⭐ {book.content_rating?.code || 'NR'} · {book.published_chapter_count} chapters
                             </span>
                         </div>
-                        <button className='continue-editing-btn'>
-                            <a href={`/author/books/${book.id}/manage`}>Manage Book</a>
-                        </button>
+                        <Button
+                            variant='secondary'
+                            size='sm'
+                            href={`/author/books/${book.id}/manage`}
+                        >
+                            Manage Book
+                        </Button>
                     </div>
                 ))}
             </div>

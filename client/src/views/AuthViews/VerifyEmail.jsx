@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import useAuthStore from '../../store/authStore'
 import { DB_API, ENDPOINTS } from '../../utils/api'
+import Button from '../../components/ui/Button'
 import '../views.css'
 
 export default function VerifyEmail() {
@@ -59,14 +60,26 @@ export default function VerifyEmail() {
                 <>
                     <h1>Email Verified!</h1>
                     <p>{message}</p>
-                    <a href="/dashboard">Go to Dashboard</a>
+                    <Button
+                        variant='primary'
+                        size='lg'
+                        href="/dashboard"
+                    >
+                        Go to Dashboard
+                    </Button>
                 </>
             )}
             {status === 'error' && (
                 <>
                     <h1>Verification Failed</h1>
                     <p>{message}</p>
-                    <a href="/dashboard">Go to Dashboard</a>
+                    <Button
+                        variant='primary'
+                        size='lg'
+                        href="/dashboard"
+                    >
+                        Go to Dashboard
+                    </Button>
                 </>
             )}
         </div>

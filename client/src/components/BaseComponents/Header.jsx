@@ -127,13 +127,6 @@ export default function Header({ onLoginClick, onSignupClick }) {
 
     return (
         <>
-            {/* Mobile nav overlay */}
-            {mobileNavOpen && (
-                <div
-                    className='"mobile-nav-overlay'
-                    onClick={() => setMobileNavOpen(false)}
-                />
-            )}
             <header>
                 <div className="title">
                     <img src={Shelf} alt="Novel eShelf" className="shelfImg" />

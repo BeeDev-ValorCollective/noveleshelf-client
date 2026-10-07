@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import AuthorDetailHero from '../../components/LibraryComponents/Author/AuthorDetailHero'
 import AuthorDetailBooks from '../../components/LibraryComponents/Author/AuthorDetailBooks'
+import Button from '../../components/ui/Button'
 import '../../components/LibraryComponents/Author/authordetail.css'
 
 export default function AuthorDetail() {
@@ -54,7 +55,14 @@ export default function AuthorDetail() {
             <div className='bd-page'>
                 <div className='bd-error'>
                     <p>{error === 'not_found' ? 'This author could not be found.' : 'Something went wrong.'}</p>
-                    <button className='bd-back-btn' onClick={() => navigate(backTo)}>{backLabel}</button>
+                    <Button
+                        variant='primary'
+                        size='sm'
+                        className='bd-back-btn'
+                        onClick={() => navigate(backTo)}
+                    >
+                        {backLabel}
+                    </Button>
                 </div>
             </div>
         )
@@ -63,9 +71,14 @@ export default function AuthorDetail() {
     return (
         <div className='bd-page'>
             <div className='bd-inner'>
-                <button className='bd-back-btn' onClick={() => navigate(backTo)}>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    className='bd-back-btn'
+                    onClick={() => navigate(backTo)}
+                >
                     {backLabel}
-                </button>
+                </Button>
                 
                 {/* 2. Replace the test divs with your modular components */}
                 <AuthorDetailHero author={author} />

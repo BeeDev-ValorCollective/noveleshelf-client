@@ -1,3 +1,4 @@
+import Button from '../../ui/Button'
 import { getMediaUrl } from '../../../utils/api'
 
 import './freeAuthorDashboard.css';
@@ -16,8 +17,20 @@ export default function FreeAuthorProjects({ books }) {
                         <h2 className='section-heading'>Current Projects</h2>
                         <p className='section-subheading'>Works in progress</p>
                     </div>
-                    <a href='/author/books' className='view-all-link'>View All</a>
-                    <a href="/author/create-book">Create a Book</a>
+                    <Button
+                        variant='ghost'
+                        size='md'
+                        href='/author/books'
+                    >
+                        View All
+                    </Button>
+                    <Button
+                        variant='primary'
+                        size='md'
+                        href="/author/create-book"
+                    >
+                        Create a Book
+                    </Button>
                 </div>
                 <p style={{ color: '#ffffffa0', textAlign: 'center' }}>No current projects</p>
             </section>
@@ -31,7 +44,13 @@ export default function FreeAuthorProjects({ books }) {
                     <h2 className='section-heading'>Current Projects</h2>
                     <p className='section-subheading'>Works in progress</p>
                 </div>
-                <a href='/author/books' className='view-all-link'>View All</a>
+                <Button
+                    variant='ghost'
+                    size='md'
+                    href='/author/books'
+                >
+                    View All
+                </Button>
             </div>
             <div className='projects-list'>
                 {books.map((book) => (
@@ -45,9 +64,13 @@ export default function FreeAuthorProjects({ books }) {
                             <h3 className='project-title'>{book.title}</h3>
                             <span className={`project-status ${book.status}`}>{book.status.replace(/_/g, ' ')}</span>
                         </div>
-                        <button className='continue-editing-btn'>
-                            <a href={`/author/books/${book.id}/manage`}>Manage Book</a>
-                        </button>
+                        <Button
+                            variant='secondary'
+                            size='sm'
+                            href={`/author/books/${book.id}/manage`}
+                        >
+                            Manage Book
+                        </Button>
                     </div>
                 ))}
             </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import TermsModal from './TermsModal'
+import Button from '../ui/Button'
 
 export default function FreeAuthorUpgrade({ accessToken, hasPaidAuthor, onUpgradeSuccess }) {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -36,21 +37,27 @@ export default function FreeAuthorUpgrade({ accessToken, hasPaidAuthor, onUpgrad
         <div className='upgrade-card'>
             <div className='upgrade-card-header'>
                 <h3 className='upgrade-card-title'>Share Your Stories for Free</h3>
-                <a href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing' className='upgrade-card-learn-more' target="_blank" rel="noopener noreferrer">
+                <Button
+                    href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing'
+                    variant='bare'
+                    className='upgrade-card-learn-more'
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     Learn more about free authorship →
-                </a>
+                </Button>
             </div>
             <p className='upgrade-card-description'>
                 No approval needed — upgrade instantly and start publishing. Your books will always be free to read.
             </p>
             {error && <p className='form-error'>{error}</p>}
-            <button
-                className='upgrade-card-btn'
+            <Button
+                variant='primary'
                 onClick={() => setShowTerms(true)}
                 disabled={isSubmitting}
             >
                 {isSubmitting ? 'Upgrading...' : 'Become a Free Author'}
-            </button>
+            </Button>
 
             {showTerms && (
                 <TermsModal

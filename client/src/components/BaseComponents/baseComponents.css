@@ -8,6 +8,7 @@ header {
     width: 100%;
     max-width: var(--max-width);
     margin: 3rem auto 1rem;
+    padding: 3rem 3rem 0;
     position: relative;
     z-index: 100;
     box-sizing: border-box;
@@ -210,16 +211,6 @@ header {
     color: var(--accent-coral) !important;
 }
 
-/*  Mobile Nav Overlay  */
-.mobile-nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 149;
-    backdrop-filter: blur(2px);
-}
-
 /*  Mobile Nav Drawer  */
 .mobile-nav {
     position: fixed;
@@ -321,6 +312,27 @@ header {
 }
 
 /*  Footer  */
+footer nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+footer nav button,
+footer nav a {
+    color: var(--text-secondary);
+    font-family: "Fredericka the Great", serif;
+    transition: var(--transition);
+}
+
+footer nav button:hover,
+footer nav a:hover {
+    color: var(--accent-coral);
+}
 footer {
     margin-top: 2em;
     display: flex;
@@ -440,6 +452,17 @@ footer {
     }
 }
 
+@media (min-width: 769px) and (max-width: 992px) {
+    .desktop-nav {
+        display: none;
+    }
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 /*  Mobile  */
 @media (max-width: 768px) {
     header {
@@ -455,9 +478,6 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-    .mobile-nav-overlay {
-        display: block;
     }
     .verification-banner {
         flex-direction: column;
@@ -487,6 +507,11 @@ footer {
     }
     footer {
         padding: 1.5rem 1rem;
+    }
+    footer nav {
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-bottom: 1rem;
     }
     .verification-banner p {
         font-size: 0.8rem;

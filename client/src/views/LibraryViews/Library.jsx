@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
 import { UserStar } from 'lucide-react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import useAuthStore from '../../store/authStore'
+import { sendToExpo } from '../../utils/authHandoff'
+import Button from '../../components/ui/Button'
 import { DB_API, ENDPOINTS, getMediaUrl } from '../../utils/api'
 import LibraryBookModal from '../../components/LibraryComponents/LibraryBookModal'
 import LibraryEmptyState from '../../components/LibraryComponents/LibraryEmptyState'
@@ -46,6 +50,18 @@ export default function Library() {
     const [activeFilters, setActiveFilters] = useState({ ...EMPTY_BOOK_FILTERS })
     const [pendingFilters, setPendingFilters] = useState({ ...EMPTY_BOOK_FILTERS })
     const [filterPanelOpen, setFilterPanelOpen] = useState(false)
+
+    const navigate = useNavigate()
+    const location = useLocation()
+    const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+
+    const handleGoToApp = () => {
+        if (!isAuthenticated) {
+            navigate('/login', { state: { from: location.pathname } })
+            return
+        }
+        sendToExpo(`(protected)/(reader-tabs)/shelf`)
+    }
 
     const buildQueryString = (pageNum, query, filters, currentView, currentOrder) => {
         const params = new URLSearchParams()
@@ -170,6 +186,9 @@ export default function Library() {
                     <p>Discover stories waiting to be read</p>
                 </div>
 
+                <Button variant='primary' onClick={handleGoToApp}>
+                    {isAuthenticated ? 'Go to the Web App' : 'Sign in'}
+                </Button>
                 <LibrarySearchBar
                     value={searchQuery}
                     onChange={handleSearchChange}
@@ -194,7 +213,7 @@ export default function Library() {
                             {results.map((book) => (
                                 <li key={book.id} onClick={() => setSelectedBook(book)}>
                                     <img src={getMediaUrl(book.cover_image)} alt={book.title} />
-                                    <span className='bookTitle'>{book.title}</span>
+                                    <span className='bookTitle' title={book.title}>{book.title}</span>
                                     {book.is_complete && (
                                         <span className='book-complete-badge'>✓ Complete</span>
                                     )}
@@ -241,9 +260,9 @@ export default function Library() {
 
                     {page < totalPages && (
                         <div className='library-load-more'>
-                            <button onClick={handleLoadMore} disabled={isLoading}>
+                            <Button variant='tertiary' size='lg' onClick={handleLoadMore} disabled={isLoading}>
                                 {isLoading ? 'Loading...' : 'Load more'}
-                            </button>
+                            </Button>
                         </div>
                     )}
                 </>

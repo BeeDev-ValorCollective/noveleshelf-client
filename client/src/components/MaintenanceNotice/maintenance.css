@@ -17,6 +17,7 @@
   font-weight: 500;
   font-family: inherit;
   border-bottom: 1px solid transparent;
+  width: 100vw;
 }
 
 /* ── Severity colours ── */

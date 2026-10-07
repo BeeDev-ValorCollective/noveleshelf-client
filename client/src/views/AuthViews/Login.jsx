@@ -8,6 +8,7 @@ import AuthCard from "../../components/AuthComponents/AuthCard";
 import AuthPage from "../../components/AuthComponents/AuthPage";
 import InputField from "../../components/AuthComponents/InputField";
 import PrimaryButton from "../../components/AuthComponents/PrimaryButton";
+import Button from "../../components/ui/Button";
 import useModalAuth from "../../hooks/useModalAuth";
 
 import "../../components/AuthComponents/auth.css";
@@ -43,13 +44,10 @@ export default function Login({ onClose, isModal, onSwitchToSignup }) {
         // DEV ONLY - remove before production
         if (import.meta.env.DEV) {
           console.log('🔑 DEV TOKENS:', {
-              access: data.tokens.access,
-              refresh: data.tokens.refresh
+            access: data.tokens.access,
+            refresh: data.tokens.refresh
           })
-      }
-        // Return to wherever the reader came from (e.g. a book detail
-        // page), if that was passed in via navigate('/login', { state }).
-        // Falls back to the dashboard when there's no such origin.
+        }
         const from = location.state?.from || "/dashboard";
         closeAndNavigate(from);
       } else {
@@ -73,7 +71,14 @@ export default function Login({ onClose, isModal, onSwitchToSignup }) {
 
   const inner = (
     <AuthCard>
-      <button onClick={safeClose} className="close-btn">×</button>
+      <Button
+        variant="secondary"
+        size="sm"
+        onClick={safeClose}
+        className="close-btn"
+      >
+        ×
+      </Button>
 
       <h1>Welcome Back</h1>
       <p className="subtitle">Continue your reading journey</p>
@@ -92,7 +97,14 @@ export default function Login({ onClose, isModal, onSwitchToSignup }) {
           placeholder="••••••••"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
         />
+        {/* <PasswordInput
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
+        /> */}
         {error && <p className="error">{error}</p>}
         <PrimaryButton type="submit" isLoading={isLoading}>Sign In</PrimaryButton>
       </form>

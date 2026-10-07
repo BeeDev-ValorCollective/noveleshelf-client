@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '../ui/Button'
 import './FAQTeaser.css'
 
 export default function FaqAccordion({ items }) {
@@ -19,14 +20,16 @@ export default function FaqAccordion({ items }) {
                         key={item.id} 
                         className={`faq-item ${isOpen ? 'is-open' : ''}`}
                     >
-                        <button 
+                        <Button
+                            variant='bare'
+                            size='lg'
                             className="faq-question-btn" 
                             onClick={() => toggleItem(item.id)}
                             aria-expanded={isOpen}
                         >
                             <span>{item.question}</span>
                             <span className="faq-icon">{isOpen ? '−' : '+'}</span>
-                        </button>
+                        </Button>
 
                         {isOpen && (
                             <div className="faq-answer">

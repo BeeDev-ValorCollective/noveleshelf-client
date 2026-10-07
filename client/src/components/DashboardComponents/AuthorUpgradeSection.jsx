@@ -31,14 +31,8 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                             <h3 className='upgrade-card-title'>Share Your Stories for Free</h3>
                             <Button
                                 href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing'
-                                variant='tertiary'
-                                size='sm'
-                                style={{ 
-                                    width: 'fit-content', 
-                                    justifyContent: 'flex-start', 
-                                    textAlign: 'left',
-                                    paddingLeft: 10 
-                                }}
+                                variant='bare'
+                                className='upgrade-card-learn-more'
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -48,7 +42,11 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                         <p className='upgrade-card-description'>
                             No approval needed — upgrade instantly and start publishing. Your books will always be free to read.
                         </p>
-                        <Button variant='primary' size='md' onClick={onLoginClick}>
+                        <Button
+                            variant='primary'
+                            size='md'
+                            onClick={onLoginClick}
+                        >
                             Sign In to Get Started
                         </Button>
                     </div>
@@ -68,14 +66,8 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                             <h3 className='upgrade-card-title'>Become a Paid Author</h3>
                             <Button
                                 href='https://docs.google.com/document/d/1qZxG4koWdDWVJkMO2ZFBVrTHplwpIU1U_EpzWGAFLOk/edit?usp=sharing'
-                                variant='tertiary'
-                                size='sm'
-                                style={{ 
-                                    width: 'fit-content', 
-                                    justifyContent: 'flex-start', 
-                                    textAlign: 'left',
-                                    paddingLeft: 10 
-                                }}
+                                variant='bare'
+                                className='upgrade-card-learn-more'
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -85,7 +77,11 @@ export default function AuthorUpgradeSection({ onLoginClick }) {
                         <p className='upgrade-card-description'>
                             Apply to join as a paid author. Share your writing sample and genre interests — our team will review your request.
                         </p>
-                        <Button variant='primary' size='md' onClick={onLoginClick}>
+                        <Button
+                            variant='primary'
+                            size='md'
+                            onClick={onLoginClick}
+                        >
                             Sign In to Apply
                         </Button>
                     </div>

@@ -4,6 +4,7 @@ import useAuthStore from '../../store/authStore'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import BookApprovalList from '../../components/AdminComponents/BookApprovalList'
 import BookApprovalDetail from '../../components/AdminComponents/BookApprovalDetail'
+import Button from '../../components/ui/Button'
 import '../../components/AdminComponents/adminComponents.css'
 
 export default function AdminBookApprovals() {
@@ -58,7 +59,13 @@ export default function AdminBookApprovals() {
     return (
         <div className='admin-page'>
             <div className='admin-page-header'>
-                <button onClick={() => navigate('/dashboard')}>← Back to dashboard</button>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate('/dashboard')}
+                >
+                    ← Back to dashboard
+                </Button>
                 <h1>Book Approvals</h1>
             </div>
 

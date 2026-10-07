@@ -59,6 +59,7 @@ export default function NewPassword() {
           placeholder="••••••••"
           value={form.password}
           onChange={handleChange}
+          autoComplete="new-password"
         />
 
         <InputField
@@ -68,6 +69,7 @@ export default function NewPassword() {
           placeholder="••••••••"
           value={form.confirmPassword}
           onChange={handleChange}
+          autoComplete="new-password"
         />
 
         <PrimaryButton type="submit">

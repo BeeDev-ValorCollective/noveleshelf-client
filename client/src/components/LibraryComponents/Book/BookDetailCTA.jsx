@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import useAuthStore from '../../../store/authStore'
 import { sendToExpo } from '../../../utils/authHandoff'
 import { BookmarkPlus } from 'lucide-react'
+import Button from '../../ui/Button'
 
 export default function BookDetailCTA({ title }) {
     const navigate = useNavigate()
@@ -21,10 +22,15 @@ export default function BookDetailCTA({ title }) {
                 Love what you see? The Novel eShelf web app is now live — <em>{title}</em> is waiting for you.
             </p>
             <p>
-                <button className='bd-shelf-btn' onClick={handleGoToApp}>
+                <Button
+                    variant='tertiary'
+                    size='lg'
+                    className='bd-shelf-btn'
+                    onClick={handleGoToApp}
+                >
                     <BookmarkPlus size={18} />
                     {isAuthenticated ? 'Go to the Web App' : 'Sign in'}
-                </button>
+                </Button>
             </p>
         </div>
     )

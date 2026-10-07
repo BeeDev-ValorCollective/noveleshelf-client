@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import FAQSearch from '../components/FAQ/FAQSearch';
 import FAQAccordion from '../components/FAQ/FAQAccordion';
 import { faqData } from '../data/faq/faqIndex'; // Imports readerFaq, authorFaq, platformFaq, highImpactFaq
+import Button from '../components/ui/Button';
 import '../components/FAQ/FAQTeaser.css';
 
 export default function FAQPage() {
@@ -103,9 +104,13 @@ export default function FAQPage() {
                 ) : (
                     <div className="faq-no-results">
                         <p>No questions found matching "{searchQuery}".</p>
-                        <button className="faq-cta-btn" onClick={handleClearFilters}>
+                        <Button
+                            variant='secondary'
+                            size='md'
+                            onClick={handleClearFilters}
+                        >
                             Clear Filters
-                        </button>
+                        </Button>
                     </div>
                 )}
             </section>

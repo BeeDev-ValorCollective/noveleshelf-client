@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Button from '../ui/Button'
 
 const FREE_AUTHOR_AGREEMENT_VIEW_URL = "https://docs.google.com/document/d/153aPeE6QDBH_8gUWRinpC4RQNuYCSldw/edit?usp=sharing&ouid=100577313488847648002&rtpof=true&sd=true/view"
 const FREE_AUTHOR_AGREEMENT_PREVIEW_URL = "https://docs.google.com/document/d/153aPeE6QDBH_8gUWRinpC4RQNuYCSldw/edit?usp=sharing&ouid=100577313488847648002&rtpof=true&sd=true/preview"
@@ -77,7 +78,13 @@ export default function TermsModal({ role, onAgree, onClose, hasPaidAuthor }) {
             <div className='modal-box'>
                 <div className='modal-box-header'>
                     <h2 className='modal-box-title'>{terms.title}</h2>
-                    <button className='modal-box-close' onClick={onClose}>✕</button>
+                    <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={onClose}
+                    >
+                        ✕
+                    </Button>
                 </div>
 
                 {role === 'free_author' && hasPaidAuthor && (
@@ -140,10 +147,21 @@ export default function TermsModal({ role, onAgree, onClose, hasPaidAuthor }) {
                 </div>
 
                 <div className='terms-actions'>
-                    <button className="cancel-upgrade-card-btn" onClick={onClose}>Cancel</button>
-                    <button className="upgrade-card-btn" onClick={onAgree} disabled={!checked}>
+                    <Button
+                        variant="delete"
+                        size="lg"
+                        onClick={onClose}
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        variant="primary"
+                        size="lg"
+                        onClick={onAgree}
+                        disabled={!checked}
+                    >
                         I Agree
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

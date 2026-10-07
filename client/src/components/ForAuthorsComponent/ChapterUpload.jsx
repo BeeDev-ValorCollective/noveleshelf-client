@@ -1,5 +1,6 @@
 import './forAuthors.css'
 import { UploadCloud } from 'lucide-react'
+import Button from '../ui/Button'
 
 export default function ChapterUpload() {
     return (
@@ -9,7 +10,13 @@ export default function ChapterUpload() {
                 <div className='upload-box'>
                     <UploadCloud className='upload-icon' />
                     <p className='upload-text'>Drag and drop your manuscript files here</p>
-                    <button className='upload-button'>Browse Files</button>
+                    <Button
+                        variant='primary'
+                        size='md'
+                        disabled
+                    >
+                        Browse Files
+                    </Button>
                 </div>
                 <div className='upload-file-list'>
                     <div className='upload-file-item'>

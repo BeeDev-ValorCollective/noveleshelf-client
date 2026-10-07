@@ -4,6 +4,7 @@ import useAuthStore from '../../store/authStore'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import UserList from '../../components/AdminComponents/UserList'
 import UserDetail from '../../components/AdminComponents/UserDetail'
+import Button from '../../components/ui/Button'
 import '../../components/AdminComponents/adminComponents.css'
 
 export default function AdminUserManagement() {
@@ -61,7 +62,13 @@ export default function AdminUserManagement() {
     return (
         <div className='admin-page'>
             <div className='admin-page-header'>
-                <button onClick={() => navigate('/dashboard')}>← Back to dashboard</button>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={() => navigate('/dashboard')}
+                >
+                    ← Back to dashboard
+                </Button>
                 <h1>User Management</h1>
             </div>
 

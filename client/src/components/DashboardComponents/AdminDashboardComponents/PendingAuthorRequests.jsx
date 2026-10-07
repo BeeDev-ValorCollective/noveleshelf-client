@@ -1,11 +1,19 @@
 import { REQUEST_STATUS_LABELS } from '../../../utils/constants'
+import Button from '../../ui/Button'
 
 export default function PendingAuthorRequests({ requests, isLoading, error }) {
     return (
         <div className='pending-panel'>
             <div className='pending-panel-header'>
                 <h2 className='pending-panel-title'>Author Requests</h2>
-                <a href='/admin/author-requests' className='view-all-link'>View All</a>
+                <Button
+                    variant='ghost'
+                    size='sm'
+                    href='/admin/author-requests'
+                    className='view-all-link'
+                >
+                    View All
+                </Button>
             </div>
             {isLoading && <p className='section-note'>Loading...</p>}
             {error && <p className='form-error'>{error}</p>}

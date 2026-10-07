@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { DB_API, ENDPOINTS } from '../../utils/api'
 import useAuthStore from '../../store/authStore'
+import Button from '../../components/ui/Button'
 import '../../components/ProfileComponents/setAuthorUsername.css'
 
 const USERNAME_REGEX = /^[a-zA-Z0-9_]+$/
@@ -97,13 +98,16 @@ export default function SetAuthorUsername() {
 
                 {error && <p className='set-username-error'>{error}</p>}
 
-                <button
+                <Button
+                    variant='primary'
+                    size='md'
                     className='set-username-btn'
                     onClick={handleSubmit}
                     disabled={isSubmitting}
                 >
                     {isSubmitting ? 'Saving...' : 'Set username'}
-                </button>
+                </Button>
+
             </div>
         </div>
     )
