@@ -1,0 +1,145 @@
+
+.nes-notification-center {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nes-notification-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary, white);
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.nes-notification-count {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  background: #ff9f8a;
+  color: #171722;
+  border-radius: 999px;
+  padding: 2px 5px;
+  min-width: 17px;
+  font: bold 11px sans-serif;
+  text-align: center;
+}
+
+.nes-notification-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 12px);
+  width: min(380px, calc(100vw - 24px));
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 15px;
+  background: #1a1a2e;
+  border: 1px solid #ffffff30;
+  border-radius: 12px;
+  box-shadow: 0 10px 35px #0008;
+  color: white;
+  z-index: 1000;
+  font-family: sans-serif;
+}
+
+.nes-notification-heading,
+.nes-notification-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.nes-notification-heading h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.nes-notification-heading button,
+.nes-notification-actions button {
+  background: transparent;
+  border: 0;
+  color: #ff9f8a;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.nes-notification-actions {
+  padding: 14px 0;
+  font-size: 13px;
+  color: #bbb;
+}
+
+.nes-notification-actions button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.nes-notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.nes-notification-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #ffffff18;
+  border-radius: 8px;
+  padding: 12px;
+  background: #ffffff08;
+  color: white;
+  cursor: pointer;
+  white-space: normal;
+}
+
+.nes-notification-item.unread {
+  background: #68b9b91a;
+  border-color: #68b9b955;
+}
+
+.nes-notification-item:hover {
+  background: #ffffff18;
+}
+
+.nes-notification-item-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.nes-unread-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #68b9b9;
+}
+
+.nes-notification-item small {
+  color: #aaa;
+}
+
+.nes-notification-empty {
+  text-align: center;
+  padding: 25px 10px;
+  color: #bbb;
+}
+
+@media (max-width: 600px) {
+  .nes-notification-panel {
+    position: fixed;
+    top: 90px;
+    right: 12px;
+  }
+}

@@ -7,6 +7,7 @@ import useLogout from '../../hooks/useLogout'
 import { getMediaUrl } from '../../utils/api'
 import { toTitleCase } from '../../utils/upperCase'
 import { Menu, X } from 'lucide-react'
+import NotificationCenter from '../NotificationComponents/NotificationCenter';
 
 const APP_URL = import.meta.env.VITE_APP_URL
 const DJANGO_ADMIN_URL = import.meta.env.VITE_DJANGO_ADMIN_URL
@@ -140,6 +141,9 @@ export default function Header({ onLoginClick, onSignupClick }) {
                     <Link to="/for-readers">For Readers</Link>
                     <Link to="/for-authors">For Authors</Link>
                     <Link to="/contact">Contact</Link>
+
+                    {isAuthenticated && <NotificationCenter />}
+
                     {isAuthenticated ? (
                         <div className='avatar-container' ref={menuRef}>
                             <img
