@@ -103,12 +103,16 @@ const useAuthStore = create((set, get) => ({
         }
     },
 
-    updateAccessToken: (accessToken) => {
-        sessionStorage.setItem('access_token', accessToken);
-        set({ accessToken });
+    // Pass null to drop an expired access token (useUser then refreshes).
+    // Pass the rotated refresh token from auth/refresh/ -- the old one is blacklisted.
+    updateTokens: (accessToken, refreshToken) => {
+        if (accessToken) sessionStorage.setItem('access_token', accessToken);
+        else sessionStorage.removeItem('access_token');
+        if (refreshToken) localStorage.setItem('refresh_token', refreshToken);
+        set({ accessToken, ...(refreshToken && { refreshToken }) });
 
         if (import.meta.env.DEV) {
-            console.log('🔑 ACCESS TOKEN UPDATED:', { accessToken })
+            console.log('🔑 TOKENS UPDATED:', { accessToken, refreshToken })
         }
     },
 

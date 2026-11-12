@@ -10,20 +10,13 @@ import VerificationBanner from './components/BaseComponents/VerificationBanner';
 import MaintenanceNotice from './components/MaintenanceNotice'
 import useUser from './hooks/useUser'
 import ScrollToTop from './components/ScrollToTop'
+import { installAuthenticatedFetch } from './utils/session'
 
-// Tag every outgoing fetch as coming from Vite, so the backend can tell it
-// apart from Expo web/native in DailyActivity/Event logs. Patched once here
-// at module scope so it applies before any component fetches.
-const originalFetch = window.fetch;
-window.fetch = (url, options = {}) => {
-  return originalFetch(url, {
-    ...options,
-    headers: {
-      ...options.headers,
-      'X-Client-Platform': 'vite',
-    },
-  });
-};
+// Patch window.fetch once at module scope, before any component fetches:
+// tags requests with X-Client-Platform: vite (so the backend can tell Vite
+// apart from Expo in DailyActivity/Event logs) and refreshes the access
+// token + retries when a Bearer request gets a 401.
+installAuthenticatedFetch();
 
 const Home = React.lazy(() => import('./views/Home'))
 const ForAuthors = React.lazy(() => import('./views/ForAuthors'))
