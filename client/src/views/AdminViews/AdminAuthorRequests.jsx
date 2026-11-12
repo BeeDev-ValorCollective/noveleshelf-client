@@ -5,6 +5,7 @@ import { DB_API, ENDPOINTS } from '../../utils/api'
 import AuthorRequestList from '../../components/AdminComponents/AuthorRequestList'
 import AuthorRequestDetail from '../../components/AdminComponents/AuthorRequestDetail'
 import Button from '../../components/ui/Button'
+import { ADMIN_DEFAULT_PAGE_SIZE } from '../../utils/adminList'
 import '../../components/AdminComponents/adminComponents.css'
 
 export default function AdminAuthorRequests() {
@@ -16,6 +17,8 @@ export default function AdminAuthorRequests() {
     const [error, setError] = useState(null)
     const [statusFilter, setStatusFilter] = useState('pending')
     const [typeFilter, setTypeFilter] = useState('')
+    const [order, setOrder] = useState('newest')
+    const [pageSize, setPageSize] = useState(ADMIN_DEFAULT_PAGE_SIZE)
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const [selectedRequest, setSelectedRequest] = useState(null)
@@ -24,7 +27,7 @@ export default function AdminAuthorRequests() {
         setIsLoading(true)
         setError(null)
         try {
-            const params = new URLSearchParams({ page })
+            const params = new URLSearchParams({ page, page_size: pageSize, order })
             if (statusFilter) params.append('status', statusFilter)
             if (typeFilter) params.append('request_type', typeFilter)
             const res = await fetch(`${DB_API}${ENDPOINTS.adminAuthorRequests}?${params}`, {
@@ -46,7 +49,7 @@ export default function AdminAuthorRequests() {
 
     useEffect(() => {
         if (accessToken) fetchRequests()
-    }, [accessToken, statusFilter, typeFilter, page])
+    }, [accessToken, statusFilter, typeFilter, order, pageSize, page])
 
     const handleRequestUpdated = (updatedRequest) => {
         setRequests(prev => prev.map(r => r.id === updatedRequest.id ? updatedRequest : r))
@@ -87,6 +90,10 @@ export default function AdminAuthorRequests() {
                         typeFilter={typeFilter}
                         onStatusFilter={setStatusFilter}
                         onTypeFilter={setTypeFilter}
+                        order={order}
+                        onOrder={setOrder}
+                        pageSize={pageSize}
+                        onPageSize={setPageSize}
                     />
                     <div className='admin-detail'>
                         {!selectedRequest && (

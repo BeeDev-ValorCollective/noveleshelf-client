@@ -5,6 +5,7 @@ import { DB_API, ENDPOINTS } from '../../utils/api'
 import BookApprovalList from '../../components/AdminComponents/BookApprovalList'
 import BookApprovalDetail from '../../components/AdminComponents/BookApprovalDetail'
 import Button from '../../components/ui/Button'
+import { ADMIN_DEFAULT_PAGE_SIZE } from '../../utils/adminList'
 import '../../components/AdminComponents/adminComponents.css'
 
 export default function AdminBookApprovals() {
@@ -15,6 +16,8 @@ export default function AdminBookApprovals() {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
     const [statusFilter, setStatusFilter] = useState('pending_approval')
+    const [order, setOrder] = useState('newest')
+    const [pageSize, setPageSize] = useState(ADMIN_DEFAULT_PAGE_SIZE)
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const [selectedBook, setSelectedBook] = useState(null)
@@ -23,7 +26,7 @@ export default function AdminBookApprovals() {
         setIsLoading(true)
         setError(null)
         try {
-            const params = new URLSearchParams({ page })
+            const params = new URLSearchParams({ page, page_size: pageSize, order })
             if (statusFilter) params.append('status', statusFilter)
             const res = await fetch(`${DB_API}${ENDPOINTS.adminBooks}?${params}`, {
                 headers: { Authorization: `Bearer ${accessToken}` }
@@ -44,7 +47,7 @@ export default function AdminBookApprovals() {
 
     useEffect(() => {
         if (accessToken) fetchBooks()
-    }, [accessToken, statusFilter, page])
+    }, [accessToken, statusFilter, order, pageSize, page])
 
     const handleBookUpdated = (updatedBook) => {
         setBooks(prev => prev.map(b => b.id === updatedBook.id ? updatedBook : b))
@@ -83,6 +86,10 @@ export default function AdminBookApprovals() {
                         onPageChange={setPage}
                         statusFilter={statusFilter}
                         onStatusFilter={setStatusFilter}
+                        order={order}
+                        onOrder={setOrder}
+                        pageSize={pageSize}
+                        onPageSize={setPageSize}
                     />
                     <div className='admin-detail'>
                         {!selectedBook && (

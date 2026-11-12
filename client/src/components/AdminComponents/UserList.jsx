@@ -1,5 +1,7 @@
 import Button from "../ui/Button";
 import Select from "../ui/Select";
+import AdminListControls from "./AdminListControls";
+import { USER_SORT_OPTIONS } from "../../utils/adminList";
 
 const ROLE_OPTIONS = [
     { value: '', label: 'All users' },
@@ -11,7 +13,7 @@ const ROLE_OPTIONS = [
     { value: 'admin', label: 'Admins' },
 ]
 
-export default function UserList({ users, selectedUser, onSelect, search, onSearch, roleFilter, onRoleFilter, page, totalPages, onPageChange }) {
+export default function UserList({ users, isLoading, selectedUser, onSelect, search, onSearch, roleFilter, onRoleFilter, order, onOrder, pageSize, onPageSize, page, totalPages, onPageChange }) {
     return (
         <div className='admin-list'>
             <div className='admin-filters'>
@@ -32,10 +34,19 @@ export default function UserList({ users, selectedUser, onSelect, search, onSear
                         <option key={r.value} value={r.value}>{r.label}</option>
                     ))}
                 </Select>
-
+                <AdminListControls
+                    sortOptions={USER_SORT_OPTIONS}
+                    order={order}
+                    onOrder={onOrder}
+                    pageSize={pageSize}
+                    onPageSize={onPageSize}
+                    onPageChange={onPageChange}
+                />
             </div>
 
-            {users.length === 0 && (
+            {isLoading && <p className='section-note'>Loading...</p>}
+
+            {!isLoading && users.length === 0 && (
                 <p className='section-note'>No users found.</p>
             )}
 
@@ -68,7 +79,7 @@ export default function UserList({ users, selectedUser, onSelect, search, onSear
                                         </div>
                                     </td>
                                     <td>{user.is_verified ? '✓' : '—'}</td>
-                                    <td>{new Date(user.profile?.created_at || '').toLocaleDateString()}</td>
+                                    <td>{user.date_joined ? new Date(user.date_joined).toLocaleDateString() : '—'}</td>
                                 </tr>
                             ))}
                         </tbody>

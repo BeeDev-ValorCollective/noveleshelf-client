@@ -1,11 +1,13 @@
 import { REQUEST_STATUS_LABELS, REQUEST_TYPE_LABELS } from '../../utils/constants'
 import Button from '../ui/Button'
 import Select from '../ui/Select'
+import AdminListControls from './AdminListControls'
+import { REQUEST_SORT_OPTIONS } from '../../utils/adminList'
 
 const STATUS_OPTIONS = ['pending', 'in_progress', 'not_at_this_time', 'cleared']
 const REQUEST_TYPES = ['new_author', 'new_genre', 'tier_review', 'contract_addendum', 'leave_platform', 'rejoin_platform']
 
-export default function AuthorRequestList({ requests, selectedRequest, onSelect, page, totalPages, onPageChange, statusFilter, typeFilter, onStatusFilter, onTypeFilter }) {
+export default function AuthorRequestList({ requests, selectedRequest, onSelect, page, totalPages, onPageChange, statusFilter, typeFilter, onStatusFilter, onTypeFilter, order, onOrder, pageSize, onPageSize }) {
     return (
         <div className='admin-list'>
             <div className='admin-filters'>
@@ -31,6 +33,14 @@ export default function AuthorRequestList({ requests, selectedRequest, onSelect,
                         <option key={t} value={t}>{REQUEST_TYPE_LABELS[t] || t}</option>
                     ))}
                 </Select>
+                <AdminListControls
+                    sortOptions={REQUEST_SORT_OPTIONS}
+                    order={order}
+                    onOrder={onOrder}
+                    pageSize={pageSize}
+                    onPageSize={onPageSize}
+                    onPageChange={onPageChange}
+                />
             </div>
 
             {requests.length === 0 && (
