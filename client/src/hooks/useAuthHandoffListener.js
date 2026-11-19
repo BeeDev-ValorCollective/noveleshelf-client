@@ -13,10 +13,11 @@ export function useAuthHandoffListener() {
     if (!token) return;
 
     (async () => {
-      const success = await receiveFromExpo(token);
+      const success = await receiveFromExpo(token, params.get('role'));
 
-      // Strip the handoff param either way -- can't be reused/bookmarked
+      // Strip the handoff params either way -- can't be reused/bookmarked
       params.delete('handoff');
+      params.delete('role');
       const cleanSearch = params.toString();
       const cleanPath = `${location.pathname}${cleanSearch ? `?${cleanSearch}` : ''}`;
 

@@ -141,9 +141,9 @@ function AppContent() {
           />
           {/* protected - login + verified */}
 
-          {/* Reader */}
+          {/* Any role -- quills go to the user's wallet, not a role profile */}
           <Route path="/purchase-quills" element={
-            <ProtectedRoute allowedRoles={['reader']}>
+            <ProtectedRoute>
               <PurchaseQuills />
             </ProtectedRoute>}
           />
