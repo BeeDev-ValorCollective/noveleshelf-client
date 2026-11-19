@@ -6,8 +6,11 @@ import './adminDash.css'
 
 export default function GiftInkPanel({ accessToken }) {
     const [users, setUsers] = useState([])
-    const [selectedUserId, setSelectedUserId] = useState('')
+    // Keep the chosen user as an object so it survives a new search
+    // that no longer includes them.
+    const [selectedUser, setSelectedUser] = useState(null)
     const [search, setSearch] = useState('')
+    const [debouncedSearch, setDebouncedSearch] = useState('')
     const [amount, setAmount] = useState('')
     const [notes, setNotes] = useState('')
 
@@ -17,23 +20,36 @@ export default function GiftInkPanel({ accessToken }) {
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
 
+    // Search runs on the server; wait for typing to pause before fetching.
+    useEffect(() => {
+        const timer = setTimeout(() => setDebouncedSearch(search.trim()), 300)
+        return () => clearTimeout(timer)
+    }, [search])
+
     useEffect(() => {
         if (!accessToken) return
 
-        fetchUsers()
-    }, [accessToken])
+        // Abort the previous search so an older response can't overwrite a newer one.
+        const controller = new AbortController()
+        fetchUsers(controller.signal)
+        return () => controller.abort()
+    }, [accessToken, debouncedSearch])
 
-    const fetchUsers = async () => {
+    const fetchUsers = async (signal) => {
         setIsLoadingUsers(true)
         setError(null)
 
         try {
+            const params = new URLSearchParams({ page: 1, page_size: 25, order: 'az' })
+            if (debouncedSearch) params.append('search', debouncedSearch)
+
             const response = await fetch(
-                `${DB_API}${ENDPOINTS.adminListUsers}?page=1`,
+                `${DB_API}${ENDPOINTS.adminListUsers}?${params}`,
                 {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
                     },
+                    signal,
                 }
             )
 
@@ -48,22 +64,25 @@ export default function GiftInkPanel({ accessToken }) {
                     'Could not load users.'
                 )
             }
-        } catch {
+        } catch (err) {
+            if (err.name === 'AbortError') return
             setError('Unable to load users.')
         } finally {
-            setIsLoadingUsers(false)
+            if (!signal.aborted) setIsLoadingUsers(false)
         }
     }
 
-    const filteredUsers = users.filter((user) =>
-        user.email
-            ?.toLowerCase()
-            .includes(search.toLowerCase())
-    )
+    const selectedUserId = selectedUser ? String(selectedUser.id) : ''
 
-    const selectedUser = users.find(
-        (user) => String(user.id) === String(selectedUserId)
-    )
+    // Server results, plus the selected user if the current search hides them.
+    const userOptions =
+        selectedUser && !users.some((user) => user.id === selectedUser.id)
+            ? [selectedUser, ...users]
+            : users
+
+    const handleSelectUser = (id) => {
+        setSelectedUser(userOptions.find((user) => String(user.id) === id) || null)
+    }
 
     const handleGift = async (event) => {
         event.preventDefault()
@@ -176,9 +195,7 @@ export default function GiftInkPanel({ accessToken }) {
                         onChange={(event) =>
                             setSearch(event.target.value)
                         }
-                        disabled={
-                            isWorking || isLoadingUsers
-                        }
+                        disabled={isWorking}
                     />
                 </div>
 
@@ -193,7 +210,7 @@ export default function GiftInkPanel({ accessToken }) {
                         className='bff-select admin-gift-user-select'
                         value={selectedUserId}
                         onChange={(event) =>
-                            setSelectedUserId(event.target.value)
+                            handleSelectUser(event.target.value)
                         }
                         disabled={isWorking || isLoadingUsers}
                     >
@@ -203,7 +220,7 @@ export default function GiftInkPanel({ accessToken }) {
                                 : 'Select a user'}
                         </option>
 
-                        {filteredUsers.map((user) => (
+                        {userOptions.map((user) => (
                             <option
                                 key={user.id}
                                 value={user.id}

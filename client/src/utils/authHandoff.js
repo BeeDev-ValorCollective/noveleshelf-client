@@ -30,11 +30,24 @@ export async function sendToExpo(nextPath = '') {
   }
 }
 
+// Which profile a user needs to be in each role.
+const ROLE_PROFILE_KEYS = {
+  reader: 'profile',
+  author: 'author_profile',
+  free_author: 'free_author_profile',
+  moderator: 'moderator_profile',
+  admin: 'admin_profile',
+};
+
 /**
  * Exchanges an incoming ?handoff=<token> query param for real auth
  * tokens and logs the user in. Call this once on app load/mount.
+ *
+ * `role` is the role the user was in on Expo (?role=). setAuth puts them
+ * in their default role, so switch to the Expo role if they have that
+ * profile; otherwise keep the default.
  */
-export async function receiveFromExpo(token) {
+export async function receiveFromExpo(token, role = null) {
   if (!token) return false;
 
   try {
@@ -51,6 +64,11 @@ export async function receiveFromExpo(token) {
     }
 
     useAuthStore.getState().setAuth(data.user, data.tokens.access, data.tokens.refresh);
+
+    const profileKey = ROLE_PROFILE_KEYS[role];
+    if (profileKey && data.user[profileKey]) {
+      useAuthStore.getState().setCurrentRole(role);
+    }
     return true;
   } catch (err) {
     console.error('receiveFromExpo error:', err);

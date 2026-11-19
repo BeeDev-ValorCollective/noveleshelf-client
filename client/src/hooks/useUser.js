@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import useAuthStore from "../store/authStore";
 import { DB_API, ENDPOINTS } from "../utils/api";
+import { refreshSession } from "../utils/session";
 
 
 export default function useUser() {
@@ -8,7 +9,7 @@ export default function useUser() {
     const accessToken = useAuthStore((state) => state.accessToken);
     const refreshToken = useAuthStore((state) => state.refreshToken);
     const updateUser = useAuthStore((state) => state.updateUser);
-    const updateAccessToken = useAuthStore((state) => state.updateAccessToken);
+    const updateTokens = useAuthStore((state) => state.updateTokens);
     const clearAuth = useAuthStore((state) => state.clearAuth);
 
     useEffect(() => {
@@ -32,7 +33,9 @@ export default function useUser() {
                         }
 
                     } else if (response.status === 401) {
-                        clearAuth();
+                        // Expired access token -- drop it so the refresh branch runs
+                        if (refreshToken) updateTokens(null);
+                        else clearAuth();
                     }
                 } catch (error) {
                     console.error('Error fetching user:', error);
@@ -46,43 +49,16 @@ export default function useUser() {
                         console.log('🔄 NO ACCESS TOKEN — ATTEMPTING REFRESH...')
                     }
 
-                    const response = await fetch(DB_API + 'auth/refresh/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ refresh: refreshToken })
-                    });
+                    // Shared with the fetch wrapper so only one refresh runs at a time.
+                    // On success it saves both tokens (the old refresh token is now
+                    // blacklisted); the new access token re-runs this effect, which
+                    // fetches /me/. On an invalid refresh token it clears auth itself.
+                    const newAccess = await refreshSession();
 
-                    if (response.ok) {
-                        const data = await response.json();
-                        updateAccessToken(data.access);
-
-                        if (import.meta.env.DEV) {
-                            console.log('🔑 TOKEN REFRESHED SUCCESSFULLY')
-                        }
-
-                        // now fetch user with new access token
-                        const userResponse = await fetch(DB_API + 'auth/me/', {
-                            headers: {
-                                'Authorization': `Bearer ${data.access}`
-                            }
-                        });
-
-                        if (userResponse.ok) {
-                            const userData = await userResponse.json();
-                            updateUser(userData);
-
-                            if (import.meta.env.DEV) {
-                                console.log('👤 USER REHYDRATED AFTER REFRESH:', userData)
-                            }
-                        }
-                    } else {
-                        // refresh token expired - clear everything
-                        if (import.meta.env.DEV) {
-                            console.log('❌ REFRESH TOKEN EXPIRED — CLEARING AUTH')
-                        }
-                        clearAuth();
+                    if (import.meta.env.DEV) {
+                        console.log(newAccess
+                            ? '🔑 TOKEN REFRESHED SUCCESSFULLY'
+                            : '❌ REFRESH TOKEN EXPIRED — AUTH CLEARED')
                     }
                 } catch (error) {
                     console.error('Error refreshing token:', error);
@@ -92,7 +68,7 @@ export default function useUser() {
         };
 
         fetchUser();
-    }, [user, accessToken, refreshToken, updateUser, updateAccessToken, clearAuth]);
+    }, [user, accessToken, refreshToken, updateUser, updateTokens, clearAuth]);
 
     return { user, accessToken };
 }

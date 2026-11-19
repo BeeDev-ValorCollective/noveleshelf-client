@@ -2,6 +2,8 @@ import { BOOK_STATUS_LABELS } from '../../utils/constants'
 import { resolveApiAuthorDisplay } from '../../utils/display'
 import Button from '../ui/Button'
 import Select from '../ui/Select'
+import AdminListControls from './AdminListControls'
+import { BOOK_SORT_OPTIONS } from '../../utils/adminList'
 
 const STATUS_OPTIONS = [
     'pending_approval',
@@ -11,7 +13,7 @@ const STATUS_OPTIONS = [
     'draft',
 ]
 
-export default function BookApprovalList({ books, selectedBook, onSelect, page, totalPages, onPageChange, statusFilter, onStatusFilter }) {
+export default function BookApprovalList({ books, selectedBook, onSelect, page, totalPages, onPageChange, statusFilter, onStatusFilter, order, onOrder, pageSize, onPageSize }) {
     return (
         <div className='admin-list'>
             <div className='admin-filters'>
@@ -27,6 +29,14 @@ export default function BookApprovalList({ books, selectedBook, onSelect, page, 
                     ))}
 
                 </Select>
+                <AdminListControls
+                    sortOptions={BOOK_SORT_OPTIONS}
+                    order={order}
+                    onOrder={onOrder}
+                    pageSize={pageSize}
+                    onPageSize={onPageSize}
+                    onPageChange={onPageChange}
+                />
             </div>
 
             {books.length === 0 && (
