@@ -7,7 +7,7 @@ The web frontend for the Novel eShelf platform. Handles the public marketing/bro
 ## Tech Stack
 - **Build tool:** Vite
 - **Framework:** React, React Router
-- **State:** Zustand (`authStore` — `setTokens`, `updateUser`, `clearAuth`)
+- **State:** Zustand (`authStore` — `setTokens`, `setAuth`, `updateTokens`, `updateUser`, `setCurrentRole`, `clearAuth`)
 - **API calls:** plain `fetch`, using a shared `ENDPOINTS` object (`utils/api.js`) and `VITE_DB_API` base URL — see `utils/api.js` for the full list of endpoints currently wired up
 - **Media URLs:** `getMediaUrl()` helper in `utils/api.js`, prepends `VITE_DB_MEDIA`
 
@@ -68,6 +68,24 @@ Log in to iFast.
 - Always reload the live URL after uploading to confirm it loaded correctly
 
 > **Note on "valor66":** this folder name is a holdover from BeeDev's internal Valor Collective staging naming convention, not a Novel eShelf–specific name. Since Novel eShelf is now live, this same preview path doubles as the staging environment used ahead of Expo app store releases — kept here intentionally rather than renamed, so don't be confused by the mismatch between the folder name and the project name.
+
+---
+
+## Auth & sessions
+
+- **Token storage:** access token in `sessionStorage` (per tab), refresh token in `localStorage` (shared across tabs). Access tokens last 1 day, refresh tokens 30 days, and refresh tokens rotate on every use.
+- **Fetch wrapper:** `installAuthenticatedFetch()` in `utils/session.js` wraps `window.fetch` once (called at module scope in `App.jsx`). It tags every request with `X-Client-Platform: vite`, and when a `Bearer` request gets a 401 it refreshes the token and retries once. Auth endpoints (login, logout, signup, refresh, handoff) are skipped.
+- **Shared refresh:** `refreshSession()` is the only code that calls `auth/refresh/`. Concurrent callers wait on the same request, because a second refresh with the same token would hit the blacklist and log the user out. It reads the refresh token from `localStorage` (another tab may have rotated it), saves both returned tokens via `updateTokens`, and calls `clearAuth()` if the refresh token is rejected.
+- **Startup (`hooks/useUser.js`):** with an access token, calls `/me/`; a 401 drops the access token so the refresh branch runs instead of logging out. With only a refresh token, calls `refreshSession()`, then the effect re-runs and fetches `/me/` once. A network error during that startup refresh still logs the user out.
+- **Expo → Vite handoff (`utils/authHandoff.js`, `hooks/useAuthHandoffListener.js`):** Expo sends `?handoff=<token>&role=<currentRole>`. `receiveFromExpo` logs the user in (default role), then switches to `role` if the user has that profile. Both params are stripped from the URL afterward.
+- **Purchase Quills** (`/purchase-quills`) is open to any logged-in role — quills go to the user's wallet, not a role profile.
+
+## Admin lists
+
+User Management, Author Requests and Book Approvals share `components/AdminComponents/AdminListControls.jsx` (Sort + "Show N" selects; options in `utils/adminList.js`). They map to the server's `order` (`newest`, `oldest`, `az`, `za`) and `page_size` (10/25/50/100, default 25 here) params, and changing either returns to page 1.
+
+- User Management search runs on the server (`search` param, debounced ~300ms, previous request aborted). The list stays mounted while loading so the search box keeps focus.
+- The Gift Ink panel searches users the same way (25 results, A–Z) and keeps the selected recipient even if a new search no longer includes them.
 
 ---
 
